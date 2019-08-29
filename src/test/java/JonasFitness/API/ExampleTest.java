@@ -1,8 +1,6 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -40,9 +38,10 @@ public class ExampleTest{
 
 				then().assertThat().statusCode(200).and().// validate response is successful
 				contentType(ContentType.JSON).and().// validate content type
-				body("results[0].name", equalTo("The Wine Bistro")).and().// validate body objects
-				body("results[0].place_id", equalTo("ChIJz7Dz8QzzOIgRHHfjHplOd94")).and()
-				.header("Server", "scaffolding on HTTPServer2").// validate header objects
+				
+//				body("results[0].name", equals("The Wine Bistro")).and().// validate body objects
+//				body("results[0].place_id", equals("ChIJz7Dz8QzzOIgRHHfjHplOd94")).and()
+				header("Server", "scaffolding on HTTPServer2").// validate header objects
 				extract().response();
 
 		JsonPath js = ReusableMethods.rawToJson(res);
