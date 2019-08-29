@@ -2,10 +2,6 @@ package resources;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
