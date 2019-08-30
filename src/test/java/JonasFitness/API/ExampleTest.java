@@ -38,9 +38,6 @@ public class ExampleTest{
 
 				then().assertThat().statusCode(200).and().// validate response is successful
 				contentType(ContentType.JSON).and().// validate content type
-				
-//				body("results[0].name", equals("The Wine Bistro")).and().// validate body objects
-//				body("results[0].place_id", equals("ChIJz7Dz8QzzOIgRHHfjHplOd94")).and()
 				header("Server", "scaffolding on HTTPServer2").// validate header objects
 				extract().response();
 

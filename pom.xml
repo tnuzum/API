@@ -2,35 +2,52 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<properties>
+		<httpclient.version>4.5.3</httpclient.version>
+	</properties>
 
 	<groupId>JonasFitness</groupId>
 	<artifactId>API</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>4.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>API</name>
-	<!-- <url>http://maven.apache.org</url -->
-	<url>https://repo.maven.apache.org/maven2</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<description>Java DSL for easy testing of REST services</description>
+	<url>http://code.google.com/p/rest-assured</url>
+
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/java/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<groupId>org.codehaus.gmaven</groupId>
+				<artifactId>gmaven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.5.1</version>
+				<extensions>true</extensions>
 				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>testng.xml</suiteXmlFile>
-					</suiteXmlFiles>
+					<instructions>
+						<Export-Package>
+							!io.restassured.path.xml.*,
+							!io.restassured.path.json.*,
+							!io.restassured.common.*,
+							!io.restassured.internal.path.xml.*,
+							!io.restassured.internal.path.json.*,
+							!io.restassured.internal.common.*,
+							io.restassured.*
+						</Export-Package>
+						<Import-Package>
+							groovy.*;version="${groovy.range}",
+							org.codehaus.groovy.*;version="${groovy.range}",
+							*
+						</Import-Package>
+					</instructions>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.basepom.maven</groupId>
+				<artifactId>duplicate-finder-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -42,23 +59,48 @@
 			</plugin>
 		</plugins>
 	</build>
+
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>2.5.8</version>
 		</dependency>
 		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>4.0.0</version>
-			<!-- scope>test</scope-->
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-xml</artifactId>
+			<version>2.5.6</version>
 		</dependency>
 		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>3.3.0</version>
-			<!-- scope>test</scope -->
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>2.5.3</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ccil.cowan.tagsoup</groupId>
+			<artifactId>tagsoup</artifactId>
+			<version>1.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
@@ -66,35 +108,78 @@
 			<version>4.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>xml-path</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<!-- Optional dependencies -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.9.3</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.9</version>
+			<optional>true</optional>
+		</dependency>
+		<!-- dependency> mvnrepository says this was moved to jackson-databind 
+			(above) <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<optional>true</optional> </dependency -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.johnzon</groupId>
+			<artifactId>johnzon-mapper</artifactId>
+			<version>1.1.13</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
 			<groupId>javax.json</groupId>
 			<artifactId>javax.json-api</artifactId>
 			<version>1.1.4</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.9</version>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.12.2</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<!-- scope>test</scope -->
-		</dependency>
-		<dependency>
-			<groupId>com.github.scribejava</groupId>
-			<artifactId>scribejava-apis</artifactId>
-			<version>2.5.3</version>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
-			<!-- version>3.0.6</version -->
 			<version>4.0.9</version>
 		</dependency>
 		<dependency>
@@ -102,26 +187,38 @@
 			<artifactId>extentreports</artifactId>
 			<version>2.41.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.12.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.12.0</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.surefire</groupId>
-			<artifactId>maven-surefire-common</artifactId>
-			<version>3.0.0-M3</version>
-		</dependency>
 	</dependencies>
 </project>
+
+
+
+<!-- Older dependencies -->
+<!-- <url>http://maven.apache.org</url -->
+<!-- url>https://repo.maven.apache.org/maven2</url> <build> <resources> <resource> 
+	<directory>src/main/java/resources</directory> <filtering>true</filtering> 
+	</resource> </resources> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+	<artifactId>maven-surefire-plugin</artifactId> <version>3.0.0-M3</version> 
+	<configuration> <suiteXmlFiles> <suiteXmlFile>testng.xml</suiteXmlFile> </suiteXmlFiles> 
+	</configuration> </plugin> <plugin> <artifactId>maven-compiler-plugin</artifactId> 
+	<version>3.8.1</version> <configuration> <source>11</source> <target>11</target> 
+	</configuration> </plugin> </plugins> </build> <dependencies> <dependency> 
+	<groupId>junit</groupId> <artifactId>junit</artifactId> <version>4.12</version> 
+	</dependency> <dependency> <groupId>io.rest-assured</groupId> <artifactId>rest-assured</artifactId> 
+	<version>4.0.0</version> </dependency> <dependency> <groupId>io.rest-assured</groupId> 
+	<artifactId>json-schema-validator</artifactId> <version>3.3.0</version> </dependency> 
+	<dependency> <groupId>io.rest-assured</groupId> <artifactId>json-path</artifactId> 
+	<version>4.0.0</version> </dependency> <dependency> <groupId>javax.json</groupId> 
+	<artifactId>javax.json-api</artifactId> <version>1.1.4</version> </dependency> 
+	<dependency> <groupId>org.apache.httpcomponents</groupId> <artifactId>httpclient</artifactId> 
+	<version>4.5.9</version> </dependency> <dependency> <groupId>commons-io</groupId> 
+	<artifactId>commons-io</artifactId> <version>2.6</version> </dependency> 
+	<dependency> <groupId>org.testng</groupId> <artifactId>testng</artifactId> 
+	<version>6.14.3</version> </dependency> <dependency> <groupId>com.github.scribejava</groupId> 
+	<artifactId>scribejava-apis</artifactId> <version>2.5.3</version> </dependency> 
+	<dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-api</artifactId> 
+	<version>2.12.0</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+	<artifactId>log4j-core</artifactId> <version>2.12.0</version> </dependency> 
+	<dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> <version>1.2.17</version> 
+	</dependency> <dependency> <groupId>org.apache.maven.surefire</groupId> <artifactId>maven-surefire-common</artifactId> 
+	<version>3.0.0-M3</version> </dependency> </dependencies> </project -->
 
