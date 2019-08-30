@@ -11,15 +11,6 @@ public class ReusableMethods {
 	
 	static String projectPath = System.getenv("ECLIPSE_HOME");
 	String userProfile = System.getenv("USERPROFILE");
-	
-// ** this block to getPropData isn't working **
-/*	public static Properties prop = new Properties();
-	public Properties getPropData() throws IOException {
-		FileInputStream fis = new FileInputStream(
-				projectPath + "\\API\\src\\main\\java\\resources\\rest.properties");
-		prop.load(fis);
-		return null;
-	}*/
 
 	public static XmlPath rawToXML(Response r) {
 		String respon = r.asString();
