@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-30T13:30:07 EDT" name="Default suite" finished-at="2019-08-30T13:30:09 EDT" duration-ms="1999">
+  <suite started-at="2019-08-30T14:58:47 EDT" name="API - Smoke Testing" finished-at="2019-08-30T14:58:49 EDT" duration-ms="2104">
     <groups>
     </groups>
-    <test started-at="2019-08-30T13:30:07 EDT" name="Default test" finished-at="2019-08-30T13:30:09 EDT" duration-ms="1999">
+    <test started-at="2019-08-30T14:58:47 EDT" name="Get Response" finished-at="2019-08-30T14:58:49 EDT" duration-ms="2104">
       <class name="JonasFitness.API.GetResponse">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@3315d2d7]" started-at="2019-08-30T13:30:07 EDT" name="getData" finished-at="2019-08-30T13:30:07 EDT" duration-ms="10" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@c333c60]" started-at="2019-08-30T14:58:47 EDT" name="getData" finished-at="2019-08-30T14:58:47 EDT" duration-ms="12" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@3315d2d7]" started-at="2019-08-30T13:30:07 EDT" name="Test1" finished-at="2019-08-30T13:30:09 EDT" duration-ms="1960" status="PASS">
+        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@c333c60]" started-at="2019-08-30T14:58:47 EDT" name="Test1" finished-at="2019-08-30T14:58:49 EDT" duration-ms="2058" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Test1 -->
       </class> <!-- JonasFitness.API.GetResponse -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Get Response -->
+  </suite> <!-- API - Smoke Testing -->
 </testng-results>
