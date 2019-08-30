@@ -30,7 +30,7 @@ public class GetResponse {
 	public void Test1() {
 		RestAssured.baseURI = prop.getProperty("hostG");
 		Response res = given().param("location", "40.128354, -83.017916").param("radius", "500")
-				.param("key", prop.getProperty("keyG")).param("type", "restaurant").
+				.param("key", prop.getProperty("keyG")).param("type", "bar").
 
 				when().get(resources.getnearbyDataJSON()).
 

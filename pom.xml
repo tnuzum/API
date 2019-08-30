@@ -20,6 +20,7 @@
 			<plugin>
 				<groupId>org.codehaus.gmaven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
+				<version>1.5</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -46,10 +47,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.basepom.maven</groupId>
-				<artifactId>duplicate-finder-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
@@ -57,7 +54,7 @@
 					<target>11</target>
 				</configuration>
 			</plugin>
-						<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M3</version>
@@ -72,6 +69,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy</artifactId>
 			<version>2.5.8</version>
@@ -83,13 +85,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
+			<version>4.5.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>${httpclient.version}</version>
+			<version>4.5.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
@@ -122,19 +129,12 @@
 			<artifactId>xml-path</artifactId>
 			<version>4.0.0</version>
 		</dependency>
+
 		<!-- Optional dependencies -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.9.3</version>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.9</version>
-			<optional>true</optional>
-		</dependency>
+		<!--dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
+			<version>2.9.9.3</version> <optional>true</optional> </dependency -->
+		<!-- dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId> 
+			<version>2.9.9</version> <optional>true</optional> </dependency -->
 		<!-- dependency> mvnrepository says this was moved to jackson-databind 
 			(above) <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
 			<optional>true</optional> </dependency -->
@@ -196,6 +196,18 @@
 			<groupId>com.relevantcodes</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>2.41.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.0.0</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
