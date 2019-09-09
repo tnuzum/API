@@ -31,12 +31,13 @@ public class GetResponseCORE extends base {
 //		Response res = 
 	
 				given().
-					param("barcodeId", "4890").
+					header("Content-Type","text/xml").
 					body(postData).
 
 				when().get(resources.getnearbyDataXML()).
-				then().assertThat().statusCode(200).and().//validate response is successful
-		       	contentType(ContentType.XML).and().//validate content type
+				then().assertThat().statusCode(200).
+				//and().//validate response is successful
+		       	//contentType(ContentType.XML).and().//validate content type
 
 				extract().response().statusCode();
 
