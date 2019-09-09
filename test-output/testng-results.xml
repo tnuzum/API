@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-09T14:42:14 EDT" name="API - Smoke Testing" finished-at="2019-09-09T14:42:18 EDT" duration-ms="4875">
+  <suite started-at="2019-09-09T16:35:00 EDT" name="Default suite" finished-at="2019-09-09T16:35:01 EDT" duration-ms="1760">
     <groups>
     </groups>
-    <test started-at="2019-09-09T14:42:14 EDT" name="Get Response" finished-at="2019-09-09T14:42:16 EDT" duration-ms="2383">
-      <class name="JonasFitness.API.GetResponse">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:42:14 EDT" name="getData" finished-at="2019-09-09T14:42:14 EDT" duration-ms="22" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:42:14 EDT" name="Test1" finished-at="2019-09-09T14:42:16 EDT" duration-ms="2322" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Test1 -->
-      </class> <!-- JonasFitness.API.GetResponse -->
-    </test> <!-- Get Response -->
-    <test started-at="2019-09-09T14:42:16 EDT" name="Get ResponseCORE" finished-at="2019-09-09T14:42:18 EDT" duration-ms="2433">
+    <test started-at="2019-09-09T16:35:00 EDT" name="Default test" finished-at="2019-09-09T16:35:01 EDT" duration-ms="1760">
       <class name="JonasFitness.API.GetResponseCORE">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:42:16 EDT" name="getData" finished-at="2019-09-09T14:42:16 EDT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponseCORE@be35cd9]" started-at="2019-09-09T16:35:00 EDT" name="getData" finished-at="2019-09-09T16:35:00 EDT" duration-ms="19" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:42:16 EDT" name="Test1" finished-at="2019-09-09T14:42:18 EDT" duration-ms="2426" status="FAIL">
+        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponseCORE@be35cd9]" started-at="2019-09-09T16:35:00 EDT" name="Test1" finished-at="2019-09-09T16:35:01 EDT" duration-ms="1709" status="FAIL">
           <exception class="java.net.UnknownHostException">
             <message>
               <![CDATA[This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server (compete-ws.test-jfisoftware.net)]]>
@@ -47,10 +35,16 @@ at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.j
 at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
 at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
 at org.apache.http.client.HttpClient$execute$0.call(Unknown Source)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:135)
 at io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder.doRequest(RequestSpecificationImpl.groovy:2055)
 at io.restassured.internal.http.HTTPBuilder.doRequest(HTTPBuilder.java:494)
 at io.restassured.internal.http.HTTPBuilder.request(HTTPBuilder.java:451)
 at io.restassured.internal.http.HTTPBuilder$request$2.call(Unknown Source)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:151)
 at io.restassured.internal.RequestSpecificationImpl.sendHttpRequest(RequestSpecificationImpl.groovy:1450)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -64,6 +58,8 @@ at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:821)
 at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
 at io.restassured.internal.RequestSpecificationImpl.sendRequest(RequestSpecificationImpl.groovy:1199)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -76,6 +72,8 @@ at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
 at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:821)
 at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
 at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:151)
 at io.restassured.internal.filter.SendRequestFilter.filter(SendRequestFilter.groovy:30)
 at io.restassured.filter.Filter$filter$0.call(Unknown Source)
@@ -85,9 +83,13 @@ at io.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groov
 at io.restassured.filter.time.TimingFilter.filter(TimingFilter.java:56)
 at io.restassured.filter.Filter$filter.call(Unknown Source)
 at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
-at io.restassured.filter.Filter$filter$0.call(Unknown Source)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:143)
 at io.restassured.internal.filter.FilterContextImpl.next(FilterContextImpl.groovy:72)
 at io.restassured.filter.FilterContext$next.call(Unknown Source)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:115)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:135)
 at io.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1655)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -101,6 +103,8 @@ at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:821)
 at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
 at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:184)
 at io.restassured.internal.RequestSpecificationImpl.applyPathParamsAndSendRequest(RequestSpecificationImpl.groovy:1661)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -115,10 +119,12 @@ at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:821)
 at io.restassured.internal.RequestSpecificationImpl.invokeMethod(RequestSpecificationImpl.groovy)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.call(PogoInterceptableSite.java:45)
 at org.codehaus.groovy.runtime.callsite.PogoInterceptableSite.callCurrent(PogoInterceptableSite.java:55)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
 at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:184)
 at io.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy:171)
 at io.restassured.internal.RequestSpecificationImpl.get(RequestSpecificationImpl.groovy)
-at JonasFitness.API.GetResponseCORE.Test1(GetResponseCORE.java:32)
+at JonasFitness.API.GetResponseCORE.Test1(GetResponseCORE.java:37)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -154,6 +160,6 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           </reporter-output>
         </test-method> <!-- Test1 -->
       </class> <!-- JonasFitness.API.GetResponseCORE -->
-    </test> <!-- Get ResponseCORE -->
-  </suite> <!-- API - Smoke Testing -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

@@ -3,18 +3,20 @@ package JonasFitness.API;
 import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import resources.base;
 import resources.resources;
 
 public class GetResponseCORE extends base {
 
-
+	static String projectPath = System.getenv("ECLIPSE_HOME");
     
 	@BeforeTest
 	public void getData() throws IOException {
@@ -23,12 +25,14 @@ public class GetResponseCORE extends base {
 	}
 
 	@Test
-	public void Test1() {
+	public void Test1() throws IOException {
+		String postData = GenerateStringFromResource(projectPath + "\\API\\src\\main\\java\\resources\\getCustomerInfo.xml");
 		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
 //		Response res = 
 	
 				given().
 					param("barcodeId", "4890").
+					body(postData).
 
 				when().get(resources.getnearbyDataXML()).
 				then().assertThat().statusCode(200).and().//validate response is successful
@@ -46,5 +50,8 @@ public class GetResponseCORE extends base {
 //		String name = js.get("results[0].name");
 //		System.out.println(name);
 	}
-
+	public static String GenerateStringFromResource(String path) throws IOException
+	{
+		return new String(Files.readAllBytes(Paths.get(path)));
+	}
 }
