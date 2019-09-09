@@ -2,28 +2,28 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-09T14:09:54 EDT" name="API - Smoke Testing" finished-at="2019-09-09T14:09:57 EDT" duration-ms="2757">
+  <suite started-at="2019-09-09T14:42:14 EDT" name="API - Smoke Testing" finished-at="2019-09-09T14:42:18 EDT" duration-ms="4875">
     <groups>
     </groups>
-    <test started-at="2019-09-09T14:09:54 EDT" name="Get Response" finished-at="2019-09-09T14:09:56 EDT" duration-ms="2227">
+    <test started-at="2019-09-09T14:42:14 EDT" name="Get Response" finished-at="2019-09-09T14:42:16 EDT" duration-ms="2383">
       <class name="JonasFitness.API.GetResponse">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:09:54 EDT" name="getData" finished-at="2019-09-09T14:09:54 EDT" duration-ms="18" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:42:14 EDT" name="getData" finished-at="2019-09-09T14:42:14 EDT" duration-ms="22" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:09:54 EDT" name="Test1" finished-at="2019-09-09T14:09:56 EDT" duration-ms="2169" status="PASS">
+        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-09T14:42:14 EDT" name="Test1" finished-at="2019-09-09T14:42:16 EDT" duration-ms="2322" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Test1 -->
       </class> <!-- JonasFitness.API.GetResponse -->
     </test> <!-- Get Response -->
-    <test started-at="2019-09-09T14:09:57 EDT" name="Get ResponseCORE" finished-at="2019-09-09T14:09:57 EDT" duration-ms="463">
+    <test started-at="2019-09-09T14:42:16 EDT" name="Get ResponseCORE" finished-at="2019-09-09T14:42:18 EDT" duration-ms="2433">
       <class name="JonasFitness.API.GetResponseCORE">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:09:57 EDT" name="getData" finished-at="2019-09-09T14:09:57 EDT" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:42:16 EDT" name="getData" finished-at="2019-09-09T14:42:16 EDT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:09:57 EDT" name="Test1" finished-at="2019-09-09T14:09:57 EDT" duration-ms="458" status="FAIL">
+        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponseCORE@29d89d5d]" started-at="2019-09-09T14:42:16 EDT" name="Test1" finished-at="2019-09-09T14:42:18 EDT" duration-ms="2426" status="FAIL">
           <exception class="java.net.UnknownHostException">
             <message>
               <![CDATA[This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server (compete-ws.test-jfisoftware.net)]]>

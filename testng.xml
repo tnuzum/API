@@ -4,9 +4,9 @@
 	<listeners>
 		<listener class-name="resources.ExtentReporterNG" />
 	</listeners>
-	<test thread-count="5" name="Get Response"> <classes> <class name="JonasFitness.API.GetResponse"/> 
+	<!-- test thread-count="5" name="Get Response"> <classes> <class name="JonasFitness.API.GetResponse"/> 
 		</classes>
-		 </test>
+		 </test-->
 		 	<test thread-count="5" name="Get ResponseCORE"> <classes> <class name="JonasFitness.API.GetResponseCORE"/> 
 		</classes>
 		 </test>
