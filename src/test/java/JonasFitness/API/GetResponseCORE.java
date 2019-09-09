@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import resources.base;
 import resources.resources;
@@ -24,20 +25,21 @@ public class GetResponseCORE extends base {
 	@Test
 	public void Test1() {
 		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
-		Response res = 
-				
+//		Response res = 
+	
 				given().
 					param("barcodeId", "4890").
 
 				when().get(resources.getnearbyDataXML()).
-				then().
+				then().assertThat().statusCode(200).and().//validate response is successful
+		       	contentType(ContentType.XML).and().//validate content type
 
-				extract().response();
+				extract().response().statusCode();
 
 		// ** Used to get entire response **
-		String responseString = res.asString();
-		System.out.println(responseString);
-		System.out.println(res);
+//		String responseString = res.asString();
+//		System.out.println(responseString);
+//		System.out.println(res);
 
 		// ** Used to get specific element from response **
 //		JsonPath js = ReusableMethods.rawToJson(res);
