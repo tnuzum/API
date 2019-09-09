@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import resources.base;
 import resources.resources;
 
@@ -28,10 +29,10 @@ public class GetResponseCORE extends base {
 	public void Test1() throws IOException {
 		String postData = GenerateStringFromResource(projectPath + "\\API\\src\\main\\java\\resources\\getCustomerInfo.xml");
 		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
-//		Response res = 
+		Response res =
 	
 				given().
-					header("Content-Type","text/xml").
+					header("Content-Type","text/html; charset=utf-8").
 					body(postData).
 
 				when().get(resources.getnearbyDataXML()).
@@ -39,11 +40,11 @@ public class GetResponseCORE extends base {
 				//and().//validate response is successful
 		       	//contentType(ContentType.XML).and().//validate content type
 
-				extract().response().statusCode();
+				extract().response();
 
 		// ** Used to get entire response **
-//		String responseString = res.asString();
-//		System.out.println(responseString);
+		String responseString = res.asString();
+		System.out.println(responseString);
 //		System.out.println(res);
 
 		// ** Used to get specific element from response **
