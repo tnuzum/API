@@ -29,7 +29,7 @@ public class GetResponseCORE extends base {
 				given().
 					param("barcodeId", "4890").
 
-				when().get(resources.getnearbyDataJSON()).
+				when().get(resources.getnearbyDataXML()).
 				then().
 
 				extract().response();
