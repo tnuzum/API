@@ -23,7 +23,7 @@ public class GetResponseCORE extends base {
 
 	@Test
 	public void Test1() {
-		RestAssured.baseURI = prop.getProperty("http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc");
+		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
 		Response res = 
 				
 				given().

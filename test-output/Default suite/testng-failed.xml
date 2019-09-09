@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JonasFitness.API.GetResponseJFI">
+      <class name="JonasFitness.API.GetResponseCORE">
         <methods>
           <include name="getData"/>
           <include name="Test1"/>
         </methods>
-      </class> <!-- JonasFitness.API.GetResponseJFI -->
+      </class> <!-- JonasFitness.API.GetResponseCORE -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
