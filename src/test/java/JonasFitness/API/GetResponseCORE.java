@@ -37,6 +37,7 @@ public class GetResponseCORE extends base {
 		// ** Used to get entire response **
 		String responseString = res.asString();
 		System.out.println(responseString);
+		System.out.println(res);
 
 		// ** Used to get specific element from response **
 //		JsonPath js = ReusableMethods.rawToJson(res);
