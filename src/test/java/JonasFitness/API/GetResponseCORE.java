@@ -37,7 +37,7 @@ public class GetResponseCORE extends base {
 					header("Content-Type","text/html; charset=utf-8").
 					body(postData).
 
-				when().get("/Info/CustomerInfo.svc").
+				when().get("/Info/CustomerInfo.svc?wsdl").
 				then().assertThat().statusCode(200).
 				//and().//validate response is successful
 		       	//contentType(ContentType.XML).and().//validate content type
