@@ -28,14 +28,16 @@ public class GetResponseCORE extends base {
 	@Test
 	public void Test1() throws IOException {
 		String postData = GenerateStringFromResource(projectPath + "\\API\\src\\main\\java\\resources\\getCustomerInfo.xml");
-		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
+//		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/Info/CustomerInfo.svc";
+		RestAssured.baseURI = "http://compete-ws.test-jfisoftware.net:4412/";
+//		
 		Response res =
 	
 				given().
 					header("Content-Type","text/html; charset=utf-8").
 					body(postData).
 
-				when().get(resources.getnearbyDataXML()).
+				when().get("/Info/CustomerInfo.svc").
 				then().assertThat().statusCode(200).
 				//and().//validate response is successful
 		       	//contentType(ContentType.XML).and().//validate content type
