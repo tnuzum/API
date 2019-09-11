@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-10T10:36:36 EDT" name="Default suite" finished-at="2019-09-10T10:36:38 EDT" duration-ms="2242">
+  <suite started-at="2019-09-11T13:13:17 EDT" name="API - Smoke Testing" finished-at="2019-09-11T13:13:19 EDT" duration-ms="2400">
     <groups>
     </groups>
-    <test started-at="2019-09-10T10:36:36 EDT" name="Default test" finished-at="2019-09-10T10:36:38 EDT" duration-ms="2242">
+    <test started-at="2019-09-11T13:13:17 EDT" name="Get Response" finished-at="2019-09-11T13:13:19 EDT" duration-ms="2400">
       <class name="JonasFitness.API.GetResponse">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@41e1e210]" started-at="2019-09-10T10:36:36 EDT" name="getData" finished-at="2019-09-10T10:36:36 EDT" duration-ms="21" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-11T13:13:17 EDT" name="getData" finished-at="2019-09-11T13:13:17 EDT" duration-ms="22" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@41e1e210]" started-at="2019-09-10T10:36:36 EDT" name="Test1" finished-at="2019-09-10T10:36:38 EDT" duration-ms="2186" status="PASS">
+        <test-method signature="Test1()[pri:0, instance:JonasFitness.API.GetResponse@4944252c]" started-at="2019-09-11T13:13:17 EDT" name="Test1" finished-at="2019-09-11T13:13:19 EDT" duration-ms="2348" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Test1 -->
       </class> <!-- JonasFitness.API.GetResponse -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Get Response -->
+  </suite> <!-- API - Smoke Testing -->
 </testng-results>
