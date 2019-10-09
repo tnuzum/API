@@ -27,7 +27,7 @@ public class GetAppointmentProductCategoriesByMember {
 						.header("X-CompanyId", "101")
 						.header("X-ClubId", "1")
 					.when()
-						.get("/api/v3/appointment/getappointmentsbymember/29947/2019-01-01T00:00/2019-12-01T00:00")
+						.get("/api/v3/product/getappointmentproductcategoriesbymember/29947")
 						.then()
 						.log().body()
 						.assertThat().statusCode(200)
