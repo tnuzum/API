@@ -21,7 +21,8 @@ public class GetAppointmentProductCategoriesByMember {
 
 		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
 
-				given().log().all()
+				given()
+//						.log().all()
 						.header("accept", "application/json")
 						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 						.header("X-CompanyId", "101")
@@ -29,9 +30,11 @@ public class GetAppointmentProductCategoriesByMember {
 					.when()
 						.get("/api/v3/product/getappointmentproductcategoriesbymember/29947")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Description"))
+						.body("Result[0]", hasKey("Id"));
 
 	}
 }

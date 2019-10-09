@@ -1,5 +1,7 @@
 package JonasFitness.API;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
 import org.testng.annotations.Test;
@@ -17,7 +19,7 @@ public class AuthenticateMemberByUserCredentials {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
 
-			given().log().all()
+			given()
 			.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 			.header("X-CompanyId", "101")
 			.header("X-ClubId", "1")
@@ -27,12 +29,12 @@ public class AuthenticateMemberByUserCredentials {
 						  "\"Username\": \"rauto\","+
 						  "\"Password\": \"Testing1!\""+
 						"}")
-			.when()
 				.post("/api/v3/member/authenticatememberbyusercredentials").
-			then().log().body()
+			then()
 			.assertThat().statusCode(200)
-			.time(lessThan(5L),TimeUnit.SECONDS).extract().response();
-		
+			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.body("Result.AuthenticationResult", equalTo("Success"))
+			.body("Result.CustomerId", equalTo(29947));
 			
 	}
 }

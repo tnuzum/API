@@ -21,7 +21,7 @@ public class GetActiveBooksByResourceType {
 
 		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
 
-				given().log().all()
+				given()
 						.header("accept", "application/json")
 						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 						.header("X-CompanyId", "101")
@@ -29,9 +29,13 @@ public class GetActiveBooksByResourceType {
 					.when()
 						.get("/api/v3/bookview/getactivebooksbyresourcetype")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("BookType"))
+						.body("Result[0]", hasKey("Description"))
+						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("Name"));
 
 	}
 }

@@ -1,0 +1,12 @@
+.assertThat().statusCode(200)
+.time(lessThan(5L),TimeUnit.SECONDS)
+.body("Result.Address.AddressLine1", equalTo("7965 N High St"))
+.body("Result.Address.AddressLine2", equalTo("Ste 360"))
+.body("Result.Address", hasKey("AddressLine1"));
+
+//For not present -- .body("$", not(hasKey("age")));
+
+given().log().body()
+then().log().all()
+		    
+		    
