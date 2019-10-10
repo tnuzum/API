@@ -4,22 +4,32 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import resources.base;
 
-public class AuthenticateMemberByUserCredentials {
+public class AuthenticateMemberByUserCredentials extends base {
 
+	@BeforeTest
+	public void getData() throws IOException {
+		base.getPropertyData();
+	}
 	@Test
 	public void Test1() {
+		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
+		int member = Integer.parseInt(activeMemberString);
 		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
+		RestAssured.baseURI = prop.getProperty("baseURI");
 
 			given()
+//			.log().all()
 			.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 			.header("X-CompanyId", "101")
 			.header("X-ClubId", "1")
@@ -31,10 +41,11 @@ public class AuthenticateMemberByUserCredentials {
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
+//			.log().all()
 			.assertThat().statusCode(200)
 			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("Success"))
-			.body("Result.CustomerId", equalTo(29947));
+			.body("Result.CustomerId", equalTo(member));
 			
 	}
 }

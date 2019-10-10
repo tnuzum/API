@@ -21,7 +21,8 @@ public class GetClassesAndCoursesByMember {
 
 		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
 
-				given().log().all()
+				given()
+//						.log().all()
 						.header("accept", "application/json")
 						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 						.header("X-CompanyId", "101")
@@ -29,7 +30,7 @@ public class GetClassesAndCoursesByMember {
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbymember/29947/2019-01-01T00:00/2020-12-01T00:00")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 

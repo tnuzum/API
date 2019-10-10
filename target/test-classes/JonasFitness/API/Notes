@@ -1,3 +1,17 @@
+import static io.restassured.RestAssured.given;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
+import resources.base;
+
 .assertThat().statusCode(200)
 .time(lessThan(5L),TimeUnit.SECONDS)
 .body("Result.Address.AddressLine1", equalTo("7965 N High St"))
@@ -8,5 +22,29 @@
 
 given().log().body()
 then().log().all()
+
+//		JsonPath js = ReusableMethods.rawToJson(res);
+//		String id = js.get("Result.Address.AddressLine1");
+//		System.out.println(id);
+//		String responseString = res.asString();
+//		System.out.println("Response: " + responseString);
+-------------------------------------------------------------
+@BeforeTest
+	public void getData() throws IOException {
+		base.getPropertyData();
+	}
+...	
+	String member = prop.getProperty("activeMember1_CustomerId");
+		int activeMember1 = Integer.parseInt(activeMember1String);   
+	String associatedClub = prop.getProperty("associatedClub1");
+	String ProdCategory = prop.getProperty("prodCategory1");  
+	String bookId = prop.getProperty("book1Id"); 
+	String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
+	String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+...
+	RestAssured.baseURI = prop.getProperty("baseURI");    
+...	    
+...		"+activeMember1)  
+		"+associatedClub1+"/"+prodCategory1)
 		    
 		    
