@@ -24,7 +24,7 @@ public class GetAppointmentsByBook extends base{
 		base.getPropertyData();
 	}
 	
-	@Test
+	@Test 
 	public void Test1() {
 		String resourceId = prop.getProperty("resource1Id");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
@@ -45,7 +45,30 @@ public class GetAppointmentsByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("AppointmentId"))
+						.body("Result[0]", hasKey("AppointmentNotes"))
+						.body("Result[0]", hasKey("CancellationDateTime"))
+						.body("Result[0]", hasKey("ClubId"))
+						.body("Result[0]", hasKey("ClubName"))
+						.body("Result[0]", hasKey("DurationInMinutes"))
+						.body("Result[0]", hasKey("ItemBarCodeId"))
+						.body("Result[0]", hasKey("ItemDescription"))
+						.body("Result[0]", hasKey("ItemLongDescription"))
+						.body("Result[0]", hasKey("ProductCategoryDescription"))
+						.body("Result[0]", hasKey("RecurringId"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookDescription"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookId"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookName"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeDescription"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeId"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeName"))
+						.body("Result[0].ScheduledAppointmentMemberDTOs[0]", hasKey("BarcodeId"))
+						.body("Result[0].ScheduledAppointmentMemberDTOs[0]", hasKey("CustomerId"))
+						.body("Result[0].ScheduledAppointmentMemberDTOs[0]", hasKey("DisplayName"))
+						.body("Result[0].ScheduledAppointmentMemberDTOs[0]", hasKey("Outcome"))
+						.body("Result[0]", hasKey("ScheduledDateTime"))
+						.body("Result[0]", hasKey("ScheduledInstanceType"))
+						.body("Result[0]", hasKey("StartDateTime"));
 	}
 }
