@@ -39,7 +39,7 @@ public class GetClubsByMember extends base{
 					.when()
 						.get("/api/v3/club/getclubsbymember/"+member)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Id"))
