@@ -51,7 +51,7 @@ public class GetAvailableAppointments extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	/*@Test
+	@Test
 	public void GetAvailableAppointments_WithResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -80,5 +80,5 @@ public class GetAvailableAppointments extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
-	}*/
+	}
 }
