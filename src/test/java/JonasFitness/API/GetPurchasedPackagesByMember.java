@@ -43,7 +43,19 @@ public class GetPurchasedPackagesByMember extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("ExpirationDate"))
+						.body("Result[0]", hasKey("InvoiceNumber"))
+						.body("Result[0]", hasKey("PackageName"))
+						.body("Result[0]", hasKey("PackagePrice"))
+						.body("Result[0]", hasKey("PunchcardType"))
+						.body("Result[0]", hasKey("PurchaseDate"))
+						.body("Result[0]", hasKey("SaleClubNumber"))
+						.body("Result[0]", hasKey("SoldInEme"))
+						.body("Result[0]", hasKey("TotalUnitsRedeemed"))
+						.body("Result[0]", hasKey("UnitsPurchased"))
+						.body("Result[0]", hasKey("UnitsRemaining"));
+				
 
 	}
 }

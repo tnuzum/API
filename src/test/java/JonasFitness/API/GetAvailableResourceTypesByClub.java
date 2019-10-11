@@ -41,7 +41,15 @@ public class GetAvailableResourceTypesByClub extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("ResourceTypeDescription"))
+						.body("Result[0]", hasKey("ResourceTypeId"))
+						.body("Result[0]", hasKey("ResourceTypeName"))
+						.body("Result[1]", hasKey("ResourceTypeDescription"))
+						.body("Result[1]", hasKey("ResourceTypeId"))
+						.body("Result[1]", hasKey("ResourceTypeName"))
+						.body("Result[2]", hasKey("ResourceTypeDescription"))
+						.body("Result[2]", hasKey("ResourceTypeId"))
+						.body("Result[2]", hasKey("ResourceTypeName"));
 	}
 }

@@ -43,7 +43,18 @@ public class GetProductByBook extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("ProductId"))
+						.body("Result[0]", hasKey("BarcodeId"))
+						.body("Result[0]", hasKey("ProductDescription"))
+						.body("Result[0]", hasKey("ProductType"))
+						.body("Result[0]", hasKey("ProductLongDescription"))
+						.body("Result[0]", hasKey("ProductCategoryId"))
+						.body("Result[0]", hasKey("ProductCategoryDescription"))
+						.body("Result[0]", hasKey("AllowedStartTimes"))
+						.body("Result[0]", hasKey("BookingDuration"))
+						.body("Result[0]", hasKey("MemberLimit"));
+				
 
 	}
 }

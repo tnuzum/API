@@ -41,9 +41,28 @@ public class GetClassesAndCoursesByBook extends base{
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-						//.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("BookedResourcesDTOs"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("BookDescription"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("BookId"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("BookName"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("ResourceTypeDescription"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("ResourceTypeId"))
+						.body("Result[0].BookedResourcesDTOs[0]", hasKey("ResourceTypeName"))
+						.body("Result[0]", hasKey("ClassCourseEnrollmentStatus"))
+						.body("Result[0]", hasKey("ClassCourseId"))
+						.body("Result[0]", hasKey("ClubId"))
+						.body("Result[0]", hasKey("ClubName"))
+						.body("Result[0]", hasKey("DurationInMinutes"))
+						.body("Result[0]", hasKey("ItemBarCodeId"))
+						.body("Result[0]", hasKey("ItemDescription"))
+						.body("Result[0]", hasKey("ItemLongDescription"))
+						.body("Result[0]", hasKey("OriginalInstructorName"))
+						.body("Result[0]", hasKey("ProductCategoryDescription"))
+						.body("Result[0]", hasKey("ScheduledInstanceType"))
+						.body("Result[0]", hasKey("StartDateTime"))
+						.body("Result[0]", hasKey("SubstituteInstructorName"));
 	}
 }

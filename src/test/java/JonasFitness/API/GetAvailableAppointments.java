@@ -48,8 +48,25 @@ public class GetAvailableAppointments extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemBarcodeId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("Duration"))
+						.body("Result", hasKey("ClubId"))
+						.body("Result", hasKey("ClubName"))
+						.body("Result", hasKey("Price"))
+						.body("Result", hasKey("CustomerHasPunchesForItem"))
+						.body("Result", hasKey("AllowOnlineMemberPurchase"))
+						.body("Result", hasKey("DividePriceByMembers"))
+						.body("Result", hasKey("BooksAndAvailability"))
+						.body("Result.BooksAndAvailability[0]", hasKey("Books"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("Id"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("Name"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("ResourceTypeId"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("AssignedResourceId"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
+						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 	}
 	@Test
 	public void GetAvailableAppointments_WithResources() {
@@ -58,7 +75,7 @@ public class GetAvailableAppointments extends base {
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
 		String serviceId = prop.getProperty("service3Id");
-		String resourceId = prop.getProperty("resource6Id");
+		String resourceId = prop.getProperty("resource2Id");
 		String resourceTypeId = prop.getProperty("resourceType2Id");
 		
 		RestAssured.useRelaxedHTTPSValidation();
@@ -78,7 +95,25 @@ public class GetAvailableAppointments extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemBarcodeId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("Duration"))
+						.body("Result", hasKey("ClubId"))
+						.body("Result", hasKey("ClubName"))
+						.body("Result", hasKey("Price"))
+						.body("Result", hasKey("CustomerHasPunchesForItem"))
+						.body("Result", hasKey("AllowOnlineMemberPurchase"))
+						.body("Result", hasKey("DividePriceByMembers"))
+						.body("Result", hasKey("BooksAndAvailability"))
+						.body("Result.BooksAndAvailability[0]", hasKey("Books"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("Id"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("Name"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("ResourceTypeId"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("AssignedResourceId"))
+						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
+						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 
 	}
 }
