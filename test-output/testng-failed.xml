@@ -3,15 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JonasFitness.API.Draft_GetCardsOnFileByMember">
+      <class name="JonasFitness.API.draft_SecurityPipeline">
         <methods>
-          <include name="PBI146302_Test2"/>
-          <include name="PBI146302_Test1"/>
-          <include name="PBI146302_Test4"/>
           <include name="getData"/>
-          <include name="PBI146302_Test3"/>
+          <include name="PBI132893_Test3"/>
         </methods>
-      </class> <!-- JonasFitness.API.Draft_GetCardsOnFileByMember -->
+      </class> <!-- JonasFitness.API.draft_SecurityPipeline -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

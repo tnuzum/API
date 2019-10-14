@@ -64,7 +64,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (priority=1, description="Multiple Agreements with Card on File")
+	@Test (priority=2, description="Multiple Agreements with Card on File")
 	public void PBI146302_Test2() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -126,7 +126,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (priority=1, description="Multiple Cards on File with 1 Associated with Agreement")
+	@Test (priority=3, description="Multiple Cards on File with 1 Associated with Agreement")
 	public void PBI146302_Test3() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -188,7 +188,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (priority=1, description="No Agreements with Card on File")
+	@Test (priority=4, description="No Agreements with Card on File")
 	public void PBI146302_Test4() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -234,7 +234,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (priority=1, description="No Card On File")
+	@Test (priority=5, description="No Card On File")
 	public void PBI146302_Test5() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -256,10 +256,8 @@ public class GetCardsOnFileByMember extends base {
 						.assertThat()
 						.statusCode(404)
 						.statusLine("HTTP/1.1 404 Not Found")
-						.body("Message", not(hasKey("Credit card not found")))
+						.body("Message", equalTo("No credit cards found"))
 						.time(lessThan(5L),TimeUnit.SECONDS)
-						
-						
 						.body("Result", not(hasKey("AccountId")))
 						.body("Result", not(hasKey("Address")))
 						.body("Result", not(hasKey("Agreements")))

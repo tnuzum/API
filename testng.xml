@@ -118,4 +118,9 @@
 			<class name="JonasFitness.API.GetCardsOnFileByMember" />
 		</classes>
 	</test>
+		<test thread-count="5" name="SecurityPipeline">
+		<classes>
+			<class name="JonasFitness.API.SecurityPipeline" />
+		</classes>
+	</test>
 </suite>
