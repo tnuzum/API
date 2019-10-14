@@ -113,5 +113,9 @@
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 		</classes>
 	</test>
-
+	<test thread-count="5" name="GetCardsOnFileByMember">
+		<classes>
+			<class name="JonasFitness.API.GetCardsOnFileByMember" />
+		</classes>
+	</test>
 </suite>

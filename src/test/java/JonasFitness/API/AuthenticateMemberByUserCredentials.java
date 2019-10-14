@@ -1,7 +1,6 @@
 package JonasFitness.API;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
 import org.testng.annotations.BeforeTest;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import resources.base;
 
 public class AuthenticateMemberByUserCredentials extends base {
@@ -21,8 +19,8 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test
-	public void Test1() {
+	@Test (priority=1, description="PBI:139705")
+	public void ValidInput() {
 		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
 		int member = Integer.parseInt(activeMemberString);
 		RestAssured.useRelaxedHTTPSValidation();
