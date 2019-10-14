@@ -37,7 +37,7 @@ public class GetActiveClubs extends base {
 						.header("X-ClubId", "1")
 					.when()
 						.get("/api/v3/club/getactiveclubs")
-						.then()
+					.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
