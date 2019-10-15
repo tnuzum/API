@@ -14,13 +14,6 @@ import resources.base;
 
 public class SearchMembersByProduct extends base{
 	
-//---------------------------------------
-//	** SEARCH PARAMETERS **	
-	String phoneDashes = "614-200-1003";
-	String phoneNoDashes = "6142001003";
-	String fName = "Fred";
-	String lName = "Auto";
-	String email = "tnuzum.auto@gmail.com";
 	/*
 	 * LastName
 	 * FirstName
@@ -34,8 +27,6 @@ public class SearchMembersByProduct extends base{
 	 * Email
 	 */
 	
-//---------------------------------------	
-	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
@@ -44,11 +35,12 @@ public class SearchMembersByProduct extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	
 	}
-	@Test (description="PBI:139726")
+	@Test (testName="SearchMembersByProduct_FirstName",description="PBI:139726")
 	public void SearchMembersByProduct_FirstName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
+		String fName = prop.getProperty("activeMember1_fName");
 
 				given()
 //				.log().all()
@@ -64,11 +56,12 @@ public class SearchMembersByProduct extends base{
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test (description="PBI:139726")
+	@Test (testName="SearchMembersByProduct_LastName",description="PBI:139726")
 	public void SearchMembersByProduct_LastName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
-		String serviceId = prop.getProperty("service2Id");  
+		String serviceId = prop.getProperty("service2Id"); 
+		String lName = prop.getProperty("activeMember1_lName");
 
 				given()
 //				.log().all()
@@ -84,11 +77,12 @@ public class SearchMembersByProduct extends base{
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test (description="PBI:139726")
-	public void SearchMembersByProduct_PhoneWithDashes() {
+	@Test (testName="SearchMembersByProduct_HomePhoneWithDashes",description="PBI:139726")
+	public void SearchMembersByProduct_HomePhoneWithDashes() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
+		String hPhoneD = prop.getProperty("activeMember4_hPhoneD");
 
 				given()
 //						.log().all()
@@ -97,18 +91,19 @@ public class SearchMembersByProduct extends base{
 						.header("X-CompanyId", "101")
 						.header("X-ClubId", "1")
 					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+phoneDashes+"/"+associatedClub+"/"+serviceId)
+						.get("/api/v3/member/searchmembersbyproduct/"+hPhoneD+"/"+associatedClub+"/"+serviceId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test (description="PBI:139726")
-	public void SearchMembersByProduct_PhoneWithoutDashes() {
+	@Test (testName="SearchMembersByProduct_HomePhoneWithoutDashes",description="PBI:139726")
+	public void SearchMembersByProduct_HomePhoneWithoutDashes() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
+		String hPhone = prop.getProperty("activeMember4_hPhone");
 		
 				given()
 //				.log().all()
@@ -117,18 +112,19 @@ public class SearchMembersByProduct extends base{
 						.header("X-CompanyId", "101")
 						.header("X-ClubId", "1")
 					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+phoneNoDashes+"/"+associatedClub+"/"+serviceId)
+						.get("/api/v3/member/searchmembersbyproduct/"+hPhone+"/"+associatedClub+"/"+serviceId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test (description="PBI:139726")
+	@Test (testName="SearchMembersByProduct_Email",description="PBI:139726")
 	public void SearchMembersByProduct_Email() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
+		String email = prop.getProperty("activeMember4_email");
 
 				given()
 //				.log().all()

@@ -1,57 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="10" passed="10" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-10-15T11:02:29 EDT" name="Default suite" finished-at="2019-10-15T11:02:39 EDT" duration-ms="10494">
+  <suite started-at="2019-10-15T11:18:26 EDT" name="Default suite" finished-at="2019-10-15T11:18:30 EDT" duration-ms="4093">
     <groups>
     </groups>
-    <test started-at="2019-10-15T11:02:29 EDT" name="Default test" finished-at="2019-10-15T11:02:39 EDT" duration-ms="10494">
-      <class name="JonasFitness.API.SearchMembers">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:29 EDT" name="getData" finished-at="2019-10-15T11:02:29 EDT" duration-ms="593" status="PASS">
+    <test started-at="2019-10-15T11:18:26 EDT" name="Default test" finished-at="2019-10-15T11:18:30 EDT" duration-ms="4093">
+      <class name="JonasFitness.API.SearchMembersByProduct">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:26 EDT" name="getData" finished-at="2019-10-15T11:18:26 EDT" duration-ms="486" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="SearchMembers_Email()[pri:0, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:29 EDT" name="SearchMembers_Email" description="PBI:124130" finished-at="2019-10-15T11:02:32 EDT" duration-ms="2769" status="PASS">
+        <test-method signature="SearchMembersByProduct_Email()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:26 EDT" name="SearchMembersByProduct_Email" description="PBI:139726" finished-at="2019-10-15T11:18:28 EDT" duration-ms="1612" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchMembers_Email -->
-        <test-method signature="SearchMembers_LastName()[pri:0, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:32 EDT" name="SearchMembers_LastName" description="PBI:124130" finished-at="2019-10-15T11:02:33 EDT" duration-ms="802" status="PASS">
+        </test-method> <!-- SearchMembersByProduct_Email -->
+        <test-method signature="SearchMembersByProduct_FirstName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:28 EDT" name="SearchMembersByProduct_FirstName" description="PBI:139726" finished-at="2019-10-15T11:18:28 EDT" duration-ms="493" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchMembers_LastName -->
-        <test-method signature="SearchMembers_WorkPhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:33 EDT" name="SearchMembers_WorkPhoneDashes" description="PBI:124130" finished-at="2019-10-15T11:02:34 EDT" duration-ms="897" status="PASS">
+        </test-method> <!-- SearchMembersByProduct_FirstName -->
+        <test-method signature="SearchMembersByProduct_HomePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:28 EDT" name="SearchMembersByProduct_HomePhoneWithDashes" description="PBI:139726" finished-at="2019-10-15T11:18:29 EDT" duration-ms="501" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchMembers_WorkPhoneDashes -->
-        <test-method signature="SearchMembers_WorkPhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:34 EDT" name="SearchMembers_WorkPhoneNoDashes" description="PBI:124130" finished-at="2019-10-15T11:02:35 EDT" duration-ms="767" status="PASS">
+        </test-method> <!-- SearchMembersByProduct_HomePhoneWithDashes -->
+        <test-method signature="SearchMembersByProduct_HomePhoneWithoutDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:29 EDT" name="SearchMembersByProduct_HomePhoneWithoutDashes" description="PBI:139726" finished-at="2019-10-15T11:18:29 EDT" duration-ms="493" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchMembers_WorkPhoneNoDashes -->
-        <test-method signature="SearchMembers_FirstName()[pri:2, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:35 EDT" name="SearchMembers_FirstName" description="PBI:124130" finished-at="2019-10-15T11:02:36 EDT" duration-ms="1021" status="PASS">
+        </test-method> <!-- SearchMembersByProduct_HomePhoneWithoutDashes -->
+        <test-method signature="SearchMembersByProduct_LastName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@69e1dd28]" started-at="2019-10-15T11:18:29 EDT" name="SearchMembersByProduct_LastName" description="PBI:139726" finished-at="2019-10-15T11:18:30 EDT" duration-ms="473" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SearchMembers_FirstName -->
-        <test-method signature="SearchMembers_LastFirstName()[pri:3, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:36 EDT" name="SearchMembers_LastFirstName" description="PBI:124130" finished-at="2019-10-15T11:02:36 EDT" duration-ms="744" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchMembers_LastFirstName -->
-        <test-method signature="SearchMembers_HomePhoneDashes()[pri:4, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:36 EDT" name="SearchMembers_HomePhoneDashes" description="PBI:124130" finished-at="2019-10-15T11:02:37 EDT" duration-ms="700" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchMembers_HomePhoneDashes -->
-        <test-method signature="SearchMembers_HomePhoneNoDashes()[pri:5, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:37 EDT" name="SearchMembers_HomePhoneNoDashes" description="PBI:124130" finished-at="2019-10-15T11:02:38 EDT" duration-ms="670" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchMembers_HomePhoneNoDashes -->
-        <test-method signature="SearchMembers_MobilePhoneDashes()[pri:6, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:38 EDT" name="SearchMembers_MobilePhoneDashes" description="PBI:124130" finished-at="2019-10-15T11:02:38 EDT" duration-ms="808" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchMembers_MobilePhoneDashes -->
-        <test-method signature="SearchMembers_MobilePhoneNoDashes()[pri:7, instance:JonasFitness.API.SearchMembers@4e7912d8]" started-at="2019-10-15T11:02:38 EDT" name="SearchMembers_MobilePhoneNoDashes" description="PBI:124130" finished-at="2019-10-15T11:02:39 EDT" duration-ms="672" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- SearchMembers_MobilePhoneNoDashes -->
-      </class> <!-- JonasFitness.API.SearchMembers -->
+        </test-method> <!-- SearchMembersByProduct_LastName -->
+      </class> <!-- JonasFitness.API.SearchMembersByProduct -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
