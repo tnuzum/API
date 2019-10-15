@@ -23,8 +23,8 @@ public class GetActiveBooksByResourceType extends base{
 	public void getData() throws IOException{
 		base.getPropertyData();
 	}
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:TBD")
+	public void ValidInput() {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 

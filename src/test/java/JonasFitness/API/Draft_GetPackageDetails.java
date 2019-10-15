@@ -20,8 +20,8 @@ public class Draft_GetPackageDetails extends base{
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test (priority=1, description="Valid Inputs - Single Price Range")
-	public void PBI143538_Test1() {
+	@Test (testName="singlePriceRange",description="PBI:143538")
+	public void singlePriceRange() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
@@ -52,8 +52,8 @@ public class Draft_GetPackageDetails extends base{
 						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("StartRange"))
 						.body("Result.RedeemableClubs[0]", hasKey("string"));
 	}
-	@Test (priority=2, description="Valid Inputs - Multiple Price Ranges")
-	public void PBI143538_Test2() {
+	@Test (testName="multiplePriceRanges",description="PBI:143538")
+	public void multiplePriceRanges() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
@@ -89,8 +89,8 @@ public class Draft_GetPackageDetails extends base{
 						.body("Result.PriceRangeDtos[2].PriceRangeDto", hasKey("StartRange"))
 						.body("Result.RedeemableClubs[0]", hasKey("string"));
 	}
-	@Test (priority=3, description="Package Not Available for Online Purchases")
-	public void PBI143538_Test3() {
+	@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
+	public void NotAvailableforOnlinePurchases() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
@@ -117,8 +117,8 @@ public class Draft_GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	@Test (priority=4, description="Invalid Package Id")// using Id of class instead of training or service
-	public void PBI143538_Test4() {
+	@Test (testName="invalidPackageId", description="PBI:143538")// using Id of class instead of training or service
+	public void invalidPackageId() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
@@ -145,8 +145,8 @@ public class Draft_GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	@Test (priority=5, description="Invalid Customer Id")
-	public void PBI143538_Test5() {
+	@Test (testName="invalidCustomerId", description="PBI:143538")
+	public void invalidCustomerId() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 

@@ -19,7 +19,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test (priority=1, description="PBI:139705")
+	@Test (testName="ValidInput",description="PBI:139705")
 	public void ValidInput() {
 		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
 		int member = Integer.parseInt(activeMemberString);

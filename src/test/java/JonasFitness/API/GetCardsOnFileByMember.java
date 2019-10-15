@@ -19,8 +19,8 @@ public class GetCardsOnFileByMember extends base {
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test (priority=1, description="1 Agreement with 1 Credit Card only")
-	public void PBI146302_Test1() {
+	@Test (testName="SingleAgreementSingleCard", description="PBI:146302")
+	public void SingleAgreementSingleCard() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		
