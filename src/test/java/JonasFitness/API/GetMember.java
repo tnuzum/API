@@ -24,7 +24,7 @@ public class GetMember extends base{
 		base.getPropertyData();
 	}
 	
-	@Test
+	@Test  (priority=1, description="PBI:TBD")
 	public void Test1() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
@@ -63,7 +63,6 @@ public class GetMember extends base{
 					    .body("Result", hasKey("HeadOfHousehold"))
 					    .body("Result", hasKey("HomeClubNumber"))
 					    .body("Result", hasKey("HomePhoneContactConsent"))
-					    .body("Result", hasKey("HomePhoneNumber"))
 					    .body("Result.HomePhoneNumber", hasKey("Extension"))
 					    .body("Result.HomePhoneNumber", hasKey("Number"))
 					    .body("Result.HomePhoneNumber", hasKey("PhoneType"))
@@ -71,7 +70,6 @@ public class GetMember extends base{
 					    .body("Result", hasKey("MemberExpireDate"))
 					    .body("Result", hasKey("MemberID"))
 					    .body("Result", hasKey("MobilePhoneContactConsent"))
-					    .body("Result", hasKey("MobilePhoneNumber"))
 					    .body("Result.MobilePhoneNumber", hasKey("Extension"))
 					    .body("Result.MobilePhoneNumber", hasKey("Number"))
 					    .body("Result.MobilePhoneNumber", hasKey("PhoneType"))
@@ -81,7 +79,6 @@ public class GetMember extends base{
 					    .body("Result.Name", hasKey("LastName"))
 					    .body("Result.Name", hasKey("MiddleInitial"))
 					    .body("Result.Name", hasKey("PreferredName"))
-					    .body("Result", hasKey("PreferredPhoneNumber"))
 					    .body("Result.PreferredPhoneNumber", hasKey("Extension"))
 					    .body("Result.PreferredPhoneNumber", hasKey("Number"))
 					    .body("Result.PreferredPhoneNumber", hasKey("PhoneType"))

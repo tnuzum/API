@@ -14,7 +14,7 @@ import resources.ReusableMethods;
 import resources.base;
 import resources.resources;
 
-public class GoogleAPI extends base {
+public class _GoogleAPI extends base {
 
 	@BeforeTest
 	public void getData() throws IOException {

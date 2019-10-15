@@ -21,68 +21,34 @@ public class SearchMembersByProduct extends base{
 	String fName = "Fred";
 	String lName = "Auto";
 	String email = "tnuzum.auto@gmail.com";
+	/*
+	 * LastName
+	 * FirstName
+	 * LastFirstName
+	 * HomePhoneDashes
+	 * HomePhoneNoDashes
+	 * MobilePhoneDashes
+	 * MobilePhoneNoDashes
+	 * WorkPhoneDashes
+	 * WorkPhoneNoDashes
+	 * Email
+	 */
+	
 //---------------------------------------	
 	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
-	
-	}
-	
-	@Test
-	public void SearchMembersByProduct_PhoneWithDashes() {
-		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String serviceId = prop.getProperty("service2Id");
 		
 		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
-
-				given()
-//						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
-					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+phoneDashes+"/"+associatedClub+"/"+serviceId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+		RestAssured.baseURI = prop.getProperty("baseURI"); 
+	
 	}
-	@Test
-	public void SearchMembersByProduct_PhoneWithoutDashes() {
-		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String serviceId = prop.getProperty("service2Id");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
-
-				given()
-//				.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
-					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+phoneNoDashes+"/"+associatedClub+"/"+serviceId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
-	}
-	@Test
+	@Test (description="PBI:139726")
 	public void SearchMembersByProduct_FirstName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
 
 				given()
 //				.log().all()
@@ -98,14 +64,11 @@ public class SearchMembersByProduct extends base{
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test
+	@Test (description="PBI:139726")
 	public void SearchMembersByProduct_LastName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
-		String serviceId = prop.getProperty("service2Id");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
+		String serviceId = prop.getProperty("service2Id");  
 
 				given()
 //				.log().all()
@@ -121,14 +84,51 @@ public class SearchMembersByProduct extends base{
 						.time(lessThan(5L),TimeUnit.SECONDS);
 
 	}
-	@Test
-	public void SearchMembersByProduct_Email() {
+	@Test (description="PBI:139726")
+	public void SearchMembersByProduct_PhoneWithDashes() {
+		
+		String associatedClub = prop.getProperty("associatedClub1Id");
+		String serviceId = prop.getProperty("service2Id");
+
+				given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+					.when()
+						.get("/api/v3/member/searchmembersbyproduct/"+phoneDashes+"/"+associatedClub+"/"+serviceId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS);
+
+	}
+	@Test (description="PBI:139726")
+	public void SearchMembersByProduct_PhoneWithoutDashes() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");
 		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+					.when()
+						.get("/api/v3/member/searchmembersbyproduct/"+phoneNoDashes+"/"+associatedClub+"/"+serviceId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS);
+
+	}
+	@Test (description="PBI:139726")
+	public void SearchMembersByProduct_Email() {
+		
+		String associatedClub = prop.getProperty("associatedClub1Id");
+		String serviceId = prop.getProperty("service2Id");
 
 				given()
 //				.log().all()

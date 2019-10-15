@@ -27,7 +27,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	}
 	
 	@Test
-	public void GetAppointmentResourceTypeByProduct_ProductFound() {
+	public void getAppointmentResourceTypeByProduct_ProductFound() {
 		
 		String service = prop.getProperty("service1Id");
 		
@@ -52,7 +52,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("ResourceTypeId"));
 	}
 	@Test
-	public void etAppointmentResourceTypeByProduct_ProductNotFound() {
+	public void getAppointmentResourceTypeByProduct_ProductNotFound() {
 		
 		String service = prop.getProperty("service3Id");
 		

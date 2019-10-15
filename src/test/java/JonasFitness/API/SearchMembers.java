@@ -4,6 +4,8 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
 import java.io.IOException;
@@ -14,21 +16,17 @@ import resources.base;
 
 public class SearchMembers extends base {
 	
-//---------------------------------------
-//	** SEARCH PARAMETERS **	
-	String fName = "Fred";
-	String lName = "Auto";
-//---------------------------------------	
-	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
-	}
-	
-	@Test
-	public void SearchMembers_LastName() {
+		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
+	}
+	@Test (description="PBI:124130")
+	public void SearchMembers_LastName() {
+		
+		String lName = prop.getProperty("activeMember1_lName");
 
 				given()
 //						.log().all()
@@ -42,13 +40,37 @@ public class SearchMembers extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
-	@Test
-	public void SearchMembers_FirstName() {
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
+	@Test (priority=2, description="PBI:124130")
+	public void SearchMembers_FirstName() { 
+		
+		String fName = prop.getProperty("activeMember1_fName");
 
 				given()
 //				.log().all()
@@ -62,7 +84,384 @@ public class SearchMembers extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
-
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
-}
+	@Test (priority=3, description="PBI:124130")
+	public void SearchMembers_LastFirstName() {  
+		
+		String fName = prop.getProperty("activeMember1_fName");
+		String lName = prop.getProperty("activeMember1_lName");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("Name",lName+","+fName)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (priority=4, description="PBI:124130")
+	public void SearchMembers_HomePhoneDashes() {  
+		
+		String hPhoneD = prop.getProperty("activeMember1_hPhoneD");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",hPhoneD)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (priority=5, description="PBI:124130")
+	public void SearchMembers_HomePhoneNoDashes() {   
+		
+		String hPhone = prop.getProperty("activeMember1_hPhone");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",hPhone)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (priority=6, description="PBI:124130")
+	public void SearchMembers_MobilePhoneDashes() { 
+		
+			String mPhoneD = prop.getProperty("activeMember1_mPhoneD");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",mPhoneD)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (priority=7, description="PBI:124130")
+	public void SearchMembers_MobilePhoneNoDashes() { 
+		
+		String mPhone = prop.getProperty("activeMember1_mPhone");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",mPhone)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (description="PBI:124130")
+	public void SearchMembers_WorkPhoneDashes() {  
+		
+		String wPhoneD = prop.getProperty("activeMember1_wPhoneD");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",wPhoneD)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (description="PBI:124130")
+	public void SearchMembers_WorkPhoneNoDashes() {  
+		
+		String wPhone = prop.getProperty("activeMember1_wPhone");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("PhoneNumber",wPhone)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	@Test (description="PBI:124130")
+	public void SearchMembers_Email() {
+		
+		String email = prop.getProperty("activeMember1_email");
+
+				given()
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+						.header("X-CompanyId", "101")
+						.header("X-ClubId", "1")
+						.queryParam("Email",email)
+					.when()
+						.get("/api/v3/member/searchmembers")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("Address"))
+					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address", hasKey("AddressLine2"))
+					    .body("Result[0].Address", hasKey("City"))
+					    .body("Result[0].Address", hasKey("Country"))
+					    .body("Result[0].Address", hasKey("PostalCode"))
+					    .body("Result[0].Address", hasKey("StateProvince"))
+					    .body("Result[0]", hasKey("BarcodeId"))
+					    .body("Result[0]", hasKey("EmailAddress"))
+					    .body("Result[0].HomePhone", hasKey("Extension"))
+					    .body("Result[0].HomePhone", hasKey("Number"))
+					    .body("Result[0].HomePhone", hasKey("PhoneType"))
+					    .body("Result[0]", hasKey("Id"))
+					    .body("Result[0].MobilePhone", hasKey("Extension"))
+					    .body("Result[0].MobilePhone", hasKey("Number"))
+					    .body("Result[0].MobilePhone", hasKey("PhoneType"))
+					    .body("Result[0].Name", hasKey("DisplayName"))
+					    .body("Result[0].Name", hasKey("FirstName"))
+					    .body("Result[0].Name", hasKey("LastName"))
+					    .body("Result[0].Name", hasKey("MiddleInitial"))
+					    .body("Result[0].Name", hasKey("PreferredName"))
+					    .body("Result[0]", hasKey("PreferredPhone"))
+					    .body("Result[0].WorkPhone", hasKey("Extension"))
+					    .body("Result[0].WorkPhone", hasKey("Number"))
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+	}
+	}
