@@ -20,8 +20,8 @@ public class Draft_GetPackageDetails extends base{
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test (testName="singlePriceRange",description="PBI:143538")
-	public void singlePriceRange() {
+	@Test (testName="SinglePriceRange",description="PBI:143538")
+	public void SinglePriceRange() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
