@@ -18,13 +18,17 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetAppointmentProductCategoriesByMember extends base {
-
+	/*
+	 * Other test needed is customer NOF
+	 * 
+	 * 
+	 */
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
 	
-	@Test
+	@Test (testName="SearchMembers_LastName",description="PBI:127467")
 	public void Test1() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");

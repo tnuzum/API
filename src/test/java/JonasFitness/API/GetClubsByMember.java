@@ -18,13 +18,16 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetClubsByMember extends base{
-
+	/*
+	 * Other test from PBI is customer NOF 
+	 * 
+	 */
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
 	
-	@Test
+	@Test (testName="SearchMembers_LastName",description="PBI:127465")
 	public void Test1() {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		RestAssured.useRelaxedHTTPSValidation();

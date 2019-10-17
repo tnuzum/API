@@ -28,8 +28,8 @@ public class SearchOnlineMembersByProduct extends base {
 		base.getPropertyData();
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="SearchMembersByProduct_FirstName",description="PBI:139723")
+	public void FirstName() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String associatedClub = prop.getProperty("associatedClub1Id");

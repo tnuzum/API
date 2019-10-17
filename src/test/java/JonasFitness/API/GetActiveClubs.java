@@ -24,8 +24,8 @@ public class GetActiveClubs extends base {
 		base.getPropertyData();
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ClubsFound",description="PBI:138959")
+	public void ClubsFound() {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 
@@ -45,6 +45,5 @@ public class GetActiveClubs extends base {
 						.body("Result[0]", hasKey("Name"))
 						.body("Result[1]", hasKey("Id"))
 						.body("Result[1]", hasKey("Name"));
-
 	}
 }

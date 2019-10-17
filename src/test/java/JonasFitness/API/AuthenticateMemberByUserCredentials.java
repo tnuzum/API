@@ -15,11 +15,18 @@ import resources.base;
 
 public class AuthenticateMemberByUserCredentials extends base {
 
+	/*
+	 * Other tests from PBI are...
+	 * 1. Wrong Credentials - send bad password
+	 * 2. Force Password Change - name 5670, pw 5670
+	 * 3. Account Locked - setup locked user
+	 * 
+	 */
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test (testName="ValidInput",description="PBI:139705")
+	@Test (testName="Authentication - Success",description="PBI:139705")
 	public void ValidInput() {
 		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
 		int member = Integer.parseInt(activeMemberString);

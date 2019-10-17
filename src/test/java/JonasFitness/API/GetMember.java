@@ -19,13 +19,16 @@ import resources.base;
 
 public class GetMember extends base{
 
+	/*
+	 * Only other test from PBI is sending NOF customer id
+	 */
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
 	
-	@Test  (priority=1, description="PBI:TBD")
-	public void Test1() {
+	@Test  (testName="CustomerFound", description="PBI:124934")
+	public void CustomerFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		

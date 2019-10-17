@@ -2,7 +2,14 @@ package resources;
 
 public class resources {
 
-		public static String placepostDataJSON()
+/*	public static String getHeader()
+	{
+		return null;
+//		String header = RestAssured.given().header("accept", "application/json");
+//		return header;
+	}
+	*/
+	public static String placepostDataJSON()
 		{
 			String res = "/maps/api/place/add/json";
 			return res;
@@ -32,5 +39,4 @@ public class resources {
 			String res = "/maps/api/place/nearbysearch/xml";
 			return res;
 		}
-
 }

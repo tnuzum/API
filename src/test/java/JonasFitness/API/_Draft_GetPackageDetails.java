@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class Draft_GetPackageDetails extends base{
+public class _Draft_GetPackageDetails extends base{
 
 	@BeforeTest
 	public void getData() throws IOException {
@@ -31,7 +31,7 @@ public class Draft_GetPackageDetails extends base{
 						.header("accept", "application/json")
 						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
 						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("X-ClubId", "6")
 					.when()
 						.get("/api/v3/package/getPackageDetails/29947/1/4474")
 						.then()

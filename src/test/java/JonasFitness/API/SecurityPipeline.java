@@ -28,8 +28,8 @@ public class SecurityPipeline extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (priority=1, description="Inactive Club")
-	public void PBI145817_Test1() {
+	@Test (testName="InactiveClub", description="PBI:144604")
+	public void InactiveClub() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 
@@ -50,8 +50,8 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
-	@Test (priority=2, description="Club Does Not Exist")
-	public void PBI145817_Test2() {
+	@Test (testName="InvalidClub", description="PBI:132893")
+	public void InvalidClub() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 
@@ -71,8 +71,8 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
-	@Test (priority=3, description="Company Does Not Exist")
-	public void PBI132893_Test1() {
+	@Test (testName="InvalidCompany", description="PBI:132893")
+	public void InvalidCompany() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 
@@ -92,8 +92,8 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
-	@Test (priority=4, description="API Key Invalid")
-	public void PBI132893_Test2() {
+	@Test (testName="InvalidAPIKey", description="PBI:145817")
+	public void InvalidAPIKey() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 
@@ -110,6 +110,27 @@ public class SecurityPipeline extends base{
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.statusLine("HTTP/1.1 401 Unauthorized")
 						.body("Message", equalTo("Invalid authorization credentials"))
+					    .body("Result", not(hasKey("Address")))
+					    .body("Result", not( hasKey("Name")));
+	}
+	@Test (testName="NoAPIKey", description="PBI:145817")
+	public void NoAPIKey() {
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+
+					given()
+						.header("accept", "application/json")
+						.header("X-Api-Key", "")
+						.header("X-CompanyId", "1010")
+						.header("X-ClubId", "1")
+					.when()
+						.get("/api/v3/member/getmember/"+member)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.statusLine("HTTP/1.1 401 Unauthorized")
+						.body("Message", equalTo("The ApiKey field is required."))
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}

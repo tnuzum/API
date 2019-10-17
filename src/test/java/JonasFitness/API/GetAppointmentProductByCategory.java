@@ -24,7 +24,7 @@ public class GetAppointmentProductByCategory extends base {
 		base.getPropertyData();
 	}
 	
-	@Test
+	@Test (description="PBI:127468")
 	public void Test1() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");

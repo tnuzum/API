@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -12,19 +11,20 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetActiveBooksByResourceType extends base{
-	
+	/*
+	 * need a test with resource type id (query parm)
+	 * 
+	 * 
+	 */
 	@BeforeTest
 	public void getData() throws IOException{
 		base.getPropertyData();
 	}
-	@Test (testName="ValidInput",description="PBI:TBD")
-	public void ValidInput() {
+	@Test (testName="ValidInput_NoResource",description="PBI:138964")
+	public void ValidInput_NoResource() {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 

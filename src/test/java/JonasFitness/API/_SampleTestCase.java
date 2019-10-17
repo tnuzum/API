@@ -63,6 +63,7 @@ public class _SampleTestCase extends base {
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
+//						.statusLine("HTTP/1.1 404 Not Found");
 
 	}
 }

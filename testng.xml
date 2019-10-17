@@ -83,11 +83,11 @@
 			<class name="JonasFitness.API.GetProductByBook" />
 		</classes>
 	</test>
-	<test thread-count="5" name="GetPurchasedPackagesByMember">
+	<!--test thread-count="5" name="GetPurchasedPackagesByMember">
 		<classes>
 			<class name="JonasFitness.API.GetPurchasedPackagesByMember" />
 		</classes>
-	</test>
+	</test-->
 	<test thread-count="5" name="GetScheduleByBook">
 		<classes>
 			<class name="JonasFitness.API.GetScheduleByBook" />
