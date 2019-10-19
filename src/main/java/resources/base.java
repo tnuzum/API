@@ -9,6 +9,11 @@ public class base {
 	public static Properties prop = new Properties();
 	static String projectPath = System.getenv("API_HOME");
 	String userProfile = System.getenv("USERPROFILE");
+	
+//	String headerAccept = prop.getProperty("headerAccept");
+//	String xApiKey = prop.getProperty("X-Api-Key");
+//	String xCompanyId = prop.getProperty("X-CompanyId");
+//	String xClubId = prop.getProperty("X-ClubId");
 
 	public static void getPropertyData() throws IOException {
 
