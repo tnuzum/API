@@ -30,11 +30,7 @@ public class GetMember extends base{
 	@Test  (testName="CustomerFound", description="PBI:124934")
 	public void CustomerFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
-//		String headerAccept = prop.getProperty("headerAccept");
-//		String xApiKey = prop.getProperty("X-Api-Key");
-//		String xCompanyId = prop.getProperty("X-CompanyId");
-//		String xClubId = prop.getProperty("X-ClubId");
+//		String member = prop.getProperty("activeMember1_CustomerId");
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -46,7 +42,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+prop.getProperty("activeMember1_CustomerId"))
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
