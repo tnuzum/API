@@ -120,8 +120,8 @@ public class SecurityPipeline extends base{
 
 					given()
 					.header("accept", prop.getProperty("accept"))
-					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", "1010")
+//					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
