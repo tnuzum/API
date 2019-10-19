@@ -58,7 +58,7 @@ public class SecurityPipeline extends base{
 					given()
 					.header("accept", prop.getProperty("accept"))
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-					.header("X-CompanyId", prop.getProperty("X-CompanyId")))
+					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", "3119860") // Club not on file
 					.when()
 						.get("/api/v3/member/getmember/"+member)
