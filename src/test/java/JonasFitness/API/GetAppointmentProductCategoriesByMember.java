@@ -33,7 +33,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 	@Test (testName="SearchMembers_LastName",description="PBI:127467")
 	public void Test1() {
 		
-//		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("activeMember1_CustomerId");
 		
 
 				given()
@@ -43,7 +43,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/product/getappointmentproductcategoriesbymember/"+prop.getProperty("activeMember1_CustomerId"))
+						.get("/api/v3/product/getappointmentproductcategoriesbymember/"+member)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

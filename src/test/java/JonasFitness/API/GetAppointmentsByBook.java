@@ -28,9 +28,9 @@ public class GetAppointmentsByBook extends base{
 	
 	@Test 
 	public void Test1() {
-//		String resourceId = prop.getProperty("resource1Id");
-//	String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-//		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		String resourceId = prop.getProperty("resource1Id");
+		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
+		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
 
 				given()
 //						.log().all()
@@ -39,7 +39,7 @@ public class GetAppointmentsByBook extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/appointment/getappointmentsbybook/"+prop.getProperty("resource1Id")+"/"+prop.getProperty("sDateTimeNoOffset")+"/"+prop.getProperty("eDateTimeNoOffset"))
+						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

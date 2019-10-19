@@ -28,7 +28,7 @@ public class GetAppointmentDetails extends base {
 	@Test (testName="AppointmentsFound",description="PBI:139310")
 	public void AppointmentsFound() {
 		
-//		String appointment = prop.getProperty("appointmentInFuture1Id");
+		String appointment = prop.getProperty("appointmentInFuture1Id");
 
 				given()
 //						.log().all()
@@ -37,7 +37,7 @@ public class GetAppointmentDetails extends base {
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/appointment/getappointmentdetails/"+prop.getProperty("appointmentInFuture1Id"))
+						.get("/api/v3/appointment/getappointmentdetails/"+appointment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -47,7 +47,7 @@ public class GetAppointmentDetails extends base {
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
 	public void AppointmentsNotFound() {
 
-//		String appointment = prop.getProperty("appointmentInFuture1Id");  
+		String appointment = prop.getProperty("appointmentInFuture1Id");  
 
 				given()
 //				.log().all()
@@ -56,7 +56,7 @@ public class GetAppointmentDetails extends base {
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/appointment/getappointmentdetails/9"+prop.getProperty("appointmentInFuture1Id"))
+						.get("/api/v3/appointment/getappointmentdetails/9"+appointment)// 9 is passed to make appointment id not on file
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

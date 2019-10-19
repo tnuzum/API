@@ -29,8 +29,8 @@ public class GetAppointmentProductByCategory extends base {
 	@Test (description="PBI:127468")
 	public void Test1() {
 		
-//		String associatedClub = prop.getProperty("associatedClub1Id");
-//		String prodCategory = prop.getProperty("prodCategory1Id");
+		String associatedClub = prop.getProperty("associatedClub1Id");
+		String prodCategory = prop.getProperty("prodCategory1Id");
 		
 				given()
 //						.log().all()
@@ -39,7 +39,7 @@ public class GetAppointmentProductByCategory extends base {
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/product/GetAppointmentProductsByCategory/"+prop.getProperty("associatedClub1Id")+"/"+prop.getProperty("prodCategory1Id"))
+						.get("/api/v3/product/GetAppointmentProductsByCategory/"+associatedClub+"/"+prodCategory)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

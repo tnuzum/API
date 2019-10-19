@@ -23,19 +23,19 @@ public class _SampleTestCase extends base {
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
 	@Test
-	public void SearchMembers_LastName() {
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
+	public void SearchMembers_LastName() { 
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 //						.queryParam("Name", lName)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -46,16 +46,14 @@ public class _SampleTestCase extends base {
 
 	}
 	@Test
-	public void SearchMembers_FirstName() {
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");   
+	public void SearchMembers_FirstName() {  
 
 				given()
 //				.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 //						.queryParam("Name", fName)
 					.when()
 						.get("/api/v3/member/searchmembers")

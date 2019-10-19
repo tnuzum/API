@@ -31,7 +31,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	@Test
 	public void getAppointmentResourceTypeByProduct_ProductFound() {
 		
-//		String service = prop.getProperty("service1Id");
+		String service = prop.getProperty("service1Id");
 
 				given()
 //						.log().all()
@@ -40,7 +40,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/"+prop.getProperty("service1Id"))
+						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/"+service)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -53,7 +53,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	@Test
 	public void getAppointmentResourceTypeByProduct_ProductNotFound() {
 		
-//		String service = prop.getProperty("service3Id");
+		String service = prop.getProperty("service3Id");
 
 				given()
 //				.log().all()
@@ -62,7 +62,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/9"+prop.getProperty("service3Id")) // '9' is passed to make Product Category Id = not on file
+						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/9"+service) // '9' is passed to make Product Category Id = not on file
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

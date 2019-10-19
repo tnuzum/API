@@ -38,7 +38,8 @@ public class AuthenticateMemberByUserCredentials extends base {
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-ClubId"))
-			.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+			.header("accept", prop.getProperty("accept"))
+//			.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
 			.when()
 				.body("{"+
 						  "\"Username\": \"rauto\","+
