@@ -25,20 +25,20 @@ public class AuthenticateMemberByUserCredentials extends base {
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	@Test (testName="Authentication - Success",description="PBI:139705")
 	public void ValidInput() {
 		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
 		int member = Integer.parseInt(activeMemberString);// int conversation is required for use in assertion below
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
 
 			given()
 //			.log().all()
-			.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-			.header("X-CompanyId", "101")
-			.header("X-ClubId", "1")
-			.header("Content-Type", "application/json")
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-ClubId"))
+			.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
 			.when()
 				.body("{"+
 						  "\"Username\": \"rauto\","+

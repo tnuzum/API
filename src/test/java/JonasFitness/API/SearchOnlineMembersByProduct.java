@@ -25,7 +25,9 @@ public class SearchOnlineMembersByProduct extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
-		base.getPropertyData();
+		base.getPropertyData();		
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
 	@Test (testName="SearchMembersByProduct_FirstName",description="PBI:139723")
@@ -34,16 +36,13 @@ public class SearchOnlineMembersByProduct extends base {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String serviceId = prop.getProperty("service2Id");  
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+member+"/"+fName+"/"+associatedClub+"/"+serviceId)
 						.then()

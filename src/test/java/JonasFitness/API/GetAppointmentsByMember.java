@@ -22,6 +22,8 @@ public class GetAppointmentsByMember extends base {
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
 	@Test
@@ -30,17 +32,13 @@ public class GetAppointmentsByMember extends base {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-
-		RestAssured.baseURI = prop.getProperty("baseURI");
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 						.queryParam("Name", "Auto")
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)

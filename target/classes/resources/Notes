@@ -14,6 +14,12 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
+
+							.header("accept", prop.getProperty("accept"))
+							.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+							.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+							.header("X-ClubId", prop.getProperty("X-ClubId"))
+
 .assertThat().statusCode(200)
 .time(lessThan(5L),TimeUnit.SECONDS)
 .body("Result.Address.AddressLine1", equalTo("7965 N High St"))

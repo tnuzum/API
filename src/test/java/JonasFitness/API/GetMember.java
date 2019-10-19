@@ -25,16 +25,13 @@ public class GetMember extends base{
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
 	@Test  (testName="CustomerFound", description="PBI:124934")
 	public void CustomerFound() {
-		
-//		String member = prop.getProperty("activeMember1_CustomerId");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
-				
+
 					given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))

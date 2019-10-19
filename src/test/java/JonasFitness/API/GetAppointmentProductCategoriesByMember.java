@@ -26,24 +26,24 @@ public class GetAppointmentProductCategoriesByMember extends base {
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
 	@Test (testName="SearchMembers_LastName",description="PBI:127467")
 	public void Test1() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+//		String member = prop.getProperty("activeMember1_CustomerId");
 		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/product/getappointmentproductcategoriesbymember/"+member)
+						.get("/api/v3/product/getappointmentproductcategoriesbymember/"+prop.getProperty("activeMember1_CustomerId"))
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

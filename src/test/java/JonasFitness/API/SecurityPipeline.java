@@ -35,9 +35,9 @@ public class SecurityPipeline extends base{
 
 					given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
+					.header("accept", prop.getProperty("accept"))
+					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", "311986")
 					.when()
 						.get("/api/v3/member/getmember/"+member)
@@ -56,9 +56,9 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("activeMember1_CustomerId");
 
 					given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
+					.header("accept", prop.getProperty("accept"))
+					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+					.header("X-CompanyId", prop.getProperty("X-CompanyId")))
 						.header("X-ClubId", "3119860") // Club not on file
 					.when()
 						.get("/api/v3/member/getmember/"+member)
@@ -77,8 +77,8 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("activeMember1_CustomerId");
 
 					given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
+					.header("accept", prop.getProperty("accept"))
+					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", "1010") // Company not on file
 						.header("X-ClubId", "1")
 					.when()
@@ -98,10 +98,10 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("activeMember1_CustomerId");
 
 					given()
-						.header("accept", "application/json")
+					.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", "NOTVALIDB50A8F2BF7315812CF2A21690A7FF5FDA33A156C") // Not valid API Key
-						.header("X-CompanyId", "1010")
-						.header("X-ClubId", "1")
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -119,10 +119,10 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("activeMember1_CustomerId");
 
 					given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "")
+					.header("accept", prop.getProperty("accept"))
+					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", "1010")
-						.header("X-ClubId", "1")
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()

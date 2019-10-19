@@ -28,16 +28,16 @@ public class GetAppointmentDetails extends base {
 	@Test (testName="AppointmentsFound",description="PBI:139310")
 	public void AppointmentsFound() {
 		
-		String appointment = prop.getProperty("appointmentInFuture1Id");
+//		String appointment = prop.getProperty("appointmentInFuture1Id");
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/appointment/getappointmentdetails/"+appointment)
+						.get("/api/v3/appointment/getappointmentdetails/"+prop.getProperty("appointmentInFuture1Id"))
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -47,16 +47,16 @@ public class GetAppointmentDetails extends base {
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
 	public void AppointmentsNotFound() {
 
-		String appointment = prop.getProperty("appointmentInFuture1Id");  
+//		String appointment = prop.getProperty("appointmentInFuture1Id");  
 
 				given()
 //				.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/appointment/getappointmentdetails/9"+appointment)
+						.get("/api/v3/appointment/getappointmentdetails/9"+prop.getProperty("appointmentInFuture1Id"))
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
