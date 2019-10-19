@@ -31,7 +31,7 @@ public class GetMember extends base{
 	public void CustomerFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String headerAccept = prop.getProperty("headerAccept");
+//		String headerAccept = prop.getProperty("headerAccept");
 		String xApiKey = prop.getProperty("X-Api-Key");
 		String xCompanyId = prop.getProperty("X-CompanyId");
 		String xClubId = prop.getProperty("X-ClubId");
@@ -41,7 +41,7 @@ public class GetMember extends base{
 				
 					given()
 //						.log().all()
-						.header("accept", headerAccept)
+						.header("accept", prop.getProperty("headerAccept"))
 						.header("X-Api-Key", xApiKey)
 						.header("X-CompanyId", xCompanyId)
 						.header("X-ClubId", xClubId)
