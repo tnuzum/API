@@ -29,7 +29,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 	@Test (testName="Authentication - Success",description="PBI:139705")
 	public void ValidInput() {
 		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
-		int member = Integer.parseInt(activeMemberString);
+		int member = Integer.parseInt(activeMemberString);// int conversation is required for use in assertion below
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 

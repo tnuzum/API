@@ -31,16 +31,20 @@ public class GetMember extends base{
 	public void CustomerFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
+		String headerAccept = prop.getProperty("headerAccept");
+		String xApiKey = prop.getProperty("X-Api-Key");
+		String xCompanyId = prop.getProperty("X-CompanyId");
+		String xClubId = prop.getProperty("X-ClubId");
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 				
 					given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+						.header("accept", headerAccept)
+						.header("X-Api-Key", xApiKey)
+						.header("X-CompanyId", xCompanyId)
+						.header("X-ClubId", xClubId)
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
