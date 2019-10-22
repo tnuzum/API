@@ -71,6 +71,15 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[1]", hasKey("NoShowFee"))
 						.body("Result.BookedMembers[1]", hasKey("NoShowFeeIndicator"))
 
+						.body("Result.BookedResources[0]", hasKey("BookDescription"))
+						.body("Result.BookedResources[0]", hasKey("BookId"))
+						.body("Result.BookedResources[0]", hasKey("BookName"))
+						.body("Result.BookedResources[0]", hasKey("ResourceTypeDescription"))
+						.body("Result.BookedResources[0]", hasKey("ResourceTypeId"))
+						.body("Result.BookedResources[0]", hasKey("ResourceTypeId"))
+// I LEFT OFF HERE
+
+						
 						.body("Result.BookedMembers[0].AppointmentCharge", equalTo(0))
 						.body("Result.BookedMembers[0].AppointmentOutcome", equalTo("Future"))
 						.body("Result.BookedMembers[0].AttendedIndicator", equalTo(false))
@@ -84,9 +93,6 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[0].LastName", equalTo("Auto"))
 						.body("Result.BookedMembers[0].NoShowFee", equalTo(5))
 						.body("Result.BookedMembers[0].NoShowFeeIndicator", equalTo(false))
-						
-						
-						
 						.body("Result.BookedMembers[1].AppointmentCharge", equalTo(150))
 						.body("Result.BookedMembers[1].AppointmentOutcome", equalTo("Future"))
 						.body("Result.BookedMembers[1].AttendedIndicator", equalTo(false))
@@ -100,7 +106,36 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[1].LastName", equalTo("Auto"))
 						.body("Result.BookedMembers[1].NoShowFee", equalTo(5))
 						.body("Result.BookedMembers[1].NoShowFeeIndicator", equalTo(false))
-						;				
+						;			
+				
+				/*
+				 *     "BookedResources": [
+      {
+        "BookDescription": "Employee, Golf Instructor, Personal Trainer",
+        "BookId": 221,
+        "BookName": "Campbell, Samual",
+        "ResourceTypeDescription": "",
+        "ResourceTypeId": 147,
+        "ResourceTypeName": "Golf Instructors"
+      },
+      {
+        "BookDescription": "",
+        "BookId": 226,
+        "BookName": "Driving Range 2",
+        "ResourceTypeDescription": "Used for Golf Lessons",
+        "ResourceTypeId": 148,
+        "ResourceTypeName": "Golf Practice Areas"
+      },
+      {
+        "BookDescription": "Rental Golf Clubs used for Golf Lessons",
+        "BookId": 224,
+        "BookName": "Golf Clubs",
+        "ResourceTypeDescription": "Used for Golf Lessons",
+        "ResourceTypeId": 149,
+        "ResourceTypeName": "Golf Equipment"
+      }
+    ],
+				 */
 
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
