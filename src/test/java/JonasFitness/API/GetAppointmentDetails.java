@@ -4,7 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +41,13 @@ public class GetAppointmentDetails extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result.BookedMembers[0]", hasKey("AppointmentCharge"))
+						
+						
+						
+						.body("Result.BookedMembers[0].AppointmentCharge", equalTo(0))
+						;
 
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")

@@ -24,7 +24,6 @@ public class _GetResponseCORE extends base {
 		base.getPropertyData();
 		
 	}
-
 	@Test
 	public void Test1() throws IOException {
 		String postData = GenerateStringFromResource(projectPath + "\\API\\src\\main\\java\\resources\\getCustomerInfo.xml");
