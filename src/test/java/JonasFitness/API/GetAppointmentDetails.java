@@ -43,11 +43,35 @@ public class GetAppointmentDetails extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.BookedMembers[0]", hasKey("AppointmentCharge"))
-						
-						
-						
+						.body("Result.BookedMembers[0]", hasKey("AppointmentOutcome"))
+						.body("Result.BookedMembers[0]", hasKey("AttendedIndicator"))
+						.body("Result.BookedMembers[0]", hasKey("BarcodeId"))
+						.body("Result.BookedMembers[0]", hasKey("CancellationFee"))
+						.body("Result.BookedMembers[0]", hasKey("CustomerCanCancel"))
+						.body("Result.BookedMembers[0].CustomerCanCancel", hasKey("CanCancel"))
+						.body("Result.BookedMembers[0].CustomerCanCancel", hasKey("CancellationReason"))
+						.body("Result.BookedMembers[0]", hasKey("CustomerId"))
+						.body("Result.BookedMembers[0]", hasKey("DisplayName"))
+						.body("Result.BookedMembers[0]", hasKey("FirstName"))
+						.body("Result.BookedMembers[0]", hasKey("LastName"))
+						.body("Result.BookedMembers[0]", hasKey("NoShowFee"))
+						.body("Result.BookedMembers[0]", hasKey("NoShowFeeIndicator"))
+
 						.body("Result.BookedMembers[0].AppointmentCharge", equalTo(0))
+						.body("Result.BookedMembers[0].AppointmentOutcome", equalTo("Future"))
+						.body("Result.BookedMembers[0].AttendedIndicator", equalTo(false))
+						.body("Result.BookedMembers[0].BarcodeId", equalTo("5651"))
+						.body("Result.BookedMembers[0].CancellationFee", equalTo(3))
+						.body("Result.BookedMembers[0].CustomerCanCancel.CanCancel", equalTo(""))
+						.body("Result.BookedMembers[0].CustomerCanCancel.CancellationReason", equalTo(""))
+						.body("Result.BookedMembers[0]CustomerId", equalTo(29970))
+						.body("Result.BookedMembers[0].DisplayName", equalTo("Auto, Scott"))
+						.body("Result.BookedMembers[0].FirstName", equalTo("Scott"))
+						.body("Result.BookedMembers[0].LastName", equalTo("Auto"))
+						.body("Result.BookedMembers[0].NoShowFee", equalTo(5))
+						.body("Result.BookedMembers[0].NoShowFeeIndicator", equalTo(false))
 						;
+				
 
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
