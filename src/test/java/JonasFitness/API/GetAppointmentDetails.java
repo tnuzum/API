@@ -70,14 +70,24 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[1]", hasKey("LastName"))
 						.body("Result.BookedMembers[1]", hasKey("NoShowFee"))
 						.body("Result.BookedMembers[1]", hasKey("NoShowFeeIndicator"))
-
 						.body("Result.BookedResources[0]", hasKey("BookDescription"))
 						.body("Result.BookedResources[0]", hasKey("BookId"))
 						.body("Result.BookedResources[0]", hasKey("BookName"))
 						.body("Result.BookedResources[0]", hasKey("ResourceTypeDescription"))
 						.body("Result.BookedResources[0]", hasKey("ResourceTypeId"))
-						.body("Result.BookedResources[0]", hasKey("ResourceTypeId"))
-// I LEFT OFF HERE
+						.body("Result.BookedResources[0]", hasKey("ResourceTypeName"))
+						.body("Result.BookedResources[1]", hasKey("BookDescription"))
+						.body("Result.BookedResources[1]", hasKey("BookId"))
+						.body("Result.BookedResources[1]", hasKey("BookName"))
+						.body("Result.BookedResources[1]", hasKey("ResourceTypeDescription"))
+						.body("Result.BookedResources[1]", hasKey("ResourceTypeId"))
+						.body("Result.BookedResources[1]", hasKey("ResourceTypeName"))
+						.body("Result.BookedResources[2]", hasKey("BookDescription"))
+						.body("Result.BookedResources[2]", hasKey("BookId"))
+						.body("Result.BookedResources[2]", hasKey("BookName"))
+						.body("Result.BookedResources[2]", hasKey("ResourceTypeDescription"))
+						.body("Result.BookedResources[2]", hasKey("ResourceTypeId"))
+						.body("Result.BookedResources[2]", hasKey("ResourceTypeName"))
 
 						
 						.body("Result.BookedMembers[0].AppointmentCharge", equalTo(0))
@@ -106,36 +116,54 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[1].LastName", equalTo("Auto"))
 						.body("Result.BookedMembers[1].NoShowFee", equalTo(5))
 						.body("Result.BookedMembers[1].NoShowFeeIndicator", equalTo(false))
+						/*
+						 *     "BookedResources": [
+		      {
+		        "BookDescription": "Employee, Golf Instructor, Personal Trainer",
+		        "BookId": 221,
+		        "BookName": "Campbell, Samual",
+		        "ResourceTypeDescription": "",
+		        "ResourceTypeId": 147,
+		        "ResourceTypeName": "Golf Instructors"
+		      },
+		      {
+		        "BookDescription": "",
+		        "BookId": 226,
+		        "BookName": "Driving Range 2",
+		        "ResourceTypeDescription": "Used for Golf Lessons",
+		        "ResourceTypeId": 148,
+		        "ResourceTypeName": "Golf Practice Areas"
+		      },
+		      {
+		        "BookDescription": "Rental Golf Clubs used for Golf Lessons",
+		        "BookId": 224,
+		        "BookName": "Golf Clubs",
+		        "ResourceTypeDescription": "Used for Golf Lessons",
+		        "ResourceTypeId": 149,
+		        "ResourceTypeName": "Golf Equipment"
+		      }
+		    ],
+						 */
+						.body("Result.BookedResources[0].BookDescription", equalTo("Employee, Golf Instructor, Personal Trainer"))
+						.body("Result.BookedResources[0].BookId", equalTo(221))
+						.body("Result.BookedResources[0].BookName", equalTo("Campbell, Samual"))
+						.body("Result.BookedResources[0].ResourceTypeDescription", nullValue())
+						.body("Result.BookedResources[0].ResourceTypeId", equalTo(147))
+						.body("Result.BookedResources[0].ResourceTypeName", equalTo("Golf Instructors"))
+						.body("Result.BookedResources[1].BookDescription", nullValue())
+						.body("Result.BookedResources[1].BookId", equalTo(226))
+						.body("Result.BookedResources[1].BookName", equalTo("Driving Range 2"))
+						.body("Result.BookedResources[1].ResourceTypeDescription", equalTo("Used for Golf Lessons"))
+						.body("Result.BookedResources[1].ResourceTypeId", equalTo(148))
+						.body("Result.BookedResources[1].ResourceTypeName", equalTo("Golf Practice Areas"))
+						.body("Result.BookedResources[2].BookDescription", equalTo("Rental Golf Clubs used for Golf Lessons"))
+						.body("Result.BookedResources[2].BookId", equalTo(224))
+						.body("Result.BookedResources[2].BookName", equalTo("Golf Clubs"))
+						.body("Result.BookedResources[2].ResourceTypeDescription", equalTo("Used for Golf Lessons"))
+						.body("Result.BookedResources[2].ResourceTypeId", equalTo(149))
+						.body("Result.BookedResources[2].ResourceTypeName", equalTo("Golf Equipment"))
 						;			
 				
-				/*
-				 *     "BookedResources": [
-      {
-        "BookDescription": "Employee, Golf Instructor, Personal Trainer",
-        "BookId": 221,
-        "BookName": "Campbell, Samual",
-        "ResourceTypeDescription": "",
-        "ResourceTypeId": 147,
-        "ResourceTypeName": "Golf Instructors"
-      },
-      {
-        "BookDescription": "",
-        "BookId": 226,
-        "BookName": "Driving Range 2",
-        "ResourceTypeDescription": "Used for Golf Lessons",
-        "ResourceTypeId": 148,
-        "ResourceTypeName": "Golf Practice Areas"
-      },
-      {
-        "BookDescription": "Rental Golf Clubs used for Golf Lessons",
-        "BookId": 224,
-        "BookName": "Golf Clubs",
-        "ResourceTypeDescription": "Used for Golf Lessons",
-        "ResourceTypeId": 149,
-        "ResourceTypeName": "Golf Equipment"
-      }
-    ],
-				 */
 
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
