@@ -165,6 +165,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Club.ProductDetails.ProductId", equalTo(4477))
 						.body("Result.Club.ProductDetails.ProductLongDescription", nullValue())
 						;			
+				System.out.println("todd was here :D");
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
 	public void AppointmentsNotFound() {
