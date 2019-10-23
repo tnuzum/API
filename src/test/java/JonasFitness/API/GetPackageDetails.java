@@ -53,7 +53,7 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("RedeemableClubs"))
 						;
 	}
-	/*@Test (testName="multiplePriceRanges",description="PBI:143538")
+	@Test (testName="multiplePriceRanges",description="PBI:143538")
 	public void multiplePriceRanges() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
@@ -79,18 +79,18 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("LongDescription"))
 						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("StartRange"))
-						.body("Result.PriceRangeDtos[1].PriceRangeDto", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[1].PriceRangeDto", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[1].PriceRangeDto", hasKey("StartRange"))
-						.body("Result.PriceRangeDtos[2].PriceRangeDto", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[2].PriceRangeDto", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[2].PriceRangeDto", hasKey("StartRange"))
-						.body("Result.RedeemableClubs[0]", hasKey("string"));
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result.PriceRangeDtos[1]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[1]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[1]", hasKey("StartRange"))
+						.body("Result.PriceRangeDtos[2]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[2]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[2]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"));
 	}
-	@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
+	/*@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
 	public void NotAvailableforOnlinePurchases() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
