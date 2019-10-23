@@ -135,7 +135,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedResources[0].BookDescription", equalTo("Employee, Golf Instructor, Personal Trainer"))
 						.body("Result.BookedResources[0].BookId", equalTo(221))
 						.body("Result.BookedResources[0].BookName", equalTo("Campbell, Samual"))
-						.body("Result.BookedResources[0].ResourceTypeDescription", nullValue())
+						.body("Result.BookedResources[0].ResourceTypeDescription", equalTo(""))
 						.body("Result.BookedResources[0].ResourceTypeId", equalTo(147))
 						.body("Result.BookedResources[0].ResourceTypeName", equalTo("Golf Instructors"))
 						.body("Result.BookedResources[1].BookDescription", nullValue())
