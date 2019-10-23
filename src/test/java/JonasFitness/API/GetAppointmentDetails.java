@@ -106,7 +106,7 @@ public class GetAppointmentDetails extends base {
 
 // Assert values returned are correct	
 						
-//						.body("Result.BookedMembers[0].AppointmentCharge", equalTo("0.0"))
+						.body("Result.BookedMembers[0].AppointmentCharge", hasValue(0.0))
 						.body("Result.BookedMembers[0].AppointmentOutcome", equalTo("Future"))
 						.body("Result.BookedMembers[0].AttendedIndicator", equalTo(false))
 						.body("Result.BookedMembers[0].BarcodeId", equalTo("5651"))
