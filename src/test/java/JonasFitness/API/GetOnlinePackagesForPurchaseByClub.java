@@ -34,7 +34,8 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS);
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						;
 	}
 	/*@Test (testName="PackageNotAllowed",description="PBI:143537")
 	public void PackageNotAllowed() { 
