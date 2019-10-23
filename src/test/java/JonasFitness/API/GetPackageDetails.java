@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_GetPackageDetails extends base{
+public class GetPackageDetails extends base{
 
 	@BeforeTest
 	public void getData() throws IOException {
@@ -50,9 +50,10 @@ public class _Draft_GetPackageDetails extends base{
 						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("EndRange"))
 						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("PricePerUnit"))
 						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("StartRange"))
-						.body("Result.RedeemableClubs[0]", hasKey("string"));
+						.body("Result", hasKey("RedeemableClubs"))
+						;
 	}
-	@Test (testName="multiplePriceRanges",description="PBI:143538")
+	/*@Test (testName="multiplePriceRanges",description="PBI:143538")
 	public void multiplePriceRanges() {
 		
 		RestAssured.useRelaxedHTTPSValidation();
@@ -173,5 +174,5 @@ public class _Draft_GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	
+	*/
 }

@@ -21,6 +21,7 @@
 			<class name="JonasFitness.API.GetClassesAndCoursesByMember" />
 			<class name="JonasFitness.API.GetClubsByMember" />
 			<class name="JonasFitness.API.GetMember" />
+			<class name="JonasFitness.API.GetPackageDetails" />
 			<class name="JonasFitness.API.GetProductByBook" />
 			<!-- class name="JonasFitness.API.GetPurchasedPackagesByMember" /-->
 			<class name="JonasFitness.API.GetScheduleByBook" />
