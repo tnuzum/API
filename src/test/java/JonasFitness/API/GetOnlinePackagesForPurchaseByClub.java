@@ -32,7 +32,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 					.when()
 						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
