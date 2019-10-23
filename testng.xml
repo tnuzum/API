@@ -20,11 +20,11 @@
 			<class name="JonasFitness.API.GetActiveClubs" />
 		</classes>
 	</test>
-		<test thread-count="5" name="GetAppointmentDetails">
+		<!-- test thread-count="5" name="GetAppointmentDetails">
 		<classes>
 			<class name="JonasFitness.API.GetAppointmentDetails" />
 		</classes>
-	</test>
+	</test-->
 	<test thread-count="5" name="GetAppointmentProductByCategory">
 		<classes>
 			<class name="JonasFitness.API.GetAppointmentProductByCategory" />
