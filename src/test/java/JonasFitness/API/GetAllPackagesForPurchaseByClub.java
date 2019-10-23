@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_GetAllPackagesForPurchaseByClub extends base {
+public class GetAllPackagesForPurchaseByClub extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -38,7 +38,7 @@ public class _Draft_GetAllPackagesForPurchaseByClub extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS);
 // assert that a specific package that is available at club is found
 	}
-	@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
+	/*@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
 	public void ValidInput() { 
 
 				given()
@@ -72,5 +72,5 @@ public class _Draft_GetAllPackagesForPurchaseByClub extends base {
 //						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 // assert that a specific package that is NOT available at club is NOT found
-	}
+	}*/
 }

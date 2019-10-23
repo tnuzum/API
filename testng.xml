@@ -9,6 +9,7 @@
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
+			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetAppointmentDetails" />
 			<class name="JonasFitness.API.GetAppointmentProductByCategory" />
 			<class name="JonasFitness.API.GetAppointmentProductCategoriesByMember" />
