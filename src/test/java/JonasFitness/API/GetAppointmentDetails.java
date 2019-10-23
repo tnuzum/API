@@ -126,7 +126,7 @@ public class GetAppointmentDetails extends base {
 //						.body("Result.BookedMembers[1].CancellationFee", equalTo(3))
 						.body("Result.BookedMembers[1].CustomerCanCancel.CanCancel", equalTo(true))
 						.body("Result.BookedMembers[1].CustomerCanCancel.CancellationReason", equalTo("NoCancellationFeeApplies"))
-						.body("Result.BookedMembers[1]CustomerId", equalTo(29992))
+						.body("Result.BookedMembers[1].CustomerId", equalTo(29992))
 						.body("Result.BookedMembers[1].DisplayName", equalTo("Auto, Paul"))
 						.body("Result.BookedMembers[1].FirstName", equalTo("Paul"))
 						.body("Result.BookedMembers[1].LastName", equalTo("Auto"))
