@@ -37,7 +37,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
-	/*@Test (testName="PackageNotAllowed",description="PBI:143537")
+	@Test (testName="PackageNotAllowed",description="PBI:143537")
 	public void PackageNotAllowed() { 
 		
 // this is not found because the item is not allowed for MSS (online) purchase
@@ -53,7 +53,8 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						;
 // need to assert that a package that is not allowed for MSS purchase is not contained in the response
-	}*/
+	}
 }
