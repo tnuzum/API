@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CompeteAPI - Continuous Integration">
+<suite name="CompeteAPI">
 	<listeners>
 		<listener class-name="resources.ExtentReporterNG" />
 	</listeners>
-		<test thread-count="5" name="CompeteAPI CI">
+		<test thread-count="5" name="Continuous Integration">
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
