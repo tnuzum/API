@@ -33,9 +33,10 @@ public class GetAllPackagesForPurchaseByClub extends base {
 					.when()
 						.get("/api/v3/package/getallpackagesforpurchasebyclub/29947/1")
 						.then()
-						.log().body()
-//						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+//						.log().body()
+						.assertThat().statusCode(200)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						;
 // assert that a specific package that is available at club is found
 	}
 	/*@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
