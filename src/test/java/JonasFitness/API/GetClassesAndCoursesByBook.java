@@ -25,8 +25,8 @@ public class GetClassesAndCoursesByBook extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:140729")
+	public void ValidInput() {
 		String resourceId = prop.getProperty("resource1Id");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

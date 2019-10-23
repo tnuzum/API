@@ -26,8 +26,8 @@ public class GetAppointmentsByBook extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test 
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:132256")
+	public void ValidInput() {
 		String resourceId = prop.getProperty("resource1Id");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

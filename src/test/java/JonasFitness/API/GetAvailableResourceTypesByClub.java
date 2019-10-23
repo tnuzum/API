@@ -26,8 +26,8 @@ public class GetAvailableResourceTypesByClub extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:138961")
+	public void ValidInput() {
 
 				given()
 //						.log().all()

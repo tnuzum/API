@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API - Regression Testing">
+	<listeners>
+		<listener class-name="resources.ExtentReporterNG" />
+	</listeners>
+	<test thread-count="5" name="AuthenticateMemberByUserCredentials">
+		<classes>
+			<class
+				name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetActiveBooksByResourceType">
+		<classes>
+			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetActiveClubs">
+		<classes>
+			<class name="JonasFitness.API.GetActiveClubs" />
+		</classes>
+	</test>
+		<test thread-count="5" name="GetAppointmentDetails">
+		<classes>
+			<class name="JonasFitness.API.GetAppointmentDetails" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAppointmentProductByCategory">
+		<classes>
+			<class name="JonasFitness.API.GetAppointmentProductByCategory" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAppointmentProductCategoriesByMember">
+		<classes>
+			<class
+				name="JonasFitness.API.GetAppointmentProductCategoriesByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAppointmentResourceTypeByProduct">
+		<classes>
+			<class
+				name="JonasFitness.API.GetAppointmentResourceTypeByProduct" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAppointmentsByBook">
+		<classes>
+			<class name="JonasFitness.API.GetAppointmentsByBook" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAppointmentsByMember">
+		<classes>
+			<class name="JonasFitness.API.GetAppointmentsByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAvailableAppointments">
+		<classes>
+			<class name="JonasFitness.API.GetAvailableAppointments" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetAvailableResourceTypesByClub">
+		<classes>
+			<class name="JonasFitness.API.GetAvailableResourceTypesByClub" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetClassesAndCoursesByBook">
+		<classes>
+			<class name="JonasFitness.API.GetClassesAndCoursesByBook" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetClassesAndCoursesByMember">
+		<classes>
+			<class name="JonasFitness.API.GetClassesAndCoursesByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetClubsByMember">
+		<classes>
+			<class name="JonasFitness.API.GetClubsByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetMember">
+		<classes>
+			<class name="JonasFitness.API.GetMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetProductByBook">
+		<classes>
+			<class name="JonasFitness.API.GetProductByBook" />
+		</classes>
+	</test>
+	<!--test thread-count="5" name="GetPurchasedPackagesByMember">
+		<classes>
+			<class name="JonasFitness.API.GetPurchasedPackagesByMember" />
+		</classes>
+	</test-->
+	<test thread-count="5" name="GetScheduleByBook">
+		<classes>
+			<class name="JonasFitness.API.GetScheduleByBook" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetScheduleByMember">
+		<classes>
+			<class name="JonasFitness.API.GetScheduleByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="SearchMembers">
+		<classes>
+			<class name="JonasFitness.API.SearchMembers" />
+		</classes>
+	</test>
+	<test thread-count="5" name="SearchMembersByProduct">
+		<classes>
+			<class name="JonasFitness.API.SearchMembersByProduct" />
+		</classes>
+	</test>
+	<test thread-count="5" name="SearchOnlineMembersByProduct">
+		<classes>
+			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
+		</classes>
+	</test>
+	<test thread-count="5" name="GetCardsOnFileByMember">
+		<classes>
+			<class name="JonasFitness.API.GetCardsOnFileByMember" />
+		</classes>
+	</test>
+	<test thread-count="5" name="SecurityPipeline">
+		<classes>
+			<class name="JonasFitness.API.SecurityPipeline" />
+		</classes>
+	</test>
+</suite>

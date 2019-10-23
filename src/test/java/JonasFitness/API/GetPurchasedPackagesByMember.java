@@ -26,11 +26,10 @@ public class GetPurchasedPackagesByMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:124125")
+	public void ValidInput() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-
 
 				given()
 //						.log().all()
@@ -55,7 +54,5 @@ public class GetPurchasedPackagesByMember extends base{
 						.body("Result[0]", hasKey("TotalUnitsRedeemed"))
 						.body("Result[0]", hasKey("UnitsPurchased"))
 						.body("Result[0]", hasKey("UnitsRemaining"));
-				
-
 	}
 }

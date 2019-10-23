@@ -26,8 +26,8 @@ public class GetProductByBook extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:138968")
+	public void ValidInput() {
 		
 		String resourceId = prop.getProperty("resource1Id");
 
@@ -53,7 +53,5 @@ public class GetProductByBook extends base {
 						.body("Result[0]", hasKey("AllowedStartTimes"))
 						.body("Result[0]", hasKey("BookingDuration"))
 						.body("Result[0]", hasKey("MemberLimit"));
-				
-
 	}
 }

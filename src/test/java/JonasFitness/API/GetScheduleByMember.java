@@ -26,8 +26,8 @@ public class GetScheduleByMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:124954")
+	public void ValidInput() {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

@@ -2,6 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.lessThan;
@@ -26,7 +27,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:127168")
+	@Test (testName="FreeAppointmentBooked_SingleMember",description="PBI:127168")
 	public void ValidInput() { 
 
 				given()
@@ -37,22 +38,17 @@ public class _Draft_BookAppointmentByMember extends base {
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 				.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
 					.when()
-					.body("{"+
-						  "\"CustomerId\": 29947,"+
-						  "\"AppointmentClubId\": 1,"+
-						  "\"ItemId\": 4534,"+
-						  "\"AdditionalCustomerIds\": [0],"+
-						  "\"RequestedBooks\": [226],"+
-						  "\"Occurrence\": \"2019-10-21T14:00:00\","+
-						  "\"EnforcePunchesRequired\": false,"+
-						  "\"UserDisplayedPrice\": 0.00"+
-						"}")
+					.body("{\"Occurrence\":{\"DateTime\":\"2019-10-25T12:00:00Z\",\"MinuteOffset\":\"0\"},\"AppointmentClubId\":1,\"ItemId\":4534,\"CustomerId\":29947,\"RequestedBooks\":[226],\"UserDisplayedPrice\":0,\"EnforcePunchesRequired\":false}")
 						.post("/api/v3/appointment/bookappointmentbymember")
 						.then()
 						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
-
+	}
+	@AfterTest
+	public void cancelAppt() {
+		// use this to cancel appt
 	}
 
+	
 }

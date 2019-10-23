@@ -28,8 +28,8 @@ public class GetAppointmentResourceTypeByProduct extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test
-	public void getAppointmentResourceTypeByProduct_ProductFound() {
+	@Test (testName="ProductFound",description="PBI:127470")
+	public void ProductFound() {
 		
 		String service = prop.getProperty("service1Id");
 
@@ -50,8 +50,8 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("Name"))
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("ResourceTypeId"));
 	}
-	@Test
-	public void getAppointmentResourceTypeByProduct_ProductNotFound() {
+	@Test (testName="ProductNotFound",description="PBI:127470")
+	public void ProductNotFound() {
 		
 		String service = prop.getProperty("service3Id");
 

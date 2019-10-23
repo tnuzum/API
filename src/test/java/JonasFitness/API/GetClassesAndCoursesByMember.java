@@ -23,8 +23,8 @@ public class GetClassesAndCoursesByMember extends base {
 	public void getData() throws IOException {
 		base.getPropertyData();
 	}
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:124953")
+	public void ValidInput() {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

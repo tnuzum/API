@@ -26,8 +26,8 @@ public class GetAppointmentsByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:124124")
+	public void ValidInput() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");

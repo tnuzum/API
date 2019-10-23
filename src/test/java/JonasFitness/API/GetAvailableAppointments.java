@@ -25,8 +25,8 @@ public class GetAvailableAppointments extends base {
 		
 	}
 	
-	@Test
-	public void GetAvailableAppointments_NoResources() {
+	@Test (testName="NoResources",description="PBI:127498")
+	public void NoResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");  
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
@@ -68,8 +68,8 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 	}
-	@Test
-	public void GetAvailableAppointments_WithResources() {
+	@Test (testName="WithResources",description="PBI:127498")
+	public void WithResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");

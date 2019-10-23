@@ -26,8 +26,8 @@ public class GetAppointmentProductByCategory extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (description="PBI:127468")
-	public void Test1() {
+	@Test (testName="ValidInput",description="PBI:127468")
+	public void ValidInput() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String prodCategory = prop.getProperty("prodCategory1Id");
@@ -48,6 +48,5 @@ public class GetAppointmentProductByCategory extends base {
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("MaximumCustomersPerAppointment"))
 						.body("Result[0]", hasKey("MinimumCustomersPerAppointment"));
-
 	}
 }
