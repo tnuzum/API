@@ -24,7 +24,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	public void PackagesFound() { 
 
 				given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
