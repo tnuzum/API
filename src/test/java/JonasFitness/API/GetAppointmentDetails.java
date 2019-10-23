@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.hasEntry;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -106,8 +106,8 @@ public class GetAppointmentDetails extends base {
 
 // Assert values returned are correct	
 						
-						.body("Result.BookedMembers[0].AppointmentCharge", hasValue(0.0))
-						.body("Result.BookedMembers[0].AppointmentOutcome", equalTo("Future"))
+						.body("Result.BookedMembers[0].AppointmentCharge", is(0.0))
+						.body("Result.BookedMembers[0].AppointmentOutcome", is("Future"))
 						.body("Result.BookedMembers[0].AttendedIndicator", equalTo(false))
 						.body("Result.BookedMembers[0].BarcodeId", equalTo("5651"))
 						.body("Result.BookedMembers[0].CancellationFee", equalTo(3))
