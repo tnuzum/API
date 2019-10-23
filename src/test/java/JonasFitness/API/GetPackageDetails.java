@@ -47,9 +47,9 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("LongDescription"))
 						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0].PriceRangeDto", hasKey("StartRange"))
+						.body("Result.PriceRangeDtos[0].PriceRangeDto[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0].PriceRangeDto[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0].PriceRangeDto[0]", hasKey("StartRange"))
 						.body("Result", hasKey("RedeemableClubs"))
 						;
 	}
