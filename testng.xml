@@ -20,13 +20,17 @@
 			<class name="JonasFitness.API.GetActiveClubs" />
 		</classes>
 	</test>
+		<test thread-count="5" name="GetAppointmentDetails">
+		<classes>
+			<class name="JonasFitness.API.GetAppointmentDetails" />
+		</classes>
+	</test>
 	<test thread-count="5" name="GetAppointmentProductByCategory">
 		<classes>
 			<class name="JonasFitness.API.GetAppointmentProductByCategory" />
 		</classes>
 	</test>
-	<test thread-count="5"
-		name="GetAppointmentProductCategoriesByMember">
+	<test thread-count="5" name="GetAppointmentProductCategoriesByMember">
 		<classes>
 			<class
 				name="JonasFitness.API.GetAppointmentProductCategoriesByMember" />
@@ -118,7 +122,7 @@
 			<class name="JonasFitness.API.GetCardsOnFileByMember" />
 		</classes>
 	</test>
-		<test thread-count="5" name="SecurityPipeline">
+	<test thread-count="5" name="SecurityPipeline">
 		<classes>
 			<class name="JonasFitness.API.SecurityPipeline" />
 		</classes>
