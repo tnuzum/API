@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_GetOnlinePackagesForPurchaseByClub extends base {
+public class GetOnlinePackagesForPurchaseByClub extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -33,10 +33,10 @@ public class _Draft_GetOnlinePackagesForPurchaseByClub extends base {
 						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
 						.then()
 						.log().body()
-//						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.assertThat().statusCode(200)
+//						.time(lessThan(5L),TimeUnit.SECONDS);
 	}
-	@Test (testName="PackageNotAllowed",description="PBI:143537")
+	/*@Test (testName="PackageNotAllowed",description="PBI:143537")
 	public void PackageNotAllowed() { 
 		
 // this is not found because the item is not allowed for MSS (online) purchase
@@ -51,8 +51,8 @@ public class _Draft_GetOnlinePackagesForPurchaseByClub extends base {
 						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
 						.then()
 						.log().body()
-//						.assertThat().statusCode(200)
+						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS);
 // need to assert that a package that is not allowed for MSS purchase is not contained in the response
-	}
+	}*/
 }
