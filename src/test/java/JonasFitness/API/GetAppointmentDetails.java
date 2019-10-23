@@ -161,7 +161,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Club.Details.DateAppointmentCreated", equalTo("2019-10-18T14:21:30.303-04:00"))
 						.body("Result.Club.ProductDetails.ProductBarcodeId", equalTo("st101"))
 						.body("Result.Club.ProductDetails.ProductCategoryDescription", equalTo("Golf Lessons"))
-						.body("Result.Club.ProductDetails.ProductDescription", equalTo("Golf Swing Training"))
+						.body("Result.Club.ProductDetails.ProductDescription", equalTo("TODDGolf Swing Training"))
 						.body("Result.Club.ProductDetails.ProductId", equalTo(4477))
 						.body("Result.Club.ProductDetails.ProductLongDescription", nullValue())
 						;			
