@@ -5,7 +5,6 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.hasEntry;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,17 +13,12 @@ import resources.base;
 
 public class GetAppointmentDetails extends base {
 		
-// https://compete-api-future2.test-jfisoftware.com:8252/api/v3/appointment/getappointmentdetails/16362
-	
-	
-	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
-	
 	@Test (testName="AppointmentsFound",description="PBI:139310")
 	public void AppointmentsFound() {
 		
@@ -106,11 +100,11 @@ public class GetAppointmentDetails extends base {
 
 // Assert values returned are correct	
 						
-//						.body("Result.BookedMembers[0].AppointmentCharge", is(0.0))
-						.body("Result.BookedMembers[0].AppointmentOutcome", is("Future"))
+//						.body("Result.BookedMembers[0].AppointmentCharge", hasSize(0))
+						.body("Result.BookedMembers[0].AppointmentOutcome", equalTo("Future"))
 						.body("Result.BookedMembers[0].AttendedIndicator", equalTo(false))
 						.body("Result.BookedMembers[0].BarcodeId", equalTo("5651"))
-//						.body("Result.BookedMembers[0].CancellationFee", equalTo(3))
+//						.body("Result.BookedMembers[0].CancellationFee", is (3.0))
 						.body("Result.BookedMembers[0].CustomerCanCancel.CanCancel", equalTo(false))
 						.body("Result.BookedMembers[0].CustomerCanCancel.CancellationReason", equalTo("NotPrimaryAppointmentMember"))
 						.body("Result.BookedMembers[0].CustomerId", equalTo(29970))
@@ -138,7 +132,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedResources[0].ResourceTypeDescription", equalTo(""))
 						.body("Result.BookedResources[0].ResourceTypeId", equalTo(147))
 						.body("Result.BookedResources[0].ResourceTypeName", equalTo("Golf Instructors"))
-						.body("Result.BookedResources[1].BookDescription", nullValue())
+						.body("Result.BookedResources[1].BookDescription", equalTo(""))
 						.body("Result.BookedResources[1].BookId", equalTo(226))
 						.body("Result.BookedResources[1].BookName", equalTo("Driving Range 2"))
 						.body("Result.BookedResources[1].ResourceTypeDescription", equalTo("Used for Golf Lessons"))
@@ -150,8 +144,8 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedResources[2].ResourceTypeDescription", equalTo("Used for Golf Lessons"))
 						.body("Result.BookedResources[2].ResourceTypeId", equalTo(149))
 						.body("Result.BookedResources[2].ResourceTypeName", equalTo("Golf Equipment"))
-						.body("Result.ClubId", equalTo(1))
-						.body("Result.ClubName", equalTo("Club Number One"))
+						.body("Result.Club.ClubId", equalTo(1))
+						.body("Result.Club.ClubName", equalTo("Club Number One"))
 						.body("Result.Details.AppointmentDateTime", equalTo("2019-10-25T16:00:00-04:00"))
 						.body("Result.Details.AppointmentDuration", equalTo(60))
 						.body("Result.Details.AppointmentNotes", equalTo("MSS Appointment"))
@@ -161,11 +155,10 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Details.DateAppointmentCreated", equalTo("2019-10-18T14:21:30.303-04:00"))
 						.body("Result.ProductDetails.ProductBarcodeId", equalTo("st101"))
 						.body("Result.ProductDetails.ProductCategoryDescription", equalTo("Golf Lessons"))
-						.body("Result.ProductDetails.ProductDescription", equalTo("TODDGolf Swing Training"))
+						.body("Result.ProductDetails.ProductDescription", equalTo("Golf Swing Training"))
 						.body("Result.ProductDetails.ProductId", equalTo(4477))
-						.body("Result.ProductDetails.ProductLongDescription", nullValue())
+						.body("Result.ProductDetails.ProductLongDescription", equalTo(""))
 						;			
-				System.out.println("todd was here :D");
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
 	public void AppointmentsNotFound() {

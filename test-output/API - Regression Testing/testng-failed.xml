@@ -4,14 +4,14 @@
   <listeners>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="GetPurchasedPackagesByMember(failed)">
+  <test thread-count="5" name="AuthenticateMemberByUserCredentials(failed)">
     <classes>
-      <class name="JonasFitness.API.GetPurchasedPackagesByMember">
+      <class name="JonasFitness.API.AuthenticateMemberByUserCredentials">
         <methods>
-          <include name="Test1"/>
           <include name="getData"/>
+          <include name="ValidInput"/>
         </methods>
-      </class> <!-- JonasFitness.API.GetPurchasedPackagesByMember -->
+      </class> <!-- JonasFitness.API.AuthenticateMemberByUserCredentials -->
     </classes>
-  </test> <!-- GetPurchasedPackagesByMember(failed) -->
+  </test> <!-- AuthenticateMemberByUserCredentials(failed) -->
 </suite> <!-- Failed suite [API - Regression Testing] -->

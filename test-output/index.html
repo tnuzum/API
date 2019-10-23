@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-API___Regression_Testing" class="navigator-link">
-              <span class="suite-name border-passed">API - Regression Testing</span>
+              <span class="suite-name border-failed">API - Regression Testing</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -54,7 +54,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="testlist-API___Regression_Testing" class="navigator-link ">
-                    <span class="test-stats">22 tests</span>
+                    <span class="test-stats">23 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -91,7 +91,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">45 methods,   45 passed</span>
+                    <span class="method-stats">47 methods, 1 failed,   46 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-API___Regression_Testing" class="hide-methods failed suite-API___Regression_Testing"> (hide)</a> <!-- hide-methods failed suite-API___Regression_Testing -->
+                      <a href="#" panel-name="suite-API___Regression_Testing" class="show-methods failed suite-API___Regression_Testing"> (show)</a> <!-- show-methods failed suite-API___Regression_Testing -->
+                    </span>
+                    <div class="method-list-content failed suite-API___Regression_Testing">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.AuthenticateMemberByUserCredentials" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-API___Regression_Testing -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -100,6 +114,16 @@
                       <a href="#" panel-name="suite-API___Regression_Testing" class="show-methods passed suite-API___Regression_Testing"> (show)</a> <!-- show-methods passed suite-API___Regression_Testing -->
                     </span>
                     <div class="method-list-content passed suite-API___Regression_Testing">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.GetAppointmentDetails" class="method navigator-link" hash-for-method="AppointmentsFound">AppointmentsFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.GetAppointmentDetails" class="method navigator-link" hash-for-method="AppointmentsNotFound">AppointmentsNotFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="CardWithoutAgreement">CardWithoutAgreement</a> <!-- method navigator-link -->
@@ -307,11 +331,6 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.AuthenticateMemberByUserCredentials" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-API___Regression_Testing" title="JonasFitness.API.GetActiveBooksByResourceType" class="method navigator-link" hash-for-method="ValidInput_NoResource">ValidInput_NoResource</a> <!-- method navigator-link -->
                       </span>
                       <br/>
@@ -337,10 +356,149 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-API___Regression_Testing" class="panel API___Regression_Testing">
+          <div class="suite-API___Regression_Testing-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">JonasFitness.API.AuthenticateMemberByUserCredentials</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <div class="stack-trace">java.lang.AssertionError: 1 expectation failed.
+Expected response time was not a value less than &lt;5L&gt; seconds, was 8096 milliseconds (8 seconds).
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:237)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:492)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:655)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.time(ResponseSpecificationImpl.groovy:117)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.time(ValidatableResponseOptionsImpl.java:409)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$time(ValidatableResponseImpl.groovy)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.time(ValidatableResponseImpl.groovy:58)
+	at io.restassured.internal.ValidatableResponseImpl.time(ValidatableResponseImpl.groovy)
+	at JonasFitness.API.AuthenticateMemberByUserCredentials.ValidInput(AuthenticateMemberByUserCredentials.java:51)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
+... Removed 42 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(PBI:139705)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-failed -->
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetScheduleByBook</span>
+              <span class="class-name">JonasFitness.API.SearchOnlineMembersByProduct</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="FirstName">
+                  </a> <!-- FirstName -->
+                  <span class="method-name">FirstName</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAvailableAppointments</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="GetAvailableAppointments_NoResources">
+                  </a> <!-- GetAvailableAppointments_NoResources -->
+                  <span class="method-name">GetAvailableAppointments_NoResources</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="GetAvailableAppointments_WithResources">
+                  </a> <!-- GetAvailableAppointments_WithResources -->
+                  <span class="method-name">GetAvailableAppointments_WithResources</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAppointmentResourceTypeByProduct_ProductFound">
+                  </a> <!-- getAppointmentResourceTypeByProduct_ProductFound -->
+                  <span class="method-name">getAppointmentResourceTypeByProduct_ProductFound</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getAppointmentResourceTypeByProduct_ProductNotFound">
+                  </a> <!-- getAppointmentResourceTypeByProduct_ProductNotFound -->
+                  <span class="method-name">getAppointmentResourceTypeByProduct_ProductNotFound</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                  <em>
+(PBI:127467)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetActiveClubs</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ClubsFound">
+                  </a> <!-- ClubsFound -->
+                  <span class="method-name">ClubsFound</span>
+                  <em>
+(PBI:138959)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByBook</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -355,16 +513,74 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.SearchOnlineMembersByProduct</span>
+              <span class="class-name">JonasFitness.API.GetClubsByMember</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="FirstName">
-                  </a> <!-- FirstName -->
-                  <span class="method-name">FirstName</span>
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
                   <em>
-(PBI:139723)                  </em>
+(PBI:127465)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetScheduleByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentDetails</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AppointmentsFound">
+                  </a> <!-- AppointmentsFound -->
+                  <span class="method-name">AppointmentsFound</span>
+                  <em>
+(PBI:139310)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AppointmentsNotFound">
+                  </a> <!-- AppointmentsNotFound -->
+                  <span class="method-name">AppointmentsNotFound</span>
+                  <em>
+(PBI:139310)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CustomerFound">
+                  </a> <!-- CustomerFound -->
+                  <span class="method-name">CustomerFound</span>
+                  <em>
+(PBI:124934)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -425,21 +641,16 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAvailableAppointments</span>
+              <span class="class-name">JonasFitness.API.GetAppointmentProductByCategory</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="GetAvailableAppointments_NoResources">
-                  </a> <!-- GetAvailableAppointments_NoResources -->
-                  <span class="method-name">GetAvailableAppointments_NoResources</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="GetAvailableAppointments_WithResources">
-                  </a> <!-- GetAvailableAppointments_WithResources -->
-                  <span class="method-name">GetAvailableAppointments_WithResources</span>
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                  <em>
+(PBI:127468)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -447,7 +658,7 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAvailableResourceTypesByClub</span>
+              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByMember</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -462,7 +673,39 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByBook</span>
+              <span class="class-name">JonasFitness.API.GetActiveBooksByResourceType</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput_NoResource">
+                  </a> <!-- ValidInput_NoResource -->
+                  <span class="method-name">ValidInput_NoResource</span>
+                  <em>
+(PBI:138964)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentsByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-API___Regression_Testing-class-passed -->
+          <div class="suite-API___Regression_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetProductByBook</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -545,16 +788,52 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetActiveClubs</span>
+              <span class="class-name">JonasFitness.API.SearchMembersByProduct</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="ClubsFound">
-                  </a> <!-- ClubsFound -->
-                  <span class="method-name">ClubsFound</span>
+                  <a name="SearchMembersByProduct_Email">
+                  </a> <!-- SearchMembersByProduct_Email -->
+                  <span class="method-name">SearchMembersByProduct_Email</span>
                   <em>
-(PBI:138959)                  </em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_FirstName">
+                  </a> <!-- SearchMembersByProduct_FirstName -->
+                  <span class="method-name">SearchMembersByProduct_FirstName</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_HomePhoneWithDashes">
+                  </a> <!-- SearchMembersByProduct_HomePhoneWithDashes -->
+                  <span class="method-name">SearchMembersByProduct_HomePhoneWithDashes</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_HomePhoneWithoutDashes">
+                  </a> <!-- SearchMembersByProduct_HomePhoneWithoutDashes -->
+                  <span class="method-name">SearchMembersByProduct_HomePhoneWithoutDashes</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_LastName">
+                  </a> <!-- SearchMembersByProduct_LastName -->
+                  <span class="method-name">SearchMembersByProduct_LastName</span>
+                  <em>
+(PBI:139726)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -562,7 +841,7 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</span>
+              <span class="class-name">JonasFitness.API.GetAvailableResourceTypesByClub</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -570,175 +849,6 @@
                   <a name="Test1">
                   </a> <!-- Test1 -->
                   <span class="method-name">Test1</span>
-                  <em>
-(PBI:127467)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAppointmentProductByCategory</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                  <em>
-(PBI:127468)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByMember</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetProductByBook</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="getAppointmentResourceTypeByProduct_ProductFound">
-                  </a> <!-- getAppointmentResourceTypeByProduct_ProductFound -->
-                  <span class="method-name">getAppointmentResourceTypeByProduct_ProductFound</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="getAppointmentResourceTypeByProduct_ProductNotFound">
-                  </a> <!-- getAppointmentResourceTypeByProduct_ProductNotFound -->
-                  <span class="method-name">getAppointmentResourceTypeByProduct_ProductNotFound</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetClubsByMember</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                  <em>
-(PBI:127465)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetScheduleByMember</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetActiveBooksByResourceType</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ValidInput_NoResource">
-                  </a> <!-- ValidInput_NoResource -->
-                  <span class="method-name">ValidInput_NoResource</span>
-                  <em>
-(PBI:138964)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetAppointmentsByMember</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="Test1">
-                  </a> <!-- Test1 -->
-                  <span class="method-name">Test1</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.GetMember</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="CustomerFound">
-                  </a> <!-- CustomerFound -->
-                  <span class="method-name">CustomerFound</span>
-                  <em>
-(PBI:124934)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-API___Regression_Testing-class-passed -->
-          <div class="suite-API___Regression_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.AuthenticateMemberByUserCredentials</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ValidInput">
-                  </a> <!-- ValidInput -->
-                  <span class="method-name">ValidInput</span>
-                  <em>
-(PBI:139705)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -844,52 +954,14 @@
           <div class="suite-API___Regression_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">JonasFitness.API.SearchMembersByProduct</span>
+              <span class="class-name">JonasFitness.API.GetScheduleByBook</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="SearchMembersByProduct_Email">
-                  </a> <!-- SearchMembersByProduct_Email -->
-                  <span class="method-name">SearchMembersByProduct_Email</span>
-                  <em>
-(PBI:139726)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="SearchMembersByProduct_FirstName">
-                  </a> <!-- SearchMembersByProduct_FirstName -->
-                  <span class="method-name">SearchMembersByProduct_FirstName</span>
-                  <em>
-(PBI:139726)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="SearchMembersByProduct_HomePhoneWithDashes">
-                  </a> <!-- SearchMembersByProduct_HomePhoneWithDashes -->
-                  <span class="method-name">SearchMembersByProduct_HomePhoneWithDashes</span>
-                  <em>
-(PBI:139726)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="SearchMembersByProduct_HomePhoneWithoutDashes">
-                  </a> <!-- SearchMembersByProduct_HomePhoneWithoutDashes -->
-                  <span class="method-name">SearchMembersByProduct_HomePhoneWithoutDashes</span>
-                  <em>
-(PBI:139726)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="SearchMembersByProduct_LastName">
-                  </a> <!-- SearchMembersByProduct_LastName -->
-                  <span class="method-name">SearchMembersByProduct_LastName</span>
-                  <em>
-(PBI:139726)                  </em>
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -922,6 +994,11 @@
       &lt;class name=&quot;JonasFitness.API.GetActiveClubs&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- GetActiveClubs --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;GetAppointmentDetails&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentDetails&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- GetAppointmentDetails --&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;GetAppointmentProductByCategory&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;JonasFitness.API.GetAppointmentProductByCategory&quot;/&gt;
@@ -1037,6 +1114,9 @@
                 <span class="test-name">GetActiveClubs (1 class)</span>
               </li>
               <li>
+                <span class="test-name">GetAppointmentDetails (1 class)</span>
+              </li>
+              <li>
                 <span class="test-name">GetAppointmentProductByCategory (1 class)</span>
               </li>
               <li>
@@ -1117,192 +1197,200 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(45);
+data.addRows(47);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'GetAvailableAppointments_NoResources')
-data.setCell(0, 2, 'JonasFitness.API.GetAvailableAppointments')
-data.setCell(0, 3, 3591);
+data.setCell(0, 1, 'ValidInput')
+data.setCell(0, 2, 'JonasFitness.API.AuthenticateMemberByUserCredentials')
+data.setCell(0, 3, 8557);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'ValidInput')
-data.setCell(1, 2, 'JonasFitness.API.AuthenticateMemberByUserCredentials')
-data.setCell(1, 3, 2043);
+data.setCell(1, 1, 'AppointmentsFound')
+data.setCell(1, 2, 'JonasFitness.API.GetAppointmentDetails')
+data.setCell(1, 3, 3567);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'GetAvailableAppointments_WithResources')
+data.setCell(2, 1, 'GetAvailableAppointments_NoResources')
 data.setCell(2, 2, 'JonasFitness.API.GetAvailableAppointments')
-data.setCell(2, 3, 1613);
+data.setCell(2, 3, 3283);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'Test1')
 data.setCell(3, 2, 'JonasFitness.API.GetScheduleByBook')
-data.setCell(3, 3, 1414);
+data.setCell(3, 3, 1645);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'Test1')
 data.setCell(4, 2, 'JonasFitness.API.GetAppointmentsByMember')
-data.setCell(4, 3, 1384);
+data.setCell(4, 3, 1568);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'CustomerFound')
-data.setCell(5, 2, 'JonasFitness.API.GetMember')
-data.setCell(5, 3, 1108);
+data.setCell(5, 1, 'GetAvailableAppointments_WithResources')
+data.setCell(5, 2, 'JonasFitness.API.GetAvailableAppointments')
+data.setCell(5, 3, 1509);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'Test1')
-data.setCell(6, 2, 'JonasFitness.API.GetScheduleByMember')
-data.setCell(6, 3, 1034);
+data.setCell(6, 1, 'ValidInput_NoResource')
+data.setCell(6, 2, 'JonasFitness.API.GetActiveBooksByResourceType')
+data.setCell(6, 3, 1282);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'Test1')
-data.setCell(7, 2, 'JonasFitness.API.GetAppointmentsByBook')
-data.setCell(7, 3, 947);
+data.setCell(7, 1, 'CustomerFound')
+data.setCell(7, 2, 'JonasFitness.API.GetMember')
+data.setCell(7, 3, 1142);
 data.setCell(8, 0, 8)
 data.setCell(8, 1, 'Test1')
-data.setCell(8, 2, 'JonasFitness.API.GetClassesAndCoursesByMember')
-data.setCell(8, 3, 942);
+data.setCell(8, 2, 'JonasFitness.API.GetClassesAndCoursesByBook')
+data.setCell(8, 3, 1128);
 data.setCell(9, 0, 9)
-data.setCell(9, 1, 'Test1')
-data.setCell(9, 2, 'JonasFitness.API.GetClassesAndCoursesByBook')
-data.setCell(9, 3, 922);
+data.setCell(9, 1, 'CardWithoutAgreement')
+data.setCell(9, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(9, 3, 993);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'SearchMembers_HomePhoneNoDashes')
-data.setCell(10, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(10, 3, 914);
+data.setCell(10, 1, 'Test1')
+data.setCell(10, 2, 'JonasFitness.API.GetAppointmentProductByCategory')
+data.setCell(10, 3, 972);
 data.setCell(11, 0, 11)
-data.setCell(11, 1, 'SearchMembers_Email')
-data.setCell(11, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(11, 3, 793);
+data.setCell(11, 1, 'Test1')
+data.setCell(11, 2, 'JonasFitness.API.GetAppointmentsByBook')
+data.setCell(11, 3, 967);
 data.setCell(12, 0, 12)
-data.setCell(12, 1, 'CardWithoutAgreement')
-data.setCell(12, 2, 'JonasFitness.API.GetCardsOnFileByMember')
-data.setCell(12, 3, 764);
+data.setCell(12, 1, 'Test1')
+data.setCell(12, 2, 'JonasFitness.API.GetScheduleByMember')
+data.setCell(12, 3, 958);
 data.setCell(13, 0, 13)
-data.setCell(13, 1, 'SingleAgreementMultipleCardsOnFile')
-data.setCell(13, 2, 'JonasFitness.API.GetCardsOnFileByMember')
-data.setCell(13, 3, 760);
+data.setCell(13, 1, 'Test1')
+data.setCell(13, 2, 'JonasFitness.API.GetClassesAndCoursesByMember')
+data.setCell(13, 3, 889);
 data.setCell(14, 0, 14)
-data.setCell(14, 1, 'SearchMembers_HomePhoneDashes')
-data.setCell(14, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(14, 3, 740);
+data.setCell(14, 1, 'SearchMembersByProduct_Email')
+data.setCell(14, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(14, 3, 878);
 data.setCell(15, 0, 15)
-data.setCell(15, 1, 'getAppointmentResourceTypeByProduct_ProductFound')
-data.setCell(15, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
-data.setCell(15, 3, 732);
+data.setCell(15, 1, 'Test1')
+data.setCell(15, 2, 'JonasFitness.API.GetAppointmentProductCategoriesByMember')
+data.setCell(15, 3, 857);
 data.setCell(16, 0, 16)
-data.setCell(16, 1, 'SearchMembers_MobilePhoneDashes')
-data.setCell(16, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(16, 3, 731);
+data.setCell(16, 1, 'getAppointmentResourceTypeByProduct_ProductFound')
+data.setCell(16, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
+data.setCell(16, 3, 828);
 data.setCell(17, 0, 17)
-data.setCell(17, 1, 'SingleAgreementWithCard')
-data.setCell(17, 2, 'JonasFitness.API.GetCardsOnFileByMember')
-data.setCell(17, 3, 727);
+data.setCell(17, 1, 'SearchMembers_LastName')
+data.setCell(17, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(17, 3, 819);
 data.setCell(18, 0, 18)
-data.setCell(18, 1, 'Test1')
-data.setCell(18, 2, 'JonasFitness.API.GetProductByBook')
-data.setCell(18, 3, 722);
+data.setCell(18, 1, 'SearchMembers_Email')
+data.setCell(18, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(18, 3, 808);
 data.setCell(19, 0, 19)
-data.setCell(19, 1, 'Test1')
-data.setCell(19, 2, 'JonasFitness.API.GetAppointmentProductByCategory')
-data.setCell(19, 3, 695);
+data.setCell(19, 1, 'SearchMembers_HomePhoneDashes')
+data.setCell(19, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(19, 3, 790);
 data.setCell(20, 0, 20)
-data.setCell(20, 1, 'SearchMembers_LastFirstName')
+data.setCell(20, 1, 'SearchMembers_WorkPhoneDashes')
 data.setCell(20, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(20, 3, 691);
+data.setCell(20, 3, 776);
 data.setCell(21, 0, 21)
 data.setCell(21, 1, 'MultipleAgreementsWithCard')
 data.setCell(21, 2, 'JonasFitness.API.GetCardsOnFileByMember')
-data.setCell(21, 3, 691);
+data.setCell(21, 3, 754);
 data.setCell(22, 0, 22)
-data.setCell(22, 1, 'ValidInput_NoResource')
-data.setCell(22, 2, 'JonasFitness.API.GetActiveBooksByResourceType')
-data.setCell(22, 3, 688);
+data.setCell(22, 1, 'SingleAgreementWithCard')
+data.setCell(22, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(22, 3, 732);
 data.setCell(23, 0, 23)
-data.setCell(23, 1, 'Test1')
-data.setCell(23, 2, 'JonasFitness.API.GetAppointmentProductCategoriesByMember')
-data.setCell(23, 3, 682);
+data.setCell(23, 1, 'SingleAgreementMultipleCardsOnFile')
+data.setCell(23, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(23, 3, 724);
 data.setCell(24, 0, 24)
 data.setCell(24, 1, 'ClubsFound')
 data.setCell(24, 2, 'JonasFitness.API.GetActiveClubs')
-data.setCell(24, 3, 661);
+data.setCell(24, 3, 711);
 data.setCell(25, 0, 25)
-data.setCell(25, 1, 'FirstName')
-data.setCell(25, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
-data.setCell(25, 3, 657);
+data.setCell(25, 1, 'Test1')
+data.setCell(25, 2, 'JonasFitness.API.GetClubsByMember')
+data.setCell(25, 3, 691);
 data.setCell(26, 0, 26)
-data.setCell(26, 1, 'SearchMembersByProduct_Email')
-data.setCell(26, 2, 'JonasFitness.API.SearchMembersByProduct')
-data.setCell(26, 3, 654);
+data.setCell(26, 1, 'SearchMembers_FirstName')
+data.setCell(26, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(26, 3, 678);
 data.setCell(27, 0, 27)
-data.setCell(27, 1, 'SearchMembers_FirstName')
+data.setCell(27, 1, 'SearchMembers_LastFirstName')
 data.setCell(27, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(27, 3, 651);
+data.setCell(27, 3, 671);
 data.setCell(28, 0, 28)
-data.setCell(28, 1, 'Test1')
-data.setCell(28, 2, 'JonasFitness.API.GetAvailableResourceTypesByClub')
-data.setCell(28, 3, 638);
+data.setCell(28, 1, 'NoCardOnFile')
+data.setCell(28, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(28, 3, 671);
 data.setCell(29, 0, 29)
-data.setCell(29, 1, 'SearchMembers_LastName')
-data.setCell(29, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(29, 3, 619);
+data.setCell(29, 1, 'FirstName')
+data.setCell(29, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(29, 3, 665);
 data.setCell(30, 0, 30)
 data.setCell(30, 1, 'Test1')
-data.setCell(30, 2, 'JonasFitness.API.GetClubsByMember')
-data.setCell(30, 3, 600);
+data.setCell(30, 2, 'JonasFitness.API.GetAvailableResourceTypesByClub')
+data.setCell(30, 3, 643);
 data.setCell(31, 0, 31)
-data.setCell(31, 1, 'SearchMembers_WorkPhoneDashes')
-data.setCell(31, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(31, 3, 584);
+data.setCell(31, 1, 'AppointmentsNotFound')
+data.setCell(31, 2, 'JonasFitness.API.GetAppointmentDetails')
+data.setCell(31, 3, 640);
 data.setCell(32, 0, 32)
-data.setCell(32, 1, 'SearchMembers_WorkPhoneNoDashes')
-data.setCell(32, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(32, 3, 577);
+data.setCell(32, 1, 'Test1')
+data.setCell(32, 2, 'JonasFitness.API.GetProductByBook')
+data.setCell(32, 3, 638);
 data.setCell(33, 0, 33)
-data.setCell(33, 1, 'SearchMembers_MobilePhoneNoDashes')
+data.setCell(33, 1, 'SearchMembers_HomePhoneNoDashes')
 data.setCell(33, 2, 'JonasFitness.API.SearchMembers')
-data.setCell(33, 3, 551);
+data.setCell(33, 3, 586);
 data.setCell(34, 0, 34)
-data.setCell(34, 1, 'getAppointmentResourceTypeByProduct_ProductNotFound')
-data.setCell(34, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
-data.setCell(34, 3, 541);
+data.setCell(34, 1, 'SearchMembers_WorkPhoneNoDashes')
+data.setCell(34, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(34, 3, 574);
 data.setCell(35, 0, 35)
-data.setCell(35, 1, 'InactiveClub')
-data.setCell(35, 2, 'JonasFitness.API.SecurityPipeline')
-data.setCell(35, 3, 514);
+data.setCell(35, 1, 'SearchMembers_MobilePhoneNoDashes')
+data.setCell(35, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(35, 3, 565);
 data.setCell(36, 0, 36)
-data.setCell(36, 1, 'SearchMembersByProduct_HomePhoneWithoutDashes')
-data.setCell(36, 2, 'JonasFitness.API.SearchMembersByProduct')
-data.setCell(36, 3, 488);
+data.setCell(36, 1, 'SearchMembers_MobilePhoneDashes')
+data.setCell(36, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(36, 3, 563);
 data.setCell(37, 0, 37)
-data.setCell(37, 1, 'NoCardOnFile')
-data.setCell(37, 2, 'JonasFitness.API.GetCardsOnFileByMember')
-data.setCell(37, 3, 484);
+data.setCell(37, 1, 'getAppointmentResourceTypeByProduct_ProductNotFound')
+data.setCell(37, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
+data.setCell(37, 3, 557);
 data.setCell(38, 0, 38)
-data.setCell(38, 1, 'SearchMembersByProduct_FirstName')
-data.setCell(38, 2, 'JonasFitness.API.SearchMembersByProduct')
-data.setCell(38, 3, 481);
+data.setCell(38, 1, 'InactiveClub')
+data.setCell(38, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(38, 3, 553);
 data.setCell(39, 0, 39)
-data.setCell(39, 1, 'SearchMembersByProduct_LastName')
+data.setCell(39, 1, 'SearchMembersByProduct_FirstName')
 data.setCell(39, 2, 'JonasFitness.API.SearchMembersByProduct')
-data.setCell(39, 3, 476);
+data.setCell(39, 3, 500);
 data.setCell(40, 0, 40)
-data.setCell(40, 1, 'SearchMembersByProduct_HomePhoneWithDashes')
+data.setCell(40, 1, 'SearchMembersByProduct_HomePhoneWithoutDashes')
 data.setCell(40, 2, 'JonasFitness.API.SearchMembersByProduct')
-data.setCell(40, 3, 473);
+data.setCell(40, 3, 481);
 data.setCell(41, 0, 41)
-data.setCell(41, 1, 'InvalidClub')
-data.setCell(41, 2, 'JonasFitness.API.SecurityPipeline')
-data.setCell(41, 3, 304);
+data.setCell(41, 1, 'SearchMembersByProduct_HomePhoneWithDashes')
+data.setCell(41, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(41, 3, 477);
 data.setCell(42, 0, 42)
-data.setCell(42, 1, 'InvalidAPIKey')
-data.setCell(42, 2, 'JonasFitness.API.SecurityPipeline')
-data.setCell(42, 3, 245);
+data.setCell(42, 1, 'SearchMembersByProduct_LastName')
+data.setCell(42, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(42, 3, 473);
 data.setCell(43, 0, 43)
-data.setCell(43, 1, 'InvalidCompany')
+data.setCell(43, 1, 'InvalidClub')
 data.setCell(43, 2, 'JonasFitness.API.SecurityPipeline')
-data.setCell(43, 3, 237);
+data.setCell(43, 3, 327);
 data.setCell(44, 0, 44)
-data.setCell(44, 1, 'NoAPIKey')
+data.setCell(44, 1, 'InvalidAPIKey')
 data.setCell(44, 2, 'JonasFitness.API.SecurityPipeline')
-data.setCell(44, 3, 212);
+data.setCell(44, 3, 253);
+data.setCell(45, 0, 45)
+data.setCell(45, 1, 'InvalidCompany')
+data.setCell(45, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(45, 3, 249);
+data.setCell(46, 0, 46)
+data.setCell(46, 1, 'NoAPIKey')
+data.setCell(46, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(46, 3, 235);
 window.suiteTableData['API___Regression_Testing']= { tableData: data, tableDiv: 'times-div-API___Regression_Testing'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 35 seconds</span>
+              <span class="suite-total-time">Total running time: 48 seconds</span>
               <div id="times-div-API___Regression_Testing">
               </div> <!-- times-div-API___Regression_Testing -->
             </div> <!-- times-div -->
@@ -1334,331 +1422,348 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">ValidInput</span>
-                <span class="method-start">511 ms</span>
+                <span class="method-start">468 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetActiveBooksByResourceType</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">2798 ms</span>
+                <span class="method-start">9365 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">ValidInput_NoResource</span>
-                <span class="method-start">2800 ms</span>
+                <span class="method-start">9367 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetActiveClubs</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">3627 ms</span>
+                <span class="method-start">10808 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">ClubsFound</span>
-                <span class="method-start">3631 ms</span>
+                <span class="method-start">10810 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentDetails</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">11656 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">AppointmentsFound</span>
+                <span class="method-start">11658 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AppointmentsNotFound</span>
+                <span class="method-start">15228 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductByCategory</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">4428 ms</span>
+                <span class="method-start">15971 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">4430 ms</span>
+                <span class="method-start">15972 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">5231 ms</span>
+                <span class="method-start">17039 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">5232 ms</span>
+                <span class="method-start">17040 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">6014 ms</span>
+                <span class="method-start">17997 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">getAppointmentResourceTypeByProduct_ProductFound</span>
-                <span class="method-start">6015 ms</span>
+                <span class="method-start">17999 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">getAppointmentResourceTypeByProduct_ProductNotFound</span>
-                <span class="method-start">6750 ms</span>
+                <span class="method-start">18830 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByBook</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">7397 ms</span>
+                <span class="method-start">19475 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">7399 ms</span>
+                <span class="method-start">19476 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">8432 ms</span>
+                <span class="method-start">20527 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">8433 ms</span>
+                <span class="method-start">20528 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAvailableAppointments</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">9914 ms</span>
+                <span class="method-start">22175 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">GetAvailableAppointments_NoResources</span>
-                <span class="method-start">9915 ms</span>
+                <span class="method-start">22176 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">GetAvailableAppointments_WithResources</span>
-                <span class="method-start">13508 ms</span>
+                <span class="method-start">25461 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetAvailableResourceTypesByClub</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">15209 ms</span>
+                <span class="method-start">27043 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">15211 ms</span>
+                <span class="method-start">27044 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByBook</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">15917 ms</span>
+                <span class="method-start">27753 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">15918 ms</span>
+                <span class="method-start">27754 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">16896 ms</span>
+                <span class="method-start">28944 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">16897 ms</span>
+                <span class="method-start">28945 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetClubsByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">17897 ms</span>
+                <span class="method-start">29891 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">17898 ms</span>
+                <span class="method-start">29892 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">18544 ms</span>
+                <span class="method-start">30628 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">CustomerFound</span>
-                <span class="method-start">18545 ms</span>
+                <span class="method-start">30629 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetProductByBook</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">19703 ms</span>
+                <span class="method-start">31814 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">19704 ms</span>
+                <span class="method-start">31815 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetScheduleByBook</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">20481 ms</span>
+                <span class="method-start">32490 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">20483 ms</span>
+                <span class="method-start">32491 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetScheduleByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">21932 ms</span>
+                <span class="method-start">34171 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">Test1</span>
-                <span class="method-start">21933 ms</span>
+                <span class="method-start">34172 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.SearchMembers</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">22997 ms</span>
+                <span class="method-start">35163 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_Email</span>
-                <span class="method-start">22998 ms</span>
+                <span class="method-start">35164 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_FirstName</span>
-                <span class="method-start">23792 ms</span>
+                <span class="method-start">35973 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_HomePhoneDashes</span>
-                <span class="method-start">24444 ms</span>
+                <span class="method-start">36652 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_HomePhoneNoDashes</span>
-                <span class="method-start">25185 ms</span>
+                <span class="method-start">37444 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_LastFirstName</span>
-                <span class="method-start">26100 ms</span>
+                <span class="method-start">38031 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_LastName</span>
-                <span class="method-start">26792 ms</span>
+                <span class="method-start">38703 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_MobilePhoneDashes</span>
-                <span class="method-start">27411 ms</span>
+                <span class="method-start">39523 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_MobilePhoneNoDashes</span>
-                <span class="method-start">28142 ms</span>
+                <span class="method-start">40087 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_WorkPhoneDashes</span>
-                <span class="method-start">28694 ms</span>
+                <span class="method-start">40653 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembers_WorkPhoneNoDashes</span>
-                <span class="method-start">29279 ms</span>
+                <span class="method-start">41430 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.SearchMembersByProduct</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">29885 ms</span>
+                <span class="method-start">42031 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">SearchMembersByProduct_Email</span>
-                <span class="method-start">29886 ms</span>
+                <span class="method-start">42033 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembersByProduct_FirstName</span>
-                <span class="method-start">30541 ms</span>
+                <span class="method-start">42911 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembersByProduct_HomePhoneWithDashes</span>
-                <span class="method-start">31023 ms</span>
+                <span class="method-start">43412 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembersByProduct_HomePhoneWithoutDashes</span>
-                <span class="method-start">31497 ms</span>
+                <span class="method-start">43890 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SearchMembersByProduct_LastName</span>
-                <span class="method-start">31986 ms</span>
+                <span class="method-start">44372 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.SearchOnlineMembersByProduct</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">32483 ms</span>
+                <span class="method-start">44869 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">FirstName</span>
-                <span class="method-start">32484 ms</span>
+                <span class="method-start">44870 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.GetCardsOnFileByMember</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">33160 ms</span>
+                <span class="method-start">45551 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">CardWithoutAgreement</span>
-                <span class="method-start">33161 ms</span>
+                <span class="method-start">45552 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">MultipleAgreementsWithCard</span>
-                <span class="method-start">33925 ms</span>
+                <span class="method-start">46546 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">NoCardOnFile</span>
-                <span class="method-start">34616 ms</span>
+                <span class="method-start">47300 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SingleAgreementMultipleCardsOnFile</span>
-                <span class="method-start">35101 ms</span>
+                <span class="method-start">47971 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">SingleAgreementWithCard</span>
-                <span class="method-start">35862 ms</span>
+                <span class="method-start">48696 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JonasFitness.API.SecurityPipeline</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
-                <span class="method-start">36600 ms</span>
+                <span class="method-start">49440 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">InactiveClub</span>
-                <span class="method-start">36601 ms</span>
+                <span class="method-start">49441 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">InvalidAPIKey</span>
-                <span class="method-start">37116 ms</span>
+                <span class="method-start">49994 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">InvalidClub</span>
-                <span class="method-start">37361 ms</span>
+                <span class="method-start">50247 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">InvalidCompany</span>
-                <span class="method-start">37666 ms</span>
+                <span class="method-start">50575 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">NoAPIKey</span>
-                <span class="method-start">37903 ms</span>
+                <span class="method-start">50824 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
