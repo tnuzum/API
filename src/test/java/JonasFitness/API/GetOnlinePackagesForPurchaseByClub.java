@@ -4,11 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
-
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -43,7 +39,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 // this is not found because the item is not allowed for MSS (online) purchase
 		
 				given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -51,7 +47,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 					.when()
 						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
