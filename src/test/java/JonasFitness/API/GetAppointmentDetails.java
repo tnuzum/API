@@ -98,6 +98,11 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Club.Details.CanCancel", hasKey("CancellationReason"))
 						.body("Result.Club.Details", hasKey("CancelDate"))
 						.body("Result.Club.Details", hasKey("DateAppointmentCreated"))
+						.body("Result.Club.ProductDetails", hasKey("ProductBarcodeId"))
+						.body("Result.Club.ProductDetails", hasKey("ProductCategoryDescription"))
+						.body("Result.Club.ProductDetails", hasKey("ProductDescription"))
+						.body("Result.Club.ProductDetails", hasKey("ProductId"))
+						.body("Result.Club.ProductDetails", hasKey("ProductLongDescription"))
 
 // Assert values returned are correct	
 						
@@ -127,7 +132,6 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[1].LastName", equalTo("Auto"))
 						.body("Result.BookedMembers[1].NoShowFee", equalTo(5))
 						.body("Result.BookedMembers[1].NoShowFeeIndicator", equalTo(false))
-				
 						.body("Result.BookedResources[0].BookDescription", equalTo("Employee, Golf Instructor, Personal Trainer"))
 						.body("Result.BookedResources[0].BookId", equalTo(221))
 						.body("Result.BookedResources[0].BookName", equalTo("Campbell, Samual"))
@@ -148,7 +152,6 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedResources[2].ResourceTypeName", equalTo("Golf Equipment"))
 						.body("Result.Club.ClubId", equalTo(1))
 						.body("Result.Club.ClubName", equalTo("Club Number One"))
-						
 						.body("Result.Club.Details.AppointmentDateTime", equalTo("2019-10-25T16:00:00-04:00"))
 						.body("Result.Club.Details.AppointmentDuration", equalTo(60))
 						.body("Result.Club.Details.AppointmentNotes", equalTo("MSS Appointment"))
@@ -156,7 +159,11 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Club.Details.CanCancel.CancellationReason", equalTo("NoCancellationFeeApplies"))
 						.body("Result.Club.Details.CancelDate", nullValue())
 						.body("Result.Club.Details.DateAppointmentCreated", equalTo("2019-10-18T14:21:30.303-04:00"))
-						
+						.body("Result.Club.ProductDetails.ProductBarcodeId", equalTo("st101"))
+						.body("Result.Club.ProductDetails.ProductCategoryDescription", equalTo("Golf Lessons"))
+						.body("Result.Club.ProductDetails.ProductDescription", equalTo("Golf Swing Training"))
+						.body("Result.Club.ProductDetails.ProductId", equalTo(4477))
+						.body("Result.Club.ProductDetails.ProductLongDescription", nullValue())
 						;			
 	}
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
