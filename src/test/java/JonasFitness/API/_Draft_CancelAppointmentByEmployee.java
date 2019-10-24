@@ -30,7 +30,7 @@ public class _Draft_CancelAppointmentByEmployee extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/16385")
+						.post("/api/v3/appointment/cancelappointmentbyemployee/16398")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

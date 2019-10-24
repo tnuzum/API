@@ -7,6 +7,7 @@
 		<test thread-count="5" name="Continuous Integration">
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
+			<class name="JonasFitness.API.BookAppointmentByMember" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />
@@ -18,6 +19,7 @@
 			<class name="JonasFitness.API.GetAppointmentsByMember" />
 			<class name="JonasFitness.API.GetAvailableAppointments" />
 			<class name="JonasFitness.API.GetAvailableResourceTypesByClub" />
+			<class name="JonasFitness.API.GetCardsOnFileByMember" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByBook" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByMember" />
 			<class name="JonasFitness.API.GetClubsByMember" />
@@ -31,7 +33,6 @@
 			<class name="JonasFitness.API.SearchMembers" />
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
-			<class name="JonasFitness.API.GetCardsOnFileByMember" />
 			<class name="JonasFitness.API.SecurityPipeline" />
 		</classes>
 	</test>

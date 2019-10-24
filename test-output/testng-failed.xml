@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JonasFitness.API._Draft_BookAppointmentByMember">
+      <class name="JonasFitness.API.BookAppointmentByMember">
         <methods>
+          <include name="PaidAppointment_SingleMember"/>
           <include name="getData"/>
-          <include name="ValidInput"/>
         </methods>
-      </class> <!-- JonasFitness.API._Draft_BookAppointmentByMember -->
+      </class> <!-- JonasFitness.API.BookAppointmentByMember -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
