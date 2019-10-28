@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
+
 import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +38,43 @@ public class _E2E extends base {
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:127168")
 	public void FreeAppointment_SingleMember() { 
 
-		
+		/* 
+		 * 
+GET CUSTOMER ID FROM USER NAME; PUT INTO CustomerId object to be used later in test		 * 
+		 * 			given()
+//			.log().all()
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-ClubId"))
+			.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+			.when()
+				.body("{"+
+						  "\"Username\": \"rauto\","+
+						  "\"Password\": \"Testing1!\""+
+						"}")
+				.post("/api/v3/member/authenticatememberbyusercredentials").
+			then()
+//			.log().all()
+			.assertThat().statusCode(200)
+			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.body("Result.AuthenticationResult", equalTo("Success"))
+			.body("Result.CustomerId", equalTo(member));
+			
+	}
+GET ITEM ID, RESOURCE ID AND DATETIME FOR APPT
+					given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
+					.when()
+						.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
+						.then()
+						.log().body()
+						.assertThat().statusCode(200)
+	
+		 */
 		
 		
 		
@@ -86,4 +122,6 @@ public class _E2E extends base {
 	String Status = cancel_js.get("Status");
 //	System.out.println("Cancel Appointment Result: "+Status);
 	}
+	
+	// GET APPT DETAILS TO CONFIRM SCHEDULED AS EXPECTED
 }
