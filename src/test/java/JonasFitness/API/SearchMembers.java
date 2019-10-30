@@ -44,7 +44,7 @@ public class SearchMembers extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Address"))
 					    .body("Result[0].Address", hasKey("AddressLine1"))
-					    .body("Result[0].Address.AddressLine1", equalTo("7965 N. High St"))
+					    .body("Result[0].Address.AddressLine1", equalTo("7965 N High St"))
 					    .body("Result[0].Address", hasKey("AddressLine2"))
 					    .body("Result[0].Address", hasKey("City"))
 					    .body("Result[0].Address", hasKey("Country"))
