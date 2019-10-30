@@ -31,11 +31,9 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	@Test (testName="FreeAppointment_SingleMember",description="PBI:127168")
+	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
-		// This call doesn't not book appt because the parameter Compete BO > Clubs >
-		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
-	given()
+	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -56,8 +54,8 @@ public class _Draft_BookAppointmentByEmployee extends base {
 //						.log().body()
 						.assertThat().statusCode(404)
 				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Message", equalTo("FailNotEnoughPunches"));
-/*	
+				.body("Message", equalTo("FailNotEnoughPunches"))
+	
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int AppointmentId = book_js.get("Result.AppointmentId");
@@ -85,11 +83,11 @@ public class _Draft_BookAppointmentByEmployee extends base {
 	JsonPath cancel_js = ReusableMethods.rawToJson(cancel_res);
 	String Status = cancel_js.get("Status");
 //	System.out.println("Cancel Appointment Result: "+Status);
- */
+ 
 	}
 
-	
-	@Test (testName="PaidAppointment_SingleMember",description="PBI:127168")
+	/*
+	@Test (testName="PaidAppointment_SingleMember",description="PBI:146227")
 	public void PaidAppointment_SingleMember() { 
 
 	Response book_res = given()
@@ -137,7 +135,7 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:127168")
+	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:146227")
 	public void PunchcardAppointment_SingleMember() { 
 
 	Response book_res = given()
@@ -183,10 +181,8 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.body("Result", hasKey("Reason"))
 				.body("Result.Reason", nullValue());
 	}
-	@Test (testName="PaidAppointment_MultipleMember",description="PBI:127168")
+	@Test (testName="PaidAppointment_MultipleMember",description="PBI:146227")
 	public void PaidAppointment_MultipleMember() { 
-		// This call doesn't not book appt because the parameter Compete BO > Clubs >
-		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
 	given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
@@ -211,4 +207,5 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("FailNotEnoughPunches"));
 	}
+	/*
 }
