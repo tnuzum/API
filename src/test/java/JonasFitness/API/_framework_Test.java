@@ -14,8 +14,14 @@ import resources.ReusableMethods;
 import resources.base;
 import resources.resources;
 
-public class _GoogleAPI extends base {
-
+public class _framework_Test extends base {
+/*
+ * This test is used to test the framework using Google Maps endpoint.
+ * This type of test is necessary if ever all Compete API's stop working (possible pipeline issue),
+ * and you need to test the framework is still functioning correctly on endpoints other than Compete API.
+ */
+	
+	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();

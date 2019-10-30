@@ -16,7 +16,7 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
-public class _E2E extends base {
+public class _Draft_E2E extends base {
 	
 	/* *** TEST CASE SUMMARY ***
 	 * Schedule an appointment

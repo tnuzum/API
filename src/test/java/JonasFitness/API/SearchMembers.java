@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -38,11 +39,12 @@ public class SearchMembers extends base {
 					.when()
 						.get("/api/v3/member/searchmembers")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Address"))
 					    .body("Result[0].Address", hasKey("AddressLine1"))
+					    .body("Result[0].Address.AddressLine1", equalTo("7965 N. High St"))
 					    .body("Result[0].Address", hasKey("AddressLine2"))
 					    .body("Result[0].Address", hasKey("City"))
 					    .body("Result[0].Address", hasKey("Country"))

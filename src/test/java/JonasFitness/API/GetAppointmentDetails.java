@@ -25,7 +25,7 @@ public class GetAppointmentDetails extends base {
 		String appointment = prop.getProperty("appointmentInFuture1Id");
 
 				given()
-//						.log().all()
+						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -33,7 +33,7 @@ public class GetAppointmentDetails extends base {
 					.when()
 						.get("/api/v3/appointment/getappointmentdetails/"+appointment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.BookedMembers[0]", hasKey("AppointmentCharge"))

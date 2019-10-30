@@ -15,7 +15,7 @@ import io.restassured.response.Response;
 import resources.base;
 import resources.resources;
 
-public class _GetResponseCORE extends base {
+public class _Draft_GetResponseCORE extends base {
 
 	static String projectPath = System.getenv("ECLIPSE_HOME");
     

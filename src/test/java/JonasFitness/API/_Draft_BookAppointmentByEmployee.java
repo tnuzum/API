@@ -16,7 +16,7 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
-public class BookAppointmentByMember extends base {
+public class _Draft_BookAppointmentByEmployee extends base {
 	
 	/* *** TEST CASE SUMMARY ***
 	 * Schedule an appointment
@@ -33,8 +33,9 @@ public class BookAppointmentByMember extends base {
 	}
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:127168")
 	public void FreeAppointment_SingleMember() { 
-
-	Response book_res = given()
+		// This call doesn't not book appt because the parameter Compete BO > Clubs >
+		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
+	given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -42,14 +43,21 @@ public class BookAppointmentByMember extends base {
 		.header("X-ClubId", prop.getProperty("X-ClubId"))
 		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
 			.when()
-			.body("{\"Occurrence\":{\"DateTime\":\"2024-10-25T12:00:00Z\",\"MinuteOffset\":\"0\"},\"AppointmentClubId\":1,\"ItemId\":4534,\"CustomerId\":29947,\"RequestedBooks\":[226],\"UserDisplayedPrice\":0,\"EnforcePunchesRequired\":false}")
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 4534,"+ 
+					"\"Occurrence\": \"2024-11-01T14:00:00-04:00\","+ 
+					"\"CustomerId\": 29947,"+ 
+					"\"RequestedBooks\": [226],"+ 
+					"\"UserDisplayedPrice\": 0.00"+
+					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
-						.assertThat().statusCode(200)
+						.assertThat().statusCode(404)
 				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Result.Result", equalTo("Success"))
-				.body("Result.AppointmentId", not(empty()))
+				.body("Message", equalTo("FailNotEnoughPunches"));
+/*	
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int AppointmentId = book_js.get("Result.AppointmentId");
@@ -77,7 +85,10 @@ public class BookAppointmentByMember extends base {
 	JsonPath cancel_js = ReusableMethods.rawToJson(cancel_res);
 	String Status = cancel_js.get("Status");
 //	System.out.println("Cancel Appointment Result: "+Status);
+ */
 	}
+
+	
 	@Test (testName="PaidAppointment_SingleMember",description="PBI:127168")
 	public void PaidAppointment_SingleMember() { 
 
@@ -87,12 +98,19 @@ public class BookAppointmentByMember extends base {
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-ClubId"))
-		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+		.header("Content-Type", "application/json")
 			.when()
-			.body("{\"Occurrence\":{\"DateTime\":\"2024-10-26T14:00:00Z\",\"MinuteOffset\":\"0\"},\"AppointmentClubId\":1,\"ItemId\":4474,\"CustomerId\":29947,\"RequestedBooks\":[226,221],\"UserDisplayedPrice\":20.00,\"EnforcePunchesRequired\":false}")
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 4474,"+ 
+					"\"Occurrence\": \"2024-11-05T14:00:00-04:00\","+ 
+					"\"CustomerId\": 29947,"+ 
+					"\"RequestedBooks\": [226,221],"+ 
+					"\"UserDisplayedPrice\": 20.00"+
+					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
@@ -100,8 +118,7 @@ public class BookAppointmentByMember extends base {
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int AppointmentId = book_js.get("Result.AppointmentId");
-		String Result = book_js.get("Result.Result");
-//		System.out.println("Book Appointment Result: "+Result);
+	
 		given()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -119,6 +136,7 @@ public class BookAppointmentByMember extends base {
 				.body("Result", hasKey("Reason"))
 				.body("Result.Reason", nullValue());
 	}
+	
 	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:127168")
 	public void PunchcardAppointment_SingleMember() { 
 
@@ -130,7 +148,14 @@ public class BookAppointmentByMember extends base {
 		.header("X-ClubId", prop.getProperty("X-ClubId"))
 		.header("Content-Type", "application/json")
 			.when()
-			.body("{\"Occurrence\":{\"DateTime\":\"2024-10-26T14:00:00Z\",\"MinuteOffset\":\"0\"},\"AppointmentClubId\":1,\"ItemId\":4535,\"CustomerId\":29947,\"RequestedBooks\":[222],\"UserDisplayedPrice\":7.50,\"EnforcePunchesRequired\":true}")
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 4535,"+ 
+					"\"Occurrence\": \"2024-11-03T14:00:00-04:00\","+ 
+					"\"CustomerId\": 29947,"+ 
+					"\"RequestedBooks\": [222],"+ 
+					"\"UserDisplayedPrice\": 7.50"+
+					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -157,5 +182,33 @@ public class BookAppointmentByMember extends base {
 				.body("Result.ConfirmationCode", not(empty()))
 				.body("Result", hasKey("Reason"))
 				.body("Result.Reason", nullValue());
+	}
+	@Test (testName="PaidAppointment_MultipleMember",description="PBI:127168")
+	public void PaidAppointment_MultipleMember() { 
+		// This call doesn't not book appt because the parameter Compete BO > Clubs >
+		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
+	given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 4474,"+ 
+					"\"Occurrence\": \"2024-11-01T16:00:00-04:00\","+ 
+					"\"CustomerId\": 29947,"+
+					"\"AdditionalCustomerIds\": [29970],"+
+					"\"RequestedBooks\": [226,221],"+ 
+					"\"UserDisplayedPrice\": 0.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+						.log().body()
+						.assertThat().statusCode(404)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Message", equalTo("FailNotEnoughPunches"));
 	}
 }
