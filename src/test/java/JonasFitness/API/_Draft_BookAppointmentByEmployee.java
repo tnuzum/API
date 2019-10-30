@@ -51,10 +51,10 @@ public class _Draft_BookAppointmentByEmployee extends base {
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-//						.log().body()
-						.assertThat().statusCode(404)
+						.log().body()
+						.assertThat().statusCode(200)
 				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Message", equalTo("FailNotEnoughPunches"))
+//				.body("Message", equalTo("FailNotEnoughPunches"))
 	
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
@@ -207,5 +207,5 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("FailNotEnoughPunches"));
 	}
-	/*
+	*/
 }
