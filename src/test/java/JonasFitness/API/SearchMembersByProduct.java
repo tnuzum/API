@@ -5,6 +5,8 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -51,9 +53,28 @@ public class SearchMembersByProduct extends base{
 					.when()
 						.get("/api/v3/member/searchmembersbyproduct/"+fName+"/"+associatedClub+"/"+serviceId)
 						.then()
-//						.log().body()
+  				    .log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]",  hasKey("AddressLine1"))
+						.body("Result[0]",  hasKey("AddressLine2"))
+						.body("Result[0]",  hasKey("BarcodeId"))
+						.body("Result[0]",  hasKey("CellPhone"))
+						.body("Result[0]",  hasKey("City"))
+						.body("Result[0]",  hasKey("Country"))
+						.body("Result[0]",  hasKey("DisplayName"))
+						.body("Result[0]",  hasKey("EmailAddress"))
+						.body("Result[0]",  hasKey("FirstName"))
+						.body("Result[0].FirstName", equalTo("Robert"))
+						.body("Result[0]",  hasKey("HomePhone"))
+						.body("Result[0]",  hasKey("Id"))
+						.body("Result[0]",  hasKey("LastName"))
+						.body("Result[0]",  hasKey("MiddleInitial"))
+						.body("Result[0]",  hasKey("PostalCode"))
+						.body("Result[0]",  hasKey("PreferredName"))
+						.body("Result[0]",  hasKey("PreferredPhoneType"))
+						.body("Result[0]",  hasKey("StateProvince"))
+						.body("Result[0]",  hasKey("WorkPhone"));
 
 	}
 	@Test (testName="SearchMembersByProduct_LastName",description="PBI:139726")
@@ -74,7 +95,8 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0].LastName", equalTo("Auto"));
 
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithDashes",description="PBI:139726")
@@ -85,7 +107,7 @@ public class SearchMembersByProduct extends base{
 		String hPhoneD = prop.getProperty("activeMember4_hPhoneD");
 
 				given()
-//						.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -93,9 +115,10 @@ public class SearchMembersByProduct extends base{
 					.when()
 						.get("/api/v3/member/searchmembersbyproduct/"+hPhoneD+"/"+associatedClub+"/"+serviceId)
 						.then()
-//						.log().body()
+//				     	.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0].HomePhone", equalTo("6142001003"));
 
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithoutDashes",description="PBI:139726")
@@ -116,7 +139,8 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0].HomePhone", equalTo("6142001003"));
 
 	}
 	@Test (testName="SearchMembersByProduct_Email",description="PBI:139726")
@@ -137,7 +161,8 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0].EmailAddress", equalTo("tnuzum.auto@gmail.com"));
 
 	}
 }
