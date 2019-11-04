@@ -34,7 +34,7 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
-			<class name="getbookavailabilitycalendar" />
+			<class name="JonasFitness.API.getbookavailabilitycalendar" />
 		</classes>
 	</test>
 </suite>
