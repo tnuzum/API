@@ -18,7 +18,10 @@ import resources.base;
 
 public class _Draft_BookAppointmentByEmployee extends base {
 	
-	/* *** TEST CASE SUMMARY ***
+	/* temp change
+	 * *** TEST CASE SUMMARY ***
+	 * 
+	 * 
 	 * Schedule an appointment
 	 * Attempt to schedule appointment in same time slot
 	 * Cancel appointment
