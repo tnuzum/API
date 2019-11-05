@@ -32,7 +32,7 @@ public class getbookavailabilitycalendar extends base {
 		String associatedClubId = prop.getProperty("associatedClub3Id");
 		
 				given()
-						.log().all()
+	//					.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -43,7 +43,7 @@ public class getbookavailabilitycalendar extends base {
 						.get("api/v3/bookview/getbookavailabilitycalendar/"+associatedClubId+"/"+startTime+"/"+endTime+"")
 								
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BookDescription"))
