@@ -53,7 +53,7 @@ public class SearchMembersByProduct extends base{
 					.when()
 						.get("/api/v3/member/searchmembersbyproduct/"+fName+"/"+associatedClub+"/"+serviceId)
 						.then()
-  				    .log().body()
+ // 				    .log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]",  hasKey("AddressLine1"))
