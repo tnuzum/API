@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,8 +37,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+            <a href="#" panel-name="suite-CompeteAPI" class="navigator-link">
+              <span class="suite-name border-failed">CompeteAPI</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -48,37 +48,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\bkalle\AppData\Local\Temp\testng-eclipse--2010813979\testng-customsuite.xml</span>
+                  <a href="#" panel-name="test-xml-CompeteAPI" class="navigator-link ">
+                    <span>C:\Users\tnuzum\eclipse-workspace\API\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="testlist-CompeteAPI" class="navigator-link ">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="group-CompeteAPI" class="navigator-link ">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="times-CompeteAPI" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="reporter-CompeteAPI" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="ignored-methods-CompeteAPI" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-Default_suite" class="navigator-link ">
+                  <a href="#" panel-name="chronological-CompeteAPI" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -91,21 +91,315 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">58 methods, 1 failed,   57 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-CompeteAPI" class="hide-methods failed suite-CompeteAPI"> (hide)</a> <!-- hide-methods failed suite-CompeteAPI -->
+                      <a href="#" panel-name="suite-CompeteAPI" class="show-methods failed suite-CompeteAPI"> (show)</a> <!-- show-methods failed suite-CompeteAPI -->
+                    </span>
+                    <div class="method-list-content failed suite-CompeteAPI">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetActiveBooksByResourceType" class="method navigator-link" hash-for-method="ValidInput_NoResource">ValidInput_NoResource</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-CompeteAPI -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
                     <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-CompeteAPI" class="hide-methods passed suite-CompeteAPI"> (hide)</a> <!-- hide-methods passed suite-CompeteAPI -->
+                      <a href="#" panel-name="suite-CompeteAPI" class="show-methods passed suite-CompeteAPI"> (show)</a> <!-- show-methods passed suite-CompeteAPI -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content passed suite-CompeteAPI">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="JonasFitness.API.getbookavailabilitycalendar" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentDetails" class="method navigator-link" hash-for-method="AppointmentsFound">AppointmentsFound</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentDetails" class="method navigator-link" hash-for-method="AppointmentsNotFound">AppointmentsNotFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="CardWithoutAgreement">CardWithoutAgreement</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetActiveClubs" class="method navigator-link" hash-for-method="ClubsFound">ClubsFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetMember" class="method navigator-link" hash-for-method="CustomerFound">CustomerFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchOnlineMembersByProduct" class="method navigator-link" hash-for-method="Email">Email</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchOnlineMembersByProduct" class="method navigator-link" hash-for-method="FirstName">FirstName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SecurityPipeline" class="method navigator-link" hash-for-method="InactiveClub">InactiveClub</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SecurityPipeline" class="method navigator-link" hash-for-method="InvalidAPIKey">InvalidAPIKey</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SecurityPipeline" class="method navigator-link" hash-for-method="InvalidClub">InvalidClub</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SecurityPipeline" class="method navigator-link" hash-for-method="InvalidCompany">InvalidCompany</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchOnlineMembersByProduct" class="method navigator-link" hash-for-method="LastName">LastName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="MultipleAgreementsWithCard">MultipleAgreementsWithCard</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SecurityPipeline" class="method navigator-link" hash-for-method="NoAPIKey">NoAPIKey</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="NoCardOnFile">NoCardOnFile</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAvailableAppointments" class="method navigator-link" hash-for-method="NoResources">NoResources</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAllPackagesForPurchaseByClub" class="method navigator-link" hash-for-method="PackageFound">PackageFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" class="method navigator-link" hash-for-method="PackageNotAllowed">PackageNotAllowed</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" class="method navigator-link" hash-for-method="PackagesFound">PackagesFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchOnlineMembersByProduct" class="method navigator-link" hash-for-method="PhoneNoDashes">PhoneNoDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchOnlineMembersByProduct" class="method navigator-link" hash-for-method="PhoneWDashes">PhoneWDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentResourceTypeByProduct" class="method navigator-link" hash-for-method="ProductFound">ProductFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentResourceTypeByProduct" class="method navigator-link" hash-for-method="ProductNotFound">ProductNotFound</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembersByProduct" class="method navigator-link" hash-for-method="SearchMembersByProduct_Email">SearchMembersByProduct_Email</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembersByProduct" class="method navigator-link" hash-for-method="SearchMembersByProduct_FirstName">SearchMembersByProduct_FirstName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembersByProduct" class="method navigator-link" hash-for-method="SearchMembersByProduct_HomePhoneWithDashes">SearchMembersByProduct_HomePhoneWithDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembersByProduct" class="method navigator-link" hash-for-method="SearchMembersByProduct_HomePhoneWithoutDashes">SearchMembersByProduct_HomePhoneWithoutDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembersByProduct" class="method navigator-link" hash-for-method="SearchMembersByProduct_LastName">SearchMembersByProduct_LastName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_Email">SearchMembers_Email</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_FirstName">SearchMembers_FirstName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_HomePhoneDashes">SearchMembers_HomePhoneDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_HomePhoneNoDashes">SearchMembers_HomePhoneNoDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_LastFirstName">SearchMembers_LastFirstName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_LastName">SearchMembers_LastName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_MobilePhoneDashes">SearchMembers_MobilePhoneDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_MobilePhoneNoDashes">SearchMembers_MobilePhoneNoDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_WorkPhoneDashes">SearchMembers_WorkPhoneDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.SearchMembers" class="method navigator-link" hash-for-method="SearchMembers_WorkPhoneNoDashes">SearchMembers_WorkPhoneNoDashes</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="SingleAgreementMultipleCardsOnFile">SingleAgreementMultipleCardsOnFile</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetCardsOnFileByMember" class="method navigator-link" hash-for-method="SingleAgreementWithCard">SingleAgreementWithCard</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetPackageDetails" class="method navigator-link" hash-for-method="SinglePriceRange">SinglePriceRange</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetClubsByMember" class="method navigator-link" hash-for-method="Test1">Test1</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentProductCategoriesByMember" class="method navigator-link" hash-for-method="Test1">Test1</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetClassesAndCoursesByBook" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentProductByCategory" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.AuthenticateMemberByUserCredentials" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetProductByBook" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetScheduleByBook" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetScheduleByMember" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentsByMember" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetPurchasedPackagesByMember" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAppointmentsByBook" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetClassesAndCoursesByMember" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAvailableResourceTypesByClub" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.getbookavailabilitycalendar" class="method navigator-link" hash-for-method="ValidInput">ValidInput</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetAvailableAppointments" class="method navigator-link" hash-for-method="WithResources">WithResources</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-CompeteAPI" title="JonasFitness.API.GetPackageDetails" class="method navigator-link" hash-for-method="multiplePriceRanges">multiplePriceRanges</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-CompeteAPI -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -116,8 +410,174 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+        <div panel-name="suite-CompeteAPI" class="panel CompeteAPI">
+          <div class="suite-CompeteAPI-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">JonasFitness.API.GetActiveBooksByResourceType</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput_NoResource">
+                  </a> <!-- ValidInput_NoResource -->
+                  <span class="method-name">ValidInput_NoResource</span>
+                  <div class="stack-trace">java.lang.AssertionError: 1 expectation failed.
+Expected status code &lt;200&gt; but was &lt;404&gt;.
+
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:237)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:492)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:655)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:125)
+	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:133)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+	at io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+	at JonasFitness.API.GetActiveBooksByResourceType.ValidInput_NoResource(GetActiveBooksByResourceType.java:45)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
+... Removed 42 stack frames
+</div> <!-- stack-trace -->
+                  <em>
+(PBI:138964)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-failed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.AuthenticateMemberByUserCredentials</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:139705)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.SecurityPipeline</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="InactiveClub">
+                  </a> <!-- InactiveClub -->
+                  <span class="method-name">InactiveClub</span>
+                  <em>
+(PBI:144604)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="InvalidAPIKey">
+                  </a> <!-- InvalidAPIKey -->
+                  <span class="method-name">InvalidAPIKey</span>
+                  <em>
+(PBI:145817)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="InvalidClub">
+                  </a> <!-- InvalidClub -->
+                  <span class="method-name">InvalidClub</span>
+                  <em>
+(PBI:132893)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="InvalidCompany">
+                  </a> <!-- InvalidCompany -->
+                  <span class="method-name">InvalidCompany</span>
+                  <em>
+(PBI:132893)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="NoAPIKey">
+                  </a> <!-- NoAPIKey -->
+                  <span class="method-name">NoAPIKey</span>
+                  <em>
+(PBI:145817)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetActiveClubs</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ClubsFound">
+                  </a> <!-- ClubsFound -->
+                  <span class="method-name">ClubsFound</span>
+                  <em>
+(PBI:138959)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:124953)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetScheduleByBook</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:140730)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
               <span class="class-name">JonasFitness.API.getbookavailabilitycalendar</span>
@@ -133,102 +593,1454 @@
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
-        </div> <!-- panel Default_suite -->
-        <div panel-name="test-xml-Default_suite" class="panel">
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetClubsByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                  <em>
+(PBI:127465)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetPackageDetails</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="SinglePriceRange">
+                  </a> <!-- SinglePriceRange -->
+                  <span class="method-name">SinglePriceRange</span>
+                  <em>
+(PBI:143538)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="multiplePriceRanges">
+                  </a> <!-- multiplePriceRanges -->
+                  <span class="method-name">multiplePriceRanges</span>
+                  <em>
+(PBI:143538)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetScheduleByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:124954)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetCardsOnFileByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CardWithoutAgreement">
+                  </a> <!-- CardWithoutAgreement -->
+                  <span class="method-name">CardWithoutAgreement</span>
+                  <em>
+(PBI:146302)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="MultipleAgreementsWithCard">
+                  </a> <!-- MultipleAgreementsWithCard -->
+                  <span class="method-name">MultipleAgreementsWithCard</span>
+                  <em>
+(PBI:146302)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="NoCardOnFile">
+                  </a> <!-- NoCardOnFile -->
+                  <span class="method-name">NoCardOnFile</span>
+                  <em>
+(PBI:146302)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SingleAgreementMultipleCardsOnFile">
+                  </a> <!-- SingleAgreementMultipleCardsOnFile -->
+                  <span class="method-name">SingleAgreementMultipleCardsOnFile</span>
+                  <em>
+(PBI:146302)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SingleAgreementWithCard">
+                  </a> <!-- SingleAgreementWithCard -->
+                  <span class="method-name">SingleAgreementWithCard</span>
+                  <em>
+(PBI:146302)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.SearchOnlineMembersByProduct</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Email">
+                  </a> <!-- Email -->
+                  <span class="method-name">Email</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="FirstName">
+                  </a> <!-- FirstName -->
+                  <span class="method-name">FirstName</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="LastName">
+                  </a> <!-- LastName -->
+                  <span class="method-name">LastName</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PhoneNoDashes">
+                  </a> <!-- PhoneNoDashes -->
+                  <span class="method-name">PhoneNoDashes</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PhoneWDashes">
+                  </a> <!-- PhoneWDashes -->
+                  <span class="method-name">PhoneWDashes</span>
+                  <em>
+(PBI:139723)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.SearchMembers</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_Email">
+                  </a> <!-- SearchMembers_Email -->
+                  <span class="method-name">SearchMembers_Email</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_FirstName">
+                  </a> <!-- SearchMembers_FirstName -->
+                  <span class="method-name">SearchMembers_FirstName</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_HomePhoneDashes">
+                  </a> <!-- SearchMembers_HomePhoneDashes -->
+                  <span class="method-name">SearchMembers_HomePhoneDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_HomePhoneNoDashes">
+                  </a> <!-- SearchMembers_HomePhoneNoDashes -->
+                  <span class="method-name">SearchMembers_HomePhoneNoDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_LastFirstName">
+                  </a> <!-- SearchMembers_LastFirstName -->
+                  <span class="method-name">SearchMembers_LastFirstName</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_LastName">
+                  </a> <!-- SearchMembers_LastName -->
+                  <span class="method-name">SearchMembers_LastName</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_MobilePhoneDashes">
+                  </a> <!-- SearchMembers_MobilePhoneDashes -->
+                  <span class="method-name">SearchMembers_MobilePhoneDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_MobilePhoneNoDashes">
+                  </a> <!-- SearchMembers_MobilePhoneNoDashes -->
+                  <span class="method-name">SearchMembers_MobilePhoneNoDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_WorkPhoneDashes">
+                  </a> <!-- SearchMembers_WorkPhoneDashes -->
+                  <span class="method-name">SearchMembers_WorkPhoneDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembers_WorkPhoneNoDashes">
+                  </a> <!-- SearchMembers_WorkPhoneNoDashes -->
+                  <span class="method-name">SearchMembers_WorkPhoneNoDashes</span>
+                  <em>
+(PBI:124130)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAllPackagesForPurchaseByClub</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="PackageFound">
+                  </a> <!-- PackageFound -->
+                  <span class="method-name">PackageFound</span>
+                  <em>
+(PBI:143540)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.SearchMembersByProduct</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_Email">
+                  </a> <!-- SearchMembersByProduct_Email -->
+                  <span class="method-name">SearchMembersByProduct_Email</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_FirstName">
+                  </a> <!-- SearchMembersByProduct_FirstName -->
+                  <span class="method-name">SearchMembersByProduct_FirstName</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_HomePhoneWithDashes">
+                  </a> <!-- SearchMembersByProduct_HomePhoneWithDashes -->
+                  <span class="method-name">SearchMembersByProduct_HomePhoneWithDashes</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_HomePhoneWithoutDashes">
+                  </a> <!-- SearchMembersByProduct_HomePhoneWithoutDashes -->
+                  <span class="method-name">SearchMembersByProduct_HomePhoneWithoutDashes</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SearchMembersByProduct_LastName">
+                  </a> <!-- SearchMembersByProduct_LastName -->
+                  <span class="method-name">SearchMembersByProduct_LastName</span>
+                  <em>
+(PBI:139726)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ProductFound">
+                  </a> <!-- ProductFound -->
+                  <span class="method-name">ProductFound</span>
+                  <em>
+(PBI:127470)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ProductNotFound">
+                  </a> <!-- ProductNotFound -->
+                  <span class="method-name">ProductNotFound</span>
+                  <em>
+(PBI:127470)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentDetails</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AppointmentsFound">
+                  </a> <!-- AppointmentsFound -->
+                  <span class="method-name">AppointmentsFound</span>
+                  <em>
+(PBI:139310)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="AppointmentsNotFound">
+                  </a> <!-- AppointmentsNotFound -->
+                  <span class="method-name">AppointmentsNotFound</span>
+                  <em>
+(PBI:139310)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CustomerFound">
+                  </a> <!-- CustomerFound -->
+                  <span class="method-name">CustomerFound</span>
+                  <em>
+(PBI:124934)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="Test1">
+                  </a> <!-- Test1 -->
+                  <span class="method-name">Test1</span>
+                  <em>
+(PBI:127467)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetProductByBook</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:138968)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetPurchasedPackagesByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:124125)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAvailableResourceTypesByClub</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:138961)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentProductByCategory</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:127468)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAvailableAppointments</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="NoResources">
+                  </a> <!-- NoResources -->
+                  <span class="method-name">NoResources</span>
+                  <em>
+(PBI:127498)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="WithResources">
+                  </a> <!-- WithResources -->
+                  <span class="method-name">WithResources</span>
+                  <em>
+(PBI:127498)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetClassesAndCoursesByBook</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:140729)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentsByMember</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:124124)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetOnlinePackagesForPurchaseByClub</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="PackageNotAllowed">
+                  </a> <!-- PackageNotAllowed -->
+                  <span class="method-name">PackageNotAllowed</span>
+                  <em>
+(PBI:143537)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PackagesFound">
+                  </a> <!-- PackagesFound -->
+                  <span class="method-name">PackagesFound</span>
+                  <em>
+(PBI:143537)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+          <div class="suite-CompeteAPI-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">JonasFitness.API.GetAppointmentsByBook</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ValidInput">
+                  </a> <!-- ValidInput -->
+                  <span class="method-name">ValidInput</span>
+                  <em>
+(PBI:132256)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-CompeteAPI-class-passed -->
+        </div> <!-- panel CompeteAPI -->
+        <div panel-name="test-xml-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\bkalle\AppData\Local\Temp\testng-eclipse--2010813979\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\tnuzum\eclipse-workspace\API\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
+&lt;suite name=&quot;CompeteAPI&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;resources.ExtentReporterNG&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Continuous Integration&quot;&gt;
     &lt;classes&gt;
+      &lt;class name=&quot;JonasFitness.API.AuthenticateMemberByUserCredentials&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetActiveBooksByResourceType&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetActiveClubs&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAllPackagesForPurchaseByClub&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentDetails&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentProductByCategory&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentProductCategoriesByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentResourceTypeByProduct&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentsByBook&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAppointmentsByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAvailableAppointments&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetAvailableResourceTypesByClub&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetCardsOnFileByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetClassesAndCoursesByBook&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetClassesAndCoursesByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetClubsByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetOnlinePackagesForPurchaseByClub&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetPackageDetails&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetProductByBook&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetPurchasedPackagesByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetScheduleByBook&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.GetScheduleByMember&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.SearchMembers&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.SearchMembersByProduct&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.SearchOnlineMembersByProduct&quot;/&gt;
+      &lt;class name=&quot;JonasFitness.API.SecurityPipeline&quot;/&gt;
       &lt;class name=&quot;JonasFitness.API.getbookavailabilitycalendar&quot;/&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Default test --&gt;
-&lt;/suite&gt; &lt;!-- Default suite --&gt;
+  &lt;/test&gt; &lt;!-- Continuous Integration --&gt;
+&lt;/suite&gt; &lt;!-- CompeteAPI --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-Default_suite" class="panel">
+        <div panel-name="testlist-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for Default suite</span>
+            <span class="header-content">Tests for CompeteAPI</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Default test (1 class)</span>
+                <span class="test-name">Continuous Integration (28 classes)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-Default_suite" class="panel">
+        <div panel-name="group-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for Default suite</span>
+            <span class="header-content">Groups for CompeteAPI</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-Default_suite" class="panel">
+        <div panel-name="times-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for Default suite</span>
+            <span class="header-content">Times for CompeteAPI</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_Default_suite');
-function tableData_Default_suite() {
+suiteTableInitFunctions.push('tableData_CompeteAPI');
+function tableData_CompeteAPI() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(58);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'ValidInput')
-data.setCell(0, 2, 'JonasFitness.API.getbookavailabilitycalendar')
-data.setCell(0, 3, 2478);
-window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+data.setCell(0, 1, 'PackageFound')
+data.setCell(0, 2, 'JonasFitness.API.GetAllPackagesForPurchaseByClub')
+data.setCell(0, 3, 18101);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'NoResources')
+data.setCell(1, 2, 'JonasFitness.API.GetAvailableAppointments')
+data.setCell(1, 3, 2707);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'PackageNotAllowed')
+data.setCell(2, 2, 'JonasFitness.API.GetOnlinePackagesForPurchaseByClub')
+data.setCell(2, 3, 1874);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'ValidInput')
+data.setCell(3, 2, 'JonasFitness.API.AuthenticateMemberByUserCredentials')
+data.setCell(3, 3, 1787);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'PackagesFound')
+data.setCell(4, 2, 'JonasFitness.API.GetOnlinePackagesForPurchaseByClub')
+data.setCell(4, 3, 1786);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'WithResources')
+data.setCell(5, 2, 'JonasFitness.API.GetAvailableAppointments')
+data.setCell(5, 3, 1659);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'AppointmentsFound')
+data.setCell(6, 2, 'JonasFitness.API.GetAppointmentDetails')
+data.setCell(6, 3, 1386);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'ValidInput')
+data.setCell(7, 2, 'JonasFitness.API.GetScheduleByMember')
+data.setCell(7, 3, 1085);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'ValidInput')
+data.setCell(8, 2, 'JonasFitness.API.GetAppointmentsByMember')
+data.setCell(8, 3, 1077);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'ValidInput')
+data.setCell(9, 2, 'JonasFitness.API.GetScheduleByBook')
+data.setCell(9, 3, 1058);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'multiplePriceRanges')
+data.setCell(10, 2, 'JonasFitness.API.GetPackageDetails')
+data.setCell(10, 3, 994);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'FirstName')
+data.setCell(11, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(11, 3, 904);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'SearchMembers_WorkPhoneDashes')
+data.setCell(12, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(12, 3, 860);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'ValidInput')
+data.setCell(13, 2, 'JonasFitness.API.GetClassesAndCoursesByMember')
+data.setCell(13, 3, 844);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'CustomerFound')
+data.setCell(14, 2, 'JonasFitness.API.GetMember')
+data.setCell(14, 3, 808);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'ValidInput')
+data.setCell(15, 2, 'JonasFitness.API.getbookavailabilitycalendar')
+data.setCell(15, 3, 790);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'MultipleAgreementsWithCard')
+data.setCell(16, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(16, 3, 760);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'ValidInput')
+data.setCell(17, 2, 'JonasFitness.API.GetAppointmentsByBook')
+data.setCell(17, 3, 734);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'SingleAgreementMultipleCardsOnFile')
+data.setCell(18, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(18, 3, 732);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'SearchMembers_MobilePhoneNoDashes')
+data.setCell(19, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(19, 3, 724);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'SearchMembers_HomePhoneDashes')
+data.setCell(20, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(20, 3, 723);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'SingleAgreementWithCard')
+data.setCell(21, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(21, 3, 720);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'SearchMembers_FirstName')
+data.setCell(22, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(22, 3, 666);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'ValidInput')
+data.setCell(23, 2, 'JonasFitness.API.GetClassesAndCoursesByBook')
+data.setCell(23, 3, 656);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'SinglePriceRange')
+data.setCell(24, 2, 'JonasFitness.API.GetPackageDetails')
+data.setCell(24, 3, 650);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'CardWithoutAgreement')
+data.setCell(25, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(25, 3, 647);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'AppointmentsNotFound')
+data.setCell(26, 2, 'JonasFitness.API.GetAppointmentDetails')
+data.setCell(26, 3, 645);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'SearchMembersByProduct_FirstName')
+data.setCell(27, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(27, 3, 645);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'ValidInput')
+data.setCell(28, 2, 'JonasFitness.API.GetPurchasedPackagesByMember')
+data.setCell(28, 3, 630);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'PhoneWDashes')
+data.setCell(29, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(29, 3, 624);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'Email')
+data.setCell(30, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(30, 3, 620);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'PhoneNoDashes')
+data.setCell(31, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(31, 3, 616);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'SearchMembers_LastFirstName')
+data.setCell(32, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(32, 3, 613);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'LastName')
+data.setCell(33, 2, 'JonasFitness.API.SearchOnlineMembersByProduct')
+data.setCell(33, 3, 612);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'SearchMembersByProduct_Email')
+data.setCell(34, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(34, 3, 585);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'SearchMembers_LastName')
+data.setCell(35, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(35, 3, 580);
+data.setCell(36, 0, 36)
+data.setCell(36, 1, 'Test1')
+data.setCell(36, 2, 'JonasFitness.API.GetClubsByMember')
+data.setCell(36, 3, 579);
+data.setCell(37, 0, 37)
+data.setCell(37, 1, 'SearchMembers_WorkPhoneNoDashes')
+data.setCell(37, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(37, 3, 552);
+data.setCell(38, 0, 38)
+data.setCell(38, 1, 'SearchMembers_HomePhoneNoDashes')
+data.setCell(38, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(38, 3, 549);
+data.setCell(39, 0, 39)
+data.setCell(39, 1, 'ClubsFound')
+data.setCell(39, 2, 'JonasFitness.API.GetActiveClubs')
+data.setCell(39, 3, 548);
+data.setCell(40, 0, 40)
+data.setCell(40, 1, 'SearchMembers_MobilePhoneDashes')
+data.setCell(40, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(40, 3, 545);
+data.setCell(41, 0, 41)
+data.setCell(41, 1, 'SearchMembers_Email')
+data.setCell(41, 2, 'JonasFitness.API.SearchMembers')
+data.setCell(41, 3, 533);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'SearchMembersByProduct_HomePhoneWithoutDashes')
+data.setCell(42, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(42, 3, 524);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'ProductNotFound')
+data.setCell(43, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
+data.setCell(43, 3, 514);
+data.setCell(44, 0, 44)
+data.setCell(44, 1, 'ProductFound')
+data.setCell(44, 2, 'JonasFitness.API.GetAppointmentResourceTypeByProduct')
+data.setCell(44, 3, 503);
+data.setCell(45, 0, 45)
+data.setCell(45, 1, 'SearchMembersByProduct_HomePhoneWithDashes')
+data.setCell(45, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(45, 3, 496);
+data.setCell(46, 0, 46)
+data.setCell(46, 1, 'SearchMembersByProduct_LastName')
+data.setCell(46, 2, 'JonasFitness.API.SearchMembersByProduct')
+data.setCell(46, 3, 486);
+data.setCell(47, 0, 47)
+data.setCell(47, 1, 'ValidInput')
+data.setCell(47, 2, 'JonasFitness.API.GetAppointmentProductByCategory')
+data.setCell(47, 3, 484);
+data.setCell(48, 0, 48)
+data.setCell(48, 1, 'Test1')
+data.setCell(48, 2, 'JonasFitness.API.GetAppointmentProductCategoriesByMember')
+data.setCell(48, 3, 481);
+data.setCell(49, 0, 49)
+data.setCell(49, 1, 'NoCardOnFile')
+data.setCell(49, 2, 'JonasFitness.API.GetCardsOnFileByMember')
+data.setCell(49, 3, 474);
+data.setCell(50, 0, 50)
+data.setCell(50, 1, 'ValidInput')
+data.setCell(50, 2, 'JonasFitness.API.GetAvailableResourceTypesByClub')
+data.setCell(50, 3, 438);
+data.setCell(51, 0, 51)
+data.setCell(51, 1, 'ValidInput')
+data.setCell(51, 2, 'JonasFitness.API.GetProductByBook')
+data.setCell(51, 3, 421);
+data.setCell(52, 0, 52)
+data.setCell(52, 1, 'ValidInput_NoResource')
+data.setCell(52, 2, 'JonasFitness.API.GetActiveBooksByResourceType')
+data.setCell(52, 3, 366);
+data.setCell(53, 0, 53)
+data.setCell(53, 1, 'InactiveClub')
+data.setCell(53, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(53, 3, 327);
+data.setCell(54, 0, 54)
+data.setCell(54, 1, 'InvalidClub')
+data.setCell(54, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(54, 3, 315);
+data.setCell(55, 0, 55)
+data.setCell(55, 1, 'InvalidAPIKey')
+data.setCell(55, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(55, 3, 241);
+data.setCell(56, 0, 56)
+data.setCell(56, 1, 'InvalidCompany')
+data.setCell(56, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(56, 3, 234);
+data.setCell(57, 0, 57)
+data.setCell(57, 1, 'NoAPIKey')
+data.setCell(57, 2, 'JonasFitness.API.SecurityPipeline')
+data.setCell(57, 3, 207);
+window.suiteTableData['CompeteAPI']= { tableData: data, tableDiv: 'times-div-CompeteAPI'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
-              <div id="times-div-Default_suite">
-              </div> <!-- times-div-Default_suite -->
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-CompeteAPI">
+              </div> <!-- times-div-CompeteAPI -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-Default_suite" class="panel">
+        <div panel-name="reporter-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for Default suite</span>
+            <span class="header-content">Reporter output for CompeteAPI</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-Default_suite" class="panel">
+        <div panel-name="ignored-methods-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-Default_suite" class="panel">
+        <div panel-name="chronological-CompeteAPI" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">JonasFitness.API.getbookavailabilitycalendar</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">JonasFitness.API.AuthenticateMemberByUserCredentials</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">getData</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetActiveBooksByResourceType</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">457 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetActiveClubs</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">458 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAllPackagesForPurchaseByClub</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">459 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentDetails</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">460 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductByCategory</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">461 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">462 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">464 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByBook</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">465 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">466 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAvailableAppointments</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">467 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAvailableResourceTypesByClub</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">467 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetCardsOnFileByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">468 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByBook</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">469 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">470 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClubsByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">470 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">471 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetOnlinePackagesForPurchaseByClub</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">472 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetPackageDetails</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">473 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetProductByBook</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">473 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetPurchasedPackagesByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">474 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetScheduleByBook</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">475 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetScheduleByMember</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">475 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchMembers</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">476 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchMembersByProduct</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">477 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchOnlineMembersByProduct</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">478 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SecurityPipeline</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">478 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.getbookavailabilitycalendar</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">getData</span>
+                <span class="method-start">479 ms</span>
+              </div> <!-- configuration-test before -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.AuthenticateMemberByUserCredentials</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">ValidInput</span>
-                <span class="method-start">517 ms</span>
+                <span class="method-start">510 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetActiveBooksByResourceType</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">ValidInput_NoResource</span>
+                <span class="method-start">2301 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetActiveClubs</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ClubsFound</span>
+                <span class="method-start">2670 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAllPackagesForPurchaseByClub</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">PackageFound</span>
+                <span class="method-start">3219 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentDetails</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">AppointmentsFound</span>
+                <span class="method-start">21321 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">AppointmentsNotFound</span>
+                <span class="method-start">22708 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductByCategory</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">23354 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentProductCategoriesByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">Test1</span>
+                <span class="method-start">23839 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentResourceTypeByProduct</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ProductFound</span>
+                <span class="method-start">24321 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">ProductNotFound</span>
+                <span class="method-start">24825 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByBook</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">25340 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAppointmentsByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">26075 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAvailableAppointments</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">NoResources</span>
+                <span class="method-start">27153 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">WithResources</span>
+                <span class="method-start">29861 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetAvailableResourceTypesByClub</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">31521 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetCardsOnFileByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">CardWithoutAgreement</span>
+                <span class="method-start">31960 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">MultipleAgreementsWithCard</span>
+                <span class="method-start">32608 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">NoCardOnFile</span>
+                <span class="method-start">33369 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SingleAgreementMultipleCardsOnFile</span>
+                <span class="method-start">33844 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SingleAgreementWithCard</span>
+                <span class="method-start">34576 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByBook</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">35297 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClassesAndCoursesByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">35953 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetClubsByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">Test1</span>
+                <span class="method-start">36798 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">CustomerFound</span>
+                <span class="method-start">37378 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetOnlinePackagesForPurchaseByClub</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">PackageNotAllowed</span>
+                <span class="method-start">38187 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">PackagesFound</span>
+                <span class="method-start">40062 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetPackageDetails</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">SinglePriceRange</span>
+                <span class="method-start">41848 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">multiplePriceRanges</span>
+                <span class="method-start">42498 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetProductByBook</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">43493 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetPurchasedPackagesByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">43915 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetScheduleByBook</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">44545 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.GetScheduleByMember</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">45603 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchMembers</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_Email</span>
+                <span class="method-start">46689 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_FirstName</span>
+                <span class="method-start">47222 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_HomePhoneDashes</span>
+                <span class="method-start">47889 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_HomePhoneNoDashes</span>
+                <span class="method-start">48612 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_LastFirstName</span>
+                <span class="method-start">49161 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_LastName</span>
+                <span class="method-start">49775 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_MobilePhoneDashes</span>
+                <span class="method-start">50356 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_MobilePhoneNoDashes</span>
+                <span class="method-start">50902 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_WorkPhoneDashes</span>
+                <span class="method-start">51627 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembers_WorkPhoneNoDashes</span>
+                <span class="method-start">52488 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchMembersByProduct</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">SearchMembersByProduct_Email</span>
+                <span class="method-start">53041 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembersByProduct_FirstName</span>
+                <span class="method-start">53627 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembersByProduct_HomePhoneWithDashes</span>
+                <span class="method-start">54272 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembersByProduct_HomePhoneWithoutDashes</span>
+                <span class="method-start">54769 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SearchMembersByProduct_LastName</span>
+                <span class="method-start">55294 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SearchOnlineMembersByProduct</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">Email</span>
+                <span class="method-start">55780 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">FirstName</span>
+                <span class="method-start">56401 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">LastName</span>
+                <span class="method-start">57306 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">PhoneNoDashes</span>
+                <span class="method-start">57918 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">PhoneWDashes</span>
+                <span class="method-start">58534 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.SecurityPipeline</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">InactiveClub</span>
+                <span class="method-start">59158 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">InvalidAPIKey</span>
+                <span class="method-start">59485 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">InvalidClub</span>
+                <span class="method-start">59727 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">InvalidCompany</span>
+                <span class="method-start">60042 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">NoAPIKey</span>
+                <span class="method-start">60276 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">JonasFitness.API.getbookavailabilitycalendar</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">ValidInput</span>
+                <span class="method-start">60483 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
