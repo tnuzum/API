@@ -42,7 +42,7 @@ public class SecurityPipeline extends base{
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(401)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.statusLine("HTTP/1.1 401 Unauthorized")
