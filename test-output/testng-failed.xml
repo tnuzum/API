@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [CompeteAPI]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="resources.ExtentReporterNG"/>
-  </listeners>
-  <test thread-count="5" name="Continuous Integration(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
       <class name="JonasFitness.API.GetActiveBooksByResourceType">
         <methods>
@@ -13,5 +10,5 @@
         </methods>
       </class> <!-- JonasFitness.API.GetActiveBooksByResourceType -->
     </classes>
-  </test> <!-- Continuous Integration(failed) -->
-</suite> <!-- Failed suite [CompeteAPI] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

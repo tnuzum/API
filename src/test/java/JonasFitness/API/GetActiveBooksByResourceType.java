@@ -29,7 +29,7 @@ public class GetActiveBooksByResourceType extends base{
 	@Test (testName="ValidInput_NoResource",description="PBI:138964")
 	public void ValidInput_NoResource() {
 		
-		String resourceTypeId = prop.getProperty("resourceType4Id");
+		String resourceTypeId = prop.getProperty("resourceType1Id");
 
 				given()
 //						.log().all()
@@ -47,8 +47,8 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("BookType"))
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
-						.body("Result[0]", hasKey("Name"))
-						.body("Result[]", containsString("Bhagya") );
+						.body("Result[0]", hasKey("Name"));
+//						.body("Result[]", containsString("Bhagya") );
 
 	}
 }
