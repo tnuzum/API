@@ -18,6 +18,9 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	}
 	@Test (testName="PackagesFound",description="PBI:143537")
 	public void PackagesFound() { 
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String club = prop.getProperty("X-ClubId");
 
 				given()
 //						.log().all()
@@ -26,7 +29,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+member+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -38,6 +41,9 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 		
 // this is not found because the item is not allowed for MSS (online) purchase
 		
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String club = prop.getProperty("X-ClubId");
+		
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -45,7 +51,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+member+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

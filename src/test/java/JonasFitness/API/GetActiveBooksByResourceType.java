@@ -33,7 +33,7 @@ public class GetActiveBooksByResourceType extends base{
 		String resourceTypeId = prop.getProperty("resourceType4Id");
 
 				given()
-					.log().all()
+//					.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -42,7 +42,7 @@ public class GetActiveBooksByResourceType extends base{
 					.when()
 						.get("/api/v3/bookview/getactivebooksbyresourcetype")
 						.then()
-					.log().body()
+//					.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BookType"))
