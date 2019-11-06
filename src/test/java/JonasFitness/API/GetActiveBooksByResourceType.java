@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItemInArray;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -48,7 +49,8 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("Name"))
-					.body("Result.Name[0]", equalTo("Kalle, Bhagya") );
+					.body("Result.Name[0]", equalTo("Kalle, Bhagya") )
+					.body("Result", hasItemInArray("Bhagya"));
 
 	}
 }
