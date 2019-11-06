@@ -4,10 +4,14 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+
+
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItemInArray;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.anyOf;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -49,7 +53,8 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("Name"))
-					.body("Result.Name[0]", equalTo("Kalle, Bhagya") );
-					
+					    .body("Result[0].Name", equalTo("Kalle, Bhagya") )
+					    .body("Result[1].Name", equalTo("Kalle1, Bhagya1") )
+					    .body("Result.Name", anyOf(hasItem("Kalle, Bhagya")));
 	}
 }
