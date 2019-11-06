@@ -49,8 +49,7 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("Name"))
-					.body("Result.Name[0]", equalTo("Kalle, Bhagya") )
-					.body("Result", hasItemInArray("{Description=Kalle Bhagya, BookType=Staff, Id=214, Name=Kalle, Bhagya}"));
-
+					.body("Result.Name[0]", equalTo("Kalle, Bhagya") );
+					
 	}
 }
