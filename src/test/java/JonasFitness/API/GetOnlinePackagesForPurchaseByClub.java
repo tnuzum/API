@@ -4,7 +4,10 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.*;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -18,6 +21,9 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	}
 	@Test (testName="PackagesFound",description="PBI:143537")
 	public void PackagesFound() { 
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String club = prop.getProperty("X-ClubId");
 
 				given()
 //						.log().all()
@@ -26,17 +32,20 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+member+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
 	@Test (testName="PackageNotAllowed",description="PBI:143537")
 	public void PackageNotAllowed() { 
 		
 // this is not found because the item is not allowed for MSS (online) purchase
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String club = prop.getProperty("X-ClubId");
 		
 				given()
 //						.log().all()
@@ -45,11 +54,11 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+member+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 // need to assert that a package that is not allowed for MSS purchase is not contained in the response
 	}

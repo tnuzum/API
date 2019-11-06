@@ -22,16 +22,14 @@ public class GetClassesAndCoursesByMember extends base {
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	@Test (testName="ValidInput",description="PBI:124953")
 	public void ValidInput() {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-		
-		RestAssured.useRelaxedHTTPSValidation();
-
-		RestAssured.baseURI = ("https://compete-api-future2.test-jfisoftware.com:8252");
 
 				given()
 //						.log().all()

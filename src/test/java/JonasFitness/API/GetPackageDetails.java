@@ -19,21 +19,24 @@ public class GetPackageDetails extends base{
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	@Test (testName="SinglePriceRange",description="PBI:143538")
 	public void SinglePriceRange() {
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
+ 
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String item = prop.getProperty("service1Id");
+		String club = prop.getProperty("X-ClubId");
 
 				given()
 //						.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/29947/4474/1")
+						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -56,16 +59,17 @@ public class GetPackageDetails extends base{
 	@Test (testName="multiplePriceRanges",description="PBI:143538")
 	public void multiplePriceRanges() {
 		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String item = prop.getProperty("service3Id");
+		String club = prop.getProperty("X-ClubId"); 
 
 				given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/29947/4485/1")
+					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -92,17 +96,18 @@ public class GetPackageDetails extends base{
 	}
 	/*@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
 	public void NotAvailableforOnlinePurchases() {
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
 
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String item = prop.getProperty("service2Id");
+		String club = prop.getProperty("X-ClubId"); 
+		
 				given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/29947/4478/1")
+					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -120,17 +125,18 @@ public class GetPackageDetails extends base{
 	}
 	@Test (testName="invalidPackageId", description="PBI:143538")// using Id of class instead of training or service
 	public void invalidPackageId() {
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
 
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String item = prop.getProperty("class1Id");
+		String club = prop.getProperty("X-ClubId"); 
+		
 				given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/29947/4473/1")
+					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -148,17 +154,18 @@ public class GetPackageDetails extends base{
 	}
 	@Test (testName="invalidCustomerId", description="PBI:143538")
 	public void invalidCustomerId() {
-		
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI"); 
+	
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String item = prop.getProperty("service1Id");
+		String club = prop.getProperty("X-ClubId");
 
 				given()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/2994700/4474/1")
+						.get("/api/v3/package/getPackageDetails/9"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

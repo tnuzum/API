@@ -26,6 +26,7 @@ public class SecurityPipeline extends base{
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		System.out.println(RestAssured.baseURI);
 	}
 	
 	@Test (testName="InactiveClub", description="PBI:144604")

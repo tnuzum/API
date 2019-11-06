@@ -14,6 +14,8 @@ import resources.base;
 
 public class GetAllPackagesForPurchaseByClub extends base {
 	
+
+
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
@@ -23,6 +25,9 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	
 	@Test (testName="PackageFound",description="PBI:143540")
 	public void PackageFound() { 
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String club = prop.getProperty("X-ClubId");
 
 				given()
 //						.log().all()
@@ -31,11 +36,11 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 // assert that a specific package that is available at club is found
 	}
@@ -49,7 +54,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club
 						.then()
 						.log().body()
 //						.assertThat().statusCode(200)
@@ -67,7 +72,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-ClubId"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/29947/1")
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club
 						.then()
 						.log().body()
 //						.assertThat().statusCode(200)
