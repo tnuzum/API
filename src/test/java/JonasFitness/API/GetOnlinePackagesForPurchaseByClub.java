@@ -4,7 +4,10 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.*;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -33,7 +36,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
 	@Test (testName="PackageNotAllowed",description="PBI:143537")
@@ -55,7 +58,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 // need to assert that a package that is not allowed for MSS purchase is not contained in the response
 	}

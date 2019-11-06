@@ -40,7 +40,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 // assert that a specific package that is available at club is found
 	}
