@@ -12,6 +12,7 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.not;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +56,7 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("Name"))
 					    .body("Result[0].Name", equalTo("Kalle, Bhagya") )
 					    .body("Result[1].Name", equalTo("Kalle1, Bhagya1") )
-					    .body("Result.Name", anyOf(hasItem("Kalle, Bhagya")));
+					    .body("Result.Name", anyOf(hasItem("Kalle, Bhagya")))
+					    .body("Result.Name", anyOf(not(hasItem("Kalle, Prabhat"))));
 	}
 }
