@@ -36,7 +36,7 @@ public class getbookavailabilitycalendar extends base {
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId1"))
+				.header("X-ClubId", prop.getProperty("X-ClubId"))
 				.queryParam("BookId", bookId)
 				.queryParam("ResourceTypeId", resourceTypeId)
 					.when()
