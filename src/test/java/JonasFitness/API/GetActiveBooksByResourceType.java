@@ -34,7 +34,30 @@ public class GetActiveBooksByResourceType extends base{
 	@Test (testName="ValidInput_NoResource",description="PBI:138964")
 	public void ValidInput_NoResource() {
 		
-		String resourceTypeId = prop.getProperty("resourceType4Id");
+		String resourceTypeId = prop.getProperty("resourceType2Id");
+
+				given()
+//					.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-ClubId"))
+					.when()
+						.get("/api/v3/bookview/getactivebooksbyresourcetype")
+						.then()
+//					.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("BookType"))
+						.body("Result[0]", hasKey("Description"))
+						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("Name"));
+	}
+	/*
+	@Test (testName="ValidInput_NoResource",description="PBI:138964")
+	public void ValidInput_WithResource() {
+		
+		String resourceTypeId = prop.getProperty("resourceType2Id");
 
 				given()
 //					.log().all()
@@ -57,4 +80,5 @@ public class GetActiveBooksByResourceType extends base{
 					    .body("Result[1].Name", equalTo("Kalle1, Bhagya1") )
 					    .body("Result.Name", anyOf(hasItem("Kalle, Bhagya")));
 	}
+	*/
 }
