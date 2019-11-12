@@ -9,34 +9,14 @@ public class resources {
 //		return header;
 	}
 	*/
-	public static String placepostDataJSON()
-		{
-			String res = "/maps/api/place/add/json";
-			return res;
-		}
-		public static String deletePostDataJSON()
-		{
-			String res = "/maps/api/place/delete/json";
-			return res;
-		}
+
+	
+	//Example Only - used by "_framework_Test.java"
+	 
 		public static String getnearbyDataJSON()
 		{
 			String res = "/maps/api/place/nearbysearch/json";
 			return res;
 		}
-		public static String placepostDataXML()
-		{
-			String res = "/maps/api/place/add/xml";
-			return res;
-		}
-		public static String deletePostDataXML()
-		{
-			String res = "/maps/api/place/delete/xml";
-			return res;
-		}
-		public static String getnearbyDataXML()
-		{
-			String res = "/maps/api/place/nearbysearch/xml";
-			return res;
-		}
+		
 }
