@@ -2,6 +2,13 @@ package resources;
 
 public class Payload {
 		
+	
+	
+	
+	/*
+	 Examples Only
+	 
+	 
 	public static String getPostData()
 	{
 		String b = "{"+
@@ -55,4 +62,5 @@ public class Payload {
 				"}";
 		return c;
 	}
+	*/
 }
