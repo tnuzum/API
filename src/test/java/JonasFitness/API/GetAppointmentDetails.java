@@ -97,6 +97,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.ProductDetails", hasKey("ProductDescription"))
 						.body("Result.ProductDetails", hasKey("ProductId"))
 						.body("Result.ProductDetails", hasKey("ProductLongDescription"))
+						.body("Result.BookedMembers[0].AppointmentCharge", is(not(nullValue())));
 
 // Assert values returned are correct	
 						/*
