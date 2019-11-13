@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CompeteAPI">
+<suite name="CompeteAPI v3">
 	<listeners>
 		<listener class-name="resources.ExtentReporterNG" />
 	</listeners>
-		<test thread-count="5" name="Continuous Integration">
+		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
-			<!-- class name="JonasFitness.API.BookAppointmentByMember" /-->
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />
@@ -19,6 +18,7 @@
 			<class name="JonasFitness.API.GetAppointmentsByMember" />
 			<class name="JonasFitness.API.GetAvailableAppointments" />
 			<class name="JonasFitness.API.GetAvailableResourceTypesByClub" />
+			<class name="JonasFitness.API.GetBookAvailabilityCalendar" />
 			<class name="JonasFitness.API.GetCardsOnFileByMember" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByBook" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByMember" />
@@ -34,7 +34,8 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
-			<class name="JonasFitness.API.getbookavailabilitycalendar" />
+
+			<!-- class name="JonasFitness.API.BookAppointmentByMember" /-->
 		</classes>
 	</test>
 </suite>

@@ -38,7 +38,7 @@ public class GetAppointmentsByMember extends base {
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 						.queryParam("Name", "Auto")
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)

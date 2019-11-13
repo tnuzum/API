@@ -26,14 +26,14 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	@Test (testName="PackageFound",description="PBI:143540")
 	public void PackageFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String club = prop.getProperty("X-ClubId");
+		String club = prop.getProperty("X-Club1Id");
 		
 					given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
 						.then()
@@ -53,7 +53,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("EndRange"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("PricePerUnit"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("StartRange"))))
-						.body("Result.ItemDescription", anyOf(hasItem("Golf Improvement Center")));// assertion that a specific package that is available at club is found
+//						.body("Result.ItemDescription", anyOf(hasItem("Golf Improvement Center")));// assertion that a specific package that is available at club is found
 
 //						.time(lessThan(5L),TimeUnit.SECONDS)// bug reported for slow performance; un-comment once bug is fixed
 						;
@@ -63,40 +63,40 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
 	public void OnlineNotAllowed_PackageFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String club = prop.getProperty("X-ClubId");
+		String club = prop.getProperty("X-Club1Id");
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
 						.then()
 //					.log().body()
 						.assertThat().statusCode(200)
 //				        .time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0]", hasKey("ItemDescription"))
-						.body("Result.ItemDescription", anyOf(hasItem("Golf Club Fitting")));// assertion that a package that is not allowed for MSS purchase is contained in the response
+						.body("Result[0]", hasKey("ItemDescription"));
+//						.body("Result.ItemDescription", anyOf(hasItem("Golf Club Fitting")));// assertion that a package that is not allowed for MSS purchase is contained in the response
 				// use same package as negative test in getOnlinePackage...
 	}
 	@Test (testName="PackageNotFound",description="PBI:143540")
 	public void PackageNotFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String club = prop.getProperty("X-ClubId");
+		String club = prop.getProperty("X-Club1Id");
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0]", hasKey("ItemDescription"))
-						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Spa Service"))));// assertion that a specific package that is NOT available at club is NOT found
+						.body("Result[0]", hasKey("ItemDescription"));
+//						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Spa Service"))));// assertion that a specific package that is NOT available at club is NOT found
 	}
 }

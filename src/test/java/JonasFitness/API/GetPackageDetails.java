@@ -26,15 +26,15 @@ public class GetPackageDetails extends base{
 	public void SinglePriceRange() {
  
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("service1Id");
-		String club = prop.getProperty("X-ClubId");
+		String item = prop.getProperty("training24Id");
+		String club = prop.getProperty("X-Club1Id");
 
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -60,14 +60,14 @@ public class GetPackageDetails extends base{
 	public void multiplePriceRanges() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("service3Id");
-		String club = prop.getProperty("X-ClubId"); 
+		String item = prop.getProperty("training25Id");
+		String club = prop.getProperty("X-Club1Id"); 
 
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -99,13 +99,13 @@ public class GetPackageDetails extends base{
 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String item = prop.getProperty("service2Id");
-		String club = prop.getProperty("X-ClubId"); 
+		String club = prop.getProperty("X-Club1Id"); 
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -128,13 +128,13 @@ public class GetPackageDetails extends base{
 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String item = prop.getProperty("class1Id");
-		String club = prop.getProperty("X-ClubId"); 
+		String club = prop.getProperty("X-Club1Id"); 
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -157,13 +157,13 @@ public class GetPackageDetails extends base{
 	
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String item = prop.getProperty("service1Id");
-		String club = prop.getProperty("X-ClubId");
+		String club = prop.getProperty("X-Club1Id");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getPackageDetails/9"+member+"/"+item+"/"+club)
 						.then()
