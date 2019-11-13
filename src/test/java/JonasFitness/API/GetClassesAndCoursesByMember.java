@@ -25,8 +25,8 @@ public class GetClassesAndCoursesByMember extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	@Test (testName="ValidInput",description="PBI:124953")
-	public void ValidInput() {
+	@Test (testName="ClassesCoursesFound",description="PBI:124953")
+	public void ClassesCoursesFound() {
 		String member = prop.getProperty("activeMember5_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

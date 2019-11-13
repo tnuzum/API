@@ -28,6 +28,7 @@ import resources.base;
 .body("Result.ItemHasSelectableResourceTypes",equalTo(false))
 .body("Result.PrimarySelectableResourceType.Books[0]", nullValue())
 .body("Result.PrimarySelectableResourceType.Books[0]", not(hasKey("Id")))
+.body("Result.Name", anyOf(hasItem("Kalle, Bhagya")))
 
 //For not present -- .body("$", not(hasKey("age")));
 

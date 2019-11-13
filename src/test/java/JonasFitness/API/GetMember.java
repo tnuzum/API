@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetMember extends base{
@@ -29,8 +26,10 @@ public class GetMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test  (testName="CustomerFound", description="PBI:124934")
-	public void CustomerFound() {
+	@Test  (testName="MemberFound", description="PBI:124934")
+	public void MemberFound() {
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
 
 					given()
 //						.log().all()
@@ -39,7 +38,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+prop.getProperty("activeMember1_CustomerId"))
+						.get("/api/v3/member/getmember/"+member)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -93,5 +92,24 @@ public class GetMember extends base{
 //					** Assert values **					
 //					.body("Result.Address.AddressLine1", equalTo("7965 N High St"))
 //					.body("Result.Address.AddressLine2", equalTo("Ste 360"))
+	}
+	@Test  (testName="MemberNotFound", description="PBI:124934")
+	public void MemberNotFound() {
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+
+					given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getmember/9"+member)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+					    .body("Message", equalTo("Nothing found"));
 	}
 }
