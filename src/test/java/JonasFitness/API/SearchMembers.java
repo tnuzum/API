@@ -44,7 +44,6 @@ public class SearchMembers extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Address"))
 					    .body("Result[0].Address", hasKey("AddressLine1"))
-					    .body("Result[0].Address.AddressLine1", equalTo("7965 N High St"))
 					    .body("Result[0].Address", hasKey("AddressLine2"))
 					    .body("Result[0].Address", hasKey("City"))
 					    .body("Result[0].Address", hasKey("Country"))
@@ -67,7 +66,21 @@ public class SearchMembers extends base {
 					    .body("Result[0]", hasKey("PreferredPhone"))
 					    .body("Result[0].WorkPhone", hasKey("Extension"))
 					    .body("Result[0].WorkPhone", hasKey("Number"))
-					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
+					    .body("Result[0].WorkPhone", hasKey("PhoneType"))
+					    .body("Result[0].Address.AddressLine1", not(nullValue()))
+					    .body("Result[0].Address.City", not(nullValue()))
+					    .body("Result[0].Address.Country", nullValue())
+					    .body("Result[0].Address.PostalCode", not(nullValue()))
+					    .body("Result[0].Address.StateProvince", not(nullValue()))
+					    .body("Result[0].BarcodeId", not(nullValue()))
+					    .body("Result[0].EmailAddress", not(nullValue()))
+					    .body("Result[0].HomePhone.Number", not(nullValue()))
+					    .body("Result[0].HomePhone.PhoneType", not(nullValue()))
+					    .body("Result[0].Id", not(nullValue()))
+					    .body("Result[0].Name.DisplayName", not(nullValue()))
+					    .body("Result[0].Name.FirstName", not(nullValue()))
+					    .body("Result[0].Name.LastName", not(nullValue()))
+					    .body("Result[0].PreferredPhone", not(nullValue()));
 	}
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
 	public void searchMembers_FirstName() { 
