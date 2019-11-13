@@ -27,9 +27,11 @@ public class GetClassesAndCoursesByBook extends base{
 	}
 	@Test (testName="ValidInput",description="PBI:140729")
 	public void ValidInput() {
-		String resourceId = prop.getProperty("resource1Id");
+//		String resourceId = prop.getProperty("resource1Id");
+		int resourceId = 13;
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		
 		
 
 
@@ -38,7 +40,7 @@ public class GetClassesAndCoursesByBook extends base{
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()

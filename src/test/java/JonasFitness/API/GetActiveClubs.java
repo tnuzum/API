@@ -34,7 +34,7 @@ public class GetActiveClubs extends base {
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/club/getactiveclubs")
 					.then()
@@ -45,8 +45,9 @@ public class GetActiveClubs extends base {
 						.body("Result[0]", hasKey("Name"))
 						.body("Result[1]", hasKey("Id"))
 						.body("Result[1]", hasKey("Name"))
-						.body("Result[0].Name", equalTo("Club Number One"))
-						.body("Result[1].Name", equalTo("Club 6"))
-						.body("Result[2].Name", equalTo("Christine Test Club07"));
+						.body("Result[0].Name", equalTo("Jonas Sports-Plex"))
+						.body("Result[1].Name", equalTo("Studio Jonas"))
+						.body("Result[2].Name", equalTo("Jonas Health and Wellness"))
+						.body("Result[3].Name", equalTo("Jonas Fitness"));
 	}
 }

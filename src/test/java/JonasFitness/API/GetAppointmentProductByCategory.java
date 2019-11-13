@@ -30,14 +30,14 @@ public class GetAppointmentProductByCategory extends base {
 	public void ValidInput() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
-		String prodCategory = prop.getProperty("prodCategory1Id");
+		String prodCategory = prop.getProperty("prodCategory7Id");
 		
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/product/GetAppointmentProductsByCategory/"+associatedClub+"/"+prodCategory)
 						.then()

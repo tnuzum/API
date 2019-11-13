@@ -29,14 +29,14 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="ValidInput",description="PBI:124125")
 	public void ValidInput() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("activeMember7_CustomerId");
 
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getpurchasedpackagesbymember/"+member)
 						.then()

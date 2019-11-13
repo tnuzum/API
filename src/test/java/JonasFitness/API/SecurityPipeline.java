@@ -26,9 +26,8 @@ public class SecurityPipeline extends base{
 		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
-		System.out.println(RestAssured.baseURI);
 	}
-	
+	/* ** currently no inactive club in company 236 **
 	@Test (testName="InactiveClub", description="PBI:144604")
 	public void InactiveClub() {
 		
@@ -51,6 +50,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	*/
 	@Test (testName="InvalidClub", description="PBI:132893")
 	public void InvalidClub() {
 		
@@ -102,7 +102,7 @@ public class SecurityPipeline extends base{
 					.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", "NOTVALIDB50A8F2BF7315812CF2A21690A7FF5FDA33A156C") // Not valid API Key
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -123,7 +123,7 @@ public class SecurityPipeline extends base{
 					.header("accept", prop.getProperty("accept"))
 //					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -135,32 +135,4 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
-/*	@Test (priority=4, description="Rate-counter Limitation")
-	public void PBI132893_Test3() {
-		//** This is not working because it doesn't always send 3 requests within 1 second
-		String member = prop.getProperty("activeMember1_CustomerId");
-
-				for (int i=1; i<5; i++) {
-
-					given()
-					.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key", "B50A8F2BF7315812CF2A21690A7FF5FDA33A156C")
-						.header("X-CompanyId", "101")
-						.header("X-ClubId", "1")
-					.when()
-						.get("/api/v3/member/getmember/"+member)
-						.then()
-						.log().all()
-						.assertThat().header("X-Rate-Limit-Limit", "1s");	
-				}
-						
-	}*/
-	
-	
-	
-	
-	
-	
-	
 }
