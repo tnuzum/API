@@ -4,9 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -17,16 +15,11 @@ import resources.base;
 public class SearchMembersByProduct extends base{
 	
 	/*
-	 * LastName
-	 * FirstName
 	 * LastFirstName
-	 * HomePhoneDashes
-	 * HomePhoneNoDashes
 	 * MobilePhoneDashes
 	 * MobilePhoneNoDashes
 	 * WorkPhoneDashes
 	 * WorkPhoneNoDashes
-	 * Email
 	 */
 	
 	@BeforeTest
@@ -38,7 +31,7 @@ public class SearchMembersByProduct extends base{
 	
 	}
 	@Test (testName="SearchMembersByProduct_FirstName",description="PBI:139726")
-	public void SearchMembersByProduct_FirstName() {
+	public void searchMembersByProduct_FirstName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training24Id");
@@ -79,7 +72,7 @@ public class SearchMembersByProduct extends base{
 	}
 	
 	@Test (testName="SearchMembersByProduct_LastName",description="PBI:139726")
-	public void SearchMembersByProduct_LastName() {
+	public void searchMembersByProduct_LastName() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training24Id"); 
@@ -101,7 +94,7 @@ public class SearchMembersByProduct extends base{
 
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithDashes",description="PBI:139726")
-	public void SearchMembersByProduct_HomePhoneWithDashes() {
+	public void searchMembersByProduct_HomePhoneWithDashes() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training24Id");
@@ -123,7 +116,7 @@ public class SearchMembersByProduct extends base{
 
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithoutDashes",description="PBI:139726")
-	public void SearchMembersByProduct_HomePhoneWithoutDashes() {
+	public void searchMembersByProduct_HomePhoneWithoutDashes() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training24Id");
@@ -145,7 +138,7 @@ public class SearchMembersByProduct extends base{
 
 	}
 	@Test (testName="SearchMembersByProduct_Email",description="PBI:139726")
-	public void SearchMembersByProduct_Email() {
+	public void searchMembersByProduct_Email() {
 		
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training24Id");

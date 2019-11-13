@@ -4,17 +4,12 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetScheduleByMember extends base{
@@ -27,7 +22,7 @@ public class GetScheduleByMember extends base{
 	}
 	
 	@Test (testName="AppointmentFound",description="PBI:124954")
-	public void AppointmentFound() {
+	public void appointmentFound() {
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
@@ -70,7 +65,7 @@ public class GetScheduleByMember extends base{
 						.body("Result[0]", hasKey ("SubstituteInstructorName"));
 	}
 	@Test (testName="ClassFound",description="PBI:124954")
-	public void ClassFound() {
+	public void classFound() {
 		String member = prop.getProperty("activeMember5_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");

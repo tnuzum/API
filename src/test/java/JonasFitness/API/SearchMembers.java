@@ -25,7 +25,7 @@ public class SearchMembers extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
-	public void SearchMembers_LastName() {
+	public void searchMembers_LastName() {
 		
 		String lName = prop.getProperty("activeMember1_lName");
 
@@ -70,7 +70,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
-	public void SearchMembers_FirstName() { 
+	public void searchMembers_FirstName() { 
 		
 		String fName = prop.getProperty("activeMember1_fName");
 
@@ -114,7 +114,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_LastFirstName",description="PBI:124130")
-	public void SearchMembers_LastFirstName() {  
+	public void searchMembers_LastFirstName() {  
 		
 		String fName = prop.getProperty("activeMember1_fName");
 		String lName = prop.getProperty("activeMember1_lName");
@@ -159,7 +159,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_HomePhoneDashes", description="PBI:124130")
-	public void SearchMembers_HomePhoneDashes() {  
+	public void searchMembers_HomePhoneDashes() {  
 		
 		String hPhoneD = prop.getProperty("activeMember1_hPhoneD");
 
@@ -203,7 +203,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_HomePhoneNoDashes", description="PBI:124130")
-	public void SearchMembers_HomePhoneNoDashes() {   
+	public void searchMembers_HomePhoneNoDashes() {   
 		
 		String hPhone = prop.getProperty("activeMember1_hPhone");
 
@@ -247,7 +247,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_MobilePhoneDashes", description="PBI:124130")
-	public void SearchMembers_MobilePhoneDashes() { 
+	public void searchMembers_MobilePhoneDashes() { 
 		
 			String mPhoneD = prop.getProperty("activeMember1_mPhoneD");
 
@@ -291,7 +291,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_MobilePhoneNoDashes", description="PBI:124130")
-	public void SearchMembers_MobilePhoneNoDashes() { 
+	public void searchMembers_MobilePhoneNoDashes() { 
 		
 		String mPhone = prop.getProperty("activeMember1_mPhone");
 
@@ -335,7 +335,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_WorkPhoneDashes",description="PBI:124130")
-	public void SearchMembers_WorkPhoneDashes() {  
+	public void searchMembers_WorkPhoneDashes() {  
 		
 		String wPhoneD = prop.getProperty("activeMember1_wPhoneD");
 
@@ -379,7 +379,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_WorkPhoneNoDashes",description="PBI:124130")
-	public void SearchMembers_WorkPhoneNoDashes() {  
+	public void searchMembers_WorkPhoneNoDashes() {  
 		
 		String wPhone = prop.getProperty("activeMember1_wPhone");
 
@@ -423,7 +423,7 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
-	public void SearchMembers_Email() {
+	public void searchMembers_Email() {
 		
 		String email = prop.getProperty("activeMember1_email");
 

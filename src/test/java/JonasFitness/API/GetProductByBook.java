@@ -4,17 +4,11 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
-
+import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetProductByBook extends base {
@@ -26,8 +20,8 @@ public class GetProductByBook extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:138968")
-	public void ValidInput() {
+	@Test (testName="ProductFound",description="PBI:138968")
+	public void ProductFound() {
 		
 //		String resourceId = prop.getProperty("resource2Id");
 		int resourceId = 32;
@@ -52,6 +46,14 @@ public class GetProductByBook extends base {
 						.body("Result[0]", hasKey("ProductCategoryDescription"))
 						.body("Result[0]", hasKey("AllowedStartTimes"))
 						.body("Result[0]", hasKey("BookingDuration"))
-						.body("Result[0]", hasKey("MemberLimit"));
+						.body("Result[0]", hasKey("MemberLimit"))
+						.body("Result[0].ProductId", not(nullValue()))
+						.body("Result[0].BarcodeId", not(nullValue()))
+						.body("Result[0].ProductType", not(nullValue()))
+						.body("Result[0].ProductCategoryId", not(nullValue()))
+						.body("Result[0].AllowedStartTimes", not(nullValue()))
+						.body("Result[0].BookingDuration", not(nullValue()))
+						.body("Result[0].MemberLimit", not(nullValue()));
+			
 	}
 }

@@ -32,8 +32,8 @@ public class GetActiveBooksByResourceType extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	@Test (testName="ValidInput_NoResource",description="PBI:138964")
-	public void ValidInput_NoResource() {
+	@Test (testName="BookFound_NoResource",description="PBI:138964")
+	public void BookFound_NoResource() {
 		
 		
 
@@ -55,8 +55,8 @@ public class GetActiveBooksByResourceType extends base{
 						.body("Result[0]", hasKey("Name"));
 	}
 	
-	@Test (testName="ValidInput_WithResource",description="PBI:138964")
-	public void ValidInput_WithResource() {
+	@Test (testName="BookFound_WithResource",description="PBI:138964")
+	public void BookFound_WithResource() {
 		
 		String resourceTypeId = prop.getProperty("resourceType4Id");
 
