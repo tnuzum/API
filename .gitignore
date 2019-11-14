@@ -1,5 +1,17 @@
 /target/
 /test-output/
+
+*.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.xml
+*.html
+*.html
+test-output/emailable-report.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.xml
+
 test-output/CompeteAPI/Continuous Integration.html
 test-output/CompeteAPI/Continuous Integration.xml
 test-output/emailable-report.html
@@ -42,3 +54,4 @@ test-output/old/CompeteAPI/methods.html
 test-output/old/CompeteAPI/toc.html
 test-output/old/index.html
 test-output/testng-results.xml
+
