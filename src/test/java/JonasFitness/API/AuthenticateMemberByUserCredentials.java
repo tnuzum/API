@@ -1,7 +1,6 @@
 package JonasFitness.API;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -15,33 +14,55 @@ import resources.base;
 
 public class AuthenticateMemberByUserCredentials extends base {
 
-	/*
-	 * Other tests from PBI are...
-	 * 1. Wrong Credentials - send bad password
-	 * 2. Force Password Change - name 5670, pw 5670
-	 * 3. Account Locked - setup locked user
-	 * 
-	 */
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	@Test (testName="Authentication - Success",description="PBI:139705")
-	public void ValidInput() {
-		String activeMemberString = prop.getProperty("activeMember1_CustomerId");
-		int member = Integer.parseInt(activeMemberString);// int conversation is required for use in assertion below
+	/*
+	 * Not using because currently the "failed login counter" does not reset after successful login
+	 *  
+	
+	@Test (testName="WrongCredentials",description="PBI:139705")
+	
+	 // Sending wrong credentials before sending correct credentials
+	 // This will prevent the account from being locked
+	 
+	public void wrongCredentials() {
 
 			given()
 //			.log().all()
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
-			.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"rauto\","+
+						  "\"Username\": \"timauto\","+
+						  "\"Password\": \"WrongPassword\""+
+						"}")
+				.post("/api/v3/member/authenticatememberbyusercredentials").
+			then()
+//			.log().all()
+			.assertThat().statusCode(401)
+			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
+			.body("Result.CustomerId", equalTo(0));	
+	}
+	 */
+	@Test (testName="MemberFound",description="PBI:139705")
+	public void memberFound() {
+
+			given()
+//			.log().all()
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("Content-Type", "application/json")
+			.when()
+				.body("{"+
+						  "\"Username\": \"timauto\","+
 						  "\"Password\": \"Testing1!\""+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
@@ -49,8 +70,51 @@ public class AuthenticateMemberByUserCredentials extends base {
 //			.log().all()
 			.assertThat().statusCode(200)
 			.time(lessThan(5L),TimeUnit.SECONDS)			
-			.body("Result.AuthenticationResult", equalTo("Success"))
-			.body("Result.CustomerId", equalTo(member));
-			
+			.body("Result.AuthenticationResult", equalTo("Success"));	
+	}
+	
+	@Test (testName="AccountLocked",description="PBI:139705")
+	public void accountLocked() {
+
+			given()
+//			.log().all()
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("Content-Type", "application/json")
+			.when()
+				.body("{"+
+						  "\"Username\": \"locked\","+
+						  "\"Password\": \"Testing1!\""+
+						"}")
+				.post("/api/v3/member/authenticatememberbyusercredentials").
+			then()
+//			.log().all()
+			.assertThat().statusCode(401)
+			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
+			.body("Result.CustomerId", equalTo(0));	
+	}
+	@Test (testName="ForcePasswordChange",description="PBI:139705")
+	public void forcePasswordChange() {
+
+			given()
+//			.log().all()
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("Content-Type", "application/json")
+			.when()
+				.body("{"+
+						  "\"Username\": \"change\","+
+						  "\"Password\": \"1141121\""+
+						"}")
+				.post("/api/v3/member/authenticatememberbyusercredentials").
+			then()
+//			.log().all()
+			.assertThat().statusCode(401)
+			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.body("Result.AuthenticationResult", equalTo("ForceChangePassword"))
+			.body("Result.CustomerId", not(nullValue()));	
 	}
 }
