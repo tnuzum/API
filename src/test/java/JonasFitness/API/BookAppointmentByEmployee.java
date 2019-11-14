@@ -2,10 +2,8 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,16 +14,13 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
-public class _Draft_BookAppointmentByEmployee extends base {
+public class BookAppointmentByEmployee extends base {
 	
-	/* temp change
+	/*
 	 * *** TEST CASE SUMMARY ***
-	 * 
-	 * 
 	 * Schedule an appointment
 	 * Attempt to schedule appointment in same time slot
 	 * Cancel appointment
-	 * Repeat for all types appointments
 	 */ 
 	
 	@BeforeTest
@@ -34,6 +29,7 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
 	Response book_res = given()
@@ -41,36 +37,55 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
-		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4534,"+ 
-					"\"Occurrence\": \"2024-11-01T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [226],"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
+					"\"CustomerId\": 230,"+ 
+					"\"RequestedBooks\": [4],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-						.log().body()
-						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
-//				.body("Message", equalTo("FailNotEnoughPunches"))
-	
+//						.log().body()
+				.assertThat().statusCode(200)
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int AppointmentId = book_js.get("Result.AppointmentId");
-		String Result = book_js.get("Result.Result");
-//		System.out.println("Book Appointment Result: "+Result);
-		
-// ** Cancel Appointment **
-	Response cancel_res	= given()
+
+		// ** Attempt to book same appointment
+				given()
+		//		.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+		.when()
+		.body("{" + 
+			"\"AppointmentClubId\": 1,"+ 
+			"\"ItemId\": 215,"+ 
+			"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
+			"\"CustomerId\": 230,"+ 
+			"\"RequestedBooks\": [4],"+ 
+			"\"UserDisplayedPrice\": 0.00"+
+			"}")
+		.post("/api/v3/appointment/bookappointmentbymember")
+		.then()
+//				.log().body()
+				.assertThat().statusCode(404)
+		.time(lessThan(5L),TimeUnit.SECONDS)
+		.body("Message", equalTo("FailAppointmentNotAvailable"));
+
+		// ** Cancel Appointment **
+				given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -81,15 +96,9 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
 				.body("Result", hasKey("Reason"))
-				.body("Result.Reason", nullValue())
-				.extract().response();
-	JsonPath cancel_js = ReusableMethods.rawToJson(cancel_res);
-	String Status = cancel_js.get("Status");
-//	System.out.println("Cancel Appointment Result: "+Status);
- 
+				.body("Result.Reason", nullValue());
 	}
-
-	/*
+	
 	@Test (testName="PaidAppointment_SingleMember",description="PBI:146227")
 	public void PaidAppointment_SingleMember() { 
 
@@ -98,20 +107,20 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4474,"+ 
-					"\"Occurrence\": \"2024-11-05T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [226,221],"+ 
-					"\"UserDisplayedPrice\": 20.00"+
+					"\"ItemId\": 46,"+ 
+					"\"Occurrence\": \"2019-11-15T16:00:00-05:00\","+ 
+					"\"CustomerId\": 224,"+ 
+					"\"RequestedBooks\": [35],"+ 
+					"\"UserDisplayedPrice\": 40.00"+
 					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
@@ -124,7 +133,7 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -139,23 +148,23 @@ public class _Draft_BookAppointmentByEmployee extends base {
 	}
 	
 	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:146227")
-	public void PunchcardAppointment_SingleMember() { 
+	public void punchcardAppointment_SingleMember() { 
 
 	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4535,"+ 
-					"\"Occurrence\": \"2024-11-03T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [222],"+ 
-					"\"UserDisplayedPrice\": 7.50"+
+					"\"ItemId\": 25,"+ 
+					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
+					"\"CustomerId\": 224,"+ 
+					"\"RequestedBooks\": [3,18],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
@@ -171,7 +180,7 @@ public class _Draft_BookAppointmentByEmployee extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -184,31 +193,80 @@ public class _Draft_BookAppointmentByEmployee extends base {
 				.body("Result", hasKey("Reason"))
 				.body("Result.Reason", nullValue());
 	}
+	
 	@Test (testName="PaidAppointment_MultipleMember",description="PBI:146227")
 	public void PaidAppointment_MultipleMember() { 
+		Response book_res = given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 38,"+ 
+					"\"Occurrence\": \"2019-11-20T16:00:00-04:00\","+ 
+					"\"CustomerId\": 229,"+
+					"\"AdditionalCustomerIds\": [230],"+
+					"\"RequestedBooks\": [31],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Result.Result", equalTo("Success"))
+				.extract().response();
+		// CANCEL APPOINTMENT
+		JsonPath book_js = ReusableMethods.rawToJson(book_res);
+		int AppointmentId = book_js.get("Result.AppointmentId");
+		given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Status", equalTo("Success"))
+				.body("Result", hasKey("ConfirmationCode"))
+				.body("Result.ConfirmationCode", not(empty()))
+				.body("Result", hasKey("Reason"))
+				.body("Result.Reason", nullValue());
+		
+	}
+	
+	@Test (testName="notValidBookableItem",description="PBI:146227")
+	public void notValidBookableItem() { 
+	
 	given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
-		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4474,"+ 
-					"\"Occurrence\": \"2024-11-01T16:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+
-					"\"AdditionalCustomerIds\": [29970],"+
-					"\"RequestedBooks\": [226,221],"+ 
-					"\"UserDisplayedPrice\": 0.00"+
+					"\"ItemId\": 13,"+ 
+					"\"Occurrence\": \"2025-01-02T16:00:00-05:00\","+ 
+					"\"CustomerId\": 230,"+ 
+					"\"RequestedBooks\": [4],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-						.log().body()
-						.assertThat().statusCode(404)
+//						.log().body()
+						.assertThat().statusCode(500)
 				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Message", equalTo("FailNotEnoughPunches"));
+				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
 	}
-	*/
+	
 }

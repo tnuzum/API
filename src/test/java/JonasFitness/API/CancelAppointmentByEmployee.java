@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_CancelAppointmentByEmployee extends base {
+public class CancelAppointmentByEmployee extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -20,17 +20,25 @@ public class _Draft_CancelAppointmentByEmployee extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	/*
+	 * See BookAppointmentByEmployee test case for the test that cancels
+	 * an appointment by employee. The ApptCancelled test here can be used temporarily
+	 * for research but should be commented out after use so it's not used in
+	 * Continuous Integration testing.
+	 * 
 	@Test (testName="ApptCancelled",description="PBI:141862")
 	public void ApptCancelled() { 
+		
+		int confirmationNumber = 4263;
 
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/16398")
+						.post("/api/v3/appointment/cancelappointmentbyemployee/"+confirmationNumber)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -40,6 +48,7 @@ public class _Draft_CancelAppointmentByEmployee extends base {
 						.body("Result", hasKey("Reason"))
 						.body("Result.Reason", nullValue());
 	}
+	*/
 	@Test (testName="ApptNotFound",description="PBI:141862")
 	public void ApptNotFound() { 
 
@@ -48,14 +57,16 @@ public class _Draft_CancelAppointmentByEmployee extends base {
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.post("/api/v3/appointment/cancelappointmentbyemployee/916375")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
 	}
+	
 	@Test (testName="NotCancelled_ApptDatePast",description="PBI:141862")
 	public void NotCancelled_ApptDatePast() { 
 
@@ -64,9 +75,9 @@ public class _Draft_CancelAppointmentByEmployee extends base {
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/16169")
+						.post("/api/v3/appointment/cancelappointmentbyemployee/10")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

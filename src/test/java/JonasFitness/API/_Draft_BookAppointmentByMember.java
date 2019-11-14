@@ -40,23 +40,23 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
-		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4534,"+ 
-					"\"Occurrence\": \"2024-11-01T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [226],"+ 
-					"\"UserDisplayedPrice\": 0.00"+
+					"\"ItemId\": 25,"+ 
+					"\"Occurrence\": \"2019-11-15T16:00:00-05:00\","+ 
+					"\"CustomerId\": 224,"+ 
+					"\"RequestedBooks\": [3,18],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Message", equalTo("FailNotEnoughPunches"));
+				.time(lessThan(5L),TimeUnit.SECONDS);
+//				.body("Message", equalTo("FailNotEnoughPunches"));
 /*	
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
@@ -69,7 +69,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -88,7 +88,7 @@ public class _Draft_BookAppointmentByMember extends base {
  */
 	}
 
-	
+	/*
 	@Test (testName="PaidAppointment_SingleMember",description="PBI:127168")
 	public void PaidAppointment_SingleMember() { 
 
@@ -97,7 +97,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
@@ -123,7 +123,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -145,7 +145,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 		.header("Content-Type", "application/json")
 			.when()
 			.body("{" + 
@@ -170,7 +170,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
@@ -192,7 +192,7 @@ public class _Draft_BookAppointmentByMember extends base {
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-ClubId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 		.header("Content-Type", "application/json")// ??? why is this using content-type instead of accept???
 			.when()
 			.body("{" + 
@@ -211,4 +211,5 @@ public class _Draft_BookAppointmentByMember extends base {
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("FailNotEnoughPunches"));
 	}
+	*/
 }
