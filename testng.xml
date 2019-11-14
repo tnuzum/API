@@ -7,6 +7,8 @@
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
+			<class name="JonasFitness.API.BookAppointmentByEmployee" />
+			<class name="JonasFitness.API.CancelAppointmentByEmployee" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />

@@ -24,8 +24,8 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="PackagesFound",description="PBI:124125")
 	public void PackagesFound() {
 		
-		String member = prop.getProperty("activeMember7_CustomerId");
-
+//		String member = prop.getProperty("activeMember7_CustomerId");
+		int member = 224;
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -49,7 +49,6 @@ public class GetPurchasedPackagesByMember extends base{
 						.body("Result[0]", hasKey("TotalUnitsRedeemed"))
 						.body("Result[0]", hasKey("UnitsPurchased"))
 						.body("Result[0]", hasKey("UnitsRemaining"))
-						.body("Result[0].ExpirationDate", not(nullValue()))
 						.body("Result[0].InvoiceNumber", not(nullValue()))
 						.body("Result[0].PackageName", not(nullValue()))
 						.body("Result[0].PackagePrice", not(nullValue()))

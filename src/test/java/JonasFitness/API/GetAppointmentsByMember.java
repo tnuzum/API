@@ -30,16 +30,19 @@ public class GetAppointmentsByMember extends base {
 	public void AppointmentsFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-
+//		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
+//		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+//		String memberName = "Ryan Auto";
+//		int member = 230;
+		String sDateTimeNoOffset = "2019-11-01T00:00";
+		String eDateTimeNoOffset = "2025-11-01T00:00";
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
-						.queryParam("Name", "Auto")
+						.queryParam(member)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
