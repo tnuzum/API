@@ -28,19 +28,19 @@ public class GetAppointmentResourceTypeByProduct extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ProductFound",description="PBI:127470")
-	public void ProductFound() {
+	@Test (testName="ProductFoundSelectableResources",description="PBI:127470")
+	public void ProductFoundSelectableResources() {
 		
-		String service = prop.getProperty("service1Id");
+		String training = prop.getProperty("training24Id");
 
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/"+service)
+						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/"+training)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -49,6 +49,26 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("Id"))
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("Name"))
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("ResourceTypeId"));
+	}
+	@Test (testName="ProductFoundNoSelectableResources",description="PBI:127470")
+	public void ProductFoundNoSelectableResources() {
+		
+		String service = prop.getProperty("service1Id");
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/"+service)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result.ItemHasSelectableResourceTypes",equalTo(false))
+						.body("Result.PrimarySelectableResourceType", nullValue());
 	}
 	@Test (testName="ProductNotFound",description="PBI:127470")
 	public void ProductNotFound() {
@@ -60,7 +80,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/bookview/getappointmentresourcetypebyproduct/9"+service) // '9' is passed to make Product Category Id = not on file
 						.then()

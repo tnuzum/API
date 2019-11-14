@@ -25,14 +25,14 @@ public class GetCardsOnFileByMember extends base {
 	@Test (testName="SingleAgreementWithCard", description="PBI:146302")
 	public void SingleAgreementWithCard() {
 		
-		String member = prop.getProperty("activeMember8_CustomerId");
+		String member = prop.getProperty("activeMember1_CustomerId");
 
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getCardsOnFileByMember/"+member)
 						.then()
@@ -63,17 +63,17 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (testName="MultipleAgreementsWithCard", description="PBI:146302")
-	public void MultipleAgreementsWithCard() {
+	@Test (testName="MultipleAgreementsWithMultipleCards", description="PBI:146302")
+	public void MultipleAgreementsWithMultipleCards() {
 		
-		String member = prop.getProperty("activeMember7_CustomerId");
+		String member = prop.getProperty("activeMember4_CustomerId");
 
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getCardsOnFileByMember/"+member)
 						.then()
@@ -121,19 +121,57 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
-	@Test (testName="SingleAgreementMultipleCardsOnFile", description="PBI:146302")//Multiple Cards on File with 1 Associated with Agreement
-	public void SingleAgreementMultipleCardsOnFile() {
+	@Test (testName="MultipleAgreementsWithSingleCard", description="PBI:146302")
+	public void MultipleAgreementsWithSingleCard() {
 		
-		String member = prop.getProperty("activeMember6_CustomerId");
+		String member = prop.getProperty("activeMember7_CustomerId");
 
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getCardsOnFileByMember/"+member) // Thomas Manny
+						.get("/api/v3/member/getCardsOnFileByMember/"+member)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0]", hasKey("AccountId"))
+						.body("Result[0].Address", hasKey("AddressLine1"))
+						.body("Result[0].Address", hasKey("AddressLine2"))
+						.body("Result[0].Address", hasKey("City"))
+						.body("Result[0].Address", hasKey("Country"))
+						.body("Result[0].Address", hasKey("PostalCode"))
+						.body("Result[0].Address", hasKey("StateProvince"))
+						.body("Result[0].Agreements[0]", hasKey("AgreementNumber"))
+						.body("Result[0].Agreements[0]", hasKey("Description"))
+						.body("Result[0].Agreements[0]", hasKey("IsAccountOwnerPrimaryMember"))
+						.body("Result[0].Agreements[1]", hasKey("AgreementNumber"))
+						.body("Result[0].Agreements[1]", hasKey("Description"))
+						.body("Result[0].Agreements[1]", hasKey("IsAccountOwnerPrimaryMember"))
+						.body("Result[0]", hasKey("CardType"))
+						.body("Result[0]", hasKey("ExpirationDate"))
+						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("IsHouseAccount"))
+						.body("Result[0]", hasKey("IsSameAsMemberAddress"))
+						.body("Result[0]", hasKey("NameOnCard"))
+						.body("Result[0]", hasKey("TruncatedAccountNumber"));
+	}
+	@Test (testName="SingleAgreementMultipleCardsOnFile", description="PBI:146302")//Multiple Cards on File with 1 Associated with Agreement
+	public void SingleAgreementMultipleCardsOnFile() {
+		
+		String member = prop.getProperty("activeMember5_CustomerId");
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getCardsOnFileByMember/"+member) // Scott Auto
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -182,14 +220,14 @@ public class GetCardsOnFileByMember extends base {
 	@Test (testName="CardWithoutAgreement", description="PBI:146302")//No Agreements with Card on File
 	public void CardWithoutAgreement() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("activeMember6_CustomerId");
 
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getCardsOnFileByMember/"+member)
 						.then()
@@ -225,14 +263,14 @@ public class GetCardsOnFileByMember extends base {
 	@Test (testName="noCardOnFile", description="PBI:146302")
 	public void NoCardOnFile() {
 		
-		String member = prop.getProperty("activeMember5_CustomerId");
+		String member = prop.getProperty("activeMember3_CustomerId"); // using a member this is a minor so they have no card on file
 
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getCardsOnFileByMember/"+member)
 						.then()
