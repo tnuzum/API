@@ -53,10 +53,10 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("EndRange"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("PricePerUnit"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("StartRange"))))
-//						.body("Result.ItemDescription", anyOf(hasItem("Golf Improvement Center")));// assertion that a specific package that is available at club is found
+						.body("Result.ItemDescription", anyOf(hasItem("PT 60 Mins")));// assertion that a specific package that is available at club is found
 
 //						.time(lessThan(5L),TimeUnit.SECONDS)// bug reported for slow performance; un-comment once bug is fixed
-						;
+						
 						// assert that a specific package that is available at club is found
 
 	}
@@ -76,8 +76,8 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //					.log().body()
 						.assertThat().statusCode(200)
 //				        .time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0]", hasKey("ItemDescription"));
-//						.body("Result.ItemDescription", anyOf(hasItem("Golf Club Fitting")));// assertion that a package that is not allowed for MSS purchase is contained in the response
+						.body("Result[0]", hasKey("ItemDescription"))
+						.body("Result.ItemDescription", anyOf(hasItem("Day Pass")));// assertion that a package that is not allowed for MSS purchase is contained in the response
 				// use same package as negative test in getOnlinePackage...
 	}
 	@Test (testName="PackageNotFound",description="PBI:143540")
@@ -96,7 +96,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0]", hasKey("ItemDescription"));
-//						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Spa Service"))));// assertion that a specific package that is NOT available at club is NOT found
+						.body("Result[0]", hasKey("ItemDescription"))
+						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Service"))));// assertion that a specific package that is NOT available at club is NOT found
 	}
 }
