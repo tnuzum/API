@@ -15,6 +15,7 @@ public class base {
 		prop = new Properties();
 		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\rest.properties");
 		prop.load(fis);
+
 	}
 
 }

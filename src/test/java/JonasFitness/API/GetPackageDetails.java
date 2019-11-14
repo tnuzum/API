@@ -5,8 +5,6 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -23,18 +21,18 @@ public class GetPackageDetails extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	@Test (testName="SinglePriceRange",description="PBI:143538")
-	public void SinglePriceRange() {
+	public void singlePriceRange() {
  
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("service1Id");
-		String club = prop.getProperty("X-ClubId");
+		String item = prop.getProperty("training24Id");
+		String club = prop.getProperty("X-Club1Id");
 
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -54,20 +52,24 @@ public class GetPackageDetails extends base{
 						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
 						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
 						.body("Result", hasKey("RedeemableClubs"))
-						;
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemBarcodeId", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.RedeemableClubs[0]", not(nullValue()));
 	}
-	@Test (testName="multiplePriceRanges",description="PBI:143538")
+	@Test (testName="MultiplePriceRanges",description="PBI:143538")
 	public void multiplePriceRanges() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("service3Id");
-		String club = prop.getProperty("X-ClubId"); 
+		String item = prop.getProperty("training25Id");
+		String club = prop.getProperty("X-Club1Id"); 
 
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
@@ -94,23 +96,23 @@ public class GetPackageDetails extends base{
 						.body("Result.PriceRangeDtos[2]", hasKey("StartRange"))
 						.body("Result", hasKey("RedeemableClubs"));
 	}
-	/*@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
-	public void NotAvailableforOnlinePurchases() {
+	@Test (testName="NotAvailableforOnlinePurchases", description="PBI:143538")
+	public void notAvailableforOnlinePurchases() {
 
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("service2Id");
-		String club = prop.getProperty("X-ClubId"); 
+		int item = 76;
+		String club = prop.getProperty("X-Club1Id"); 
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(404)
+						.assertThat().statusCode(500)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
@@ -123,23 +125,23 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	@Test (testName="invalidPackageId", description="PBI:143538")// using Id of class instead of training or service
+	@Test (testName="InvalidPackageId", description="PBI:143538")// using Id of class instead of training or service
 	public void invalidPackageId() {
 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String item = prop.getProperty("class1Id");
-		String club = prop.getProperty("X-ClubId"); 
+		String club = prop.getProperty("X-Club1Id"); 
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(404)
+						.assertThat().statusCode(500)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
@@ -152,23 +154,23 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	@Test (testName="invalidCustomerId", description="PBI:143538")
+	@Test (testName="InvalidCustomerId", description="PBI:143538")
 	public void invalidCustomerId() {
 	
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String item = prop.getProperty("service1Id");
-		String club = prop.getProperty("X-ClubId");
+		String club = prop.getProperty("X-Club1Id");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/package/getPackageDetails/9"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(404)
+						.assertThat().statusCode(500)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
@@ -181,5 +183,5 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	*/
+	
 }

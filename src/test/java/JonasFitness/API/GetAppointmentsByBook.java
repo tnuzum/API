@@ -26,9 +26,9 @@ public class GetAppointmentsByBook extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test (testName="ValidInput",description="PBI:132256")
-	public void ValidInput() {
-		String resourceId = prop.getProperty("resource1Id");
+	@Test (testName="AppointmentsFound",description="PBI:132256")
+	public void AppointmentsFound() {
+		String resourceId = prop.getProperty("resource2Id");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
 		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
 
@@ -37,7 +37,7 @@ public class GetAppointmentsByBook extends base{
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -68,5 +68,45 @@ public class GetAppointmentsByBook extends base{
 						.body("Result[0]", hasKey("ScheduledDateTime"))
 						.body("Result[0]", hasKey("ScheduledInstanceType"))
 						.body("Result[0]", hasKey("StartDateTime"));
+	}
+	@Test (testName="AppointmentsNotFound",description="PBI:132256")
+	public void AppointmentsNotFound() {
+		String resourceId = prop.getProperty("resource2Id");
+		String sDateTimeNoOffset = "2025-11-13T00:00";
+		String eDateTimeNoOffset = "2025-11-14T00:00";
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
+	@Test (testName="InvalidDateRange",description="PBI:132256")
+	public void InvalidDateRange() {
+		String resourceId = prop.getProperty("resource2Id");
+		String sDateTimeNoOffset = "2025-11-13T00:02";
+		String eDateTimeNoOffset = "2025-11-13T00:01";
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(412)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Invalid date range"));
 	}
 }

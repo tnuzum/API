@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class getbookavailabilitycalendar extends base {
+public class GetBookAvailabilityCalendar extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -25,18 +25,20 @@ public class getbookavailabilitycalendar extends base {
 	@Test (testName="ValidInput",description="PBI:140727")
 	public void ValidInput() { 
 
-		String bookId = prop.getProperty("resource6Id");
-		String resourceTypeId = prop.getProperty("resourceType4Id");
+//		String bookId = prop.getProperty("resource6Id");
+		int bookId = 31;
+//		String resourceTypeId = prop.getProperty("resourceType4Id");
+		int resourceTypeId = 9;
 		String startTime = prop.getProperty("sDateTimeNoOffset1");
 		String endTime = prop.getProperty("eDateTimeNoOffset1");
-		String associatedClubId = prop.getProperty("associatedClub3Id");
+		String associatedClubId = prop.getProperty("associatedClub1Id");
 		
 				given()
 	//					.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-ClubId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.queryParam("BookId", bookId)
 				.queryParam("ResourceTypeId", resourceTypeId)
 					.when()

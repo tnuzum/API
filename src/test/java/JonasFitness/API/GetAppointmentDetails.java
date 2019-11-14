@@ -29,7 +29,7 @@ public class GetAppointmentDetails extends base {
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/appointment/getappointmentdetails/"+appointment)
 						.then()
@@ -50,6 +50,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedMembers[0]", hasKey("LastName"))
 						.body("Result.BookedMembers[0]", hasKey("NoShowFee"))
 						.body("Result.BookedMembers[0]", hasKey("NoShowFeeIndicator"))
+						/*
 						.body("Result.BookedMembers[1]", hasKey("AppointmentCharge"))
 						.body("Result.BookedMembers[1]", hasKey("AppointmentOutcome"))
 						.body("Result.BookedMembers[1]", hasKey("AttendedIndicator"))
@@ -82,6 +83,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.BookedResources[2]", hasKey("ResourceTypeDescription"))
 						.body("Result.BookedResources[2]", hasKey("ResourceTypeId"))
 						.body("Result.BookedResources[2]", hasKey("ResourceTypeName"))
+						*/
 						.body("Result.Club", hasKey("ClubId"))
 						.body("Result.Club", hasKey("ClubName"))
 						
@@ -173,7 +175,7 @@ public class GetAppointmentDetails extends base {
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/appointment/getappointmentdetails/9"+appointment)// 9 is passed to make appointment id not on file
 						.then()

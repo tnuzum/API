@@ -26,8 +26,8 @@ public class GetAppointmentsByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:124124")
-	public void ValidInput() {
+	@Test (testName="AppointmentsFound",description="PBI:124124")
+	public void AppointmentsFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
@@ -38,7 +38,7 @@ public class GetAppointmentsByMember extends base {
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-ClubId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 						.queryParam("Name", "Auto")
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
@@ -75,7 +75,46 @@ public class GetAppointmentsByMember extends base {
 						.body("Result[0]", hasKey("StartDateTime"))
 						.body("Result[0]", hasKey("SubstituteInstructorName"));
 	}
-	
+	@Test (testName="AppointmentsNotFound",description="PBI:124124")
+	public void AppointmentsNotFound() {
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String sDateTimeNoOffset = "2025-11-13T00:00";
+		String eDateTimeNoOffset = "2025-11-14T00:00";
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
+	@Test (testName="InvalidDateRange",description="PBI:124124")
+	public void InvalidDateRange() {
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String sDateTimeNoOffset = "2025-11-13T00:02";
+		String eDateTimeNoOffset = "2025-11-13T00:01";
+
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(412)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Invalid date range"));
+	}
 	
 	
 }
