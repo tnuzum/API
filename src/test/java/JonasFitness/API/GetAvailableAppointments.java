@@ -10,6 +10,10 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -19,6 +23,8 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetAvailableAppointments extends base {
+	
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@BeforeTest
 	public void getData() throws IOException {
@@ -30,10 +36,16 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
 	public void AppointmentsFound_NoResources() {
 		
+		
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.MONTH, 1);
+        Date currentDatePlusOne = c.getTime();
+		
 		String member = prop.getProperty("activeMember1_CustomerId");  
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-//		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-		String eDateTimeNoOffset = "2019-11-14T00:00";
+		String sDateTimeNoOffset = dateFormat.format(currentDate);
+		String eDateTimeNoOffset = dateFormat.format(currentDatePlusOne);
 //		String serviceId = prop.getProperty("service3Id");
 		int serviceId = 36;
 
@@ -46,7 +58,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 						.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
