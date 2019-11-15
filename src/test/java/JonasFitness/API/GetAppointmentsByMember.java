@@ -32,7 +32,7 @@ public class GetAppointmentsByMember extends base {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 //		String memberName = "Ryan Auto";
 //		int member = 230;
 				given()

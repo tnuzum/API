@@ -48,6 +48,15 @@ public class ReusableDates {
         Date currentDatePlusFiveYears = c.getTime();
 		return dateFormat.format(currentDatePlusFiveYears);
 	}
+	public static String getCurrentDatePlusTenYears() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.YEAR, 10);
+        Date currentDatePlusTenYears = c.getTime();
+		return dateFormat.format(currentDatePlusTenYears);
+	}
 	public static String getCurrentDateMinusOneYear() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();
@@ -57,25 +66,6 @@ public class ReusableDates {
         Date currentDateMinusOneYear = c.getTime();
 		return dateFormat.format(currentDateMinusOneYear);
 	}
-	public static String getNextSaturday() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date currentDate = new Date();
-		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.SATURDAY, 1);
-        Date getNextSaturday = c.getTime();
-		return dateFormat.format(getNextSaturday);
-	}
-	public static String getNextSunday() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date currentDate = new Date();
-		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.SUNDAY, 1);
-        Date getNextSunday = c.getTime();
-		return dateFormat.format(getNextSunday);
-	}
-
-};
+}
 	
 	
