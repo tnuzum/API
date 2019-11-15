@@ -43,9 +43,9 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 215,"+ 
-					"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
 					"\"CustomerId\": 230,"+ 
-					"\"RequestedBooks\": [4],"+ 
+					"\"RequestedBooks\": [40],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
@@ -68,9 +68,9 @@ public class BookAppointmentByEmployee extends base {
 		.body("{" + 
 			"\"AppointmentClubId\": 1,"+ 
 			"\"ItemId\": 215,"+ 
-			"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
+			"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
 			"\"CustomerId\": 230,"+ 
-			"\"RequestedBooks\": [4],"+ 
+			"\"RequestedBooks\": [40],"+ 
 			"\"UserDisplayedPrice\": 0.00"+
 			"}")
 		.post("/api/v3/appointment/bookappointmentbymember")
@@ -113,7 +113,7 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 46,"+ 
-					"\"Occurrence\": \"2019-11-15T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-11-16T16:00:00-05:00\","+ 
 					"\"CustomerId\": 224,"+ 
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 40.00"+
