@@ -32,6 +32,7 @@ public class BookAppointmentByEmployee extends base {
 	
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
+		
 	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
@@ -48,7 +49,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [40],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 				.assertThat().statusCode(200)
@@ -73,7 +74,7 @@ public class BookAppointmentByEmployee extends base {
 			"\"RequestedBooks\": [40],"+ 
 			"\"UserDisplayedPrice\": 0.00"+
 			"}")
-		.post("/api/v3/appointment/bookappointmentbymember")
+		.post("/api/v3/appointment/bookappointmentbyemployee")
 		.then()
 //				.log().body()
 				.assertThat().statusCode(404)
@@ -118,7 +119,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 40.00"+
 					"}")
-			.post("/api/v3/appointment/bookappointmentbymember")
+			.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -166,7 +167,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [3,18],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-			.post("/api/v3/appointment/bookappointmentbymember")
+			.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -213,7 +214,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [31],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -261,7 +262,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [4],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(500)
