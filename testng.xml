@@ -10,6 +10,7 @@
 			<class name="JonasFitness.API.BookAppointmentByEmployee" />
 			<class name="JonasFitness.API.BookAppointmentByMember" />
 			<class name="JonasFitness.API.CancelAppointmentByEmployee" />
+			<class name="JonasFitness.API.CancelAppointmentByMember" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />

@@ -12,7 +12,8 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class CancelAppointmentByEmployee extends base {
+public class CancelAppointmentByMember extends base {
+	static int member = 230;
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -21,9 +22,10 @@ public class CancelAppointmentByEmployee extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	/*
-	 * See BookAppointmentByEmployee test case for the test that cancels
-	 * an appointment by employee.
+	 * See BookAppointmentByMember.FreeAppointment_SingleMember test case for the test that cancels
+	 * an appointment by MEMBER. 
 	*/
+		
 	@Test (testName="ApptNotFound",description="PBI:141862")
 	public void ApptNotFound() { 
 
@@ -34,32 +36,12 @@ public class CancelAppointmentByEmployee extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/916375")
+						.post("/api/v3/appointment/cancelappointmentbymember/916375/"+member)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
-	
-	@Test (testName="NotCancelled_ApptDatePast",description="PBI:141862")
-	public void NotCancelled_ApptDatePast() { 
 
-				given()
-//						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/10")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Status", equalTo("Failed"))
-						.body("Result.ConfirmationCode", nullValue())
-						.body("Result", hasKey("Reason"))
-						.body("Result.Reason", equalTo("TimeRestriction"));
-	}
 }
