@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 
@@ -30,12 +31,10 @@ public class GetAppointmentsByMember extends base {
 	public void AppointmentsFound() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-//		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-//		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
 //		String memberName = "Ryan Auto";
 //		int member = 230;
-		String sDateTimeNoOffset = "2019-11-01T00:00";
-		String eDateTimeNoOffset = "2025-11-01T00:00";
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))

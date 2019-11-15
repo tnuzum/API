@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
 
 public class GetBookAvailabilityCalendar extends base {
@@ -29,8 +30,8 @@ public class GetBookAvailabilityCalendar extends base {
 		int bookId = 31;
 //		String resourceTypeId = prop.getProperty("resourceType4Id");
 		int resourceTypeId = 9;
-		String startTime = prop.getProperty("sDateTimeNoOffset1");
-		String endTime = prop.getProperty("eDateTimeNoOffset1");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneDay();
 		String associatedClubId = prop.getProperty("associatedClub1Id");
 		
 				given()
@@ -42,7 +43,7 @@ public class GetBookAvailabilityCalendar extends base {
 				.queryParam("BookId", bookId)
 				.queryParam("ResourceTypeId", resourceTypeId)
 					.when()
-						.get("api/v3/bookview/getbookavailabilitycalendar/"+associatedClubId+"/"+startTime+"/"+endTime+"")
+						.get("api/v3/bookview/getbookavailabilitycalendar/"+associatedClubId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"")
 								
 						.then()
 //						.log().body()
