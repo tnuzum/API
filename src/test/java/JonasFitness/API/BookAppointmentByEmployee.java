@@ -33,6 +33,8 @@ public class BookAppointmentByEmployee extends base {
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
 		
+		int member = 230;
+		
 	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
@@ -45,7 +47,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 215,"+ 
 					"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
-					"\"CustomerId\": 230,"+ 
+					"\"CustomerId\": "+member+","+ 
 					"\"RequestedBooks\": [40],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
 					"}")
@@ -70,7 +72,7 @@ public class BookAppointmentByEmployee extends base {
 			"\"AppointmentClubId\": 1,"+ 
 			"\"ItemId\": 215,"+ 
 			"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
-			"\"CustomerId\": 230,"+ 
+			"\"CustomerId\": "+member+","+ 
 			"\"RequestedBooks\": [40],"+ 
 			"\"UserDisplayedPrice\": 0.00"+
 			"}")
@@ -82,13 +84,16 @@ public class BookAppointmentByEmployee extends base {
 		.body("Message", equalTo("FailAppointmentNotAvailable"));
 
 		// ** Cancel Appointment **
+				// This appt can be cancelled by a member becauase the item
+				// is configured with Product > Booking > Appt Fee Details = Per Appt Basis
+				
 				given()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+			.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
