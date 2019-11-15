@@ -4,27 +4,18 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
+import resources.ReusableDates;
 import resources.base;
 
 public class GetAvailableAppointments extends base {
-	
-	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@BeforeTest
 	public void getData() throws IOException {
@@ -36,16 +27,9 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
 	public void AppointmentsFound_NoResources() {
 		
-		
-		Date currentDate = new Date();
-		Calendar c = Calendar.getInstance();
-        c.setTime(currentDate);
-        c.add(Calendar.MONTH, 1);
-        Date currentDatePlusOne = c.getTime();
-		
 		String member = prop.getProperty("activeMember1_CustomerId");  
-		String sDateTimeNoOffset = dateFormat.format(currentDate);
-		String eDateTimeNoOffset = dateFormat.format(currentDatePlusOne);
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 //		String serviceId = prop.getProperty("service3Id");
 		int serviceId = 36;
 
@@ -58,7 +42,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 						.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -84,15 +68,15 @@ public class GetAvailableAppointments extends base {
 	public void AppointmentsFound_WithResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 		int serviceId = 36;
 		int resourceId = 18;
 		int resourceTypeId = 4;
 
 
 				given()
-				//.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -123,18 +107,18 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("AssignedResourceId"))
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
-	}
+	}/*
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
-		/*
+		
 		 * This test shows that the appointment is not found because the BooksAndAvailability is Null
-		 */
+		 
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = "2125-10-28T23:45:00";
-		String eDateTimeNoOffset = "2125-10-29T00:00:00";
+		String sDateTimeNoOffset = ReusableDates.getNextSaturday();
+		String eDateTimeNoOffset = ReusableDates.getNextSunday();
 		int serviceId = 36;
-		int resourceId = 18;
-		int resourceTypeId = 4;
+		int resourceId = 20;
+		int resourceTypeId = 5;
 
 				given()
 				//.log().all()
@@ -147,7 +131,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -163,4 +147,5 @@ public class GetAvailableAppointments extends base {
 						.body("Result", hasKey("BooksAndAvailability"))
 						.body("Result.BooksAndAvailability[0]", nullValue());
 	}
+*/
 }

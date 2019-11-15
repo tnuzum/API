@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 
@@ -29,11 +30,8 @@ public class GetClassesAndCoursesByBook extends base{
 	public void ClassesCoursesFound() {
 //		String resourceId = prop.getProperty("resource1Id");
 		int resourceId = 13;
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-		
-		
-
+		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 
 				given()
 //						.log().all()

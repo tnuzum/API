@@ -20,6 +20,7 @@ public class ReusableMethods {
 		JsonPath x = new JsonPath(respon);
 		return x;
 	}
+
 };
 	
 	
