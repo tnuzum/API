@@ -29,9 +29,10 @@ public class GetAppointmentsByBook extends base{
 	
 	@Test (testName="AppointmentsFound",description="PBI:132256")
 	public void AppointmentsFound() {
-		String resourceId = prop.getProperty("resource2Id");
+//		String resourceId = prop.getProperty("resource2Id");
+		int resourceId = 4;
 		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
 				given()
 //						.log().all()

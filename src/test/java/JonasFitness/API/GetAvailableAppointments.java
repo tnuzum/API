@@ -107,18 +107,21 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("AssignedResourceId"))
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
-	}/*
+	}
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
-		
-		 * This test shows that the appointment is not found because the BooksAndAvailability is Null
-		 
+		/*
+		 * This test shows that the appointment is not found
+		 * because the BooksAndAvailability is Null. Date range is
+		 * set far in future so no availability is found. 
+		 */
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = ReusableDates.getNextSaturday();
-		String eDateTimeNoOffset = ReusableDates.getNextSunday();
-		int serviceId = 36;
-		int resourceId = 20;
-		int resourceTypeId = 5;
+		String sDateTimeNoOffset = "2025-01-01T00:00";
+		String eDateTimeNoOffset = "2025-01-02T00:00";
+		
+		int serviceId = 215;
+//		int resourceId = 40;
+//		int resourceTypeId = 1;
 
 				given()
 				//.log().all()
@@ -126,12 +129,12 @@ public class GetAvailableAppointments extends base {
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-						.queryParam("ResourceTypeId", resourceTypeId)
-						.queryParam("ResourceId", resourceId)
+//						.queryParam("ResourceTypeId", resourceTypeId)
+//						.queryParam("ResourceId", resourceId)
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -147,5 +150,5 @@ public class GetAvailableAppointments extends base {
 						.body("Result", hasKey("BooksAndAvailability"))
 						.body("Result.BooksAndAvailability[0]", nullValue());
 	}
-*/
+
 }
