@@ -21,6 +21,15 @@ public class ReusableDates {
         Date currentDatePlusOneDay = c.getTime();
 		return dateFormat.format(currentDatePlusOneDay);
 	}
+	public static String getCurrentDatePlusOneWeek() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, 7);
+        Date currentDatePlusOneWeek = c.getTime();
+		return dateFormat.format(currentDatePlusOneWeek);
+	}
 	public static String getCurrentDatePlusOneMonth() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();

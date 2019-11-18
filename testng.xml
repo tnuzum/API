@@ -38,8 +38,6 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
-
-			<!-- class name="JonasFitness.API.BookAppointmentByMember" /-->
 		</classes>
 	</test>
 </suite>
