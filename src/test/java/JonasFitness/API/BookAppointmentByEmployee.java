@@ -32,6 +32,9 @@ public class BookAppointmentByEmployee extends base {
 	
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
+		
+		int member = 230;
+		
 	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
@@ -43,12 +46,12 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 215,"+ 
-					"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
-					"\"CustomerId\": 230,"+ 
-					"\"RequestedBooks\": [4],"+ 
+					"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 				.assertThat().statusCode(200)
@@ -68,12 +71,12 @@ public class BookAppointmentByEmployee extends base {
 		.body("{" + 
 			"\"AppointmentClubId\": 1,"+ 
 			"\"ItemId\": 215,"+ 
-			"\"Occurrence\": \"2025-03-05T16:00:00-05:00\","+ 
-			"\"CustomerId\": 230,"+ 
-			"\"RequestedBooks\": [4],"+ 
+			"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
+			"\"CustomerId\": "+member+","+ 
+			"\"RequestedBooks\": [40],"+ 
 			"\"UserDisplayedPrice\": 0.00"+
 			"}")
-		.post("/api/v3/appointment/bookappointmentbymember")
+		.post("/api/v3/appointment/bookappointmentbyemployee")
 		.then()
 //				.log().body()
 				.assertThat().statusCode(404)
@@ -81,13 +84,16 @@ public class BookAppointmentByEmployee extends base {
 		.body("Message", equalTo("FailAppointmentNotAvailable"));
 
 		// ** Cancel Appointment **
+				// This appt can be cancelled by a member becauase the item
+				// is configured with Product > Booking > Appt Fee Details = Per Appt Basis
+				
 				given()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+			.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -113,12 +119,12 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 46,"+ 
-					"\"Occurrence\": \"2019-11-15T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-11-16T16:00:00-05:00\","+ 
 					"\"CustomerId\": 224,"+ 
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 40.00"+
 					"}")
-			.post("/api/v3/appointment/bookappointmentbymember")
+			.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -166,7 +172,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [3,18],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-			.post("/api/v3/appointment/bookappointmentbymember")
+			.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -213,7 +219,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [31],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -261,7 +267,7 @@ public class BookAppointmentByEmployee extends base {
 					"\"RequestedBooks\": [4],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(500)

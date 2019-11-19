@@ -2,10 +2,8 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -13,16 +11,17 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 
-public class _Draft_BookAppointmentByMember extends base {
+public class BookAppointmentByMember extends base {
 	
-	/* *** TEST CASE SUMMARY ***
+	/*
+	 * *** TEST CASE SUMMARY ***
 	 * Schedule an appointment
 	 * Attempt to schedule appointment in same time slot
 	 * Cancel appointment
-	 * Repeat for all types appointments
 	 */ 
 	
 	@BeforeTest
@@ -31,11 +30,134 @@ public class _Draft_BookAppointmentByMember extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	@Test (testName="FreeAppointment_SingleMember",description="PBI:127168")
+	
+	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
-		// This call doesn't not book appt because the parameter Compete BO > Clubs >
-		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
-	given()
+
+		int member = 230;
+		
+	Response book_res = given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2020-12-28T12:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
+					"\"UserDisplayedPrice\": 0.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//						.log().body()
+				.assertThat().statusCode(200)
+				.extract().response();
+		JsonPath book_js = ReusableMethods.rawToJson(book_res);
+		int AppointmentId = book_js.get("Result.AppointmentId");
+
+		// ** Attempt to book same appointment
+				given()
+		//		.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+		.when()
+		.body("{" + 
+			"\"AppointmentClubId\": 1,"+ 
+			"\"ItemId\": 215,"+ 
+			"\"Occurrence\": \"2019-11-18T12:00:00-05:00\","+ 
+			"\"CustomerId\": 230,"+ 
+			"\"RequestedBooks\": [40],"+ 
+			"\"UserDisplayedPrice\": 0.00"+
+			"}")
+		.post("/api/v3/appointment/bookappointmentbymember")
+		.then()
+//				.log().body()
+				.assertThat().statusCode(404)
+		.time(lessThan(5L),TimeUnit.SECONDS)
+		.body("Message", equalTo("FailAppointmentNotAvailable"));
+
+		// ** Cancel Appointment **
+				given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
+				.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Status", equalTo("Success"))
+				.body("Result", hasKey("ConfirmationCode"))
+				.body("Result.ConfirmationCode", not(empty()))
+				.body("Result", hasKey("Reason"))
+				.body("Result.Reason", nullValue());
+	}
+	
+	@Test (testName="PaidAppointment_SingleMember",description="PBI:146227")
+	public void PaidAppointment_SingleMember() { 
+		
+		int member = 224;
+
+	Response book_res = given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 46,"+ 
+					"\"Occurrence\": \"2020-11-16T16:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [35],"+ 
+					"\"UserDisplayedPrice\": 40.00"+
+					"}")
+			.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Result.Result", equalTo("Success"))
+				.body("Result.AppointmentId", not(empty()))
+				.extract().response();
+		JsonPath book_js = ReusableMethods.rawToJson(book_res);
+		int AppointmentId = book_js.get("Result.AppointmentId");
+	
+		given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+//				.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
+				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Status", equalTo("Success"))
+				.body("Result", hasKey("ConfirmationCode"))
+				.body("Result.ConfirmationCode", not(empty()))
+				.body("Result", hasKey("Reason"))
+				.body("Result.Reason", nullValue());
+	}
+	
+	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:146227")
+	public void punchcardAppointment_SingleMember() { 
+
+	Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -46,116 +168,11 @@ public class _Draft_BookAppointmentByMember extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 25,"+ 
-					"\"Occurrence\": \"2019-11-15T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
 					"\"CustomerId\": 224,"+ 
 					"\"RequestedBooks\": [3,18],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
-				.then()
-//						.log().body()
-						.assertThat().statusCode(404)
-				.time(lessThan(5L),TimeUnit.SECONDS);
-//				.body("Message", equalTo("FailNotEnoughPunches"));
-/*	
-				.extract().response();
-		JsonPath book_js = ReusableMethods.rawToJson(book_res);
-		int AppointmentId = book_js.get("Result.AppointmentId");
-		String Result = book_js.get("Result.Result");
-//		System.out.println("Book Appointment Result: "+Result);
-		
-// ** Cancel Appointment **
-	Response cancel_res	= given()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
-				.then()
-//				.log().body()
-				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Status", equalTo("Success"))
-				.body("Result", hasKey("ConfirmationCode"))
-				.body("Result.ConfirmationCode", not(empty()))
-				.body("Result", hasKey("Reason"))
-				.body("Result.Reason", nullValue())
-				.extract().response();
-	JsonPath cancel_js = ReusableMethods.rawToJson(cancel_res);
-	String Status = cancel_js.get("Status");
-//	System.out.println("Cancel Appointment Result: "+Status);
- */
-	}
-
-	/*
-	@Test (testName="PaidAppointment_SingleMember",description="PBI:127168")
-	public void PaidAppointment_SingleMember() { 
-
-	Response book_res = given()
-//						.log().all()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-		.header("Content-Type", "application/json")
-			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4474,"+ 
-					"\"Occurrence\": \"2024-11-05T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [226,221],"+ 
-					"\"UserDisplayedPrice\": 20.00"+
-					"}")
-			.post("/api/v3/appointment/bookappointmentbymember")
-				.then()
-						.log().body()
-						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Result.Result", equalTo("Success"))
-				.body("Result.AppointmentId", not(empty()))
-				.extract().response();
-		JsonPath book_js = ReusableMethods.rawToJson(book_res);
-		int AppointmentId = book_js.get("Result.AppointmentId");
-	
-		given()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
-				.then()
-//				.log().body()
-				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Status", equalTo("Success"))
-				.body("Result", hasKey("ConfirmationCode"))
-				.body("Result.ConfirmationCode", not(empty()))
-				.body("Result", hasKey("Reason"))
-				.body("Result.Reason", nullValue());
-	}
-	
-	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:127168")
-	public void PunchcardAppointment_SingleMember() { 
-
-	Response book_res = given()
-//						.log().all()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-		.header("Content-Type", "application/json")
-			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4535,"+ 
-					"\"Occurrence\": \"2024-11-03T14:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+ 
-					"\"RequestedBooks\": [222],"+ 
-					"\"UserDisplayedPrice\": 7.50"+
-					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -183,11 +200,10 @@ public class _Draft_BookAppointmentByMember extends base {
 				.body("Result", hasKey("Reason"))
 				.body("Result.Reason", nullValue());
 	}
-	@Test (testName="PaidAppointment_MultipleMember",description="PBI:127168")
+	
+	@Test (testName="PaidAppointment_MultipleMember",description="PBI:146227")
 	public void PaidAppointment_MultipleMember() { 
-		// This call doesn't not book appt because the parameter Compete BO > Clubs >
-		// "Restrict Online Schedule to Prepaid Trainings / Services Only" is checkmarked
-	given()
+		Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -197,19 +213,67 @@ public class _Draft_BookAppointmentByMember extends base {
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 4474,"+ 
-					"\"Occurrence\": \"2024-11-01T16:00:00-04:00\","+ 
-					"\"CustomerId\": 29947,"+
-					"\"AdditionalCustomerIds\": [29970],"+
-					"\"RequestedBooks\": [226,221],"+ 
-					"\"UserDisplayedPrice\": 0.00"+
+					"\"ItemId\": 38,"+ 
+					"\"Occurrence\": \"2019-11-20T16:00:00-04:00\","+ 
+					"\"CustomerId\": 229,"+
+					"\"AdditionalCustomerIds\": [230],"+
+					"\"RequestedBooks\": [31],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-						.log().body()
-						.assertThat().statusCode(404)
+//						.log().body()
+						.assertThat().statusCode(200)
 				.time(lessThan(5L),TimeUnit.SECONDS)
-				.body("Message", equalTo("FailNotEnoughPunches"));
+				.body("Result.Result", equalTo("Success"))
+				.extract().response();
+		// CANCEL APPOINTMENT
+		JsonPath book_js = ReusableMethods.rawToJson(book_res);
+		int AppointmentId = book_js.get("Result.AppointmentId");
+		given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Status", equalTo("Success"))
+				.body("Result", hasKey("ConfirmationCode"))
+				.body("Result.ConfirmationCode", not(empty()))
+				.body("Result", hasKey("Reason"))
+				.body("Result.Reason", nullValue());
+		
 	}
-	*/
+	
+	@Test (testName="notValidBookableItem",description="PBI:146227")
+	public void notValidBookableItem() { 
+	
+	given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 13,"+ 
+					"\"Occurrence\": \"2025-01-02T16:00:00-05:00\","+ 
+					"\"CustomerId\": 230,"+ 
+					"\"RequestedBooks\": [4],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//						.log().body()
+						.assertThat().statusCode(500)
+				.time(lessThan(5L),TimeUnit.SECONDS)
+				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
+	}
+	
 }

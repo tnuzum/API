@@ -24,7 +24,7 @@ public class GetProductByBook extends base {
 	public void ProductFound() {
 		
 //		String resourceId = prop.getProperty("resource2Id");
-		int resourceId = 32;
+		int resourceId = 40;
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))

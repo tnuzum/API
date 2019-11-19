@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.nullValue;
@@ -13,9 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
+import resources.ReusableDates;
 import resources.base;
 
 public class GetAvailableAppointments extends base {
@@ -31,9 +28,8 @@ public class GetAvailableAppointments extends base {
 	public void AppointmentsFound_NoResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");  
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-//		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-		String eDateTimeNoOffset = "2019-11-14T00:00";
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 //		String serviceId = prop.getProperty("service3Id");
 		int serviceId = 36;
 
@@ -72,15 +68,15 @@ public class GetAvailableAppointments extends base {
 	public void AppointmentsFound_WithResources() {
 		
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 		int serviceId = 36;
 		int resourceId = 18;
 		int resourceTypeId = 4;
 
 
 				given()
-				//.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -115,14 +111,17 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
 		/*
-		 * This test shows that the appointment is not found because the BooksAndAvailability is Null
+		 * This test shows that the appointment is not found
+		 * because the BooksAndAvailability is Null. Date range is
+		 * set far in future so no availability is found. 
 		 */
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = "2125-10-28T23:45:00";
-		String eDateTimeNoOffset = "2125-10-29T00:00:00";
-		int serviceId = 36;
-		int resourceId = 18;
-		int resourceTypeId = 4;
+		String sDateTimeNoOffset = "2025-01-01T00:00";
+		String eDateTimeNoOffset = "2025-01-02T00:00";
+		
+		int serviceId = 215;
+//		int resourceId = 40;
+//		int resourceTypeId = 1;
 
 				given()
 				//.log().all()
@@ -130,8 +129,8 @@ public class GetAvailableAppointments extends base {
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-						.queryParam("ResourceTypeId", resourceTypeId)
-						.queryParam("ResourceId", resourceId)
+//						.queryParam("ResourceTypeId", resourceTypeId)
+//						.queryParam("ResourceId", resourceId)
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
@@ -151,4 +150,5 @@ public class GetAvailableAppointments extends base {
 						.body("Result", hasKey("BooksAndAvailability"))
 						.body("Result.BooksAndAvailability[0]", nullValue());
 	}
+
 }

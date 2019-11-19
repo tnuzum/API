@@ -8,7 +8,9 @@
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
 			<class name="JonasFitness.API.BookAppointmentByEmployee" />
+			<class name="JonasFitness.API.BookAppointmentByMember" />
 			<class name="JonasFitness.API.CancelAppointmentByEmployee" />
+			<class name="JonasFitness.API.CancelAppointmentByMember" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />
@@ -36,8 +38,6 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
-
-			<!-- class name="JonasFitness.API.BookAppointmentByMember" /-->
 		</classes>
 	</test>
 </suite>

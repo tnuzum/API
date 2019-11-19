@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
 
 public class GetScheduleByMember extends base{
@@ -24,9 +25,8 @@ public class GetScheduleByMember extends base{
 	@Test (testName="AppointmentFound",description="PBI:124954")
 	public void appointmentFound() {
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
-
+		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 
 				given()
 //						.log().all()
@@ -67,8 +67,8 @@ public class GetScheduleByMember extends base{
 	@Test (testName="ClassFound",description="PBI:124954")
 	public void classFound() {
 		String member = prop.getProperty("activeMember5_CustomerId");
-		String sDateTimeNoOffset = prop.getProperty("sDateTimeNoOffset");
-		String eDateTimeNoOffset = prop.getProperty("eDateTimeNoOffset");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 
 
 				given()
