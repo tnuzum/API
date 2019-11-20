@@ -214,7 +214,7 @@ public class BookAppointmentByMember extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 38,"+ 
-					"\"Occurrence\": \"2019-11-20T16:00:00-04:00\","+ 
+					"\"Occurrence\": \"2024-11-20T16:00:00-04:00\","+ 
 					"\"CustomerId\": 229,"+
 					"\"AdditionalCustomerIds\": [230],"+
 					"\"RequestedBooks\": [31],"+ 
