@@ -80,7 +80,6 @@ public class BookAppointmentByEmployee extends base {
 		.then()
 //				.log().body()
 				.assertThat().statusCode(404)
-		.time(lessThan(5L),TimeUnit.SECONDS)
 		.body("Message", equalTo("FailAppointmentNotAvailable"));
 
 		// ** Cancel Appointment **
@@ -97,7 +96,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+//				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -128,7 +127,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -145,7 +144,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -176,7 +175,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -192,7 +191,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -223,7 +222,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.extract().response();
 		// CANCEL APPOINTMENT
@@ -239,7 +238,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -271,7 +270,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
 	}
 	

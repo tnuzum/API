@@ -40,7 +40,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]",  hasKey("AddressLine1"))
 						.body("Result[0]",  hasKey("AddressLine2"))
 						.body("Result[0]",  hasKey("BarcodeId"))
@@ -90,7 +90,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].LastName", equalTo("Auto"));
 
 	}
@@ -133,7 +133,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].LastName", equalTo("Auto"));
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithDashes",description="PBI:139726")
@@ -154,7 +154,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //				     	.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].HomePhone", equalTo("6142001003"));
 	}
 	@Test (testName="SearchMembersByProduct_HomePhoneWithoutDashes",description="PBI:139726")
@@ -175,7 +175,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].HomePhone", equalTo("6142001003"));
 	}
 	@Test (testName="SearchMembersByProduct_MobilePhoneWithoutDashes",description="PBI:139726")
@@ -196,7 +196,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].CellPhone", equalTo("6141001000"));
 	}
 	@Test (testName="SearchMembersByProduct_MobilePhoneWithDashes",description="PBI:139726")
@@ -217,7 +217,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].CellPhone", equalTo("6141001000"));
 	}
 	@Test (testName="SearchMembersByProduct_WorkPhoneWithDashes",description="PBI:139726")
@@ -240,7 +240,8 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS);
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						;
 	}
 	@Test (testName="SearchMembersByProduct_Email",description="PBI:139726")
 	public void searchMembersByProduct_Email() {
@@ -260,7 +261,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].EmailAddress", equalTo("fred.auto@home.com"));
 
 	}
