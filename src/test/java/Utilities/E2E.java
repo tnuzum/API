@@ -17,7 +17,7 @@ import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 
-public class BookAppointment extends base {
+public class E2E extends base {
 	
 	static int itemId = 215;
 	static int resourceId = 40;
@@ -114,6 +114,21 @@ public class BookAppointment extends base {
 			
 			return AppointmentId;
 	}	
+	@Test (priority = 3, testName="ApptCancelled")
+	public void apptCancelled() { 
+		
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.post("/api/v3/appointment/cancelappointmentbyemployee/"+bookAppt())
+						.then()
+						.log().body();
+				
+	}
 	
 	
 	

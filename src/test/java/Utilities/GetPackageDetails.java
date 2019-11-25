@@ -1,4 +1,4 @@
-package JonasFitness.API;
+package Utilities;
 
 import static io.restassured.RestAssured.given;
 
@@ -24,7 +24,8 @@ public class GetPackageDetails extends base{
 	public void singlePriceRange() {
  
 		String member = prop.getProperty("activeMember1_CustomerId");
-		String item = prop.getProperty("training24Id");
+		//String item = prop.getProperty("training24Id");
+		int item = 36;
 		String club = prop.getProperty("X-Club1Id");
 
 				given()
@@ -36,28 +37,9 @@ public class GetPackageDetails extends base{
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result", hasKey("AssociatedSessionDtos"))
-						.body("Result", hasKey("BasePrice"))
-						.body("Result", hasKey("CategoryDescription"))
-						.body("Result", hasKey("DaysUntilExpiration"))
-						.body("Result", hasKey("ItemBarcodeId"))
-						.body("Result", hasKey("ItemDescription"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("LongDescription"))
-						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
-						.body("Result", hasKey("RedeemableClubs"))
-						.body("Result.BasePrice", not(nullValue()))
-						.body("Result.DaysUntilExpiration", not(nullValue()))
-						.body("Result.ItemBarcodeId", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.log().body();
 	}
+	/*
 	@Test (testName="MultiplePriceRanges",description="PBI:143538")
 	public void multiplePriceRanges() {
 		
@@ -75,7 +57,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -113,7 +95,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
 						.body("Result", not(hasKey("CategoryDescription")))
@@ -142,7 +124,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
 						.body("Result", not(hasKey("CategoryDescription")))
@@ -171,7 +153,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
 						.body("Result", not(hasKey("CategoryDescription")))
@@ -183,5 +165,5 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
-	
+	*/
 }
