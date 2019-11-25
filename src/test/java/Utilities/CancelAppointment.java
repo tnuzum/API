@@ -20,7 +20,7 @@ public class CancelAppointment extends base {
 	@Test (testName="ApptCancelled",description="PBI:141862")
 	public void ApptCancelled() { 
 		
-		int confirmationNumber = 4533;
+		int confirmationNumber = 5227;
 
 				given()
 //						.log().all()
