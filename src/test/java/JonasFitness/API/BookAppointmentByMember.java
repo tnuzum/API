@@ -91,7 +91,7 @@ public class BookAppointmentByMember extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
+				.get("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -142,7 +142,7 @@ public class BookAppointmentByMember extends base {
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 //				.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -189,7 +189,7 @@ public class BookAppointmentByMember extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -214,10 +214,10 @@ public class BookAppointmentByMember extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 38,"+ 
-					"\"Occurrence\": \"2024-11-20T16:00:00-04:00\","+ 
+					"\"Occurrence\": \"2024-11-18T16:00:00-04:00\","+ 
 					"\"CustomerId\": 229,"+
 					"\"AdditionalCustomerIds\": [230],"+
-					"\"RequestedBooks\": [31],"+ 
+					"\"RequestedBooks\": [30],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
@@ -236,7 +236,7 @@ public class BookAppointmentByMember extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
