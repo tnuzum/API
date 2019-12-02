@@ -70,51 +70,51 @@ public class GetAllAvailableClassesByMember extends base {
 						;
 
 	}
-@Test (testName="Classes Not Found",description="PBI:146571")
-public void classNotFound() { 
+	@Test (testName="Classes Not Found",description="PBI:146571")
+	public void classNotFound() { 
+		
+		int CustomerId = 223;
+		String StartDateTime = "2119-01-01";
+		String EndDateTime = "2120-01-01";
 	
-	int CustomerId = 223;
-	String StartDateTime = "2119-01-01";
-	String EndDateTime = "2120-01-01";
-
-			given()
-//					.log().all()
-			.header("accept", prop.getProperty("accept"))
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
-				.when()
-					.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
-					.then()
-//					.log().body()
-					.assertThat().statusCode(404)
-//					.time(lessThan(5L),TimeUnit.SECONDS)
-					.body("Message", equalTo("No available classes found"))
-					;
-
-}
-@Test (testName="Customer Not Found",description="PBI:146571")
-public void customerNotFound() { 
+				given()
+	//					.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+	//					.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("No available classes found"))
+						;
 	
-	int CustomerId = 22300;
-	String StartDateTime = ReusableDates.getCurrentDate();
-	String EndDateTime = ReusableDates.getCurrentDatePlusOneWeek();
-
-			given()
-//					.log().all()
-			.header("accept", prop.getProperty("accept"))
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
-				.when()
-					.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
-					.then()
-//					.log().body()
-					.assertThat().statusCode(500)
-//					.time(lessThan(5L),TimeUnit.SECONDS)
-					.body("Message", equalTo("Internal server error - Sequence contains no elements"))
-					;
-
-}
+	}
+	@Test (testName="Customer Not Found",description="PBI:146571")
+	public void customerNotFound() { 
+		
+		int CustomerId = 22300;
+		String StartDateTime = ReusableDates.getCurrentDate();
+		String EndDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+	
+				given()
+	//					.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.then()
+	//					.log().body()
+						.assertThat().statusCode(500)
+	//					.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Internal server error - Sequence contains no elements"))
+						;
+	
+	}
 }
 
