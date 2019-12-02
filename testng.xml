@@ -13,6 +13,7 @@
 			<class name="JonasFitness.API.CancelAppointmentByMember" />
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
+			<class name="JonasFitness.API.GetAllAvailableClassesByMember" />
 			<class name="JonasFitness.API.GetAllPackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetAppointmentDetails" />
 			<class name="JonasFitness.API.GetAppointmentProductByCategory" />
@@ -30,6 +31,7 @@
 			<class name="JonasFitness.API.GetClassDetails" />
 			<class name="JonasFitness.API.GetCourseDetails" />
 			<class name="JonasFitness.API.GetMember" />
+			<class name="JonasFitness.API.GetOnlineAvailableClassesByMember" />
 			<class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetPackageDetails" />
 			<class name="JonasFitness.API.GetProductByBook" />
