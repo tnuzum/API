@@ -83,7 +83,7 @@ public class GetClassDetails extends base{
 						.body("Result.ShowRefundPackageVisits", not(nullValue()))
 						;
 	}
-	/*@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
+	@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
 	public void classFoundOnlineSaleNotAllowed() {
  
 		int customerId 			= 231;
@@ -105,7 +105,6 @@ public class GetClassDetails extends base{
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
-	*/
 	@Test (testName="Class Not Found - Invalid ClassBarcodeID",description="PBI:143544")
 	public void classNotFound_InvalidClassBarcodeID() {
  
