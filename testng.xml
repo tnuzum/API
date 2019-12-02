@@ -32,6 +32,17 @@
 			<class name="JonasFitness.API.GetCourseDetails" />
 			<class name="JonasFitness.API.GetMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableClassesByMember" />
+			<!-- class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" /-->
+			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" >
+				<methods>
+					<exclude name = "coursesNotFound" />
+				</methods>
+			</class>
+						<class name="JonasFitness.API.GetAllAvailableCoursesByMember" >
+				<methods>
+					<exclude name = "coursesNotFound" />
+				</methods>
+			</class>
 			<class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetPackageDetails" />
 			<class name="JonasFitness.API.GetProductByBook" />
@@ -42,6 +53,7 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
+
 		</classes>
 	</test>
 </suite>
