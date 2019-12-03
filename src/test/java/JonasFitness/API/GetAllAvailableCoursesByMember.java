@@ -111,7 +111,7 @@ public class GetAllAvailableCoursesByMember extends base {
 //						.log().body()
 						.assertThat().statusCode(404)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Message", equalTo("No available online courses found"))
+						.body("Message", equalTo("No available courses found"))
 						;
 
 	}
