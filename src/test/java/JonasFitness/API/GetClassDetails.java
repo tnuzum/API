@@ -228,9 +228,9 @@ public class GetClassDetails extends base{
 					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(500)
+						.assertThat().statusCode(404)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"))
+						.body("Message", equalTo("Customer not found"))
 						;
 	}
 	
