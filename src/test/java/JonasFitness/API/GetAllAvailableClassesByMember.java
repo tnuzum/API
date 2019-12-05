@@ -109,10 +109,10 @@ public class GetAllAvailableClassesByMember extends base {
 					.when()
 						.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
 						.then()
-	//					.log().body()
-						.assertThat().statusCode(500)
+//						.log().body()
+						.assertThat().statusCode(404)
 	//					.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"))
+						.body("Message", equalTo("Customer not found"))
 						;
 	
 	}
