@@ -42,7 +42,7 @@
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
 			<class name="JonasFitness.API.VerifyClassEnrollmentCapability" />
-			
+			<class name="JonasFitness.API.VerifyCourseEnrollmentCapability" />			
 		</classes>
 	</test>
 </suite>
