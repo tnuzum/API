@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="CompeteAPI v3">
-	<listeners>
-		<listener class-name="resources.ExtentReporterNG" />
-	</listeners>
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
@@ -34,16 +31,6 @@
 			<class name="JonasFitness.API.GetMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableClassesByMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" />
-<!-- 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" >
-				<methods>
-					<exclude name = "coursesNotFound" />
-				</methods>
-			</class>
-						<class name="JonasFitness.API.GetAllAvailableCoursesByMember" >
-				<methods>
-					<exclude name = "coursesNotFound" />
-				</methods>
-			</class> -->
 			<class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetPackageDetails" />
 			<class name="JonasFitness.API.GetProductByBook" />
@@ -54,7 +41,8 @@
 			<class name="JonasFitness.API.SearchMembersByProduct" />
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
-
+			<class name="JonasFitness.API.VerifyClassEnrollmentCapability" />
+			
 		</classes>
 	</test>
 </suite>
