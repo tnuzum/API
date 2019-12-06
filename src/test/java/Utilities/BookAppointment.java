@@ -1,20 +1,9 @@
 package Utilities;
 
-import static io.restassured.RestAssured.given;
-
-import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
-import static org.hamcrest.Matchers.*;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import resources.ReusableDates;
-import resources.ReusableMethods;
 import resources.base;
 
 public class BookAppointment extends base {
@@ -31,7 +20,7 @@ public class BookAppointment extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	
+	/*
 	@Test (testName="Get Member",description="PBI:139705")
 	public int getMember() {
 
@@ -115,7 +104,7 @@ public class BookAppointment extends base {
 			return AppointmentId;
 	}	
 	
-	
+	*/
 	
 	
 	
