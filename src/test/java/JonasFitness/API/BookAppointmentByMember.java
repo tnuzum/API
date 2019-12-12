@@ -119,7 +119,7 @@ public class BookAppointmentByMember extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 46,"+ 
-					"\"Occurrence\": \"2020-11-16T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-11-16T11:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 40.00"+
