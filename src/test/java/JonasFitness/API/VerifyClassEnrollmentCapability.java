@@ -32,8 +32,8 @@ public class VerifyClassEnrollmentCapability extends base{
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 223;
-		String classBarcodeId 	= "Balance44";
-		String classOccurrence 	= "2019-12-12";
+		String classBarcodeId 	= "alwaysAvailCl";
+		String classOccurrence 	= "2024-12-12";
 		String displayedClassPrice	= "0.00";
 
 				given()
@@ -128,9 +128,9 @@ public class VerifyClassEnrollmentCapability extends base{
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 223;
-		String classBarcodeId 	= "Balance44";
-		String classOccurrence 	= "2019-12-12";
-		String displayedClassPrice	= "15.99";
+		String classBarcodeId 	= "alwaysAvailCl";
+		String classOccurrence 	= "2024-12-12";
+		String displayedClassPrice	= "0.01";
 
 				given()
 				.header("accept", prop.getProperty("accept"))

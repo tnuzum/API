@@ -22,9 +22,8 @@ public class GetClassDetails extends base{
 	public void classFoundOnlineSaleAllowed() {
  
 		int customerId 			= 231;
-		String ClassBarcodeId 	= "BARREF5p";
-//		String ClassDateTime 	= "2019-11-28T17:00:00-05:00";
-		String ClassDateTime 	= "2019-11-28";
+		String ClassBarcodeId 	= "alwaysAvailCl";
+		String ClassDateTime 	= "2022-12-13";
 
 				given()
 //						.log().all()
