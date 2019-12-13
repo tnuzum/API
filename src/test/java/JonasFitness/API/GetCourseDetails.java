@@ -22,7 +22,7 @@ public class GetCourseDetails extends base{
 	public void courseFound() {
  
 		int customerId = 223;
-		String CourseBarcodeId = "PBoot430";
+		String CourseBarcodeId = "alwaysAvailCo";
 
 				given()
 //						.log().all()
@@ -66,7 +66,7 @@ public class GetCourseDetails extends base{
 						.body("Result.LongDescription", not(nullValue()))
 						.body("Result.MemberEnrollmentStatus", not(nullValue()))
 						.body("Result.PackageEnrollmentAvailable", not(nullValue()))
-						.body("Result.PackageName", not(nullValue()))
+						.body("Result", hasKey("PackageName"))
 						.body("Result.Price", not(nullValue()))
 						.body("Result.PunchesRemaining", not(nullValue()))
 						.body("Result.PunchesRequired", not(nullValue()))
