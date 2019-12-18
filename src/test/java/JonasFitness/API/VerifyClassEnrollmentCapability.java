@@ -80,9 +80,9 @@ public class VerifyClassEnrollmentCapability extends base{
  
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 242;
+		int customerId 			= 246;
 		String classBarcodeId 	= "standby001";
-		String classOccurrence 	= "2022-12-06";
+		String classOccurrence 	= "2023-01-02";
 		String displayedClassPrice	= "150.00";
 
 				given()
@@ -103,9 +103,9 @@ public class VerifyClassEnrollmentCapability extends base{
  
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 241;
+		int customerId 			= 245;
 		String classBarcodeId 	= "standby001";
-		String classOccurrence 	= "2022-12-06";
+		String classOccurrence 	= "2023-01-02";
 		String displayedClassPrice	= "150.00";
 
 				given()
