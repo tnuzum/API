@@ -33,7 +33,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 241;
 		String courseBarcodeId 	= "alwaysAvailCo";
-		String displayedCoursePrice	= "0.00";
+		String displayedCoursePrice	= "100.00";
 
 				given()
 //						.log().all()
