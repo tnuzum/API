@@ -34,7 +34,7 @@ public class VerifyClassEnrollmentCapability extends base{
 		int customerId 			= 223;
 		String classBarcodeId 	= "alwaysAvailCl";
 		String classOccurrence 	= "2024-12-12";
-		String displayedClassPrice	= "0.00";
+		String displayedClassPrice	= "10.00";
 
 				given()
 //						.log().all()
