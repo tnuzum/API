@@ -188,7 +188,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:143588")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 			= 245;
+				int customerId 			= 247;
 				String classBarcodeId 	= "standby001";
 				String classOccurrence 	= "2022-12-06";
 				String displayedClassPrice	= "150.00";
