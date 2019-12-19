@@ -71,7 +71,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void memberEnrolledOnStandby() {
 		
 				int customerId 			= 223;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2022-12-06";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
@@ -124,7 +124,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void memberAlreadyEnrolled() {
 		
 				int customerId 			= 245;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2023-01-02";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
@@ -167,7 +167,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void memberAlreadyOnStandby() {
 		
 				int customerId 			= 246;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2023-01-02";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
@@ -189,7 +189,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void memberNotEnrolledOnStandby() {
 		
 				int customerId 			= 247;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2022-12-06";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "false";
@@ -211,7 +211,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void customerNotFound() {
 		
 				int customerId 			= 245000;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2022-12-06";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
@@ -233,7 +233,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void classNotFound() {
 		
 				int customerId 			= 245;
-				String classBarcodeId 	= "standby001";
+				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2122-12-06";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";

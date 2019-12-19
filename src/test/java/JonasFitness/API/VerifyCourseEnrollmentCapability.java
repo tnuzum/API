@@ -57,7 +57,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 223;
-		String courseBarcodeId 	= "standby002";
+		String courseBarcodeId 	= "standbyCo";
 		String displayedCoursePrice	= "1500.00";
 
 				given()
@@ -79,7 +79,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 242;
-		String courseBarcodeId 	= "standby002";
+		String courseBarcodeId 	= "standbyCo";
 		String displayedCoursePrice	= "1500.00";
 
 				given()
@@ -101,7 +101,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
 		int customerId 			= 241;
-		String courseBarcodeId 	= "standby002";
+		String courseBarcodeId 	= "standbyCo";
 		String displayedCoursePrice	= "1500.00";
 
 				given()
