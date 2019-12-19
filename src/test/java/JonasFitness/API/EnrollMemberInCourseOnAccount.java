@@ -73,7 +73,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void memberEnrolledOnStandby() {
 		
 				int customerId 			= 245;
-				String courseBarcodeId 	= "standby002";
+				String courseBarcodeId 	= "standbyCo";
 				String displayedCoursePrice	= "1500.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -123,7 +123,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void memberAlreadyEnrolled() {
 		
 				int customerId 			= 241;
-				String courseBarcodeId 	= "standby002";
+				String courseBarcodeId 	= "standbyCo";
 				String displayedCoursePrice	= "1500.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -166,7 +166,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void memberAlreadyOnStandby() {
 		
 				int customerId 			= 242;
-				String courseBarcodeId 	= "standby002";
+				String courseBarcodeId 	= "standbyCo";
 				String displayedCoursePrice	= "1500.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -187,7 +187,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void memberNotEnrolledOnStandby() {
 		
 				int customerId 			= 247;
-				String courseBarcodeId 	= "standby002";
+				String courseBarcodeId 	= "standbyCo";
 				String displayedCoursePrice	= "1500.00";
 				String enrollCustomerAsStandby = "false";
 
@@ -208,7 +208,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void customerNotFound() {
 		
 				int customerId 			= 245000;
-				String courseBarcodeId 	= "standby002";
+				String courseBarcodeId 	= "standbyCo";
 				String displayedCoursePrice	= "1500.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -229,7 +229,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void courseNotFound() {
 		
 				int customerId 			= 245;
-				String courseBarcodeId 	= "NOTstandby002";
+				String courseBarcodeId 	= "NOTstandbyCo";
 				String displayedCoursePrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
