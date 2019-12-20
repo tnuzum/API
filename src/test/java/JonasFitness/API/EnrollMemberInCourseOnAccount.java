@@ -7,24 +7,8 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.base;
-
-/*
-DONE - No FOP - Account Problem - failed to create invoice because billing info not setup
-DONE / ON HOLD - Member enrolled - awaiting an unenroll call to link to this enroll call
-DONE - Member already enrolled
-DONE - Product price changed
-DONE / On HOLD - Member enrolled standby - awaiting an unenroll call to link to this enroll call
-DONE - Member already on standby
-DONE - Member NOT enrolled standby
-DONE - Customer not found
-DONE - Class not found
-DONE - Item does not allow enrollment
-DONE - Member not enrolled - enrollment not open
- */
 
 public class EnrollMemberInCourseOnAccount extends base {
 	
@@ -38,8 +22,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 	
 	/*
 	// !!! Disabled until an unenroll is created
-	@Test (testName="Member Enrolled",description="PBI:143589")
-	public void memberEnrolled() {
+	@Test (testName="Member Enrolled - Course Already Started",description="PBI:143589")
+	public void memberEnrolledCourseStarted() {
 		
 				int customerId = 229;
 				String courseBarcodeId = "alwaysAvailCo";
@@ -68,7 +52,35 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()));
 	}
 	
-	
+		@Test (testName="Member Enrolled - Course Not Started",description="PBI:143589")
+	public void memberEnrolledCourseNotStarted() {
+		
+				int customerId = 248;
+				String courseBarcodeId = "notStartedCo";
+				String displayedCoursePrice = "150.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()));
+	}
+
 	@Test (testName="Member Enrolled On Standby",description="PBI:143589")
 	public void memberEnrolledOnStandby() {
 		
@@ -286,5 +298,152 @@ public class EnrollMemberInCourseOnAccount extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+	}
+	
+	@Test (testName="Enroll Terminated Member",description="PBI:143589")
+	public void enrollTerminatedMember() {
+		
+				int customerId 			= 249;
+				String courseBarcodeId 	= "alwaysAvailCo";
+				String displayedCoursePrice	= "100.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
+	}
+	
+	@Test (testName="Enroll Collections Member",description="PBI:143589")
+	public void enrollCollectionsMember() {
+		
+				int customerId 			= 227;
+				String courseBarcodeId 	= "alwaysAvailCo";
+				String displayedCoursePrice	= "100.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("AccountProblem"));
+	}
+	
+	@Test (testName="Enroll Frozen Member",description="PBI:143589")
+	public void enrollFrozenMember() {
+		
+				int customerId 			= 250;
+				String courseBarcodeId 	= "alwaysAvailCo";
+				String displayedCoursePrice	= "100.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("EnrollmentNotAllowed - MemberFrozen"));
+	}
+	
+	@Test (testName="Enroll Prospect Member",description="PBI:143589")
+	public void enrollProspectMember() {
+		
+				int customerId 			= 228;
+				String courseBarcodeId 	= "alwaysAvailCo";
+				String displayedCoursePrice	= "100.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("AccountProblem"));
+	}
+	
+	@Test (testName="Credit Limited Exceeded",description="PBI:143589")
+	public void creditLimitedExceeded() {
+		
+				int customerId 			= 251;
+				String courseBarcodeId 	= "alwaysAvailCo";
+				String displayedCoursePrice	= "100.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("AccountProblem"));
+	}
+	
+	@Test (testName="Course Enrollment Closed",description="PBI:143589")
+	public void courseEnrollmentClosed() {
+		
+				int customerId 			= 248;
+				String courseBarcodeId 	= "closedCo";
+				String displayedCoursePrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+	}
+	
+	@Test (testName="Course Ended",description="PBI:143589")
+	public void courseEnded() {
+		
+				int customerId 			= 248;
+				String courseBarcodeId 	= "endedCo";
+				String displayedCoursePrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby+"")
+					.then()
+//					.log().body()
+					.assertThat().statusCode(400)
+					.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
 	}
 }
