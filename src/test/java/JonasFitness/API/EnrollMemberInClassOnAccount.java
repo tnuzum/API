@@ -7,24 +7,9 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
-
-/*
-DONE - No FOP - Account Problem - failed to create invoice because billing info not setup
-DONE / ON HOLD - Member enrolled - awaiting an unenroll call to link to this enroll call
-DONE - Member already enrolled
-DONE - Product price changed
-DONE / On HOLD - Member enrolled standby - awaiting an unenroll call to link to this enroll call
-DONE - Member already on standby
-DONE - Member NOT enrolled standby
-DONE - Customer not found
-DONE - Class not found
-DONE - Item does not allow enrollment
-DONE - Member not enrolled - enrollment not open
- */
 
 public class EnrollMemberInClassOnAccount extends base {
 	
@@ -36,12 +21,12 @@ public class EnrollMemberInClassOnAccount extends base {
 	}
 	
 	/* !!! Disabled until an unenroll is created
-	@Test (testName="Member Enrolled",description="PBI:143588")
-	public void memberEnrolled() {
+	@Test (testName="Member Enrolled - Class Already Started",description="PBI:143588")
+	public void memberEnrolledClassStarted() {
 		
 				int customerId = 229;
 				String classBarcodeId = "alwaysAvailCl";
-				String classOccurrence = "2019-12-25";
+				String classOccurrence = "2025-12-31";
 				String displayedClassPrice = "10.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -67,6 +52,35 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()));
 	}
 	
+		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
+	public void memberEnrolledClassNotStarted() {
+		
+				int customerId = 248;
+				String classBarcodeId = "notStartedCl";
+				String classOccurrence = "2119-12-25";
+				String displayedClassPrice = "150.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()));
+	}
+	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
 	public void memberEnrolledOnStandby() {
 		
@@ -77,7 +91,6 @@ public class EnrollMemberInClassOnAccount extends base {
 				String enrollCustomerAsStandby = "true";
 
 				given()
-//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -87,7 +100,6 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(false))
 						.body("Result.EnrollmentStatus", equalTo("StandBy"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -103,7 +115,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId = 247;
 				String classBarcodeId = "alwaysAvailCl";
-				String classOccurrence = "2019-12-25";
+				String classOccurrence = "2025-12-31";
 				String displayedClassPrice = "10.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -125,7 +137,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId 			= 245;
 				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2023-01-02";
+				String classOccurrence 	= "2025-12-31";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -147,7 +159,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId = 247;
 				String classBarcodeId = "alwaysAvailCl";
-				String classOccurrence = "2019-12-25";
+				String classOccurrence = "2025-12-31";
 				String displayedClassPrice = "10.01";
 				String enrollCustomerAsStandby = "true";
 
@@ -168,7 +180,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId 			= 246;
 				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2023-01-02";
+				String classOccurrence 	= "2025-12-31";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -188,9 +200,9 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:143588")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 			= 247;
+				int customerId 			= 248;
 				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2022-12-06";
+				String classOccurrence 	= "2025-12-31";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "false";
 
@@ -212,7 +224,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId 			= 245000;
 				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2022-12-06";
+				String classOccurrence 	= "2025-12-31";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -256,7 +268,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				int customerId 			= 245;
 				String classBarcodeId 	= "noWebCl";
-				String classOccurrence 	= "2024-12-25";
+				String classOccurrence 	= "2025-12-31";
 				String displayedClassPrice	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -293,5 +305,181 @@ public class EnrollMemberInClassOnAccount extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+	}
+	
+	@Test (testName="Scheduling Conflict",description="PBI:143588")
+	public void schedulingConflict() {
+		
+				int customerId 			= 241;
+				String classBarcodeId 	= "standbyCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "150.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - SchedulingConflict"));
+	}
+	
+	@Test (testName="Enroll Terminated Member",description="PBI:143588")
+	public void enrollTerminatedMember() {
+		
+				int customerId 			= 249;
+				String classBarcodeId 	= "alwaysAvailCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "150.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
+	}
+	
+	@Test (testName="Enroll Collections Member",description="PBI:143588")
+	public void enrollCollectionsMember() {
+		
+				int customerId 			= 227;
+				String classBarcodeId 	= "alwaysAvailCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("AccountProblem"));
+	}
+	
+	@Test (testName="Enroll Frozen Member",description="PBI:143588")
+	public void enrollFrozenMember() {
+		
+				int customerId 			= 250;
+				String classBarcodeId 	= "alwaysAvailCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - MemberFrozen"));
+	}
+	
+	@Test (testName="Enroll Prospect Member",description="PBI:143588")
+	public void enrollProspectMember() {
+		
+				int customerId 			= 228;
+				String classBarcodeId 	= "alwaysAvailCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("AccountProblem"));
+	}
+	
+	@Test (testName="Class Ended",description="PBI:143588")
+	public void classEnded() {
+		
+				int customerId 			= 248;
+				String classBarcodeId 	= "endedCl";
+				String classOccurrence 	= "2019-12-13";
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+	}
+	
+	@Test (testName="Class Enrollment Closed",description="PBI:143588")
+	public void classEnrollmentClosed() {
+		
+				int customerId 			= 248;
+				String classBarcodeId 	= "closedCl";
+				String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay();
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+	}
+	
+	@Test (testName="Credit Limited Exceeded",description="PBI:143588")
+	public void creditLimitedExceeded() {
+		
+				int customerId 			= 251;
+				String classBarcodeId 	= "alwaysAvailCl";
+				String classOccurrence 	= "2025-12-31";
+				String displayedClassPrice	= "10.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("AccountProblem"));
 	}
 }
