@@ -23,7 +23,7 @@ public class VerifyClassEnrollmentCapability extends base{
 		int companyId = 236;
 		int clubId = 1;
 		int customerId = 223;
-		String classBarcodeId 	= "standby001";
+		String classBarcodeId 	= "standbyCl";
 		String classOccurrence 	= "2022-12-06";
 		String displayedClassPrice	= "0.00";
 
