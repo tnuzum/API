@@ -4,28 +4,28 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import static org.hamcrest.Matchers.*;
+
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import io.restassured.RestAssured;
 import resources.base;
 
-public class GetClassesAndCoursesByMember extends base {
+public class GetPurchasedPackagesByMember extends base{
 
 	@BeforeTest
 	public void getData() throws IOException {
-		base.getPropertyData();
+		base.getPropertyData();		
 		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
+		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test (testName="ClassesCoursesFound",description="PBI:124953")
-	public void ClassesCoursesFound() {
+	@Test (testName="PackagesFound",description="PBI:124125")
+	public void PackagesFound() {
 		
-		
+//		String member = prop.getProperty("activeMember7_CustomerId");
 		int member = 248;
-		String sDateTimeNoOffset = "2019-01-01";
-		String eDateTimeNoOffset = "2200-01-01";
-
-		
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -33,9 +33,8 @@ public class GetClassesAndCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/package/getpurchasedpackagesbymember/"+member)
 						.then()
-						.log().body()
-;
+						.log().body();
 	}
 }
