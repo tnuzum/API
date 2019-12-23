@@ -25,7 +25,7 @@ public class GetPurchasedPackagesByMember extends base{
 	public void PackagesFound() {
 		
 //		String member = prop.getProperty("activeMember7_CustomerId");
-		int member = 248;
+		int member = 234;
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
