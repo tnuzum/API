@@ -139,7 +139,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - Item 239 is not associated to a package item."))
 						;
