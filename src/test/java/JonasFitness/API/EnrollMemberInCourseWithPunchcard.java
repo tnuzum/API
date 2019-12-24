@@ -123,10 +123,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("NotEnoughPunches"));
 		}
-	/*
-	 * Dave's fixing an issue where the member gets enrolled during this call, afterwards this test
-	 * fail because the member is already enrolled
-	 
+	
 	@Test (testName="Punchcard Not Allowed",description="PBI:147820")
 	public void punchcardNotAllowed() {
 		
@@ -143,11 +140,9 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandby+"")
 						.then()
 						.log().body()
-//						.assertThat().statusCode(400)
-//						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
-						.assertThat().statusCode(500)
-						.body("Message", contains("Internal server error"))
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - Item 239 is not associated to a package item."))
 						;
 		}
-		*/
+		
 	}
