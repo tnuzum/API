@@ -144,5 +144,26 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - Item 239 is not associated to a package item."))
 						;
 		}
+	
+	@Test (testName="Course Full - Standby Not Allowed",description="PBI:147820")
+	public void standbyNotAllowed() {
+		
+				int customerId = 247;
+				String courseBarcodeId = "standbyCo";
+				String enrollCustomerAsStandby = "false";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("Full"))
+						;
+		}
 		
 	}
