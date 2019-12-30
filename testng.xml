@@ -32,7 +32,7 @@
 			<class name="JonasFitness.API.GetClubsByMember" />
 			<class name="JonasFitness.API.GetClassDetails" />
 			<class name="JonasFitness.API.GetCourseDetails" />
-			<!-- class name="JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee" /-->
+			<class name="JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee" />
 			<class name="JonasFitness.API.GetMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableClassesByMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" />
