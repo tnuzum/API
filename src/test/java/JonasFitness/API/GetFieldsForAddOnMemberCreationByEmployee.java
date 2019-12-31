@@ -349,6 +349,22 @@ public class GetFieldsForAddOnMemberCreationByEmployee extends base {
 						.body("Result[30].MaximumLength", equalTo(0))
 						.body("Result[30].DataType", equalTo("string"))
 
+						;
+	}
+	@Test (testName="Fields Found - Part 2",description="PBI:147958")
+	public void fieldsFound2() { 
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getfieldsforaddonmembercreationbyemployee")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
 						.body("Result[31].FieldName", equalTo("UserEntry1"))
 						.body("Result[31].Description", equalTo("Custom Text 1"))
 						.body("Result[31].DisplayValue", equalTo("Custom Text 1"))
@@ -528,7 +544,7 @@ public class GetFieldsForAddOnMemberCreationByEmployee extends base {
 						.body("Result[50]", hasKey("Values"))
 						.body("Result[50].MaximumLength", equalTo(10))
 						.body("Result[50].DataType", equalTo("datetime"))
-/*
+
 						.body("Result[51].FieldName", equalTo("UserAmount1"))
 						.body("Result[51].Description", equalTo("Custom Amount 1"))
 						.body("Result[51].DisplayValue", equalTo("Custom Amount 1"))
@@ -645,7 +661,7 @@ public class GetFieldsForAddOnMemberCreationByEmployee extends base {
 						.body("Result[60].Values[4].Id", equalTo(3))
 						.body("Result[60].Values[4].Value", equalTo("Weight Loss"))
 						.body("Result[60].MaximumLength", equalTo(0))
-						.body("Result[60].DataType", equalTo("string"))*/
+						.body("Result[60].DataType", equalTo("string"))
 
 						.body("Result[61].FieldName", equalTo("GeneralNotes"))
 						.body("Result[61].Description", equalTo("Notes"))
