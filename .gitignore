@@ -1,1 +1,60 @@
 /target/
+<<<<<<< HEAD
+=======
+/test-output/
+
+*.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.xml
+*.html
+*.html
+test-output/emailable-report.html
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.xml
+
+test-output/CompeteAPI/Continuous Integration.html
+test-output/CompeteAPI/Continuous Integration.xml
+test-output/emailable-report.html
+test-output/ExtentReportsTestNG.html
+test-output/index.html
+test-output/junitreports/TEST-JonasFitness.API.AuthenticateMemberByUserCredentials.xml
+test-output/junitreports/TEST-JonasFitness.API.GetActiveBooksByResourceType.xml
+test-output/junitreports/TEST-JonasFitness.API.GetActiveClubs.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAllPackagesForPurchaseByClub.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentDetails.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentProductByCategory.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentProductCategoriesByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentResourceTypeByProduct.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentsByBook.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAppointmentsByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAvailableAppointments.xml
+test-output/junitreports/TEST-JonasFitness.API.GetAvailableResourceTypesByClub.xml
+test-output/junitreports/TEST-JonasFitness.API.getbookavailabilitycalendar.xml
+test-output/junitreports/TEST-JonasFitness.API.GetCardsOnFileByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetClassesAndCoursesByBook.xml
+test-output/junitreports/TEST-JonasFitness.API.GetClassesAndCoursesByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetClubsByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetOnlinePackagesForPurchaseByClub.xml
+test-output/junitreports/TEST-JonasFitness.API.GetPackageDetails.xml
+test-output/junitreports/TEST-JonasFitness.API.GetProductByBook.xml
+test-output/junitreports/TEST-JonasFitness.API.GetPurchasedPackagesByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.GetScheduleByBook.xml
+test-output/junitreports/TEST-JonasFitness.API.GetScheduleByMember.xml
+test-output/junitreports/TEST-JonasFitness.API.SearchMembers.xml
+test-output/junitreports/TEST-JonasFitness.API.SearchMembersByProduct.xml
+test-output/junitreports/TEST-JonasFitness.API.SearchOnlineMembersByProduct.xml
+test-output/junitreports/TEST-JonasFitness.API.SecurityPipeline.xml
+test-output/old/CompeteAPI/classes.html
+test-output/old/CompeteAPI/index.html
+test-output/old/CompeteAPI/main.html
+test-output/old/CompeteAPI/methods-alphabetical.html
+test-output/old/CompeteAPI/methods-not-run.html
+test-output/old/CompeteAPI/methods.html
+test-output/old/CompeteAPI/toc.html
+test-output/old/index.html
+test-output/testng-results.xml
+
+>>>>>>> parent of ede9354... adding target files to help resolve compile issue
