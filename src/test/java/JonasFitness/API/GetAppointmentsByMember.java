@@ -30,11 +30,9 @@ public class GetAppointmentsByMember extends base {
 	@Test (testName="AppointmentsFound",description="PBI:124124")
 	public void AppointmentsFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
-//		String memberName = "Ryan Auto";
-//		int member = 230;
+		String member = "230";
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))

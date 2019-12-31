@@ -1,1035 +1,1045 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="191" passed="191" failed="0" skipped="0">
+<testng-results ignored="0" total="192" passed="192" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-12-31T10:06:45 EST" name="CompeteAPI v3" finished-at="2019-12-31T10:08:59 EST" duration-ms="134393">
+  <suite started-at="2019-12-31T11:44:54 EST" name="CompeteAPI v3" finished-at="2019-12-31T11:47:19 EST" duration-ms="145472">
     <groups>
     </groups>
-    <test started-at="2019-12-31T10:06:45 EST" name="API - Continuous Integration" finished-at="2019-12-31T10:08:59 EST" duration-ms="134393">
+    <test started-at="2019-12-31T11:44:54 EST" name="API - Continuous Integration" finished-at="2019-12-31T11:47:19 EST" duration-ms="145472">
       <class name="JonasFitness.API.GetAvailableAppointments">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@1a4013]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@306f16f3]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="AppointmentsFound_NoResources()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@1a4013]" started-at="2019-12-31T10:07:50 EST" name="AppointmentsFound_NoResources" description="PBI:127498" finished-at="2019-12-31T10:07:52 EST" duration-ms="2025" status="PASS">
+        <test-method signature="AppointmentsFound_NoResources()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@306f16f3]" started-at="2019-12-31T11:46:04 EST" name="AppointmentsFound_NoResources" description="PBI:127498" finished-at="2019-12-31T11:46:06 EST" duration-ms="2046" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsFound_NoResources -->
-        <test-method signature="AppointmentsFound_WithResources()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@1a4013]" started-at="2019-12-31T10:07:52 EST" name="AppointmentsFound_WithResources" description="PBI:127498" finished-at="2019-12-31T10:07:53 EST" duration-ms="1594" status="PASS">
+        <test-method signature="AppointmentsFound_WithResources()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@306f16f3]" started-at="2019-12-31T11:46:06 EST" name="AppointmentsFound_WithResources" description="PBI:127498" finished-at="2019-12-31T11:46:07 EST" duration-ms="1544" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsFound_WithResources -->
-        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@1a4013]" started-at="2019-12-31T10:07:53 EST" name="AppointmentsNotFound" description="PBI:127498" finished-at="2019-12-31T10:07:54 EST" duration-ms="1199" status="PASS">
+        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAvailableAppointments@306f16f3]" started-at="2019-12-31T11:46:07 EST" name="AppointmentsNotFound" description="PBI:127498" finished-at="2019-12-31T11:46:08 EST" duration-ms="1214" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsNotFound -->
       </class> <!-- JonasFitness.API.GetAvailableAppointments -->
       <class name="JonasFitness.API.GetAppointmentDetails">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@649bec2e]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@34f5090e]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@649bec2e]" started-at="2019-12-31T10:07:42 EST" name="AppointmentsFound" description="PBI:139310" finished-at="2019-12-31T10:07:42 EST" duration-ms="799" status="PASS">
+        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@34f5090e]" started-at="2019-12-31T11:45:56 EST" name="AppointmentsFound" description="PBI:139310" finished-at="2019-12-31T11:45:56 EST" duration-ms="806" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsFound -->
-        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@649bec2e]" started-at="2019-12-31T10:07:42 EST" name="AppointmentsNotFound" description="PBI:139310" finished-at="2019-12-31T10:07:43 EST" duration-ms="425" status="PASS">
+        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentDetails@34f5090e]" started-at="2019-12-31T11:45:56 EST" name="AppointmentsNotFound" description="PBI:139310" finished-at="2019-12-31T11:45:57 EST" duration-ms="607" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsNotFound -->
       </class> <!-- JonasFitness.API.GetAppointmentDetails -->
       <class name="JonasFitness.API.GetOnlineAvailableCoursesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@247d8ae]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@6c130c45]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="coursesFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@247d8ae]" started-at="2019-12-31T10:08:16 EST" name="coursesFound" description="PBI:144257" finished-at="2019-12-31T10:08:18 EST" duration-ms="1844" status="PASS">
+        <test-method signature="coursesFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@6c130c45]" started-at="2019-12-31T11:46:35 EST" name="coursesFound" description="PBI:144257" finished-at="2019-12-31T11:46:37 EST" duration-ms="1647" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- coursesFound -->
-        <test-method signature="coursesNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@247d8ae]" started-at="2019-12-31T10:08:18 EST" name="coursesNotFound" description="PBI:144257" finished-at="2019-12-31T10:08:19 EST" duration-ms="956" status="PASS">
+        <test-method signature="coursesNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@6c130c45]" started-at="2019-12-31T11:46:37 EST" name="coursesNotFound" description="PBI:144257" finished-at="2019-12-31T11:46:38 EST" duration-ms="954" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- coursesNotFound -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@247d8ae]" started-at="2019-12-31T10:08:19 EST" name="customerNotFound" description="PBI:144257" finished-at="2019-12-31T10:08:19 EST" duration-ms="351" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableCoursesByMember@6c130c45]" started-at="2019-12-31T11:46:38 EST" name="customerNotFound" description="PBI:144257" finished-at="2019-12-31T11:46:38 EST" duration-ms="360" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
       </class> <!-- JonasFitness.API.GetOnlineAvailableCoursesByMember -->
-      <class name="JonasFitness.API.CancelAppointmentByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.CancelAppointmentByMember@66498326]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="2" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="ApptNotFound()[pri:0, instance:JonasFitness.API.CancelAppointmentByMember@66498326]" started-at="2019-12-31T10:07:02 EST" name="ApptNotFound" description="PBI:141862" finished-at="2019-12-31T10:07:02 EST" duration-ms="446" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ApptNotFound -->
-      </class> <!-- JonasFitness.API.CancelAppointmentByMember -->
       <class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@b62d79]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@5ace1ed4]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="notEnoughPunches()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@b62d79]" started-at="2019-12-31T10:07:28 EST" name="notEnoughPunches" description="PBI:147820" finished-at="2019-12-31T10:07:29 EST" duration-ms="901" status="PASS">
+        <test-method signature="notEnoughPunches()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@5ace1ed4]" started-at="2019-12-31T11:45:41 EST" name="notEnoughPunches" description="PBI:147820" finished-at="2019-12-31T11:45:41 EST" duration-ms="935" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- notEnoughPunches -->
-        <test-method signature="punchcardNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@b62d79]" started-at="2019-12-31T10:07:29 EST" name="punchcardNotAllowed" description="PBI:147820" finished-at="2019-12-31T10:07:30 EST" duration-ms="948" status="PASS">
+        <test-method signature="punchcardNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@5ace1ed4]" started-at="2019-12-31T11:45:41 EST" name="punchcardNotAllowed" description="PBI:147820" finished-at="2019-12-31T11:45:42 EST" duration-ms="966" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- punchcardNotAllowed -->
-        <test-method signature="standbyNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@b62d79]" started-at="2019-12-31T10:07:30 EST" name="standbyNotAllowed" description="PBI:147820" finished-at="2019-12-31T10:07:31 EST" duration-ms="802" status="PASS">
+        <test-method signature="standbyNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseWithPunchcard@5ace1ed4]" started-at="2019-12-31T11:45:42 EST" name="standbyNotAllowed" description="PBI:147820" finished-at="2019-12-31T11:45:43 EST" duration-ms="600" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- standbyNotAllowed -->
       </class> <!-- JonasFitness.API.EnrollMemberInCourseWithPunchcard -->
-      <class name="JonasFitness.API.GetAppointmentResourceTypeByProduct">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@31e5415e]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="2" status="PASS">
+      <class name="JonasFitness.API.CancelAppointmentByMember">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.CancelAppointmentByMember@1e6454ec]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ProductFoundNoSelectableResources()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@31e5415e]" started-at="2019-12-31T10:07:45 EST" name="ProductFoundNoSelectableResources" description="PBI:127470" finished-at="2019-12-31T10:07:45 EST" duration-ms="462" status="PASS">
+        <test-method signature="ApptNotFound()[pri:0, instance:JonasFitness.API.CancelAppointmentByMember@1e6454ec]" started-at="2019-12-31T11:45:14 EST" name="ApptNotFound" description="PBI:141862" finished-at="2019-12-31T11:45:14 EST" duration-ms="429" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ApptNotFound -->
+      </class> <!-- JonasFitness.API.CancelAppointmentByMember -->
+      <class name="JonasFitness.API.GetAppointmentResourceTypeByProduct">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@1cbb87f3]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="ProductFoundNoSelectableResources()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@1cbb87f3]" started-at="2019-12-31T11:45:58 EST" name="ProductFoundNoSelectableResources" description="PBI:127470" finished-at="2019-12-31T11:45:59 EST" duration-ms="491" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ProductFoundNoSelectableResources -->
-        <test-method signature="ProductFoundSelectableResources()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@31e5415e]" started-at="2019-12-31T10:07:45 EST" name="ProductFoundSelectableResources" description="PBI:127470" finished-at="2019-12-31T10:07:45 EST" duration-ms="488" status="PASS">
+        <test-method signature="ProductFoundSelectableResources()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@1cbb87f3]" started-at="2019-12-31T11:45:59 EST" name="ProductFoundSelectableResources" description="PBI:127470" finished-at="2019-12-31T11:45:59 EST" duration-ms="489" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ProductFoundSelectableResources -->
-        <test-method signature="ProductNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@31e5415e]" started-at="2019-12-31T10:07:45 EST" name="ProductNotFound" description="PBI:127470" finished-at="2019-12-31T10:07:46 EST" duration-ms="518" status="PASS">
+        <test-method signature="ProductNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentResourceTypeByProduct@1cbb87f3]" started-at="2019-12-31T11:45:59 EST" name="ProductNotFound" description="PBI:127470" finished-at="2019-12-31T11:46:00 EST" duration-ms="511" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ProductNotFound -->
       </class> <!-- JonasFitness.API.GetAppointmentResourceTypeByProduct -->
       <class name="JonasFitness.API.GetMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetMember@550ee7e5]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetMember@48974e45]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="MemberFound()[pri:0, instance:JonasFitness.API.GetMember@550ee7e5]" started-at="2019-12-31T10:08:11 EST" name="MemberFound" description="PBI:124934" finished-at="2019-12-31T10:08:12 EST" duration-ms="829" status="PASS">
+        <test-method signature="MemberFound()[pri:0, instance:JonasFitness.API.GetMember@48974e45]" started-at="2019-12-31T11:46:30 EST" name="MemberFound" description="PBI:124934" finished-at="2019-12-31T11:46:31 EST" duration-ms="1018" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MemberFound -->
-        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetMember@550ee7e5]" started-at="2019-12-31T10:08:12 EST" name="MemberNotFound" description="PBI:124934" finished-at="2019-12-31T10:08:13 EST" duration-ms="560" status="PASS">
+        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetMember@48974e45]" started-at="2019-12-31T11:46:31 EST" name="MemberNotFound" description="PBI:124934" finished-at="2019-12-31T11:46:31 EST" duration-ms="367" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MemberNotFound -->
       </class> <!-- JonasFitness.API.GetMember -->
       <class name="JonasFitness.API.GetAvailableResourceTypesByClub">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@1b6e1eff]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@702b8b12]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ResourceTypesFound()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@1b6e1eff]" started-at="2019-12-31T10:07:54 EST" name="ResourceTypesFound" description="PBI:138961" finished-at="2019-12-31T10:07:55 EST" duration-ms="419" status="PASS">
+        <test-method signature="ResourceTypesFound()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@702b8b12]" started-at="2019-12-31T11:46:08 EST" name="ResourceTypesFound" description="PBI:138961" finished-at="2019-12-31T11:46:09 EST" duration-ms="422" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ResourceTypesFound -->
-        <test-method signature="ResourceTypesNotFound()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@1b6e1eff]" started-at="2019-12-31T10:07:55 EST" name="ResourceTypesNotFound" description="PBI:138961" finished-at="2019-12-31T10:07:55 EST" duration-ms="358" status="PASS">
+        <test-method signature="ResourceTypesNotFound()[pri:0, instance:JonasFitness.API.GetAvailableResourceTypesByClub@702b8b12]" started-at="2019-12-31T11:46:09 EST" name="ResourceTypesNotFound" description="PBI:138961" finished-at="2019-12-31T11:46:09 EST" duration-ms="352" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ResourceTypesNotFound -->
       </class> <!-- JonasFitness.API.GetAvailableResourceTypesByClub -->
-      <class name="JonasFitness.API.GetClassesAndCoursesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@49912c99]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="ClassesCoursesFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@49912c99]" started-at="2019-12-31T10:08:00 EST" name="ClassesCoursesFound" description="PBI:124953" finished-at="2019-12-31T10:08:01 EST" duration-ms="711" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ClassesCoursesFound -->
-        <test-method signature="ClassesCoursesNotFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@49912c99]" started-at="2019-12-31T10:08:01 EST" name="ClassesCoursesNotFound" description="PBI:124953" finished-at="2019-12-31T10:08:01 EST" duration-ms="430" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ClassesCoursesNotFound -->
-      </class> <!-- JonasFitness.API.GetClassesAndCoursesByMember -->
-      <class name="JonasFitness.API.SearchMembersByProduct">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="searchMembersByProduct_Email()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:39 EST" name="searchMembersByProduct_Email" description="PBI:139726" finished-at="2019-12-31T10:08:39 EST" duration-ms="462" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_Email -->
-        <test-method signature="searchMembersByProduct_FirstLastName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:39 EST" name="searchMembersByProduct_FirstLastName" description="PBI:139726" finished-at="2019-12-31T10:08:40 EST" duration-ms="454" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_FirstLastName -->
-        <test-method signature="searchMembersByProduct_FirstName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:40 EST" name="searchMembersByProduct_FirstName" description="PBI:139726" finished-at="2019-12-31T10:08:40 EST" duration-ms="640" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_FirstName -->
-        <test-method signature="searchMembersByProduct_HomePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:40 EST" name="searchMembersByProduct_HomePhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T10:08:41 EST" duration-ms="448" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_HomePhoneWithDashes -->
-        <test-method signature="searchMembersByProduct_HomePhoneWithoutDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:41 EST" name="searchMembersByProduct_HomePhoneWithoutDashes" description="PBI:139726" finished-at="2019-12-31T10:08:41 EST" duration-ms="456" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_HomePhoneWithoutDashes -->
-        <test-method signature="searchMembersByProduct_LastFirstName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:41 EST" name="searchMembersByProduct_LastFirstName" description="PBI:139726" finished-at="2019-12-31T10:08:42 EST" duration-ms="445" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_LastFirstName -->
-        <test-method signature="searchMembersByProduct_LastName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:42 EST" name="searchMembersByProduct_LastName" description="PBI:139726" finished-at="2019-12-31T10:08:42 EST" duration-ms="502" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_LastName -->
-        <test-method signature="searchMembersByProduct_MobilePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:42 EST" name="searchMembersByProduct_MobilePhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T10:08:43 EST" duration-ms="460" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_MobilePhoneWithDashes -->
-        <test-method signature="searchMembersByProduct_MobilePhoneWithoutDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:43 EST" name="searchMembersByProduct_MobilePhoneWithoutDashes" description="PBI:139726" finished-at="2019-12-31T10:08:43 EST" duration-ms="454" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_MobilePhoneWithoutDashes -->
-        <test-method signature="searchMembersByProduct_WorkPhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@20f5239f]" started-at="2019-12-31T10:08:43 EST" name="searchMembersByProduct_WorkPhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T10:08:43 EST" duration-ms="441" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- searchMembersByProduct_WorkPhoneWithDashes -->
-      </class> <!-- JonasFitness.API.SearchMembersByProduct -->
       <class name="JonasFitness.API.SearchMembers">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="searchMembers_Email()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:33 EST" name="searchMembers_Email" description="PBI:124130" finished-at="2019-12-31T10:08:34 EST" duration-ms="526" status="PASS">
+        <test-method signature="searchMembers_Email()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:52 EST" name="searchMembers_Email" description="PBI:124130" finished-at="2019-12-31T11:46:53 EST" duration-ms="551" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_Email -->
-        <test-method signature="searchMembers_FirstName()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:34 EST" name="searchMembers_FirstName" description="PBI:124130" finished-at="2019-12-31T10:08:34 EST" duration-ms="526" status="PASS">
+        <test-method signature="searchMembers_FirstName()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:53 EST" name="searchMembers_FirstName" description="PBI:124130" finished-at="2019-12-31T11:46:53 EST" duration-ms="700" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_FirstName -->
-        <test-method signature="searchMembers_HomePhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:34 EST" name="searchMembers_HomePhoneDashes" description="PBI:124130" finished-at="2019-12-31T10:08:35 EST" duration-ms="516" status="PASS">
+        <test-method signature="searchMembers_HomePhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:53 EST" name="searchMembers_HomePhoneDashes" description="PBI:124130" finished-at="2019-12-31T11:46:54 EST" duration-ms="519" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_HomePhoneDashes -->
-        <test-method signature="searchMembers_HomePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:35 EST" name="searchMembers_HomePhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T10:08:35 EST" duration-ms="527" status="PASS">
+        <test-method signature="searchMembers_HomePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:54 EST" name="searchMembers_HomePhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T11:46:54 EST" duration-ms="533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_HomePhoneNoDashes -->
-        <test-method signature="searchMembers_LastFirstName()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:35 EST" name="searchMembers_LastFirstName" description="PBI:124130" finished-at="2019-12-31T10:08:36 EST" duration-ms="537" status="PASS">
+        <test-method signature="searchMembers_LastFirstName()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:54 EST" name="searchMembers_LastFirstName" description="PBI:124130" finished-at="2019-12-31T11:46:55 EST" duration-ms="543" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_LastFirstName -->
-        <test-method signature="searchMembers_LastName()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:36 EST" name="searchMembers_LastName" description="PBI:124130" finished-at="2019-12-31T10:08:36 EST" duration-ms="826" status="PASS">
+        <test-method signature="searchMembers_LastName()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:55 EST" name="searchMembers_LastName" description="PBI:124130" finished-at="2019-12-31T11:46:56 EST" duration-ms="812" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_LastName -->
-        <test-method signature="searchMembers_MobilePhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:36 EST" name="searchMembers_MobilePhoneDashes" description="PBI:124130" finished-at="2019-12-31T10:08:37 EST" duration-ms="517" status="PASS">
+        <test-method signature="searchMembers_MobilePhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:56 EST" name="searchMembers_MobilePhoneDashes" description="PBI:124130" finished-at="2019-12-31T11:46:56 EST" duration-ms="514" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_MobilePhoneDashes -->
-        <test-method signature="searchMembers_MobilePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:37 EST" name="searchMembers_MobilePhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T10:08:37 EST" duration-ms="514" status="PASS">
+        <test-method signature="searchMembers_MobilePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:56 EST" name="searchMembers_MobilePhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T11:46:57 EST" duration-ms="518" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_MobilePhoneNoDashes -->
-        <test-method signature="searchMembers_WorkPhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:37 EST" name="searchMembers_WorkPhoneDashes" description="PBI:124130" finished-at="2019-12-31T10:08:38 EST" duration-ms="525" status="PASS">
+        <test-method signature="searchMembers_WorkPhoneDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:57 EST" name="searchMembers_WorkPhoneDashes" description="PBI:124130" finished-at="2019-12-31T11:46:57 EST" duration-ms="521" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_WorkPhoneDashes -->
-        <test-method signature="searchMembers_WorkPhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@193f604a]" started-at="2019-12-31T10:08:38 EST" name="searchMembers_WorkPhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T10:08:39 EST" duration-ms="698" status="PASS">
+        <test-method signature="searchMembers_WorkPhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchMembers@6bedbc4d]" started-at="2019-12-31T11:46:57 EST" name="searchMembers_WorkPhoneNoDashes" description="PBI:124130" finished-at="2019-12-31T11:46:58 EST" duration-ms="537" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchMembers_WorkPhoneNoDashes -->
       </class> <!-- JonasFitness.API.SearchMembers -->
-      <class name="JonasFitness.API.GetAppointmentsByBook">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@a2431d0]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.SearchMembersByProduct">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@a2431d0]" started-at="2019-12-31T10:07:46 EST" name="AppointmentsFound" description="PBI:132256" finished-at="2019-12-31T10:07:47 EST" duration-ms="1142" status="PASS">
+        <test-method signature="searchMembersByProduct_Email()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:46:58 EST" name="searchMembersByProduct_Email" description="PBI:139726" finished-at="2019-12-31T11:46:59 EST" duration-ms="631" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_Email -->
+        <test-method signature="searchMembersByProduct_FirstLastName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:46:59 EST" name="searchMembersByProduct_FirstLastName" description="PBI:139726" finished-at="2019-12-31T11:46:59 EST" duration-ms="448" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_FirstLastName -->
+        <test-method signature="searchMembersByProduct_FirstName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:46:59 EST" name="searchMembersByProduct_FirstName" description="PBI:139726" finished-at="2019-12-31T11:47:00 EST" duration-ms="664" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_FirstName -->
+        <test-method signature="searchMembersByProduct_HomePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:00 EST" name="searchMembersByProduct_HomePhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T11:47:00 EST" duration-ms="647" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_HomePhoneWithDashes -->
+        <test-method signature="searchMembersByProduct_HomePhoneWithoutDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:00 EST" name="searchMembersByProduct_HomePhoneWithoutDashes" description="PBI:139726" finished-at="2019-12-31T11:47:01 EST" duration-ms="461" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_HomePhoneWithoutDashes -->
+        <test-method signature="searchMembersByProduct_LastFirstName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:01 EST" name="searchMembersByProduct_LastFirstName" description="PBI:139726" finished-at="2019-12-31T11:47:01 EST" duration-ms="459" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_LastFirstName -->
+        <test-method signature="searchMembersByProduct_LastName()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:01 EST" name="searchMembersByProduct_LastName" description="PBI:139726" finished-at="2019-12-31T11:47:02 EST" duration-ms="519" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_LastName -->
+        <test-method signature="searchMembersByProduct_MobilePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:02 EST" name="searchMembersByProduct_MobilePhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T11:47:02 EST" duration-ms="475" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_MobilePhoneWithDashes -->
+        <test-method signature="searchMembersByProduct_MobilePhoneWithoutDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:02 EST" name="searchMembersByProduct_MobilePhoneWithoutDashes" description="PBI:139726" finished-at="2019-12-31T11:47:03 EST" duration-ms="481" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_MobilePhoneWithoutDashes -->
+        <test-method signature="searchMembersByProduct_WorkPhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchMembersByProduct@932bc4a]" started-at="2019-12-31T11:47:03 EST" name="searchMembersByProduct_WorkPhoneWithDashes" description="PBI:139726" finished-at="2019-12-31T11:47:03 EST" duration-ms="449" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchMembersByProduct_WorkPhoneWithDashes -->
+      </class> <!-- JonasFitness.API.SearchMembersByProduct -->
+      <class name="JonasFitness.API.GetClassesAndCoursesByMember">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@2dde1bff]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="ClassesCoursesFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@2dde1bff]" started-at="2019-12-31T11:46:14 EST" name="ClassesCoursesFound" description="PBI:124953" finished-at="2019-12-31T11:46:15 EST" duration-ms="725" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClassesCoursesFound -->
+        <test-method signature="ClassesCoursesNotFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByMember@2dde1bff]" started-at="2019-12-31T11:46:15 EST" name="ClassesCoursesNotFound" description="PBI:124953" finished-at="2019-12-31T11:46:15 EST" duration-ms="432" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClassesCoursesNotFound -->
+      </class> <!-- JonasFitness.API.GetClassesAndCoursesByMember -->
+      <class name="JonasFitness.API.GetAppointmentsByBook">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@1a4013]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@1a4013]" started-at="2019-12-31T11:46:00 EST" name="AppointmentsFound" description="PBI:132256" finished-at="2019-12-31T11:46:01 EST" duration-ms="1156" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsFound -->
-        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@a2431d0]" started-at="2019-12-31T10:07:47 EST" name="AppointmentsNotFound" description="PBI:132256" finished-at="2019-12-31T10:07:48 EST" duration-ms="436" status="PASS">
+        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@1a4013]" started-at="2019-12-31T11:46:01 EST" name="AppointmentsNotFound" description="PBI:132256" finished-at="2019-12-31T11:46:01 EST" duration-ms="439" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsNotFound -->
-        <test-method signature="InvalidDateRange()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@a2431d0]" started-at="2019-12-31T10:07:48 EST" name="InvalidDateRange" description="PBI:132256" finished-at="2019-12-31T10:07:48 EST" duration-ms="333" status="PASS">
+        <test-method signature="InvalidDateRange()[pri:0, instance:JonasFitness.API.GetAppointmentsByBook@1a4013]" started-at="2019-12-31T11:46:01 EST" name="InvalidDateRange" description="PBI:132256" finished-at="2019-12-31T11:46:02 EST" duration-ms="335" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvalidDateRange -->
       </class> <!-- JonasFitness.API.GetAppointmentsByBook -->
       <class name="JonasFitness.API.GetAppointmentProductByCategory">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentProductByCategory@693fe6c9]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentProductByCategory@31e5415e]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetAppointmentProductByCategory@693fe6c9]" started-at="2019-12-31T10:07:43 EST" name="ValidInput" description="PBI:127468" finished-at="2019-12-31T10:07:43 EST" duration-ms="492" status="PASS">
+        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetAppointmentProductByCategory@31e5415e]" started-at="2019-12-31T11:45:57 EST" name="ValidInput" description="PBI:127468" finished-at="2019-12-31T11:45:57 EST" duration-ms="502" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidInput -->
       </class> <!-- JonasFitness.API.GetAppointmentProductByCategory -->
       <class name="JonasFitness.API.GetAllAvailableCoursesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@27ff5d15]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@649bec2e]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@27ff5d15]" started-at="2019-12-31T10:07:36 EST" name="ValidInput" description="PBI:146572" finished-at="2019-12-31T10:07:37 EST" duration-ms="1559" status="PASS">
+        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@649bec2e]" started-at="2019-12-31T11:45:49 EST" name="ValidInput" description="PBI:146572" finished-at="2019-12-31T11:45:51 EST" duration-ms="1955" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidInput -->
-        <test-method signature="coursesNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@27ff5d15]" started-at="2019-12-31T10:07:37 EST" name="coursesNotFound" description="PBI:146572" finished-at="2019-12-31T10:07:38 EST" duration-ms="947" status="PASS">
+        <test-method signature="coursesNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@649bec2e]" started-at="2019-12-31T11:45:51 EST" name="coursesNotFound" description="PBI:146572" finished-at="2019-12-31T11:45:52 EST" duration-ms="976" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- coursesNotFound -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@27ff5d15]" started-at="2019-12-31T10:07:38 EST" name="customerNotFound" description="PBI:146572" finished-at="2019-12-31T10:07:39 EST" duration-ms="409" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableCoursesByMember@649bec2e]" started-at="2019-12-31T11:45:52 EST" name="customerNotFound" description="PBI:146572" finished-at="2019-12-31T11:45:53 EST" duration-ms="354" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
       </class> <!-- JonasFitness.API.GetAllAvailableCoursesByMember -->
       <class name="JonasFitness.API.EnrollMemberInCourseOnAccount">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="courseEnded()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:15 EST" name="courseEnded" description="PBI:143589" finished-at="2019-12-31T10:07:16 EST" duration-ms="592" status="PASS">
+        <test-method signature="courseEnded()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:27 EST" name="courseEnded" description="PBI:143589" finished-at="2019-12-31T11:45:28 EST" duration-ms="598" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseEnded -->
-        <test-method signature="courseEnrollmentClosed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:16 EST" name="courseEnrollmentClosed" description="PBI:143589" finished-at="2019-12-31T10:07:16 EST" duration-ms="637" status="PASS">
+        <test-method signature="courseEnrollmentClosed()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:28 EST" name="courseEnrollmentClosed" description="PBI:143589" finished-at="2019-12-31T11:45:28 EST" duration-ms="634" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseEnrollmentClosed -->
-        <test-method signature="courseNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:16 EST" name="courseNotFound" description="PBI:143589" finished-at="2019-12-31T10:07:17 EST" duration-ms="473" status="PASS">
+        <test-method signature="courseNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:28 EST" name="courseNotFound" description="PBI:143589" finished-at="2019-12-31T11:45:29 EST" duration-ms="493" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseNotFound -->
-        <test-method signature="creditLimitedExceeded()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:17 EST" name="creditLimitedExceeded" description="PBI:143589" finished-at="2019-12-31T10:07:18 EST" duration-ms="1044" status="PASS">
+        <test-method signature="creditLimitedExceeded()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:29 EST" name="creditLimitedExceeded" description="PBI:143589" finished-at="2019-12-31T11:45:30 EST" duration-ms="795" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- creditLimitedExceeded -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:18 EST" name="customerNotFound" description="PBI:143589" finished-at="2019-12-31T10:07:18 EST" duration-ms="355" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:30 EST" name="customerNotFound" description="PBI:143589" finished-at="2019-12-31T11:45:30 EST" duration-ms="377" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
-        <test-method signature="enrollCollectionsMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:18 EST" name="enrollCollectionsMember" description="PBI:143589" finished-at="2019-12-31T10:07:19 EST" duration-ms="759" status="PASS">
+        <test-method signature="enrollCollectionsMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:30 EST" name="enrollCollectionsMember" description="PBI:143589" finished-at="2019-12-31T11:45:31 EST" duration-ms="799" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollCollectionsMember -->
-        <test-method signature="enrollFrozenMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:19 EST" name="enrollFrozenMember" description="PBI:143589" finished-at="2019-12-31T10:07:20 EST" duration-ms="633" status="PASS">
+        <test-method signature="enrollFrozenMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:31 EST" name="enrollFrozenMember" description="PBI:143589" finished-at="2019-12-31T11:45:31 EST" duration-ms="639" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollFrozenMember -->
-        <test-method signature="enrollProspectMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:20 EST" name="enrollProspectMember" description="PBI:143589" finished-at="2019-12-31T10:07:20 EST" duration-ms="816" status="PASS">
+        <test-method signature="enrollProspectMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:31 EST" name="enrollProspectMember" description="PBI:143589" finished-at="2019-12-31T11:45:32 EST" duration-ms="834" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollProspectMember -->
-        <test-method signature="enrollTerminatedMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:20 EST" name="enrollTerminatedMember" description="PBI:143589" finished-at="2019-12-31T10:07:21 EST" duration-ms="632" status="PASS">
+        <test-method signature="enrollTerminatedMember()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:32 EST" name="enrollTerminatedMember" description="PBI:143589" finished-at="2019-12-31T11:45:33 EST" duration-ms="652" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollTerminatedMember -->
-        <test-method signature="enrollmentNotAllowed_Item()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:21 EST" name="enrollmentNotAllowed_Item" description="PBI:143589" finished-at="2019-12-31T10:07:22 EST" duration-ms="635" status="PASS">
+        <test-method signature="enrollmentNotAllowed_Item()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:33 EST" name="enrollmentNotAllowed_Item" description="PBI:143589" finished-at="2019-12-31T11:45:34 EST" duration-ms="794" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentNotAllowed_Item -->
-        <test-method signature="enrollmentNotOpen()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:22 EST" name="enrollmentNotOpen" description="PBI:143589" finished-at="2019-12-31T10:07:22 EST" duration-ms="598" status="PASS">
+        <test-method signature="enrollmentNotOpen()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:34 EST" name="enrollmentNotOpen" description="PBI:143589" finished-at="2019-12-31T11:45:34 EST" duration-ms="673" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentNotOpen -->
-        <test-method signature="memberAlreadyEnrolled()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:22 EST" name="memberAlreadyEnrolled" description="PBI:143589" finished-at="2019-12-31T10:07:23 EST" duration-ms="578" status="PASS">
+        <test-method signature="memberAlreadyEnrolled()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:34 EST" name="memberAlreadyEnrolled" description="PBI:143589" finished-at="2019-12-31T11:45:35 EST" duration-ms="586" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberAlreadyEnrolled -->
-        <test-method signature="memberAlreadyOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:23 EST" name="memberAlreadyOnStandby" description="PBI:143589" finished-at="2019-12-31T10:07:23 EST" duration-ms="566" status="PASS">
+        <test-method signature="memberAlreadyOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:35 EST" name="memberAlreadyOnStandby" description="PBI:143589" finished-at="2019-12-31T11:45:36 EST" duration-ms="602" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberAlreadyOnStandby -->
-        <test-method signature="memberNotEnrolledOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:23 EST" name="memberNotEnrolledOnStandby" description="PBI:143589" finished-at="2019-12-31T10:07:24 EST" duration-ms="635" status="PASS">
+        <test-method signature="memberNotEnrolledOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:36 EST" name="memberNotEnrolledOnStandby" description="PBI:143589" finished-at="2019-12-31T11:45:36 EST" duration-ms="628" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberNotEnrolledOnStandby -->
-        <test-method signature="noFOP_AccountProblem()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:24 EST" name="noFOP_AccountProblem" description="PBI:143589" finished-at="2019-12-31T10:07:25 EST" duration-ms="778" status="PASS">
+        <test-method signature="noFOP_AccountProblem()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:36 EST" name="noFOP_AccountProblem" description="PBI:143589" finished-at="2019-12-31T11:45:37 EST" duration-ms="777" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- noFOP_AccountProblem -->
-        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@1e6454ec]" started-at="2019-12-31T10:07:25 EST" name="productPriceChanged" description="PBI:143589" finished-at="2019-12-31T10:07:25 EST" duration-ms="607" status="PASS">
+        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.EnrollMemberInCourseOnAccount@b62d79]" started-at="2019-12-31T11:45:37 EST" name="productPriceChanged" description="PBI:143589" finished-at="2019-12-31T11:45:38 EST" duration-ms="669" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- productPriceChanged -->
       </class> <!-- JonasFitness.API.EnrollMemberInCourseOnAccount -->
       <class name="JonasFitness.API.GetAllPackagesForPurchaseByClub">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@4e096385]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@693fe6c9]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="OnlineNotAllowed_PackageFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@4e096385]" started-at="2019-12-31T10:07:39 EST" name="OnlineNotAllowed_PackageFound" description="PBI:143540" finished-at="2019-12-31T10:07:40 EST" duration-ms="991" status="PASS">
+        <test-method signature="OnlineNotAllowed_PackageFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@693fe6c9]" started-at="2019-12-31T11:45:53 EST" name="OnlineNotAllowed_PackageFound" description="PBI:143540" finished-at="2019-12-31T11:45:54 EST" duration-ms="987" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- OnlineNotAllowed_PackageFound -->
-        <test-method signature="PackageFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@4e096385]" started-at="2019-12-31T10:07:40 EST" name="PackageFound" description="PBI:143540" finished-at="2019-12-31T10:07:41 EST" duration-ms="1036" status="PASS">
+        <test-method signature="PackageFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@693fe6c9]" started-at="2019-12-31T11:45:54 EST" name="PackageFound" description="PBI:143540" finished-at="2019-12-31T11:45:55 EST" duration-ms="1043" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackageFound -->
-        <test-method signature="PackageNotFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@4e096385]" started-at="2019-12-31T10:07:41 EST" name="PackageNotFound" description="PBI:143540" finished-at="2019-12-31T10:07:42 EST" duration-ms="1001" status="PASS">
+        <test-method signature="PackageNotFound()[pri:0, instance:JonasFitness.API.GetAllPackagesForPurchaseByClub@693fe6c9]" started-at="2019-12-31T11:45:55 EST" name="PackageNotFound" description="PBI:143540" finished-at="2019-12-31T11:45:56 EST" duration-ms="1003" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackageNotFound -->
       </class> <!-- JonasFitness.API.GetAllPackagesForPurchaseByClub -->
       <class name="JonasFitness.API.GetPackageDetails">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="NotServiceTypeV()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:21 EST" name="NotServiceTypeV" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:21 EST" duration-ms="441" status="PASS">
+        <test-method signature="NotServiceTypeV()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:40 EST" name="NotServiceTypeV" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:41 EST" duration-ms="424" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NotServiceTypeV -->
-        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:21 EST" name="invalidCustomerId" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:22 EST" duration-ms="419" status="PASS">
+        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:41 EST" name="invalidCustomerId" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:41 EST" duration-ms="432" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidCustomerId -->
-        <test-method signature="invalidPackageId()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:22 EST" name="invalidPackageId" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:22 EST" duration-ms="417" status="PASS">
+        <test-method signature="invalidPackageId()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:41 EST" name="invalidPackageId" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:41 EST" duration-ms="416" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidPackageId -->
-        <test-method signature="multiplePriceRanges()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:22 EST" name="multiplePriceRanges" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:22 EST" duration-ms="509" status="PASS">
+        <test-method signature="multiplePriceRanges()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:41 EST" name="multiplePriceRanges" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:42 EST" duration-ms="537" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- multiplePriceRanges -->
-        <test-method signature="service_Inactive()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:22 EST" name="service_Inactive" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:23 EST" duration-ms="530" status="PASS">
+        <test-method signature="service_Inactive()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:42 EST" name="service_Inactive" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:42 EST" duration-ms="533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- service_Inactive -->
-        <test-method signature="service_OnlineSalesAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:23 EST" name="service_OnlineSalesAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:24 EST" duration-ms="697" status="PASS">
+        <test-method signature="service_OnlineSalesAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:42 EST" name="service_OnlineSalesAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:43 EST" duration-ms="686" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- service_OnlineSalesAllowed -->
-        <test-method signature="service_OnlineSalesNotAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:24 EST" name="service_OnlineSalesNotAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:24 EST" duration-ms="515" status="PASS">
+        <test-method signature="service_OnlineSalesNotAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:43 EST" name="service_OnlineSalesNotAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:44 EST" duration-ms="499" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- service_OnlineSalesNotAllowed -->
-        <test-method signature="singlePriceRange()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:24 EST" name="singlePriceRange" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:25 EST" duration-ms="499" status="PASS">
+        <test-method signature="singlePriceRange()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:44 EST" name="singlePriceRange" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:44 EST" duration-ms="505" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- singlePriceRange -->
-        <test-method signature="training_Inactive()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:25 EST" name="training_Inactive" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:25 EST" duration-ms="505" status="PASS">
+        <test-method signature="training_Inactive()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:44 EST" name="training_Inactive" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:45 EST" duration-ms="510" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- training_Inactive -->
-        <test-method signature="training_OnlineSalesAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:25 EST" name="training_OnlineSalesAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:26 EST" duration-ms="509" status="PASS">
+        <test-method signature="training_OnlineSalesAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:45 EST" name="training_OnlineSalesAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:45 EST" duration-ms="510" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- training_OnlineSalesAllowed -->
-        <test-method signature="training_OnlineSalesNotAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@6a84a97d]" started-at="2019-12-31T10:08:26 EST" name="training_OnlineSalesNotAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T10:08:26 EST" duration-ms="685" status="PASS">
+        <test-method signature="training_OnlineSalesNotAllowed()[pri:0, instance:JonasFitness.API.GetPackageDetails@223aa2f7]" started-at="2019-12-31T11:46:45 EST" name="training_OnlineSalesNotAllowed" description="PBI:143538, 148154" finished-at="2019-12-31T11:46:46 EST" duration-ms="684" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- training_OnlineSalesNotAllowed -->
       </class> <!-- JonasFitness.API.GetPackageDetails -->
-      <class name="JonasFitness.API.GetActiveClubs">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetActiveClubs@5ace1ed4]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="ClubsFound()[pri:0, instance:JonasFitness.API.GetActiveClubs@5ace1ed4]" started-at="2019-12-31T10:07:32 EST" name="ClubsFound" description="PBI:138959" finished-at="2019-12-31T10:07:32 EST" duration-ms="501" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ClubsFound -->
-      </class> <!-- JonasFitness.API.GetActiveClubs -->
       <class name="JonasFitness.API.GetClubsByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClubsByMember@10163d6]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClubsByMember@15bbf42f]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ClubsFound()[pri:0, instance:JonasFitness.API.GetClubsByMember@10163d6]" started-at="2019-12-31T10:08:01 EST" name="ClubsFound" description="PBI:127465" finished-at="2019-12-31T10:08:02 EST" duration-ms="591" status="PASS">
+        <test-method signature="ClubsFound()[pri:0, instance:JonasFitness.API.GetClubsByMember@15bbf42f]" started-at="2019-12-31T11:46:15 EST" name="ClubsFound" description="PBI:127465" finished-at="2019-12-31T11:46:16 EST" duration-ms="583" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ClubsFound -->
-        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetClubsByMember@10163d6]" started-at="2019-12-31T10:08:02 EST" name="MemberNotFound" description="PBI:127465" finished-at="2019-12-31T10:08:02 EST" duration-ms="524" status="PASS">
+        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetClubsByMember@15bbf42f]" started-at="2019-12-31T11:46:16 EST" name="MemberNotFound" description="PBI:127465" finished-at="2019-12-31T11:46:16 EST" duration-ms="582" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MemberNotFound -->
       </class> <!-- JonasFitness.API.GetClubsByMember -->
-      <class name="JonasFitness.API.GetPurchasedPackagesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@50ad3bc1]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.GetActiveClubs">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetActiveClubs@27ff5d15]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="PackagesFound()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@50ad3bc1]" started-at="2019-12-31T10:08:27 EST" name="PackagesFound" description="PBI:124125" finished-at="2019-12-31T10:08:27 EST" duration-ms="574" status="PASS">
+        <test-method signature="ClubsFound()[pri:0, instance:JonasFitness.API.GetActiveClubs@27ff5d15]" started-at="2019-12-31T11:45:44 EST" name="ClubsFound" description="PBI:138959" finished-at="2019-12-31T11:45:44 EST" duration-ms="492" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClubsFound -->
+      </class> <!-- JonasFitness.API.GetActiveClubs -->
+      <class name="JonasFitness.API.GetPurchasedPackagesByMember">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@193f604a]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="PackagesFound()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@193f604a]" started-at="2019-12-31T11:46:46 EST" name="PackagesFound" description="PBI:124125" finished-at="2019-12-31T11:46:47 EST" duration-ms="587" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackagesFound -->
-        <test-method signature="PackagesNotFound()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@50ad3bc1]" started-at="2019-12-31T10:08:27 EST" name="PackagesNotFound" description="PBI:124125" finished-at="2019-12-31T10:08:28 EST" duration-ms="476" status="PASS">
+        <test-method signature="PackagesNotFound()[pri:0, instance:JonasFitness.API.GetPurchasedPackagesByMember@193f604a]" started-at="2019-12-31T11:46:47 EST" name="PackagesNotFound" description="PBI:124125" finished-at="2019-12-31T11:46:47 EST" duration-ms="496" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackagesNotFound -->
       </class> <!-- JonasFitness.API.GetPurchasedPackagesByMember -->
-      <class name="JonasFitness.API.GetAppointmentsByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1cbb87f3]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee@247d8ae]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1cbb87f3]" started-at="2019-12-31T10:07:48 EST" name="AppointmentsFound" description="PBI:124124" finished-at="2019-12-31T10:07:49 EST" duration-ms="712" status="PASS">
+        <test-method signature="fieldsFound()[pri:0, instance:JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee@247d8ae]" started-at="2019-12-31T11:46:25 EST" name="fieldsFound" description="PBI:147958" finished-at="2019-12-31T11:46:30 EST" duration-ms="4693" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fieldsFound -->
+      </class> <!-- JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee -->
+      <class name="JonasFitness.API.GetAppointmentsByMember">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1b6e1eff]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="AppointmentsFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1b6e1eff]" started-at="2019-12-31T11:46:02 EST" name="AppointmentsFound" description="PBI:124124" finished-at="2019-12-31T11:46:03 EST" duration-ms="693" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsFound -->
-        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1cbb87f3]" started-at="2019-12-31T10:07:49 EST" name="AppointmentsNotFound" description="PBI:124124" finished-at="2019-12-31T10:07:49 EST" duration-ms="607" status="PASS">
+        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1b6e1eff]" started-at="2019-12-31T11:46:03 EST" name="AppointmentsNotFound" description="PBI:124124" finished-at="2019-12-31T11:46:03 EST" duration-ms="676" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AppointmentsNotFound -->
-        <test-method signature="InvalidDateRange()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1cbb87f3]" started-at="2019-12-31T10:07:49 EST" name="InvalidDateRange" description="PBI:124124" finished-at="2019-12-31T10:07:50 EST" duration-ms="346" status="PASS">
+        <test-method signature="InvalidDateRange()[pri:0, instance:JonasFitness.API.GetAppointmentsByMember@1b6e1eff]" started-at="2019-12-31T11:46:03 EST" name="InvalidDateRange" description="PBI:124124" finished-at="2019-12-31T11:46:04 EST" duration-ms="334" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvalidDateRange -->
       </class> <!-- JonasFitness.API.GetAppointmentsByMember -->
       <class name="JonasFitness.API.GetAllAvailableClassesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@1613674b]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@4e096385]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="classFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@1613674b]" started-at="2019-12-31T10:07:32 EST" name="classFound" description="PBI:146571" finished-at="2019-12-31T10:07:35 EST" duration-ms="2422" status="PASS">
+        <test-method signature="classFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@4e096385]" started-at="2019-12-31T11:45:44 EST" name="classFound" description="PBI:146571" finished-at="2019-12-31T11:45:48 EST" duration-ms="3671" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classFound -->
-        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@1613674b]" started-at="2019-12-31T10:07:35 EST" name="classNotFound" description="PBI:146571" finished-at="2019-12-31T10:07:35 EST" duration-ms="781" status="PASS">
+        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@4e096385]" started-at="2019-12-31T11:45:48 EST" name="classNotFound" description="PBI:146571" finished-at="2019-12-31T11:45:49 EST" duration-ms="806" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@1613674b]" started-at="2019-12-31T10:07:35 EST" name="customerNotFound" description="PBI:146571" finished-at="2019-12-31T10:07:36 EST" duration-ms="354" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetAllAvailableClassesByMember@4e096385]" started-at="2019-12-31T11:45:49 EST" name="customerNotFound" description="PBI:146571" finished-at="2019-12-31T11:45:49 EST" duration-ms="352" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
       </class> <!-- JonasFitness.API.GetAllAvailableClassesByMember -->
       <class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@48974e45]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@50ad3bc1]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="PackageNotAllowed()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@48974e45]" started-at="2019-12-31T10:08:19 EST" name="PackageNotAllowed" description="PBI:143537" finished-at="2019-12-31T10:08:20 EST" duration-ms="840" status="PASS">
+        <test-method signature="PackageNotAllowed()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@50ad3bc1]" started-at="2019-12-31T11:46:38 EST" name="PackageNotAllowed" description="PBI:143537" finished-at="2019-12-31T11:46:39 EST" duration-ms="821" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackageNotAllowed -->
-        <test-method signature="PackagesFound()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@48974e45]" started-at="2019-12-31T10:08:20 EST" name="PackagesFound" description="PBI:143537" finished-at="2019-12-31T10:08:21 EST" duration-ms="862" status="PASS">
+        <test-method signature="PackagesFound()[pri:0, instance:JonasFitness.API.GetOnlinePackagesForPurchaseByClub@50ad3bc1]" started-at="2019-12-31T11:46:39 EST" name="PackagesFound" description="PBI:143537" finished-at="2019-12-31T11:46:40 EST" duration-ms="880" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PackagesFound -->
       </class> <!-- JonasFitness.API.GetOnlinePackagesForPurchaseByClub -->
-      <class name="JonasFitness.API.VerifyCourseEnrollmentCapability">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="courseFullStandbyAllowed()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:55 EST" name="courseFullStandbyAllowed" description="PBI:150004" finished-at="2019-12-31T10:08:56 EST" duration-ms="514" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- courseFullStandbyAllowed -->
-        <test-method signature="customerAlreadyEnrolled()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:56 EST" name="customerAlreadyEnrolled" description="PBI:150004" finished-at="2019-12-31T10:08:56 EST" duration-ms="453" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- customerAlreadyEnrolled -->
-        <test-method signature="customerAlreadyOnStandby()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:56 EST" name="customerAlreadyOnStandby" description="PBI:150004" finished-at="2019-12-31T10:08:56 EST" duration-ms="438" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- customerAlreadyOnStandby -->
-        <test-method signature="enrollmentCapabilityVerified()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:56 EST" name="enrollmentCapabilityVerified" description="PBI:150004" finished-at="2019-12-31T10:08:57 EST" duration-ms="496" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- enrollmentCapabilityVerified -->
-        <test-method signature="enrollmentNotAllowed()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:57 EST" name="enrollmentNotAllowed" description="PBI:150004" finished-at="2019-12-31T10:08:58 EST" duration-ms="1001" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- enrollmentNotAllowed -->
-        <test-method signature="invalidCourseBarcodeId()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:58 EST" name="invalidCourseBarcodeId" description="PBI:150004" finished-at="2019-12-31T10:08:58 EST" duration-ms="319" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- invalidCourseBarcodeId -->
-        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:58 EST" name="invalidCustomerId" description="PBI:150004" finished-at="2019-12-31T10:08:59 EST" duration-ms="220" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- invalidCustomerId -->
-        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@d29f28]" started-at="2019-12-31T10:08:59 EST" name="productPriceChanged" description="PBI:150004" finished-at="2019-12-31T10:08:59 EST" duration-ms="479" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- productPriceChanged -->
-      </class> <!-- JonasFitness.API.VerifyCourseEnrollmentCapability -->
       <class name="JonasFitness.API.GetBookAvailabilityCalendar">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetBookAvailabilityCalendar@306f16f3]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetBookAvailabilityCalendar@22e357dc]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetBookAvailabilityCalendar@306f16f3]" started-at="2019-12-31T10:07:55 EST" name="ValidInput" description="PBI:140727" finished-at="2019-12-31T10:07:56 EST" duration-ms="486" status="PASS">
+        <test-method signature="ValidInput()[pri:0, instance:JonasFitness.API.GetBookAvailabilityCalendar@22e357dc]" started-at="2019-12-31T11:46:09 EST" name="ValidInput" description="PBI:140727" finished-at="2019-12-31T11:46:10 EST" duration-ms="511" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidInput -->
       </class> <!-- JonasFitness.API.GetBookAvailabilityCalendar -->
-      <class name="JonasFitness.API.GetProductByBook">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetProductByBook@6c130c45]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.VerifyCourseEnrollmentCapability">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ProductFound()[pri:0, instance:JonasFitness.API.GetProductByBook@6c130c45]" started-at="2019-12-31T10:08:26 EST" name="ProductFound" description="PBI:138968" finished-at="2019-12-31T10:08:27 EST" duration-ms="465" status="PASS">
+        <test-method signature="courseFullStandbyAllowed()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:15 EST" name="courseFullStandbyAllowed" description="PBI:150004" finished-at="2019-12-31T11:47:15 EST" duration-ms="511" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- courseFullStandbyAllowed -->
+        <test-method signature="customerAlreadyEnrolled()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:15 EST" name="customerAlreadyEnrolled" description="PBI:150004" finished-at="2019-12-31T11:47:16 EST" duration-ms="465" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- customerAlreadyEnrolled -->
+        <test-method signature="customerAlreadyOnStandby()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:16 EST" name="customerAlreadyOnStandby" description="PBI:150004" finished-at="2019-12-31T11:47:17 EST" duration-ms="732" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- customerAlreadyOnStandby -->
+        <test-method signature="enrollmentCapabilityVerified()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:17 EST" name="enrollmentCapabilityVerified" description="PBI:150004" finished-at="2019-12-31T11:47:17 EST" duration-ms="468" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- enrollmentCapabilityVerified -->
+        <test-method signature="enrollmentNotAllowed()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:17 EST" name="enrollmentNotAllowed" description="PBI:150004" finished-at="2019-12-31T11:47:18 EST" duration-ms="1205" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- enrollmentNotAllowed -->
+        <test-method signature="invalidCourseBarcodeId()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:18 EST" name="invalidCourseBarcodeId" description="PBI:150004" finished-at="2019-12-31T11:47:19 EST" duration-ms="328" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidCourseBarcodeId -->
+        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:19 EST" name="invalidCustomerId" description="PBI:150004" finished-at="2019-12-31T11:47:19 EST" duration-ms="222" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidCustomerId -->
+        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.VerifyCourseEnrollmentCapability@3514a4c0]" started-at="2019-12-31T11:47:19 EST" name="productPriceChanged" description="PBI:150004" finished-at="2019-12-31T11:47:19 EST" duration-ms="500" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- productPriceChanged -->
+      </class> <!-- JonasFitness.API.VerifyCourseEnrollmentCapability -->
+      <class name="JonasFitness.API.GetProductByBook">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetProductByBook@6d3a388c]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="ProductFound()[pri:0, instance:JonasFitness.API.GetProductByBook@6d3a388c]" started-at="2019-12-31T11:46:46 EST" name="ProductFound" description="PBI:138968" finished-at="2019-12-31T11:46:46 EST" duration-ms="469" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ProductFound -->
       </class> <!-- JonasFitness.API.GetProductByBook -->
       <class name="JonasFitness.API.GetCourseDetails">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="courseFound()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:08:07 EST" name="courseFound" description="PBI:143545" finished-at="2019-12-31T10:08:08 EST" duration-ms="1070" status="PASS">
+        <test-method signature="courseFound()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:46:21 EST" name="courseFound" description="PBI:143545" finished-at="2019-12-31T11:46:22 EST" duration-ms="1092" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseFound -->
-        <test-method signature="courseNotFound_ClassBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:08:08 EST" name="courseNotFound_ClassBarcodeIDUsed" description="PBI:143545" finished-at="2019-12-31T10:08:09 EST" duration-ms="895" status="PASS">
+        <test-method signature="courseNotFound_ClassBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:46:22 EST" name="courseNotFound_ClassBarcodeIDUsed" description="PBI:143545" finished-at="2019-12-31T11:46:23 EST" duration-ms="914" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseNotFound_ClassBarcodeIDUsed -->
-        <test-method signature="courseNotFound_InvalidCourseBarcodeID()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:08:09 EST" name="courseNotFound_InvalidCourseBarcodeID" description="PBI:143545" finished-at="2019-12-31T10:08:10 EST" duration-ms="739" status="PASS">
+        <test-method signature="courseNotFound_InvalidCourseBarcodeID()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:46:23 EST" name="courseNotFound_InvalidCourseBarcodeID" description="PBI:143545" finished-at="2019-12-31T11:46:24 EST" duration-ms="738" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseNotFound_InvalidCourseBarcodeID -->
-        <test-method signature="courseNotFound_TrainingBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:08:10 EST" name="courseNotFound_TrainingBarcodeIDUsed" description="PBI:143545" finished-at="2019-12-31T10:08:10 EST" duration-ms="933" status="PASS">
+        <test-method signature="courseNotFound_TrainingBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:46:24 EST" name="courseNotFound_TrainingBarcodeIDUsed" description="PBI:143545" finished-at="2019-12-31T11:46:25 EST" duration-ms="990" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- courseNotFound_TrainingBarcodeIDUsed -->
-        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetCourseDetails@15bbf42f]" started-at="2019-12-31T10:08:10 EST" name="invalidCustomerId" description="PBI:143545" finished-at="2019-12-31T10:08:11 EST" duration-ms="638" status="PASS">
+        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetCourseDetails@5f9b2141]" started-at="2019-12-31T11:46:25 EST" name="invalidCustomerId" description="PBI:143545" finished-at="2019-12-31T11:46:25 EST" duration-ms="654" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidCustomerId -->
       </class> <!-- JonasFitness.API.GetCourseDetails -->
       <class name="JonasFitness.API.GetActiveBooksByResourceType">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@6631f5ca]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@1613674b]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="BookFound_NoResource()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@6631f5ca]" started-at="2019-12-31T10:07:31 EST" name="BookFound_NoResource" description="PBI:138964" finished-at="2019-12-31T10:07:31 EST" duration-ms="412" status="PASS">
+        <test-method signature="BookFound_NoResource()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@1613674b]" started-at="2019-12-31T11:45:43 EST" name="BookFound_NoResource" description="PBI:138964" finished-at="2019-12-31T11:45:43 EST" duration-ms="414" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BookFound_NoResource -->
-        <test-method signature="BookFound_WithResource()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@6631f5ca]" started-at="2019-12-31T10:07:31 EST" name="BookFound_WithResource" description="PBI:138964" finished-at="2019-12-31T10:07:32 EST" duration-ms="408" status="PASS">
+        <test-method signature="BookFound_WithResource()[pri:0, instance:JonasFitness.API.GetActiveBooksByResourceType@1613674b]" started-at="2019-12-31T11:45:43 EST" name="BookFound_WithResource" description="PBI:138964" finished-at="2019-12-31T11:45:44 EST" duration-ms="437" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- BookFound_WithResource -->
       </class> <!-- JonasFitness.API.GetActiveBooksByResourceType -->
       <class name="JonasFitness.API.GetClassesAndCoursesByBook">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByBook@22e357dc]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByBook@10163d6]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ClassesCoursesFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByBook@22e357dc]" started-at="2019-12-31T10:07:59 EST" name="ClassesCoursesFound" description="PBI:140729" finished-at="2019-12-31T10:08:00 EST" duration-ms="804" status="PASS">
+        <test-method signature="ClassesCoursesFound()[pri:0, instance:JonasFitness.API.GetClassesAndCoursesByBook@10163d6]" started-at="2019-12-31T11:46:13 EST" name="ClassesCoursesFound" description="PBI:140729" finished-at="2019-12-31T11:46:14 EST" duration-ms="793" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ClassesCoursesFound -->
       </class> <!-- JonasFitness.API.GetClassesAndCoursesByBook -->
       <class name="JonasFitness.API.GetScheduleByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetScheduleByMember@6d3a388c]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetScheduleByMember@57af006c]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="appointmentFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@6d3a388c]" started-at="2019-12-31T10:08:31 EST" name="appointmentFound" description="PBI:124954" finished-at="2019-12-31T10:08:32 EST" duration-ms="753" status="PASS">
+        <test-method signature="appointmentFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@57af006c]" started-at="2019-12-31T11:46:50 EST" name="appointmentFound" description="PBI:124954" finished-at="2019-12-31T11:46:51 EST" duration-ms="686" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- appointmentFound -->
-        <test-method signature="classFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@6d3a388c]" started-at="2019-12-31T10:08:32 EST" name="classFound" description="PBI:124954" finished-at="2019-12-31T10:08:32 EST" duration-ms="810" status="PASS">
+        <test-method signature="classFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@57af006c]" started-at="2019-12-31T11:46:51 EST" name="classFound" description="PBI:124954" finished-at="2019-12-31T11:46:52 EST" duration-ms="731" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classFound -->
-        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@6d3a388c]" started-at="2019-12-31T10:08:32 EST" name="classNotFound" description="PBI:124954" finished-at="2019-12-31T10:08:33 EST" duration-ms="623" status="PASS">
+        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByMember@57af006c]" started-at="2019-12-31T11:46:52 EST" name="classNotFound" description="PBI:124954" finished-at="2019-12-31T11:46:52 EST" duration-ms="454" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound -->
       </class> <!-- JonasFitness.API.GetScheduleByMember -->
       <class name="JonasFitness.API.GetCardsOnFileByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="CardWithoutAgreement()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:56 EST" name="CardWithoutAgreement" description="PBI:146302" finished-at="2019-12-31T10:07:56 EST" duration-ms="578" status="PASS">
+        <test-method signature="CardWithoutAgreement()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:10 EST" name="CardWithoutAgreement" description="PBI:146302" finished-at="2019-12-31T11:46:10 EST" duration-ms="563" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CardWithoutAgreement -->
-        <test-method signature="MultipleAgreementsWithMultipleCards()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:56 EST" name="MultipleAgreementsWithMultipleCards" description="PBI:146302" finished-at="2019-12-31T10:07:57 EST" duration-ms="694" status="PASS">
+        <test-method signature="MultipleAgreementsWithMultipleCards()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:10 EST" name="MultipleAgreementsWithMultipleCards" description="PBI:146302" finished-at="2019-12-31T11:46:11 EST" duration-ms="690" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MultipleAgreementsWithMultipleCards -->
-        <test-method signature="MultipleAgreementsWithSingleCard()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:57 EST" name="MultipleAgreementsWithSingleCard" description="PBI:146302" finished-at="2019-12-31T10:07:58 EST" duration-ms="709" status="PASS">
+        <test-method signature="MultipleAgreementsWithSingleCard()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:11 EST" name="MultipleAgreementsWithSingleCard" description="PBI:146302" finished-at="2019-12-31T11:46:12 EST" duration-ms="739" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MultipleAgreementsWithSingleCard -->
-        <test-method signature="NoCardOnFile()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:58 EST" name="NoCardOnFile" description="PBI:146302" finished-at="2019-12-31T10:07:58 EST" duration-ms="471" status="PASS">
+        <test-method signature="NoCardOnFile()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:12 EST" name="NoCardOnFile" description="PBI:146302" finished-at="2019-12-31T11:46:12 EST" duration-ms="483" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NoCardOnFile -->
-        <test-method signature="SingleAgreementMultipleCardsOnFile()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:58 EST" name="SingleAgreementMultipleCardsOnFile" description="PBI:146302" finished-at="2019-12-31T10:07:59 EST" duration-ms="675" status="PASS">
+        <test-method signature="SingleAgreementMultipleCardsOnFile()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:12 EST" name="SingleAgreementMultipleCardsOnFile" description="PBI:146302" finished-at="2019-12-31T11:46:13 EST" duration-ms="708" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SingleAgreementMultipleCardsOnFile -->
-        <test-method signature="SingleAgreementWithCard()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@702b8b12]" started-at="2019-12-31T10:07:59 EST" name="SingleAgreementWithCard" description="PBI:146302" finished-at="2019-12-31T10:07:59 EST" duration-ms="569" status="PASS">
+        <test-method signature="SingleAgreementWithCard()[pri:0, instance:JonasFitness.API.GetCardsOnFileByMember@49912c99]" started-at="2019-12-31T11:46:13 EST" name="SingleAgreementWithCard" description="PBI:146302" finished-at="2019-12-31T11:46:13 EST" duration-ms="568" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SingleAgreementWithCard -->
       </class> <!-- JonasFitness.API.GetCardsOnFileByMember -->
-      <class name="JonasFitness.API.GetClassDetails">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.GetScheduleByBook">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetScheduleByBook@20f5239f]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="classFoundOnlineSaleAllowed()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:02 EST" name="classFoundOnlineSaleAllowed" description="PBI:143544" finished-at="2019-12-31T10:08:04 EST" duration-ms="1158" status="PASS">
+        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByBook@20f5239f]" started-at="2019-12-31T11:46:47 EST" name="AppointmentsNotFound" description="PBI:140730" finished-at="2019-12-31T11:46:48 EST" duration-ms="434" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AppointmentsNotFound -->
+        <test-method signature="ClassesNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByBook@20f5239f]" started-at="2019-12-31T11:46:48 EST" name="ClassesNotFound" description="PBI:140730" finished-at="2019-12-31T11:46:48 EST" duration-ms="453" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ClassesNotFound -->
+        <test-method signature="GetAppointments()[pri:0, instance:JonasFitness.API.GetScheduleByBook@20f5239f]" started-at="2019-12-31T11:46:48 EST" name="GetAppointments" description="PBI:140730" finished-at="2019-12-31T11:46:49 EST" duration-ms="832" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetAppointments -->
+        <test-method signature="GetClasses()[pri:0, instance:JonasFitness.API.GetScheduleByBook@20f5239f]" started-at="2019-12-31T11:46:49 EST" name="GetClasses" description="PBI:140730" finished-at="2019-12-31T11:46:50 EST" duration-ms="1205" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- GetClasses -->
+      </class> <!-- JonasFitness.API.GetScheduleByBook -->
+      <class name="JonasFitness.API.GetClassDetails">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="classFoundOnlineSaleAllowed()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:16 EST" name="classFoundOnlineSaleAllowed" description="PBI:143544" finished-at="2019-12-31T11:46:18 EST" duration-ms="1182" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classFoundOnlineSaleAllowed -->
-        <test-method signature="classFoundOnlineSaleNotAllowed()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:04 EST" name="classFoundOnlineSaleNotAllowed" description="PBI:143544" finished-at="2019-12-31T10:08:04 EST" duration-ms="906" status="PASS">
+        <test-method signature="classFoundOnlineSaleNotAllowed()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:18 EST" name="classFoundOnlineSaleNotAllowed" description="PBI:143544" finished-at="2019-12-31T11:46:18 EST" duration-ms="724" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classFoundOnlineSaleNotAllowed -->
-        <test-method signature="classNotFound_ClassBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:04 EST" name="classNotFound_ClassBarcodeIDUsed" description="PBI:143544" finished-at="2019-12-31T10:08:05 EST" duration-ms="570" status="PASS">
+        <test-method signature="classNotFound_ClassBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:18 EST" name="classNotFound_ClassBarcodeIDUsed" description="PBI:143544" finished-at="2019-12-31T11:46:19 EST" duration-ms="577" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound_ClassBarcodeIDUsed -->
-        <test-method signature="classNotFound_InvalidClassBarcodeID()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:05 EST" name="classNotFound_InvalidClassBarcodeID" description="PBI:143544" finished-at="2019-12-31T10:08:06 EST" duration-ms="898" status="PASS">
+        <test-method signature="classNotFound_InvalidClassBarcodeID()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:19 EST" name="classNotFound_InvalidClassBarcodeID" description="PBI:143544" finished-at="2019-12-31T11:46:20 EST" duration-ms="869" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound_InvalidClassBarcodeID -->
-        <test-method signature="classNotFound_TrainingBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:06 EST" name="classNotFound_TrainingBarcodeIDUsed" description="PBI:143544" finished-at="2019-12-31T10:08:07 EST" duration-ms="573" status="PASS">
+        <test-method signature="classNotFound_TrainingBarcodeIDUsed()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:20 EST" name="classNotFound_TrainingBarcodeIDUsed" description="PBI:143544" finished-at="2019-12-31T11:46:20 EST" duration-ms="583" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound_TrainingBarcodeIDUsed -->
-        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetClassDetails@2dde1bff]" started-at="2019-12-31T10:08:07 EST" name="invalidCustomerId" description="PBI:143544" finished-at="2019-12-31T10:08:07 EST" duration-ms="346" status="PASS">
+        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.GetClassDetails@550ee7e5]" started-at="2019-12-31T11:46:20 EST" name="invalidCustomerId" description="PBI:143544" finished-at="2019-12-31T11:46:21 EST" duration-ms="362" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidCustomerId -->
       </class> <!-- JonasFitness.API.GetClassDetails -->
       <class name="JonasFitness.API.GetOnlineAvailableClassesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@5f9b2141]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@6a84a97d]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@5f9b2141]" started-at="2019-12-31T10:08:13 EST" name="classNotFound" description="PBI:144256" finished-at="2019-12-31T10:08:13 EST" duration-ms="815" status="PASS">
+        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@6a84a97d]" started-at="2019-12-31T11:46:31 EST" name="classNotFound" description="PBI:144256" finished-at="2019-12-31T11:46:32 EST" duration-ms="775" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound -->
-        <test-method signature="classesFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@5f9b2141]" started-at="2019-12-31T10:08:13 EST" name="classesFound" description="PBI:144256" finished-at="2019-12-31T10:08:15 EST" duration-ms="2109" status="PASS">
+        <test-method signature="classesFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@6a84a97d]" started-at="2019-12-31T11:46:32 EST" name="classesFound" description="PBI:144256" finished-at="2019-12-31T11:46:35 EST" duration-ms="3026" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classesFound -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@5f9b2141]" started-at="2019-12-31T10:08:15 EST" name="customerNotFound" description="PBI:144256" finished-at="2019-12-31T10:08:16 EST" duration-ms="375" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.GetOnlineAvailableClassesByMember@6a84a97d]" started-at="2019-12-31T11:46:35 EST" name="customerNotFound" description="PBI:144256" finished-at="2019-12-31T11:46:35 EST" duration-ms="382" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
       </class> <!-- JonasFitness.API.GetOnlineAvailableClassesByMember -->
-      <class name="JonasFitness.API.GetScheduleByBook">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetScheduleByBook@223aa2f7]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="AppointmentsNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByBook@223aa2f7]" started-at="2019-12-31T10:08:28 EST" name="AppointmentsNotFound" description="PBI:140730" finished-at="2019-12-31T10:08:28 EST" duration-ms="440" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- AppointmentsNotFound -->
-        <test-method signature="ClassesNotFound()[pri:0, instance:JonasFitness.API.GetScheduleByBook@223aa2f7]" started-at="2019-12-31T10:08:28 EST" name="ClassesNotFound" description="PBI:140730" finished-at="2019-12-31T10:08:29 EST" duration-ms="420" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- ClassesNotFound -->
-        <test-method signature="GetAppointments()[pri:0, instance:JonasFitness.API.GetScheduleByBook@223aa2f7]" started-at="2019-12-31T10:08:29 EST" name="GetAppointments" description="PBI:140730" finished-at="2019-12-31T10:08:30 EST" duration-ms="808" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- GetAppointments -->
-        <test-method signature="GetClasses()[pri:0, instance:JonasFitness.API.GetScheduleByBook@223aa2f7]" started-at="2019-12-31T10:08:30 EST" name="GetClasses" description="PBI:140730" finished-at="2019-12-31T10:08:31 EST" duration-ms="1209" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- GetClasses -->
-      </class> <!-- JonasFitness.API.GetScheduleByBook -->
       <class name="JonasFitness.API.EnrollMemberInClassOnAccount">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="classEnded()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:02 EST" name="classEnded" description="PBI:143588" finished-at="2019-12-31T10:07:03 EST" duration-ms="742" status="PASS">
+        <test-method signature="classEnded()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:14 EST" name="classEnded" description="PBI:143588" finished-at="2019-12-31T11:45:15 EST" duration-ms="740" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classEnded -->
-        <test-method signature="classEnrollmentClosed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:03 EST" name="classEnrollmentClosed" description="PBI:143588" finished-at="2019-12-31T10:07:04 EST" duration-ms="785" status="PASS">
+        <test-method signature="classEnrollmentClosed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:15 EST" name="classEnrollmentClosed" description="PBI:143588" finished-at="2019-12-31T11:45:16 EST" duration-ms="732" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classEnrollmentClosed -->
-        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:04 EST" name="classNotFound" description="PBI:143588" finished-at="2019-12-31T10:07:05 EST" duration-ms="581" status="PASS">
+        <test-method signature="classNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:16 EST" name="classNotFound" description="PBI:143588" finished-at="2019-12-31T11:45:16 EST" duration-ms="652" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classNotFound -->
-        <test-method signature="creditLimitedExceeded()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:05 EST" name="creditLimitedExceeded" description="PBI:143588" finished-at="2019-12-31T10:07:06 EST" duration-ms="985" status="PASS">
+        <test-method signature="creditLimitedExceeded()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:16 EST" name="creditLimitedExceeded" description="PBI:143588" finished-at="2019-12-31T11:45:17 EST" duration-ms="911" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- creditLimitedExceeded -->
-        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:06 EST" name="customerNotFound" description="PBI:143588" finished-at="2019-12-31T10:07:06 EST" duration-ms="352" status="PASS">
+        <test-method signature="customerNotFound()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:17 EST" name="customerNotFound" description="PBI:143588" finished-at="2019-12-31T11:45:18 EST" duration-ms="371" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerNotFound -->
-        <test-method signature="enrollCollectionsMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:06 EST" name="enrollCollectionsMember" description="PBI:143588" finished-at="2019-12-31T10:07:07 EST" duration-ms="848" status="PASS">
+        <test-method signature="enrollCollectionsMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:18 EST" name="enrollCollectionsMember" description="PBI:143588" finished-at="2019-12-31T11:45:18 EST" duration-ms="871" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollCollectionsMember -->
-        <test-method signature="enrollFrozenMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:07 EST" name="enrollFrozenMember" description="PBI:143588" finished-at="2019-12-31T10:07:08 EST" duration-ms="754" status="PASS">
+        <test-method signature="enrollFrozenMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:18 EST" name="enrollFrozenMember" description="PBI:143588" finished-at="2019-12-31T11:45:19 EST" duration-ms="733" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollFrozenMember -->
-        <test-method signature="enrollProspectMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:08 EST" name="enrollProspectMember" description="PBI:143588" finished-at="2019-12-31T10:07:08 EST" duration-ms="864" status="PASS">
+        <test-method signature="enrollProspectMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:19 EST" name="enrollProspectMember" description="PBI:143588" finished-at="2019-12-31T11:45:20 EST" duration-ms="885" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollProspectMember -->
-        <test-method signature="enrollTerminatedMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:08 EST" name="enrollTerminatedMember" description="PBI:143588" finished-at="2019-12-31T10:07:09 EST" duration-ms="718" status="PASS">
+        <test-method signature="enrollTerminatedMember()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:20 EST" name="enrollTerminatedMember" description="PBI:143588" finished-at="2019-12-31T11:45:21 EST" duration-ms="737" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollTerminatedMember -->
-        <test-method signature="enrollmentNotAllowed_Item()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:09 EST" name="enrollmentNotAllowed_Item" description="PBI:143588" finished-at="2019-12-31T10:07:10 EST" duration-ms="730" status="PASS">
+        <test-method signature="enrollmentNotAllowed_Item()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:21 EST" name="enrollmentNotAllowed_Item" description="PBI:143588" finished-at="2019-12-31T11:45:22 EST" duration-ms="736" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentNotAllowed_Item -->
-        <test-method signature="enrollmentNotOpen()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:10 EST" name="enrollmentNotOpen" description="PBI:143588" finished-at="2019-12-31T10:07:11 EST" duration-ms="723" status="PASS">
+        <test-method signature="enrollmentNotOpen()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:22 EST" name="enrollmentNotOpen" description="PBI:143588" finished-at="2019-12-31T11:45:22 EST" duration-ms="734" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentNotOpen -->
-        <test-method signature="memberAlreadyEnrolled()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:11 EST" name="memberAlreadyEnrolled" description="PBI:143588" finished-at="2019-12-31T10:07:11 EST" duration-ms="749" status="PASS">
+        <test-method signature="memberAlreadyEnrolled()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:22 EST" name="memberAlreadyEnrolled" description="PBI:143588" finished-at="2019-12-31T11:45:23 EST" duration-ms="762" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberAlreadyEnrolled -->
-        <test-method signature="memberAlreadyOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:11 EST" name="memberAlreadyOnStandby" description="PBI:143588" finished-at="2019-12-31T10:07:12 EST" duration-ms="717" status="PASS">
+        <test-method signature="memberAlreadyOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:23 EST" name="memberAlreadyOnStandby" description="PBI:143588" finished-at="2019-12-31T11:45:24 EST" duration-ms="713" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberAlreadyOnStandby -->
-        <test-method signature="memberNotEnrolledOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:12 EST" name="memberNotEnrolledOnStandby" description="PBI:143588" finished-at="2019-12-31T10:07:13 EST" duration-ms="719" status="PASS">
+        <test-method signature="memberNotEnrolledOnStandby()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:24 EST" name="memberNotEnrolledOnStandby" description="PBI:143588" finished-at="2019-12-31T11:45:25 EST" duration-ms="775" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- memberNotEnrolledOnStandby -->
-        <test-method signature="noFOP_AccountProblem()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:13 EST" name="noFOP_AccountProblem" description="PBI:143588" finished-at="2019-12-31T10:07:14 EST" duration-ms="867" status="PASS">
+        <test-method signature="noFOP_AccountProblem()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:25 EST" name="noFOP_AccountProblem" description="PBI:143588" finished-at="2019-12-31T11:45:25 EST" duration-ms="895" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- noFOP_AccountProblem -->
-        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:14 EST" name="productPriceChanged" description="PBI:143588" finished-at="2019-12-31T10:07:14 EST" duration-ms="711" status="PASS">
+        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:25 EST" name="productPriceChanged" description="PBI:143588" finished-at="2019-12-31T11:45:26 EST" duration-ms="828" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- productPriceChanged -->
-        <test-method signature="schedulingConflict()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@cad498c]" started-at="2019-12-31T10:07:14 EST" name="schedulingConflict" description="PBI:143588" finished-at="2019-12-31T10:07:15 EST" duration-ms="725" status="PASS">
+        <test-method signature="schedulingConflict()[pri:0, instance:JonasFitness.API.EnrollMemberInClassOnAccount@2accdbb5]" started-at="2019-12-31T11:45:26 EST" name="schedulingConflict" description="PBI:143588" finished-at="2019-12-31T11:45:27 EST" duration-ms="787" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- schedulingConflict -->
       </class> <!-- JonasFitness.API.EnrollMemberInClassOnAccount -->
       <class name="JonasFitness.API.VerifyClassEnrollmentCapability">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="classFullStandbyAllowed()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:50 EST" name="classFullStandbyAllowed" description="PBI:150003" finished-at="2019-12-31T10:08:51 EST" duration-ms="595" status="PASS">
+        <test-method signature="classFullStandbyAllowed()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:10 EST" name="classFullStandbyAllowed" description="PBI:150003" finished-at="2019-12-31T11:47:11 EST" duration-ms="610" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- classFullStandbyAllowed -->
-        <test-method signature="customerAlreadyEnrolled()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:51 EST" name="customerAlreadyEnrolled" description="PBI:150003" finished-at="2019-12-31T10:08:52 EST" duration-ms="587" status="PASS">
+        <test-method signature="customerAlreadyEnrolled()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:11 EST" name="customerAlreadyEnrolled" description="PBI:150003" finished-at="2019-12-31T11:47:11 EST" duration-ms="604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerAlreadyEnrolled -->
-        <test-method signature="customerAlreadyOnStandby()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:52 EST" name="customerAlreadyOnStandby" description="PBI:150003" finished-at="2019-12-31T10:08:52 EST" duration-ms="572" status="PASS">
+        <test-method signature="customerAlreadyOnStandby()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:11 EST" name="customerAlreadyOnStandby" description="PBI:150003" finished-at="2019-12-31T11:47:12 EST" duration-ms="594" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- customerAlreadyOnStandby -->
-        <test-method signature="enrollmentCapabilityVerified()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:52 EST" name="enrollmentCapabilityVerified" description="PBI:150003" finished-at="2019-12-31T10:08:53 EST" duration-ms="585" status="PASS">
+        <test-method signature="enrollmentCapabilityVerified()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:12 EST" name="enrollmentCapabilityVerified" description="PBI:150003" finished-at="2019-12-31T11:47:12 EST" duration-ms="608" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentCapabilityVerified -->
-        <test-method signature="enrollmentNotAllowed()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:53 EST" name="enrollmentNotAllowed" description="PBI:150003" finished-at="2019-12-31T10:08:53 EST" duration-ms="583" status="PASS">
+        <test-method signature="enrollmentNotAllowed()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:12 EST" name="enrollmentNotAllowed" description="PBI:150003" finished-at="2019-12-31T11:47:13 EST" duration-ms="601" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- enrollmentNotAllowed -->
-        <test-method signature="invalidClassBarcodeId()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:53 EST" name="invalidClassBarcodeId" description="PBI:150003" finished-at="2019-12-31T10:08:54 EST" duration-ms="458" status="PASS">
+        <test-method signature="invalidClassBarcodeId()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:13 EST" name="invalidClassBarcodeId" description="PBI:150003" finished-at="2019-12-31T11:47:14 EST" duration-ms="463" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidClassBarcodeId -->
-        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:54 EST" name="invalidCustomerId" description="PBI:150003" finished-at="2019-12-31T10:08:54 EST" duration-ms="217" status="PASS">
+        <test-method signature="invalidCustomerId()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:14 EST" name="invalidCustomerId" description="PBI:150003" finished-at="2019-12-31T11:47:14 EST" duration-ms="220" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidCustomerId -->
-        <test-method signature="invalidOccurrence()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:54 EST" name="invalidOccurrence" description="PBI:150003" finished-at="2019-12-31T10:08:54 EST" duration-ms="444" status="PASS">
+        <test-method signature="invalidOccurrence()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:14 EST" name="invalidOccurrence" description="PBI:150003" finished-at="2019-12-31T11:47:14 EST" duration-ms="445" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invalidOccurrence -->
-        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@932bc4a]" started-at="2019-12-31T10:08:54 EST" name="productPriceChanged" description="PBI:150003" finished-at="2019-12-31T10:08:55 EST" duration-ms="585" status="PASS">
+        <test-method signature="productPriceChanged()[pri:0, instance:JonasFitness.API.VerifyClassEnrollmentCapability@29d89d5d]" started-at="2019-12-31T11:47:14 EST" name="productPriceChanged" description="PBI:150003" finished-at="2019-12-31T11:47:15 EST" duration-ms="604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- productPriceChanged -->
       </class> <!-- JonasFitness.API.VerifyClassEnrollmentCapability -->
       <class name="JonasFitness.API.BookAppointmentByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="FreeAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:06:54 EST" name="FreeAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:06:56 EST" duration-ms="2251" status="PASS">
+        <test-method signature="FreeAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:45:04 EST" name="FreeAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:45:07 EST" duration-ms="2940" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- FreeAppointment_SingleMember -->
-        <test-method signature="PaidAppointment_MultipleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:06:56 EST" name="PaidAppointment_MultipleMember" description="PBI:146227" finished-at="2019-12-31T10:06:58 EST" duration-ms="1400" status="PASS">
+        <test-method signature="PaidAppointment_MultipleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:45:07 EST" name="PaidAppointment_MultipleMember" description="PBI:146227" finished-at="2019-12-31T11:45:09 EST" duration-ms="2124" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PaidAppointment_MultipleMember -->
-        <test-method signature="PaidAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:06:58 EST" name="PaidAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:06:59 EST" duration-ms="1358" status="PASS">
+        <test-method signature="PaidAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:45:09 EST" name="PaidAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:45:11 EST" duration-ms="1723" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PaidAppointment_SingleMember -->
-        <test-method signature="notValidBookableItem()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:06:59 EST" name="notValidBookableItem" description="PBI:146227" finished-at="2019-12-31T10:07:00 EST" duration-ms="610" status="PASS">
+        <test-method signature="notValidBookableItem()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:45:11 EST" name="notValidBookableItem" description="PBI:146227" finished-at="2019-12-31T11:45:11 EST" duration-ms="649" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- notValidBookableItem -->
-        <test-method signature="punchcardAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@625732]" started-at="2019-12-31T10:07:00 EST" name="punchcardAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:07:01 EST" duration-ms="1376" status="PASS">
+        <test-method signature="punchcardAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByMember@66498326]" started-at="2019-12-31T11:45:11 EST" name="punchcardAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:45:13 EST" duration-ms="1407" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- punchcardAppointment_SingleMember -->
       </class> <!-- JonasFitness.API.BookAppointmentByMember -->
       <class name="JonasFitness.API.EnrollMemberInClassWithPunchcard">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@2accdbb5]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@6631f5ca]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="notEnoughPunches()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@2accdbb5]" started-at="2019-12-31T10:07:25 EST" name="notEnoughPunches" description="PBI:147808" finished-at="2019-12-31T10:07:26 EST" duration-ms="1040" status="PASS">
+        <test-method signature="notEnoughPunches()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@6631f5ca]" started-at="2019-12-31T11:45:38 EST" name="notEnoughPunches" description="PBI:147808" finished-at="2019-12-31T11:45:39 EST" duration-ms="1125" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- notEnoughPunches -->
-        <test-method signature="punchcardNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@2accdbb5]" started-at="2019-12-31T10:07:26 EST" name="punchcardNotAllowed" description="PBI:147808" finished-at="2019-12-31T10:07:27 EST" duration-ms="1020" status="PASS">
+        <test-method signature="punchcardNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@6631f5ca]" started-at="2019-12-31T11:45:39 EST" name="punchcardNotAllowed" description="PBI:147808" finished-at="2019-12-31T11:45:40 EST" duration-ms="1084" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- punchcardNotAllowed -->
-        <test-method signature="standbyNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@2accdbb5]" started-at="2019-12-31T10:07:27 EST" name="standbyNotAllowed" description="PBI:147808" finished-at="2019-12-31T10:07:28 EST" duration-ms="705" status="PASS">
+        <test-method signature="standbyNotAllowed()[pri:0, instance:JonasFitness.API.EnrollMemberInClassWithPunchcard@6631f5ca]" started-at="2019-12-31T11:45:40 EST" name="standbyNotAllowed" description="PBI:147808" finished-at="2019-12-31T11:45:41 EST" duration-ms="771" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- standbyNotAllowed -->
       </class> <!-- JonasFitness.API.EnrollMemberInClassWithPunchcard -->
       <class name="JonasFitness.API.SecurityPipeline">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SecurityPipeline@6bedbc4d]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SecurityPipeline@2fd1433e]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="InvalidAPIKey()[pri:0, instance:JonasFitness.API.SecurityPipeline@6bedbc4d]" started-at="2019-12-31T10:08:49 EST" name="InvalidAPIKey" description="PBI:145817" finished-at="2019-12-31T10:08:50 EST" duration-ms="235" status="PASS">
+        <test-method signature="InvalidAPIKey()[pri:0, instance:JonasFitness.API.SecurityPipeline@2fd1433e]" started-at="2019-12-31T11:47:09 EST" name="InvalidAPIKey" description="PBI:145817" finished-at="2019-12-31T11:47:09 EST" duration-ms="233" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvalidAPIKey -->
-        <test-method signature="InvalidClub()[pri:0, instance:JonasFitness.API.SecurityPipeline@6bedbc4d]" started-at="2019-12-31T10:08:50 EST" name="InvalidClub" description="PBI:132893" finished-at="2019-12-31T10:08:50 EST" duration-ms="319" status="PASS">
+        <test-method signature="InvalidClub()[pri:0, instance:JonasFitness.API.SecurityPipeline@2fd1433e]" started-at="2019-12-31T11:47:09 EST" name="InvalidClub" description="PBI:132893" finished-at="2019-12-31T11:47:10 EST" duration-ms="318" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvalidClub -->
-        <test-method signature="InvalidCompany()[pri:0, instance:JonasFitness.API.SecurityPipeline@6bedbc4d]" started-at="2019-12-31T10:08:50 EST" name="InvalidCompany" description="PBI:132893" finished-at="2019-12-31T10:08:50 EST" duration-ms="237" status="PASS">
+        <test-method signature="InvalidCompany()[pri:0, instance:JonasFitness.API.SecurityPipeline@2fd1433e]" started-at="2019-12-31T11:47:10 EST" name="InvalidCompany" description="PBI:132893" finished-at="2019-12-31T11:47:10 EST" duration-ms="236" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- InvalidCompany -->
-        <test-method signature="NoAPIKey()[pri:0, instance:JonasFitness.API.SecurityPipeline@6bedbc4d]" started-at="2019-12-31T10:08:50 EST" name="NoAPIKey" description="PBI:145817" finished-at="2019-12-31T10:08:50 EST" duration-ms="203" status="PASS">
+        <test-method signature="NoAPIKey()[pri:0, instance:JonasFitness.API.SecurityPipeline@2fd1433e]" started-at="2019-12-31T11:47:10 EST" name="NoAPIKey" description="PBI:145817" finished-at="2019-12-31T11:47:10 EST" duration-ms="206" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NoAPIKey -->
       </class> <!-- JonasFitness.API.SecurityPipeline -->
       <class name="JonasFitness.API.SearchOnlineMembersByProduct">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="searchOnlineMembers_Email()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:43 EST" name="searchOnlineMembers_Email" description="PBI:139723" finished-at="2019-12-31T10:08:44 EST" duration-ms="580" status="PASS">
+        <test-method signature="searchOnlineMembers_Email()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:03 EST" name="searchOnlineMembers_Email" description="PBI:139723" finished-at="2019-12-31T11:47:04 EST" duration-ms="612" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_Email -->
-        <test-method signature="searchOnlineMembers_FirstLastName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:44 EST" name="searchOnlineMembers_FirstLastName" description="PBI:139723" finished-at="2019-12-31T10:08:45 EST" duration-ms="565" status="PASS">
+        <test-method signature="searchOnlineMembers_FirstLastName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:04 EST" name="searchOnlineMembers_FirstLastName" description="PBI:139723" finished-at="2019-12-31T11:47:04 EST" duration-ms="575" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_FirstLastName -->
-        <test-method signature="searchOnlineMembers_FirstName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:45 EST" name="searchOnlineMembers_FirstName" description="PBI:139723" finished-at="2019-12-31T10:08:45 EST" duration-ms="736" status="PASS">
+        <test-method signature="searchOnlineMembers_FirstName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:04 EST" name="searchOnlineMembers_FirstName" description="PBI:139723" finished-at="2019-12-31T11:47:05 EST" duration-ms="592" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_FirstName -->
-        <test-method signature="searchOnlineMembers_HomePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:45 EST" name="searchOnlineMembers_HomePhoneNoDashes" description="PBI:139723" finished-at="2019-12-31T10:08:46 EST" duration-ms="570" status="PASS">
+        <test-method signature="searchOnlineMembers_HomePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:05 EST" name="searchOnlineMembers_HomePhoneNoDashes" description="PBI:139723" finished-at="2019-12-31T11:47:06 EST" duration-ms="594" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_HomePhoneNoDashes -->
-        <test-method signature="searchOnlineMembers_HomePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:46 EST" name="searchOnlineMembers_HomePhoneWithDashes" description="PBI:139723" finished-at="2019-12-31T10:08:47 EST" duration-ms="579" status="PASS">
+        <test-method signature="searchOnlineMembers_HomePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:06 EST" name="searchOnlineMembers_HomePhoneWithDashes" description="PBI:139723" finished-at="2019-12-31T11:47:06 EST" duration-ms="578" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_HomePhoneWithDashes -->
-        <test-method signature="searchOnlineMembers_LastFirstName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:47 EST" name="searchOnlineMembers_LastFirstName" description="PBI:139723" finished-at="2019-12-31T10:08:47 EST" duration-ms="559" status="PASS">
+        <test-method signature="searchOnlineMembers_LastFirstName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:06 EST" name="searchOnlineMembers_LastFirstName" description="PBI:139723" finished-at="2019-12-31T11:47:07 EST" duration-ms="581" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_LastFirstName -->
-        <test-method signature="searchOnlineMembers_LastName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:47 EST" name="searchOnlineMembers_LastName" description="PBI:139723" finished-at="2019-12-31T10:08:48 EST" duration-ms="597" status="PASS">
+        <test-method signature="searchOnlineMembers_LastName()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:07 EST" name="searchOnlineMembers_LastName" description="PBI:139723" finished-at="2019-12-31T11:47:07 EST" duration-ms="773" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_LastName -->
-        <test-method signature="searchOnlineMembers_MobilePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:48 EST" name="searchOnlineMembers_MobilePhoneNoDashes" description="PBI:139723" finished-at="2019-12-31T10:08:48 EST" duration-ms="575" status="PASS">
+        <test-method signature="searchOnlineMembers_MobilePhoneNoDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:07 EST" name="searchOnlineMembers_MobilePhoneNoDashes" description="PBI:139723" finished-at="2019-12-31T11:47:08 EST" duration-ms="565" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_MobilePhoneNoDashes -->
-        <test-method signature="searchOnlineMembers_MobilePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:48 EST" name="searchOnlineMembers_MobilePhoneWithDashes" description="PBI:139723" finished-at="2019-12-31T10:08:49 EST" duration-ms="770" status="PASS">
+        <test-method signature="searchOnlineMembers_MobilePhoneWithDashes()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:08 EST" name="searchOnlineMembers_MobilePhoneWithDashes" description="PBI:139723" finished-at="2019-12-31T11:47:09 EST" duration-ms="564" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_MobilePhoneWithDashes -->
-        <test-method signature="searchOnlineMembers_WorkPhone()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@57af006c]" started-at="2019-12-31T10:08:49 EST" name="searchOnlineMembers_WorkPhone" description="PBI:139723" finished-at="2019-12-31T10:08:49 EST" duration-ms="442" status="PASS">
+        <test-method signature="searchOnlineMembers_WorkPhone()[pri:0, instance:JonasFitness.API.SearchOnlineMembersByProduct@d29f28]" started-at="2019-12-31T11:47:09 EST" name="searchOnlineMembers_WorkPhone" description="PBI:139723" finished-at="2019-12-31T11:47:09 EST" duration-ms="443" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchOnlineMembers_WorkPhone -->
       </class> <!-- JonasFitness.API.SearchOnlineMembersByProduct -->
       <class name="JonasFitness.API.CancelAppointmentByEmployee">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@51dcb805]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@cad498c]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="ApptNotFound()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@51dcb805]" started-at="2019-12-31T10:07:01 EST" name="ApptNotFound" description="PBI:141862" finished-at="2019-12-31T10:07:02 EST" duration-ms="446" status="PASS">
+        <test-method signature="ApptNotFound()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@cad498c]" started-at="2019-12-31T11:45:13 EST" name="ApptNotFound" description="PBI:141862" finished-at="2019-12-31T11:45:13 EST" duration-ms="437" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ApptNotFound -->
-        <test-method signature="NotCancelled_ApptDatePast()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@51dcb805]" started-at="2019-12-31T10:07:02 EST" name="NotCancelled_ApptDatePast" description="PBI:141862" finished-at="2019-12-31T10:07:02 EST" duration-ms="513" status="PASS">
+        <test-method signature="NotCancelled_ApptDatePast()[pri:0, instance:JonasFitness.API.CancelAppointmentByEmployee@cad498c]" started-at="2019-12-31T11:45:13 EST" name="NotCancelled_ApptDatePast" description="PBI:141862" finished-at="2019-12-31T11:45:14 EST" duration-ms="574" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- NotCancelled_ApptDatePast -->
       </class> <!-- JonasFitness.API.CancelAppointmentByEmployee -->
-      <class name="JonasFitness.API.AuthenticateMemberByUserCredentials">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@41fecb8b]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="473" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getData -->
-        <test-method signature="accountLocked()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@41fecb8b]" started-at="2019-12-31T10:06:45 EST" name="accountLocked" description="PBI:139705" finished-at="2019-12-31T10:06:47 EST" duration-ms="1865" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- accountLocked -->
-        <test-method signature="forcePasswordChange()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@41fecb8b]" started-at="2019-12-31T10:06:47 EST" name="forcePasswordChange" description="PBI:139705" finished-at="2019-12-31T10:06:47 EST" duration-ms="419" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- forcePasswordChange -->
-        <test-method signature="memberFound()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@41fecb8b]" started-at="2019-12-31T10:06:47 EST" name="memberFound" description="PBI:139705" finished-at="2019-12-31T10:06:48 EST" duration-ms="400" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- memberFound -->
-      </class> <!-- JonasFitness.API.AuthenticateMemberByUserCredentials -->
       <class name="JonasFitness.API.GetAppointmentProductCategoriesByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@34f5090e]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@a2431d0]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@34f5090e]" started-at="2019-12-31T10:07:43 EST" name="MemberNotFound" description="PBI:127467" finished-at="2019-12-31T10:07:44 EST" duration-ms="672" status="PASS">
+        <test-method signature="MemberNotFound()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@a2431d0]" started-at="2019-12-31T11:45:57 EST" name="MemberNotFound" description="PBI:127467" finished-at="2019-12-31T11:45:58 EST" duration-ms="438" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MemberNotFound -->
-        <test-method signature="ProductCategoryFound()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@34f5090e]" started-at="2019-12-31T10:07:44 EST" name="ProductCategoryFound" description="PBI:127467" finished-at="2019-12-31T10:07:45 EST" duration-ms="498" status="PASS">
+        <test-method signature="ProductCategoryFound()[pri:0, instance:JonasFitness.API.GetAppointmentProductCategoriesByMember@a2431d0]" started-at="2019-12-31T11:45:58 EST" name="ProductCategoryFound" description="PBI:127467" finished-at="2019-12-31T11:45:58 EST" duration-ms="496" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ProductCategoryFound -->
       </class> <!-- JonasFitness.API.GetAppointmentProductCategoriesByMember -->
-      <class name="JonasFitness.API.BookAppointmentByEmployee">
-        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:45 EST" name="getData" finished-at="2019-12-31T10:06:45 EST" duration-ms="1" status="PASS">
+      <class name="JonasFitness.API.AuthenticateMemberByUserCredentials">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@625732]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="472" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="FreeAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:48 EST" name="FreeAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:06:50 EST" duration-ms="1857" status="PASS">
+        <test-method signature="accountLocked()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@625732]" started-at="2019-12-31T11:44:54 EST" name="accountLocked" description="PBI:139705" finished-at="2019-12-31T11:44:56 EST" duration-ms="1757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- accountLocked -->
+        <test-method signature="forcePasswordChange()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@625732]" started-at="2019-12-31T11:44:56 EST" name="forcePasswordChange" description="PBI:139705" finished-at="2019-12-31T11:44:57 EST" duration-ms="433" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- forcePasswordChange -->
+        <test-method signature="memberFound()[pri:0, instance:JonasFitness.API.AuthenticateMemberByUserCredentials@625732]" started-at="2019-12-31T11:44:57 EST" name="memberFound" description="PBI:139705" finished-at="2019-12-31T11:44:57 EST" duration-ms="611" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- memberFound -->
+      </class> <!-- JonasFitness.API.AuthenticateMemberByUserCredentials -->
+      <class name="JonasFitness.API.BookAppointmentByEmployee">
+        <test-method is-config="true" signature="getData()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:44:54 EST" name="getData" finished-at="2019-12-31T11:44:54 EST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getData -->
+        <test-method signature="FreeAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:44:57 EST" name="FreeAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:44:59 EST" duration-ms="2021" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- FreeAppointment_SingleMember -->
-        <test-method signature="PaidAppointment_MultipleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:50 EST" name="PaidAppointment_MultipleMember" description="PBI:146227" finished-at="2019-12-31T10:06:51 EST" duration-ms="1318" status="PASS">
+        <test-method signature="PaidAppointment_MultipleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:44:59 EST" name="PaidAppointment_MultipleMember" description="PBI:146227" finished-at="2019-12-31T11:45:01 EST" duration-ms="1391" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PaidAppointment_MultipleMember -->
-        <test-method signature="PaidAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:51 EST" name="PaidAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:06:52 EST" duration-ms="1306" status="PASS">
+        <test-method signature="PaidAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:45:01 EST" name="PaidAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:45:02 EST" duration-ms="1278" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PaidAppointment_SingleMember -->
-        <test-method signature="notValidBookableItem()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:52 EST" name="notValidBookableItem" description="PBI:146227" finished-at="2019-12-31T10:06:53 EST" duration-ms="494" status="PASS">
+        <test-method signature="notValidBookableItem()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:45:02 EST" name="notValidBookableItem" description="PBI:146227" finished-at="2019-12-31T11:45:02 EST" duration-ms="506" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- notValidBookableItem -->
-        <test-method signature="punchcardAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@120f102b]" started-at="2019-12-31T10:06:53 EST" name="punchcardAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T10:06:54 EST" duration-ms="1259" status="PASS">
+        <test-method signature="punchcardAppointment_SingleMember()[pri:0, instance:JonasFitness.API.BookAppointmentByEmployee@51dcb805]" started-at="2019-12-31T11:45:02 EST" name="punchcardAppointment_SingleMember" description="PBI:146227" finished-at="2019-12-31T11:45:04 EST" duration-ms="1549" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- punchcardAppointment_SingleMember -->
