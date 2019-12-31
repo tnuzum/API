@@ -14,6 +14,8 @@ import resources.base;
 
 public class GetFieldsForAddOnMemberCreationByEmployee extends base {
 	
+// !!! Assertions are split into 2 tests to resolve a compile error 'java.lang.StackOverflowError'.
+
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
