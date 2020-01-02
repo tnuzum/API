@@ -42,6 +42,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
+	
 	@Test (priority=2,testName="MemberFound",description="PBI:139705")
 	public void memberFound() {
 
@@ -86,6 +87,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
+	
 	@Test (priority=4,testName="ForcePasswordChange",description="PBI:139705")
 	public void forcePasswordChange() {
 

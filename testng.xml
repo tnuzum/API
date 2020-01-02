@@ -10,6 +10,8 @@
 			<class name="JonasFitness.API.CancelAppointmentByMember" />
 			<class name="JonasFitness.API.EnrollMemberInClassOnAccount" />
 			<class name="JonasFitness.API.EnrollMemberInCourseOnAccount" />	
+			<class name="JonasFitness.API.EnrollMemberInClassWithNewCreditCard" />
+			<class name="JonasFitness.API.EnrollMemberInCourseWithNewCreditCard" />	
 			<!-- class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" /-->
 			<!-- class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard" /-->		
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
