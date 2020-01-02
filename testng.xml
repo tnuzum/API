@@ -12,11 +12,6 @@
 			<class name="JonasFitness.API.EnrollMemberInCourseOnAccount" />	
 			<!-- class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" /-->
 			<!-- class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard" /-->		
-			<!-- class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard">
-				<methods>
-				<exclude name=""/>
-				</methods>
-			</class-->					
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllAvailableClassesByMember" />
@@ -38,6 +33,8 @@
 			<class name="JonasFitness.API.GetClassDetails" />
 			<class name="JonasFitness.API.GetCourseDetails" />
 			<class name="JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee" />
+			<class name="JonasFitness.API.GetFieldsForMemberCreationByEmployee" />
+			<class name="JonasFitness.API.GetFieldsForProspectCreationByEmployee" />
 			<class name="JonasFitness.API.GetMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableClassesByMember" />
 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" />
@@ -52,7 +49,12 @@
 			<class name="JonasFitness.API.SearchOnlineMembersByProduct" />
 			<class name="JonasFitness.API.SecurityPipeline" />
 			<class name="JonasFitness.API.VerifyClassEnrollmentCapability" />
-			<class name="JonasFitness.API.VerifyCourseEnrollmentCapability" />			
+			<class name="JonasFitness.API.VerifyCourseEnrollmentCapability" />	
+			<!-- class name="JonasFitness.API.CLASSNAME">
+				<methods>
+				<exclude name="METHODNAME"/>
+				</methods>
+			</class-->			
 		</classes>
 	</test>
 </suite>
