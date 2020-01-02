@@ -21,7 +21,7 @@ public class GetClassesAndCoursesByMember extends base {
 	public void ClassesCoursesFound() {
 		
 		
-		int member = 248;
+		int member = 247;
 		String sDateTimeNoOffset = "2019-01-01";
 		String eDateTimeNoOffset = "2200-01-01";
 
