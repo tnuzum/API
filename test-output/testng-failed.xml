@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JonasFitness.API.AuthenticateMemberByUserCredentials">
+      <class name="Utilities.GetPurchasedPackagesByMember">
         <methods>
+          <include name="PackagesFound"/>
           <include name="getData"/>
-          <include name="accountLocked"/>
         </methods>
-      </class> <!-- JonasFitness.API.AuthenticateMemberByUserCredentials -->
+      </class> <!-- Utilities.GetPurchasedPackagesByMember -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -438,7 +438,7 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
 		
-		String email = prop.getProperty("activeMember1_email");
+		String email = prop.getProperty("activeMember4_email");
 
 				given()
 //				.log().all()

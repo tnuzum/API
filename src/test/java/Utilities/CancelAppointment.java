@@ -20,7 +20,7 @@ public class CancelAppointment extends base {
 	@Test (testName="ApptCancelled",description="PBI:141862")
 	public void ApptCancelled() { 
 		
-		int confirmationNumber = 4533;
+		int confirmationNumber = 7466;
 
 				given()
 //						.log().all()
@@ -29,7 +29,7 @@ public class CancelAppointment extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbyemployee/"+confirmationNumber)
+						.get("/api/v3/appointment/cancelappointmentbyemployee/"+confirmationNumber)
 						.then()
 						.log().body();
 	}

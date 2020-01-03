@@ -36,7 +36,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].BasePrice", not(nullValue()))
 						.body("Result[0].DaysUntilExpiration", not(nullValue()))
 						.body("Result[0].ItemBarcodeId", not(nullValue()))
@@ -66,7 +66,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.ItemDescription", not(anyOf(hasItem("PT Orientation"))));
 	}
 }

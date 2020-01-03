@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.402 s <<< FAILURE! - in TestSuite
-Test1(JonasFitness.API.GetResponseCORE)  Time elapsed: 0.5 s  <<< FAILURE!
-java.net.UnknownHostException: This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server (compete-ws.test-jfisoftware.net)
-	at JonasFitness.API.GetResponseCORE.Test1(GetResponseCORE.java:32)
-
+Tests run: 192, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 146.325 s - in TestSuite

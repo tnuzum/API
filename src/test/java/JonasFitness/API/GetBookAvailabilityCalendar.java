@@ -48,7 +48,7 @@ public class GetBookAvailabilityCalendar extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BookDescription"))
 						.body("Result[0]", hasKey("BookId"))
 						.body("Result[0]", hasKey("BookName"))

@@ -46,7 +46,7 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 215,"+ 
-					"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-03-09T11:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
 					"\"RequestedBooks\": [40],"+ 
 					"\"UserDisplayedPrice\": 0.00"+
@@ -71,7 +71,7 @@ public class BookAppointmentByEmployee extends base {
 		.body("{" + 
 			"\"AppointmentClubId\": 1,"+ 
 			"\"ItemId\": 215,"+ 
-			"\"Occurrence\": \"2020-03-09T12:00:00-05:00\","+ 
+			"\"Occurrence\": \"2020-03-09T11:00:00-05:00\","+ 
 			"\"CustomerId\": "+member+","+ 
 			"\"RequestedBooks\": [40],"+ 
 			"\"UserDisplayedPrice\": 0.00"+
@@ -80,7 +80,6 @@ public class BookAppointmentByEmployee extends base {
 		.then()
 //				.log().body()
 				.assertThat().statusCode(404)
-		.time(lessThan(5L),TimeUnit.SECONDS)
 		.body("Message", equalTo("FailAppointmentNotAvailable"));
 
 		// ** Cancel Appointment **
@@ -93,11 +92,11 @@ public class BookAppointmentByEmployee extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-			.post("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
+			.get("/api/v3/appointment/cancelappointmentbymember/"+AppointmentId+"/"+member)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+//				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -119,7 +118,7 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 46,"+ 
-					"\"Occurrence\": \"2020-11-16T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2020-11-16T12:00:00-05:00\","+ 
 					"\"CustomerId\": 224,"+ 
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 40.00"+
@@ -128,7 +127,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -141,11 +140,11 @@ public class BookAppointmentByEmployee extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -176,7 +175,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -188,11 +187,11 @@ public class BookAppointmentByEmployee extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -213,17 +212,17 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 38,"+ 
-					"\"Occurrence\": \"2019-11-20T16:00:00-04:00\","+ 
+					"\"Occurrence\": \"2024-11-25T16:00:00-04:00\","+ 
 					"\"CustomerId\": 229,"+
 					"\"AdditionalCustomerIds\": [230],"+
-					"\"RequestedBooks\": [31],"+ 
+					"\"RequestedBooks\": [30],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.extract().response();
 		// CANCEL APPOINTMENT
@@ -235,11 +234,11 @@ public class BookAppointmentByEmployee extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.post("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
+				.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId)
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -271,7 +270,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-				.time(lessThan(5L),TimeUnit.SECONDS)
+				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
 	}
 	

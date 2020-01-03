@@ -90,6 +90,28 @@ public class GetScheduleByBook extends base{
 						.body("Result.ScheduledAppointments[0]", hasKey("StartDateTime"));
 
 	}
+	@Test (testName="ClassesNotFound",description="PBI:140730")
+	public void ClassesNotFound() {
+//		String resourceId = prop.getProperty("resource3Id"); 
+		int resourceId = 32; 
+		String sDateTimeNoOffset = "2119-01-01";
+		String eDateTimeNoOffset = "2120-01-01";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/schedule/getschedulebybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"))
+;
+	}
 	@Test (testName="GetAppointments",description="PBI:140730")
 	public void GetAppointments() {
 //		String resourceId = prop.getProperty("resource3Id"); 
@@ -138,5 +160,26 @@ public class GetScheduleByBook extends base{
 						.body("Result.ScheduledAppointments[0]", hasKey("StartDateTime"));
 
 	}
+	@Test (testName="AppointmentsNotFound",description="PBI:140730")
+	public void AppointmentsNotFound() {
+//		String resourceId = prop.getProperty("resource3Id"); 
+		int resourceId = 34; 
+		String sDateTimeNoOffset = "2119-01-01";
+		String eDateTimeNoOffset = "2120-01-01";
 
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/schedule/getschedulebybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"))
+;
+	}
 	}

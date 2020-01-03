@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -20,14 +18,8 @@ public class AuthenticateMemberByUserCredentials extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/*
-	 * Not using because currently the "failed login counter" does not reset after successful login
-	 *  
 	
-	@Test (testName="WrongCredentials",description="PBI:139705")
-	
-	 // Sending wrong credentials before sending correct credentials
-	 // This will prevent the account from being locked
+	@Test (priority=1,testName="WrongCredentials",description="PBI:139705")
 	 
 	public void wrongCredentials() {
 
@@ -46,12 +38,12 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-			.time(lessThan(5L),TimeUnit.SECONDS)			
+//			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
-	 */
-	@Test (testName="MemberFound",description="PBI:139705")
+	
+	@Test (priority=2,testName="MemberFound",description="PBI:139705")
 	public void memberFound() {
 
 			given()
@@ -69,11 +61,11 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(200)
-			.time(lessThan(5L),TimeUnit.SECONDS)			
+//			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("Success"));	
 	}
 	
-	@Test (testName="AccountLocked",description="PBI:139705")
+	@Test (priority=3,testName="AccountLocked",description="PBI:139705")
 	public void accountLocked() {
 
 			given()
@@ -91,11 +83,12 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-			.time(lessThan(5L),TimeUnit.SECONDS)			
+//			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
-	@Test (testName="ForcePasswordChange",description="PBI:139705")
+	
+	@Test (priority=4,testName="ForcePasswordChange",description="PBI:139705")
 	public void forcePasswordChange() {
 
 			given()
@@ -113,7 +106,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-			.time(lessThan(5L),TimeUnit.SECONDS)			
+//			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("ForceChangePassword"))
 			.body("Result.CustomerId", not(nullValue()));	
 	}

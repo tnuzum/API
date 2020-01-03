@@ -1,3 +1,20 @@
+Assertions
+
+* Required field		.body("Result.LastName", not(nullValue()))
+* Optional field		.body("Result", hasKey("MiddleInitial"))
+
+
+
+
+
+
+
+
+
+
+
+
+
 import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

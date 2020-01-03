@@ -36,7 +36,7 @@ public class CancelAppointmentByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.post("/api/v3/appointment/cancelappointmentbymember/916375/"+member)
+						.get("/api/v3/appointment/cancelappointmentbymember/916375/"+member)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

@@ -1,4 +1,6 @@
 /target/
+<<<<<<< HEAD
+=======
 /test-output/
 
 *.html
@@ -55,3 +57,4 @@ test-output/old/CompeteAPI/toc.html
 test-output/old/index.html
 test-output/testng-results.xml
 
+>>>>>>> parent of ede9354... adding target files to help resolve compile issue
