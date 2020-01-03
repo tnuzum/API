@@ -8,13 +8,10 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -28,8 +25,8 @@ public class GetAllAvailableCoursesByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:146572")
-	public void ValidInput() { 
+	@Test (testName="Course Details Returned",description="PBI:146572")
+	public void courseDetailsReturned() { 
 		
 		int CustomerId = 223;
 		String StartDateTime = ReusableDates.getCurrentDate();
@@ -45,7 +42,7 @@ public class GetAllAvailableCoursesByMember extends base {
 		.get("/api/v3/classcourse/getallavailablecoursesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
 		.then()
 //		.log().body()
-//		.assertThat().statusCode(200)
+		.assertThat().statusCode(200)
 //		.time(lessThan(5L),TimeUnit.SECONDS)
 		.body("Result.ItemBarcodeId", anyOf(hasItem("PBoot430")))// Item is set to Allow Online Sales
 		.body("Result.ItemBarcodeId", anyOf(hasItem("PBoot530")))// Item is set to NOT Allow Online Sales
