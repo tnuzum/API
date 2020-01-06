@@ -44,6 +44,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.body("Result[0].RedeemableClubs[0]", not(nullValue()))
 						;
 	}
+	
 	@Test (testName="PackageNotAllowed",description="PBI:143537")
 	public void PackageNotAllowed() { 
 		
@@ -68,5 +69,25 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.ItemDescription", not(anyOf(hasItem("PT Orientation"))));
+	}
+	
+	@Test (testName="Customer Not Found",description="PBI:143537")
+	public void customerNotFound() { 
+		
+		int member = 236000;
+		String club = prop.getProperty("X-Club1Id");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+member+"/"+club)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(500)
+						.body("Message", equalTo("Internal server error - Customer Not Found"))
+						;
 	}
 }
