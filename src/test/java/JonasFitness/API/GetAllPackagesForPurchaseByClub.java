@@ -4,10 +4,10 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.anyOf;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
+//import static org.hamcrest.Matchers.hasItem;
+//import static org.hamcrest.Matchers.hasKey;
+//import static org.hamcrest.Matchers.not;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
@@ -24,7 +24,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	}
 	
 	@Test (testName="PackageFound",description="PBI:143540")
-	public void PackageFound() { 
+	public void packageFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String club = prop.getProperty("X-Club1Id");
 		
@@ -39,8 +39,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
-
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS) // bug reported for slow performance; un-comment once bug is fixed
 						.body("Result[0]", hasKey("BasePrice"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("DaysUntilExpiration"))
@@ -53,15 +52,10 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("EndRange"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("PricePerUnit"))))
 //						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("StartRange"))))
-						.body("Result.ItemDescription", anyOf(hasItem("PT 60 Mins")));// assertion that a specific package that is available at club is found
-
-//						.time(lessThan(5L),TimeUnit.SECONDS)// bug reported for slow performance; un-comment once bug is fixed
-						
-						// assert that a specific package that is available at club is found
-
+						.body("Result.ItemDescription", anyOf(hasItem("PT 60 Mins")));
 	}
 	@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
-	public void OnlineNotAllowed_PackageFound() { 
+	public void onlineNotAllowed_PackageFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String club = prop.getProperty("X-Club1Id");
 				given()
@@ -81,7 +75,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				// use same package as negative test in getOnlinePackage...
 	}
 	@Test (testName="PackageNotFound",description="PBI:143540")
-	public void PackageNotFound() { 
+	public void packageNotFound() { 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String club = prop.getProperty("X-Club1Id");
 				given()
@@ -98,5 +92,22 @@ public class GetAllPackagesForPurchaseByClub extends base {
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Service"))));// assertion that a specific package that is NOT available at club is NOT found
+	}
+	@Test (testName="Customer Not Found",description="PBI:143540")
+	public void customerNotFound() { 
+		int member = 2360000;
+		String club = prop.getProperty("X-Club1Id");
+		
+					given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
+						.then()
+//					    .log().body()
+					    .assertThat().statusCode(500)
+					    .body("Message", equalTo("Internal server error - Customer Not Found"));
 	}
 }
