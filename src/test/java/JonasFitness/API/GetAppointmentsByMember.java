@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import resources.ReusableDates;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetAppointmentsByMember extends base {

@@ -32,7 +32,7 @@ public class BookAppointmentByEmployee extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
+	@Test (testName="Free Appointment Single Member",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
 		
 		int member = 230;
@@ -106,7 +106,7 @@ public class BookAppointmentByEmployee extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="PaidAppointment_SingleMember",description="PBI:146227")
+	@Test (testName="Paid Appointment Single Member",description="PBI:146227")
 	public void PaidAppointment_SingleMember() { 
 
 	Response book_res = given()
@@ -154,7 +154,7 @@ public class BookAppointmentByEmployee extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:146227")
+	@Test (testName="Punchcard Appointment Single Member",description="PBI:146227")
 	public void punchcardAppointment_SingleMember() { 
 
 	Response book_res = given()
@@ -201,7 +201,7 @@ public class BookAppointmentByEmployee extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="PaidAppointment_MultipleMember",description="PBI:146227")
+	@Test (testName="Paid Appointment Multiple Member",description="PBI:146227")
 	public void PaidAppointment_MultipleMember() { 
 		Response book_res = given()
 //						.log().all()
@@ -249,7 +249,7 @@ public class BookAppointmentByEmployee extends base {
 		
 	}
 	
-	@Test (testName="notValidBookableItem",description="PBI:146227")
+	@Test (testName="Not Valid Bookable Item",description="PBI:146227")
 	public void notValidBookableItem() { 
 	
 	given()
@@ -274,6 +274,107 @@ public class BookAppointmentByEmployee extends base {
 						.assertThat().statusCode(500)
 				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
+	}
+	
+	@Test (testName="Appointment Not Found",description="PBI:146227")
+	public void appointmentNotFound() { 
+		
+		int member = 230;
+		
+	given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2520-03-09T11:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
+					"\"UserDisplayedPrice\": 0.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
+				.then()
+//				.log().body()
+				.assertThat().statusCode(404)
+				.body("Message", equalTo("FailAppointmentNotAvailable"));
+	}
+	
+	@Test (testName="Product Price Changed",description="PBI:146227")
+	public void productPriceChanged() { 
+		
+		int member = 230;
+		
+	given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2020-03-09T11:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
+					"\"UserDisplayedPrice\": 0.01"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbyemployee")
+				.then()
+//				.log().body()
+				.assertThat().statusCode(404)
+				.body("Message", equalTo("FailPriceChanged"));
+	}
+	
+	@Test (testName="Not Enough Punches",description="PBI:146227")
+	public void notEnoughPunches() { 
+		
+// This call succeeds because it's sent by employee, even though the member doesn't have enough punches
+		
+		int member = 247;
+		
+		Response book_res = given()
+//						.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 25,"+ 
+					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [3,18],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
+					"}")
+			.post("/api/v3/appointment/bookappointmentbyemployee")
+				.then()
+//				.log().body()
+				.extract().response();
+		JsonPath book_js = ReusableMethods.rawToJson(book_res);
+		int AppointmentId = book_js.get("Result.AppointmentId");
+
+				given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+			.get("/api/v3/appointment/cancelappointmentbyemployee/"+AppointmentId+"")
+				.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.body("Status", equalTo("Success"))
+				.body("Result", hasKey("ConfirmationCode"))
+				.body("Result.ConfirmationCode", not(empty()))
+				.body("Result", hasKey("Reason"))
+				.body("Result.Reason", nullValue());
 	}
 	
 }
