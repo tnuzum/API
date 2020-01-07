@@ -308,4 +308,59 @@ public class BookAppointmentByMember extends base {
 			;
 	}
 	
+	@Test (testName="Appointment Not Found",description="PBI:146227")
+	public void appointmentNotFound() { 
+
+		int member = 248;
+		
+		given()
+			.header("accept", prop.getProperty("accept"))
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2520-12-28T12:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
+					"\"UserDisplayedPrice\": 0.00"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//				.log().body()
+				.assertThat().statusCode(404)
+				.body("Message", equalTo("FailAppointmentNotAvailable"));
+	}
+	/* !! disabled until bug is fixed; bug allows booking even though price is different
+	 * 
+	@Test (testName="Product Price Changed",description="PBI:146227")
+	public void productPriceChanged() { 
+
+		int member = 248;
+		
+	given()
+	.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 215,"+ 
+					"\"Occurrence\": \"2022-01-03T12:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [40],"+ 
+					"\"UserDisplayedPrice\": 1.99"+
+					"}")
+				.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+						.log().body()
+				.assertThat().statusCode(404)
+				.body("Message", equalTo("FailPriceChanged"));
+	} */
 }
