@@ -38,7 +38,7 @@ public class BookAppointmentByMember extends base {
 	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
 
-		int member = 230;
+		int member = 248;
 		
 	Response book_res = given()
 //						.log().all()
@@ -277,6 +277,32 @@ public class BookAppointmentByMember extends base {
 						.assertThat().statusCode(500)
 				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("Internal server error - Item with ID 13 is not a valid bookable appointment item."));
+	}
+	
+	@Test (testName="Not Enough Punches",description="PBI:146227")
+	public void notEnoughPunches() { 
+
+	given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 25,"+ 
+					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
+					"\"CustomerId\": 247,"+ 
+					"\"RequestedBooks\": [3,18],"+ 
+					"\"UserDisplayedPrice\": 60.00"+
+					"}")
+			.post("/api/v3/appointment/bookappointmentbymember")
+			.then()
+//			.log().body()
+			.assertThat().statusCode(404)
+			.body("Message", equalTo("FailNotEnoughPunches"));
+			;
 	}
 	
 }

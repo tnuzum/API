@@ -5,12 +5,9 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.equalTo;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -108,13 +105,16 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 	}
+	/*
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
-		/*
+		!! this test's behavior changed after changing
+		 * the Club setting to 'restrict online scheduling to prepaid !!
+		 * 
 		 * This test shows that the appointment is not found
 		 * because the BooksAndAvailability is Null. Date range is
 		 * set far in future so no availability is found. 
-		 */
+		 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		String sDateTimeNoOffset = "2025-01-01T00:00";
 		String eDateTimeNoOffset = "2025-01-02T00:00";
@@ -134,7 +134,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -149,6 +149,29 @@ public class GetAvailableAppointments extends base {
 						.body("Result", hasKey("DividePriceByMembers"))
 						.body("Result", hasKey("BooksAndAvailability"))
 						.body("Result.BooksAndAvailability[0]", nullValue());
+	}*/
+	
+	@Test (testName="AppointmentsNotFound",description="PBI:127498")
+	public void AppointmentsNotFound() {
+
+		String member = prop.getProperty("activeMember1_CustomerId");
+		String sDateTimeNoOffset = "2025-01-01T00:00";
+		String eDateTimeNoOffset = "2025-01-02T00:00";
+		
+		int serviceId = 215;
+
+				given()
+				//.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Nothing found"));
 	}
 
 }
