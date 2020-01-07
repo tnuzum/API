@@ -4,8 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.equalTo;
 import java.io.IOException;
 import io.restassured.RestAssured;
 import resources.base;
@@ -18,8 +17,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	
-	/* // !!! Disabled until an unenroll is created
+	/*
+	// !!! Disabled until an unenroll is created
 	@Test (testName="Member Enrolled",description="PBI:146579")
 	public void memberEnrolled() {
 		
@@ -130,7 +129,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:146579")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
 				String displayedClassPrice 		= "150.00";
