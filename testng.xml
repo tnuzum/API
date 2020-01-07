@@ -5,7 +5,7 @@
 		<classes>
 			<class name="JonasFitness.API.AuthenticateMemberByUserCredentials" />
 			<class name="JonasFitness.API.BookAppointmentByEmployee" />
-			<!-- class name="JonasFitness.API.BookAppointmentByMember" /-->
+			<class name="JonasFitness.API.BookAppointmentByMember" />
 			<class name="JonasFitness.API.CancelAppointmentByEmployee" />
 			<class name="JonasFitness.API.CancelAppointmentByMember" />
 			<class name="JonasFitness.API.EnrollMemberInClassOnAccount" />

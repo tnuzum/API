@@ -1,28 +1,26 @@
-Assertions
-
+ASSERTIONS:
 * Required field		.body("Result.LastName", not(nullValue()))
 * Optional field		.body("Result", hasKey("MiddleInitial"))
+* Has Specific Value	.body("Result.Address.AddressLine1", equalTo("7965 N High St"))
+* Not present 			.body("$", not(hasKey("age")))
+* Contains				.body("Result.Name", anyOf(hasItem("string")))
+* Null Value			.body("Result.PrimarySelectableResourceType.Books[0]", nullValue())
+* Response status		.assertThat().statusCode(200)
+* Response time			.time(lessThan(5L),TimeUnit.SECONDS)
 
 
-
-
-
-
-
-
-
-
-
-
-
+IMPORTS:
 import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.lessThan;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
@@ -31,23 +29,11 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
-
-									.header("accept", prop.getProperty("accept"))
-									.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-									.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-									.header("X-ClubId", prop.getProperty("X-Club1Id"))
-
-.assertThat().statusCode(200)
-.time(lessThan(5L),TimeUnit.SECONDS)
-.body("Result.Address.AddressLine1", equalTo("7965 N High St"))
-.body("Result.Address.AddressLine2", equalTo("Ste 360"))
-.body("Result.Address", hasKey("AddressLine1"));
-.body("Result.ItemHasSelectableResourceTypes",equalTo(false))
-.body("Result.PrimarySelectableResourceType.Books[0]", nullValue())
-.body("Result.PrimarySelectableResourceType.Books[0]", not(hasKey("Id")))
-.body("Result.Name", anyOf(hasItem("Kalle, Bhagya")))
-
-//For not present -- .body("$", not(hasKey("age")));
+HEADERS:
+.header("accept", prop.getProperty("accept"))
+.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+.header("X-ClubId", prop.getProperty("X-Club1Id"))
 
 given().log().body()
 then().log().all()

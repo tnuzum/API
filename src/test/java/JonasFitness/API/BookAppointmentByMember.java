@@ -35,7 +35,7 @@ public class BookAppointmentByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="FreeAppointment_SingleMember",description="PBI:146227")
+	@Test (testName="Free Appointment Single Member",description="PBI:146227")
 	public void FreeAppointment_SingleMember() { 
 
 		int member = 248;
@@ -106,10 +106,10 @@ public class BookAppointmentByMember extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="PaidAppointment_SingleMember",description="PBI:146227")
+	@Test (testName="Paid Appointment Single Member",description="PBI:146227")
 	public void PaidAppointment_SingleMember() { 
 		
-		int member = 224;
+		int member = 248;
 
 	Response book_res = given()
 //						.log().all()
@@ -121,11 +121,11 @@ public class BookAppointmentByMember extends base {
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 46,"+ 
-					"\"Occurrence\": \"2020-11-16T11:00:00-05:00\","+ 
+					"\"ItemId\": 243,"+ 
+					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
 					"\"RequestedBooks\": [35],"+ 
-					"\"UserDisplayedPrice\": 40.00"+
+					"\"UserDisplayedPrice\": 10.00"+
 					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
@@ -206,6 +206,9 @@ public class BookAppointmentByMember extends base {
 	
 	@Test (testName="PaidAppointment_MultipleMember",description="PBI:146227")
 	public void PaidAppointment_MultipleMember() { 
+		
+		int member = 248;
+		
 		Response book_res = given()
 //						.log().all()
 		.header("accept", prop.getProperty("accept"))
@@ -216,12 +219,12 @@ public class BookAppointmentByMember extends base {
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 38,"+ 
-					"\"Occurrence\": \"2024-11-18T16:00:00-04:00\","+ 
-					"\"CustomerId\": 229,"+
-					"\"AdditionalCustomerIds\": [230],"+
-					"\"RequestedBooks\": [30],"+ 
-					"\"UserDisplayedPrice\": 60.00"+
+					"\"ItemId\": 243,"+ 
+					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"AdditionalCustomerIds\": [224],"+
+					"\"RequestedBooks\": [35],"+ 
+					"\"UserDisplayedPrice\": 10.00"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
