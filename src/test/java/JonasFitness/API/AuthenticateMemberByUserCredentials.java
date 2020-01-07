@@ -1,6 +1,8 @@
 package JonasFitness.API;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.not;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
