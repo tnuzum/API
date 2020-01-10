@@ -334,8 +334,8 @@ public class BookAppointmentByMember extends base {
 				.assertThat().statusCode(404)
 				.body("Message", equalTo("FailAppointmentNotAvailable"));
 	}
-	/* !! disabled until bug is fixed; bug allows booking even though price is different
-	 * 
+	//!! disabled until bug is fixed; bug allows booking even though price is different
+	 /*
 	@Test (testName="Product Price Changed",description="PBI:146227")
 	public void productPriceChanged() { 
 
@@ -351,11 +351,11 @@ public class BookAppointmentByMember extends base {
 			.when()
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 215,"+ 
-					"\"Occurrence\": \"2022-01-03T12:00:00-05:00\","+ 
+					"\"ItemId\": 243,"+ 
+					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
-					"\"RequestedBooks\": [40],"+ 
-					"\"UserDisplayedPrice\": 1.99"+
+					"\"RequestedBooks\": [35],"+ 
+					"\"UserDisplayedPrice\": 10.01"+
 					"}")
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()

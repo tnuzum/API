@@ -5,7 +5,13 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.lessThan;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -18,9 +24,12 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	/*
-	// !!! Disabled until an unenroll is created
-	@Test (testName="Member Enrolled",description="PBI:146579")
-	public void memberEnrolled() {
+	 * !!! Disabled until an unenroll is created
+	 * Need a new Member Enrolled - Free Class test 
+	 * Need a new test using optional AddressLine2 & Country fields
+
+	@Test (testName="Member Enrolled - Paid Class",description="PBI:146579")
+	public void memberEnrolled_PaidClass() {
 		
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
@@ -69,11 +78,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
-	}
+	}/*
 		@Test (testName="Member Enrolled On Standby",description="PBI:146579")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
 				String displayedClassPrice 		= "150.00";
@@ -129,7 +138,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:146579")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 					= 248;
+				int customerId 					= 247;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
 				String displayedClassPrice 		= "150.00";
@@ -174,6 +183,108 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Full"));
+	}
+	
+	@Test (testName="Member Already Enrolled",description="PBI:146579")
+	public void memberAlreadyEnrolled() {
+		
+				int customerId 					= 245;
+				String classBarcodeId 			= "standbyCl";
+				String classOccurrence 			= "2023-01-02";
+				String displayedClassPrice 		= "150.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("CustomerAlreadyEnrolled"));
+	}
+	
+	@Test (testName="Member Already On Standby",description="PBI:146579")
+	public void memberAlreadyOnStandby() {
+		
+				int customerId 					= 246;
+				String classBarcodeId 			= "standbyCl";
+				String classOccurrence 			= "2023-01-02";
+				String displayedClassPrice 		= "150.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
 	@Test (testName="Card Expired",description="PBI:146579")
@@ -224,6 +335,156 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Payment Failed"));
+	}
+	
+	@Test (testName="Class Not Available Online",description="PBI:146579")
+	public void classNotAvailableOnline() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "noWebCl";
+				String classOccurrence 			= "2025-01-01";
+				String displayedClassPrice 		= "150.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2019;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+	}
+	
+	@Test (testName="Class Ended",description="PBI:146579")
+	public void classEnded() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "endedCl";
+				String classOccurrence 			= "2019-12-13";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2019;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+	}
+	
+	@Test (testName="Customer Not Found",description="PBI:146579")
+	public void customerNotFound() {
+		
+				int customerId 					= 248000;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-01-01";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2019;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
 	@Test (testName="Card Number Invalid",description="PBI:146579")
@@ -424,6 +685,418 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("ItemNotFound"));
+	}
+	
+	@Test (testName="Product Price Changed",description="PBI:146579")
+	public void productPriceChanged() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-01-01";
+				String displayedClassPrice 		= "10.01";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("ProductPriceChanged"));
+	}
+	
+	@Test (testName="Missing Member Name On Call",description="PBI:146579")
+	public void missingMemberNameOnCall() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The NameOnCard field is required."));
+	}
+	
+	@Test (testName="Missing Card Number",description="PBI:146579")
+	public void missingCardNumber() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The CardNumber field is required."));
+	}
+	
+	@Test (testName="Missing Security Code",description="PBI:146579")
+	public void missingSecurityCode() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The SecurityCode field is required."));
+	}
+	
+	@Test (testName="Missing Address Line1",description="PBI:146579")
+	public void missingAddressLine1() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The AddressLine1 field is required."));
+	}
+	
+	@Test (testName="Missing City",description="PBI:146579")
+	public void missingCity() throws InterruptedException {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+				
+				Thread.sleep(200);
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The City field is required."));
+	}
+	
+	@Test (testName="Missing StateProvince",description="PBI:146579")
+	public void missingStateProvince() {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The StateProvince field is required."));
+	}
+	
+	@Test (testName="Missing Postal Code",description="PBI:146579")
+	public void missingPostalCode() throws InterruptedException {
+		
+				int customerId 					= 248;
+				String classBarcodeId 			= "alwaysAvailCl";
+				String classOccurrence 			= "2025-12-31";
+				String displayedClassPrice 		= "10.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "";
+				String enrollCustomerAsStandby 	= "true";
+				
+				Thread.sleep(200);
+				
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						
+						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("The PostalCode field is required."));
 	}
 	
 }

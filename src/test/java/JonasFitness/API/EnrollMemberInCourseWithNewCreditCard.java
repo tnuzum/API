@@ -78,7 +78,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		@Test (testName="Member Enrolled On Standby",description="PBI:146580")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "standbyCo";
 				String displayedCoursePrice 	= "1500.00";
 				String cardNumber				= "5454545454545454";
