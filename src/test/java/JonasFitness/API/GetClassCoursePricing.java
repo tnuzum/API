@@ -133,7 +133,7 @@ public class GetClassCoursePricing extends base {
 						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
 						.body("Result.PriceDetails[0].Price", not(nullValue()))
 						.body("Result.SubTotal", not(nullValue()))
-						.body("Result.Tax", equalTo(0.0));
+						.body("Result.Tax", is("0.0"));
 	}
 	
 	@Test (testName="Item Found - Free Item",description="PBI:155543")
@@ -155,13 +155,13 @@ public class GetClassCoursePricing extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.CanPlaceOnAccount", equalTo(true))
-						.body("Result.GrandTotal", is(0.0))
+						.body("Result.GrandTotal", is("0.0"))
 						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
 						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
 						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
 						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
-						.body("Result.PriceDetails[0].Price", is(0.0))
+						.body("Result.PriceDetails[0].Price", is("0.0"))
 						.body("Result.SubTotal", not(nullValue()))
-						.body("Result.Tax", is(0.0));
+						.body("Result.Tax", is("0.0"));
 	}
 }
