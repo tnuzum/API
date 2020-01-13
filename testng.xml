@@ -29,6 +29,7 @@
 			<class name="JonasFitness.API.GetAvailableResourceTypesByClub" />
 			<class name="JonasFitness.API.GetBookAvailabilityCalendar" />
 			<class name="JonasFitness.API.GetCardsOnFileByMember" />
+			<class name="JonasFitness.API.GetClassCoursePricing" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByBook" />
 			<class name="JonasFitness.API.GetClassesAndCoursesByMember" />
 			<class name="JonasFitness.API.GetClubsByMember" />
