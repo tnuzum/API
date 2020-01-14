@@ -26,7 +26,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = 229;
 				String classBarcodeId = "alwaysAvailCl";
 				String classOccurrence = "2025-12-31";
-				String displayedClassPrice = "10.00";
+				String displayedGrandTotal = "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -36,7 +36,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -57,7 +57,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = 248;
 				String classBarcodeId = "notStartedCl";
 				String classOccurrence = "2119-12-25";
-				String displayedClassPrice = "150.00";
+				String displayedGrandTotal = "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -66,7 +66,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -86,7 +86,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 223;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2022-12-06";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -95,7 +95,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -115,7 +115,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = 247;
 				String classBarcodeId = "alwaysAvailCl";
 				String classOccurrence = "2025-12-31";
-				String displayedClassPrice = "10.00";
+				String displayedGrandTotal = "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -124,7 +124,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -137,7 +137,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 245;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -146,7 +146,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -159,7 +159,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = 247;
 				String classBarcodeId = "alwaysAvailCl";
 				String classOccurrence = "2025-12-31";
-				String displayedClassPrice = "10.01";
+				String displayedGrandTotal = "10.01";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -168,7 +168,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -180,7 +180,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 246;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -189,7 +189,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -202,7 +202,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 248;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "false";
 
 				given()
@@ -211,7 +211,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -224,7 +224,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 245000;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -233,7 +233,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -246,7 +246,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 245;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2122-12-06";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -255,7 +255,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -268,7 +268,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 245;
 				String classBarcodeId 	= "noWebCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -277,7 +277,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -290,7 +290,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 245;
 				String classBarcodeId 	= "neverAvailCl";
 				String classOccurrence 	= "2119-12-25";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -299,7 +299,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -312,7 +312,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 241;
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -321,7 +321,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -334,7 +334,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 249;
 				String classBarcodeId 	= "alwaysAvailCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "150.00";
+				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -343,7 +343,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -356,7 +356,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 227;
 				String classBarcodeId 	= "alwaysAvailCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -365,7 +365,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -378,7 +378,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 250;
 				String classBarcodeId 	= "alwaysAvailCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -387,7 +387,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -400,7 +400,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 228;
 				String classBarcodeId 	= "alwaysAvailCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -409,7 +409,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -422,7 +422,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 248;
 				String classBarcodeId 	= "endedCl";
 				String classOccurrence 	= "2019-12-13";
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -431,7 +431,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -444,7 +444,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 248;
 				String classBarcodeId 	= "closedCl";
 				String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay();
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -453,7 +453,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -466,7 +466,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 251;
 				String classBarcodeId 	= "alwaysAvailCl";
 				String classOccurrence 	= "2025-12-31";
-				String displayedClassPrice	= "10.00";
+				String displayedGrandTotal	= "10.00";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -475,7 +475,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)

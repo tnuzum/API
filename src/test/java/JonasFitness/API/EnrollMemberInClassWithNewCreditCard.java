@@ -34,7 +34,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -58,7 +58,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -85,7 +85,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
-				String displayedClassPrice 		= "150.00";
+				String displayedGrandTotal 		= "150.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -108,7 +108,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -141,7 +141,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 247;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
-				String displayedClassPrice 		= "150.00";
+				String displayedGrandTotal 		= "150.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -164,7 +164,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -191,7 +191,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 245;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
-				String displayedClassPrice 		= "150.00";
+				String displayedGrandTotal 		= "150.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -215,7 +215,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -242,7 +242,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 246;
 				String classBarcodeId 			= "standbyCl";
 				String classOccurrence 			= "2023-01-02";
-				String displayedClassPrice 		= "150.00";
+				String displayedGrandTotal 		= "150.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -266,7 +266,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -293,7 +293,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -316,7 +316,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -343,7 +343,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "noWebCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "150.00";
+				String displayedGrandTotal 		= "150.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -366,7 +366,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -393,7 +393,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "endedCl";
 				String classOccurrence 			= "2019-12-13";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -416,7 +416,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -443,7 +443,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248000;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -466,7 +466,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -493,7 +493,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545400";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -516,7 +516,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -543,7 +543,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "54545454545454540000";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -566,7 +566,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -593,7 +593,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "NOTalwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -616,7 +616,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -643,7 +643,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 237;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2225-01-01";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -666,7 +666,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -693,7 +693,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
-				String displayedClassPrice 		= "10.01";
+				String displayedGrandTotal 		= "10.01";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -716,7 +716,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -743,7 +743,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "";
 				String month					= "12";
@@ -767,7 +767,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -794,7 +794,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -818,7 +818,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -845,7 +845,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -869,7 +869,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -896,7 +896,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -920,7 +920,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -947,7 +947,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -973,7 +973,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -1000,7 +1000,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -1024,7 +1024,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
@@ -1051,7 +1051,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2025-12-31";
-				String displayedClassPrice 		= "10.00";
+				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "JIM MANNY";
 				String month					= "12";
@@ -1077,7 +1077,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"CustomerId\": "+customerId+"," + 
 								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedClassPrice\": "+displayedClassPrice+"," + 
+								"  \"displayedClassPrice\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 								"  \"ExpirationDate\": {" + 
