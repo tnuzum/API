@@ -168,7 +168,7 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 25,"+ 
-					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2025-01-02T16:00:00-05:00\","+ 
 					"\"CustomerId\": 224,"+ 
 					"\"RequestedBooks\": [3,18],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
@@ -348,7 +348,7 @@ public class BookAppointmentByEmployee extends base {
 			.body("{" + 
 					"\"AppointmentClubId\": 1,"+ 
 					"\"ItemId\": 25,"+ 
-					"\"Occurrence\": \"2025-01-01T16:00:00-05:00\","+ 
+					"\"Occurrence\": \"2025-01-02T16:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
 					"\"RequestedBooks\": [3,18],"+ 
 					"\"UserDisplayedPrice\": 60.00"+
