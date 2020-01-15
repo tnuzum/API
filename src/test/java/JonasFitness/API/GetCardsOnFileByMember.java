@@ -263,10 +263,10 @@ public class GetCardsOnFileByMember extends base {
 	@Test (testName="noCardOnFile", description="PBI:146302")
 	public void NoCardOnFile() {
 		
-		String member = prop.getProperty("activeMember3_CustomerId"); // using a member this is a minor so they have no card on file
+		int member = 247;
 
 				given()
-//						.log().all()
+						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
