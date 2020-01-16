@@ -152,4 +152,145 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.body("Message", equalTo("Full"));
 	} 
 	
+	@Test (testName="Class Not Available Online",description="PBI:154259")
+	public void classNotAvailableOnline() { 
+		
+		int customerId = 248;
+		String classBarcodeId = "noWebCl";
+		String classOccurrence = "2025-12-31";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+	} 
+	
+	@Test (testName="Class Ended",description="PBI:154259")
+	public void classEnded() { 
+		
+		int customerId = 248;
+		String classBarcodeId = "endedCl";
+		String classOccurrence = "2019-12-13";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+	} 
+	
+	@Test (testName="Customer Not Found",description="PBI:154259")
+	public void customerNotFound() { 
+		
+		int customerId = 248000;
+		String classBarcodeId = "alwaysAvailCl";
+		String classOccurrence = "2025-12-31";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("CustomerNotFound"));
+	} 
+	
+	@Test (testName="Class Not Found",description="PBI:154259")
+	public void classNotFound() { 
+		
+		int customerId = 248;
+		String classBarcodeId = "NOTalwaysAvailCl";
+		String classOccurrence = "2025-12-31";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("ItemNotFound"));
+	} 
+	
+	@Test (testName="Occurrence Not Found",description="PBI:154259")
+	public void occurrenceNotFound() { 
+		
+		int customerId = 248;
+		String classBarcodeId = "alwaysAvailCl";
+		String classOccurrence = "2125-12-31";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("ItemNotFound"));
+	} 
+	/*
+	 * This is enrolling a member even though the class doesn't take Recurring dues
+
+	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259")
+	public void recurringDuesNotAccepted() { 
+		
+		int customerId = 247;
+		String classBarcodeId = "noPunchCl";
+		String classOccurrence = "2025-12-31";
+		String enrollCustomerAsStandBy = "false";
+		
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("ItemNotFound"));
+	} */
+
+	
 }
