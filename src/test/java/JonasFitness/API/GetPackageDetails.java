@@ -331,7 +331,7 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("RedeemableClubs"));
 	}
 	@Test (testName="NotServiceTypeV", description="PBI:143538, 148154")
-	public void NotServiceTypeV() {
+	public void notServiceTypeV() {
 
 		String member = prop.getProperty("activeMember1_CustomerId");
 		int item = 76;
@@ -346,8 +346,8 @@ public class GetPackageDetails extends base{
 					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(500)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Package not found"))
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
 						.body("Result", not(hasKey("CategoryDescription")))
@@ -404,8 +404,8 @@ public class GetPackageDetails extends base{
 						.get("/api/v3/package/getPackageDetails/9"+member+"/"+item+"/"+club)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(500)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Customer not found"))
 						.body("Result", not(hasKey("AssociatedSessionDtos")))
 						.body("Result", not(hasKey("BasePrice")))
 						.body("Result", not(hasKey("CategoryDescription")))
