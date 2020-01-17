@@ -211,8 +211,8 @@ public class GetClassCoursePricing extends base {
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(500)
-//						.body("Message", equalTo("Item not found"))
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Item not found"))
 						;
 	}
 	
