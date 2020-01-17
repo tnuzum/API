@@ -4,7 +4,11 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -20,11 +24,12 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/* !!! Disabled until an unenroll is created
+	/*
+// !!! Disabled in TestNG.xml until an unenroll call is created
 	@Test (testName="Member Enrolled",description="PBI:154259")
 	public void memberEnrolled() { 
 		
-		int customerId = 229;
+		int customerId = 248;
 		String classBarcodeId = "alwaysAvailCl";
 		String classOccurrence = "2021-01-01";
 		String enrollCustomerAsStandBy = "true";
@@ -51,11 +56,11 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()));
 	}
-	
+// !!! Disabled in TestNG.xml until an unenroll call is created
 	@Test (testName="Member Enrolled On Standby",description="PBI:154259")
 	public void memberEnrolledOnStandby() { 
 		
-		int customerId = 223;
+		int customerId = 248;
 		String classBarcodeId = "standbyCl";
 		String classOccurrence = "2022-12-06";
 		String enrollCustomerAsStandBy = "true";

@@ -5,6 +5,10 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
@@ -49,7 +53,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()));
 	}
-	 
+	
 		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:147808")
 	public void memberEnrolledClassNotStarted() {
 		

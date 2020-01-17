@@ -39,7 +39,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS) // bug reported for slow performance; un-comment once bug is fixed
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BasePrice"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("DaysUntilExpiration"))

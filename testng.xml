@@ -45,6 +45,7 @@
 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" />
 			<class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetPackageDetails" />
+			<class name="JonasFitness.API.GetPackagePricing" />
 			<class name="JonasFitness.API.GetProductByBook" />
 			<class name="JonasFitness.API.GetPurchasedPackagesByMember" />
 			<class name="JonasFitness.API.GetScheduleByBook" />
