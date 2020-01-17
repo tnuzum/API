@@ -5,6 +5,10 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
@@ -102,6 +106,35 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(false))
 						.body("Result.EnrollmentStatus", equalTo("StandBy"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()));
+	} 
+	
+	@Test (testName="Member Enrolled - Free Course",description="PBI:143589")
+	public void memberEnrolledFreeCourse() {
+		
+				int customerId = 248;
+				String courseBarcodeId = "freeCo";
+				String displayedGrandTotal = "0.00";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
 						.body("Result.FirstName", not(nullValue()))
 						.body("Result.LastName", not(nullValue()))

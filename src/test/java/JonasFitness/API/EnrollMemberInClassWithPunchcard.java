@@ -41,7 +41,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -109,7 +109,35 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()));
 	}
-	*/
+	
+	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
+	public void memberEnrolledFreeClass() {
+		
+				int customerId 			= 248;
+				String classBarcodeId 	= "freeCl";
+				String classOccurrence 	= "2025-12-31";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()));
+	} */
+	
 	@Test (testName="Not Enough Punches",description="PBI:147808")
 	public void notEnoughPunches() {
 		
