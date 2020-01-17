@@ -9,7 +9,10 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.lessThan;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -128,8 +131,7 @@ public class BookAppointmentByEmployee extends base {
 			.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
-						.assertThat().statusCode(200)
-				//.time(lessThan(5L),TimeUnit.SECONDS)
+				.assertThat().statusCode(200)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
