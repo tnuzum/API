@@ -4,7 +4,11 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -20,11 +24,13 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/* !!! Disabled until an unenroll is created
+	
+	/*
+// !!! Disabled in TestNG.xml until an unenroll call is created
 	@Test (testName="Member Enrolled",description="PBI:154260")
 	public void memberEnrolled() { 
 		
-		int customerId = 229;
+		int customerId = 248;
 		String courseBarcodeId = "alwaysAvailCo";
 		String enrollCustomerAsStandBy = "true";
 		
@@ -51,10 +57,11 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Result.PreferredName", not(nullValue()));
 	}
 	
+// !!! Disabled in TestNG.xml until an unenroll call is created	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154260")
 	public void memberEnrolledOnStandby() { 
 		
-		int customerId = 223;
+		int customerId = 248;
 		String courseBarcodeId = "standbyCo";
 		String enrollCustomerAsStandBy = "true";
 		
@@ -234,15 +241,15 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("ItemNotFound"));
 	}
-	/*
-	 * This is enrolling a member even though the course doesn't take Recurring dues
+	
+	/* This is enrolling a member even though the course doesn't take Recurring dues
 	
 	@Test (testName="Recurring Dues Not Accepted",description="PBI:154260")
 	public void recurringDuesNotAccepted() { 
 		
 		int customerId = 248;
 		String courseBarcodeId = "noPunchCo";
-		String enrollCustomerAsStandBy = "false";
+		String enrollCustomerAsStandBy = "true";
 		
 
 				given()
@@ -254,7 +261,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("ItemNotFound"));
 	} */
