@@ -8,8 +8,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.hasValue;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +15,11 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class GetClassCoursePricing extends base {
+	
+	/*
+	 * The assertions need changed to testng to extract response
+	 * because hamcrest is not able to assert on the price values returned
+	 */
 	
 	@BeforeTest
 	public void getData() throws IOException {
