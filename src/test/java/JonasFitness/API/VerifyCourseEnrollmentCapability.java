@@ -70,9 +70,10 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.then()
 //						.log().body()
 						.assertThat()
-						.body("AllowedToEnroll", equalTo(true));
-//						.body("EnrollmentStatus", equalTo("CourseFullStandbyAllowed"));
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("CourseFullStandbyAllowed"));
 	}
+	
 	@Test (testName="Customer Already On Standby",description="PBI:150004")
 	public void customerAlreadyOnStandby() {
  
@@ -95,6 +96,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("CustomerAlreadyOnStandby"));
 	}
+	
 	@Test (testName="Customer Already Enrolled",description="PBI:150004")
 	public void customerAlreadyEnrolled() {
  
@@ -115,9 +117,9 @@ public class VerifyCourseEnrollmentCapability extends base{
 //						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("CustomerAlreadyEnrolled"))
-						;
+						.body("EnrollmentStatus", equalTo("CustomerAlreadyEnrolled"));
 	}
+	
 	@Test (testName="Product Price Changed",description="PBI:150004")
 	public void productPriceChanged() {
  
@@ -138,9 +140,9 @@ public class VerifyCourseEnrollmentCapability extends base{
 //						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("ProductPriceChanged"))
-						;
+						.body("EnrollmentStatus", equalTo("ProductPriceChanged"));
 	}
+	
 	@Test (testName="Invalid Course BarcodeId",description="PBI:150004")
 	public void invalidCourseBarcodeId() {
  
@@ -161,9 +163,9 @@ public class VerifyCourseEnrollmentCapability extends base{
 //						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("ItemNotFound"))
-						;
+						.body("EnrollmentStatus", equalTo("ItemNotFound"));
 	}
+	
 	@Test (testName="Invalid CustomerId",description="PBI:150004")
 	public void invalidCustomerId() {
 		
@@ -184,17 +186,17 @@ public class VerifyCourseEnrollmentCapability extends base{
 //						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("CustomerNotFound"))
-						;
+						.body("EnrollmentStatus", equalTo("CustomerNotFound"));
 	}
-	@Test (testName="Enrollment Not Allowed",description="PBI:150004")
-	public void enrollmentNotAllowed() {
+	
+	@Test (testName="Enrollment Not Allowed - Item",description="PBI:150004")
+	public void enrollmentNotAllowedItem() {
  
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 241;
-		String courseBarcodeId 	= "PBoot530";
-		String displayedGrandTotal	= "60.00";
+		int customerId 			= 237;
+		String courseBarcodeId 	= "noWebCo";
+		String displayedGrandTotal	= "1500.00";
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -207,7 +209,98 @@ public class VerifyCourseEnrollmentCapability extends base{
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-						.body("Details", equalTo("EnrollmentNotAllowed"))
-						;
+						.body("Details", equalTo("EnrollmentNotAllowed"));
+	}
+	
+	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:150004")
+	public void enrollmentNotAllowedTerminatedMember() {
+ 
+		String companyId 		= prop.getProperty("X-CompanyId");
+		String clubId 			= prop.getProperty("X-Club1Id");
+		int customerId 			= 249;
+		String courseBarcodeId 	= "alwaysAvailCo";
+		String displayedGrandTotal	= "100.00";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("MemberTerminated"));
+	}
+	
+	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:150004")
+	public void enrollmentNotAllowedFrozenMember() {
+ 
+		String companyId 		= prop.getProperty("X-CompanyId");
+		String clubId 			= prop.getProperty("X-Club1Id");
+		int customerId 			= 250;
+		String courseBarcodeId 	= "alwaysAvailCo";
+		String displayedGrandTotal	= "100.00";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("MemberFrozen"));
+	}
+	
+	@Test (testName="Course Enrollment Closed",description="PBI:150004")
+	public void courseEnrollmentClosed() {
+ 
+		String companyId 		= prop.getProperty("X-CompanyId");
+		String clubId 			= prop.getProperty("X-Club1Id");
+		int customerId 			= 248;
+		String courseBarcodeId 	= "closedCo";
+		String displayedGrandTotal	= "10.00";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("ItemRestrictions"));
+	}
+	
+	@Test (testName="Course Ended",description="PBI:150004")
+	public void courseEnded() {
+ 
+		String companyId 		= prop.getProperty("X-CompanyId");
+		String clubId 			= prop.getProperty("X-Club1Id");
+		int customerId 			= 248;
+		String courseBarcodeId 	= "endedCo";
+		String displayedGrandTotal	= "10.00";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("ItemHasEnded"));
 	}
 }

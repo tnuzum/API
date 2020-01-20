@@ -21,6 +21,11 @@ import resources.base;
 
 public class GetClassCoursePricing extends base {
 	
+	/*
+	 * The assertions need changed to testng to extract response
+	 * because hamcrest is not able to assert on the price values returned
+	 */
+	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
