@@ -354,7 +354,7 @@ public class GetFieldsForMemberCreationByEmployee extends base {
 						.body("Result[30].DataType", equalTo("string"))
 
 						;
-	}
+	} 
 	@Test (testName="Fields Found - Part 2",description="PBI:147787")
 	public void fieldsFound2() { 
 
@@ -512,7 +512,7 @@ public class GetFieldsForMemberCreationByEmployee extends base {
 						.body("Result[46]", hasKey("Values"))
 						.body("Result[46].MaximumLength", equalTo(40))
 						.body("Result[46].DataType", equalTo("string"))
-						
+					
 						.body("Result[47].FieldName", equalTo("UserDate1"))
 						.body("Result[47].Description", equalTo("Custom Date 1"))
 						.body("Result[47].DisplayValue", equalTo("Custom Date 1"))
@@ -717,7 +717,6 @@ public class GetFieldsForMemberCreationByEmployee extends base {
 						.body("Result[65].ValueMustBeInDefinedList", equalTo(false))
 						.body("Result[65]", hasKey("Values"))
 						.body("Result[65].MaximumLength", equalTo(0))
-						.body("Result[65].DataType", equalTo("string"))
-						;
+						.body("Result[65].DataType", equalTo("string"));
 	}
 }

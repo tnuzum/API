@@ -129,4 +129,22 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	@Test (testName="Endpoint Not Found", description="PBI:145817")
+	public void endpointNotFound() {
+		
+		String member = prop.getProperty("activeMember1_CustomerId");
+
+					given()
+					.header("accept", prop.getProperty("accept"))
+					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/NOTmember/getmember/"+member)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Endpoint was not found")) ;
+	}
 }
