@@ -206,7 +206,6 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("ProductPriceChanged"));
 	}
 	
-	
 	@Test (testName="Member Already On Standby",description="PBI:143589")
 	public void memberAlreadyOnStandby() {
 		
@@ -333,8 +332,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
 	}
 	
-	@Test (testName="Enroll Terminated Member",description="PBI:143589")
-	public void enrollTerminatedMember() {
+	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589")
+	public void enrollmentNotAllowedTerminatedMember() {
 		
 				int customerId 			= 249;
 				String courseBarcodeId 	= "alwaysAvailCo";
@@ -354,8 +353,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
 	}
 	
-	@Test (testName="Enroll Collections Member",description="PBI:143589")
-	public void enrollCollectionsMember() {
+	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:143589")
+	public void enrollmentNotAllowedCollectionsMember() {
 		
 				int customerId 			= 227;
 				String courseBarcodeId 	= "alwaysAvailCo";
@@ -375,8 +374,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.body("Message", equalTo("AccountProblem"));
 	}
 	
-	@Test (testName="Enroll Frozen Member",description="PBI:143589")
-	public void enrollFrozenMember() {
+	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589")
+	public void enrollmentNotAllowedFrozenMember() {
 		
 				int customerId 			= 250;
 				String courseBarcodeId 	= "alwaysAvailCo";
@@ -396,8 +395,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.body("Message", equalTo("EnrollmentNotAllowed - MemberFrozen"));
 	}
 	
-	@Test (testName="Enroll Prospect Member",description="PBI:143589")
-	public void enrollProspectMember() {
+	@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:143589")
+	public void enrollmentNotAllowedProspectMember() {
 		
 				int customerId 			= 228;
 				String courseBarcodeId 	= "alwaysAvailCo";
