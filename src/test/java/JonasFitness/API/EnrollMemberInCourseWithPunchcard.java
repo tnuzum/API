@@ -5,6 +5,10 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
@@ -102,8 +106,36 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()));
 	}
+	
+	@Test (testName="Member Enrolled - Free Course",description="PBI:147820")
+	public void memberEnrolledFreeCourse() {
+		
+				int customerId = 248;
+				String courseBarcodeId = "freeCo";
+				String enrollCustomerAsStandby = "true";
 
-	*/
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()));
+	} */
+	
 	@Test (testName="Not Enough Punches",description="PBI:147820")
 	public void notEnoughPunches() {
 		

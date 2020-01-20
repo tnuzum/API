@@ -14,6 +14,8 @@
 			<class name="JonasFitness.API.EnrollMemberInCourseWithNewCreditCard" />	
 			<class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" />
 			<class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard" />		
+			<class name="JonasFitness.API.EnrollMemberInClassWithRecurringDues" />
+			<class name="JonasFitness.API.EnrollMemberInCourseWithRecurringDues" />	
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllAvailableClassesByMember" />
@@ -43,6 +45,7 @@
 			<class name="JonasFitness.API.GetOnlineAvailableCoursesByMember" />
 			<class name="JonasFitness.API.GetOnlinePackagesForPurchaseByClub" />
 			<class name="JonasFitness.API.GetPackageDetails" />
+			<class name="JonasFitness.API.GetPackagePricing" />
 			<class name="JonasFitness.API.GetProductByBook" />
 			<class name="JonasFitness.API.GetPurchasedPackagesByMember" />
 			<class name="JonasFitness.API.GetScheduleByBook" />
