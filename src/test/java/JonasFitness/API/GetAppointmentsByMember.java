@@ -29,7 +29,7 @@ public class GetAppointmentsByMember extends base {
 		
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
-		String member = "230";
+		String member = "229";
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))

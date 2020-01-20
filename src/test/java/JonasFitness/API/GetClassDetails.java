@@ -2,12 +2,16 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetClassDetails extends base{
@@ -25,7 +29,7 @@ public class GetClassDetails extends base{
 		String ClassBarcodeId 	= "alwaysAvailCl";
 		String ClassDateTime 	= "2022-12-13";
 
-				given()
+			Response res = given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -80,7 +84,12 @@ public class GetClassDetails extends base{
 						.body("Result.ShowRefundMoneyAmount", not(nullValue()))
 						.body("Result.ShowFormOfPayment", not(nullValue()))
 						.body("Result.ShowRefundPackageVisits", not(nullValue()))
-						;
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.Price"), 10.00);
+						Assert.assertEquals(js.getDouble("Result.CancellationFee"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.RefundableAmount"), 0.0);
 	}
 	@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
 	public void classFoundOnlineSaleNotAllowed() {

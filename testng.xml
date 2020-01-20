@@ -37,6 +37,7 @@
 			<class name="JonasFitness.API.GetClubsByMember" />
 			<class name="JonasFitness.API.GetClassDetails" />
 			<class name="JonasFitness.API.GetCourseDetails" />
+			<class name="JonasFitness.API.GetEmployees" />
 			<class name="JonasFitness.API.GetFieldsForAddOnMemberCreationByEmployee" />
 			<class name="JonasFitness.API.GetFieldsForMemberCreationByEmployee" />
 			<class name="JonasFitness.API.GetFieldsForMemberCreationByMember" />

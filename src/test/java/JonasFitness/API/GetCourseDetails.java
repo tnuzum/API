@@ -1,13 +1,16 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetCourseDetails extends base{
@@ -24,7 +27,7 @@ public class GetCourseDetails extends base{
 		int customerId = 223;
 		String CourseBarcodeId = "alwaysAvailCo";
 
-				given()
+				Response res = given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -49,7 +52,6 @@ public class GetCourseDetails extends base{
 						.body("Result.AllowEnrollment", not(nullValue()))
 						.body("Result.AllowServiceDueEnrollment", not(nullValue()))
 						.body("Result.CanBePaidByPackageInCart", not(nullValue()))
-						.body("Result.CancellationFee", not(nullValue()))
 						.body("Result.CategoryDescription", not(nullValue()))
 						.body("Result.ChargeCancellationFee", not(nullValue()))
 						.body("Result.ClassCapacity", not(nullValue()))
@@ -67,16 +69,20 @@ public class GetCourseDetails extends base{
 						.body("Result.MemberEnrollmentStatus", not(nullValue()))
 						.body("Result.PackageEnrollmentAvailable", not(nullValue()))
 						.body("Result", hasKey("PackageName"))
-						.body("Result.Price", not(nullValue()))
 						.body("Result.PunchesRemaining", not(nullValue()))
 						.body("Result.PunchesRequired", not(nullValue()))
-						.body("Result.RefundableAmount", not(nullValue()))
 						.body("Result.RefundablePunchAmount", not(nullValue()))
 						.body("Result.ServiceVisitId", not(nullValue()))
 						.body("Result.StandbyCount", not(nullValue()))
 						.body("Result.StandbyEnrollmentOnly", not(nullValue()))
 						.body("Result.UnenrollmentOperation", not(nullValue()))
-						;
+						.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.Price"), 100.00);
+						Assert.assertEquals(js.getDouble("Result.CancellationFee"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.RefundableAmount"), 0.0);
+						
 	}
 	@Test (testName="Course Not Found - Invalid CourseBarcodeID",description="PBI:143545")
 	public void courseNotFound_InvalidCourseBarcodeID() {
