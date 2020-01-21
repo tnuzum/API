@@ -8,14 +8,15 @@
 			<class name="JonasFitness.API.BookAppointmentByMember" />
 			<class name="JonasFitness.API.CancelAppointmentByEmployee" />
 			<class name="JonasFitness.API.CancelAppointmentByMember" />
+			<!-- class name="JonasFitness.API.CreateMember" /-->
 			<class name="JonasFitness.API.EnrollMemberInClassOnAccount" />
 			<class name="JonasFitness.API.EnrollMemberInCourseOnAccount" />	
 			<class name="JonasFitness.API.EnrollMemberInClassWithNewCreditCard" />
 			<class name="JonasFitness.API.EnrollMemberInCourseWithNewCreditCard" />	
-			<class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" />
+			<!-- class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" />
 			<class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard" />		
 			<class name="JonasFitness.API.EnrollMemberInClassWithRecurringDues" />
-			<class name="JonasFitness.API.EnrollMemberInCourseWithRecurringDues" />	
+			<class name="JonasFitness.API.EnrollMemberInCourseWithRecurringDues" /-->	
 			<class name="JonasFitness.API.GetActiveBooksByResourceType" />
 			<class name="JonasFitness.API.GetActiveClubs" />
 			<class name="JonasFitness.API.GetAllAvailableClassesByMember" />

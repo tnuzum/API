@@ -158,6 +158,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("NotEnoughPunches"));
 		}
+	
 	@Test (testName="Punchcard Not Allowed",description="PBI:147808")
 	public void punchcardNotAllowed() {
 		
@@ -176,7 +177,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - Item 238 is not associated to a package item."));
+						.body("Message", equalTo("Class does not allow punchcard enrollment"));
 		}
 	
 	@Test (testName="Class Full - Standby Not Allowed",description="PBI:147808")

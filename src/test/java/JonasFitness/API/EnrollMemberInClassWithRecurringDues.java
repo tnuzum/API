@@ -271,9 +271,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("ItemNotFound"));
 	} 
-	/*
-	 * This is enrolling a member even though the class doesn't take Recurring dues
-
+	
 	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259")
 	public void recurringDuesNotAccepted() { 
 		
@@ -292,10 +290,11 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("ItemNotFound"));
-	} */
+						.body("Message", equalTo("Class does not allow recurring dues enrollment"))
+						;
+	}
 
 	
 }
