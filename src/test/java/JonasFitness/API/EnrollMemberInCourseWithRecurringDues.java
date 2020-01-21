@@ -126,7 +126,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
@@ -242,8 +242,6 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	/* This is enrolling a member even though the course doesn't take Recurring dues
-	
 	@Test (testName="Recurring Dues Not Accepted",description="PBI:154260")
 	public void recurringDuesNotAccepted() { 
 		
@@ -263,8 +261,8 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("ItemNotFound"));
-	} */
+						.body("Message", equalTo("Course does not allow recurring dues enrollment"));
+	}
 
 	
 }

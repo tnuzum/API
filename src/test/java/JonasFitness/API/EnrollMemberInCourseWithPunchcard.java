@@ -173,7 +173,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - Item 239 is not associated to a package item."))
+						.body("Message", equalTo("Course does not allow punchcard enrollment"))
 						;
 		}
 	
