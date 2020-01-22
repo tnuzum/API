@@ -12,6 +12,9 @@ import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class EnrollMemberInCourseOnAccount extends base {
@@ -23,22 +26,20 @@ public class EnrollMemberInCourseOnAccount extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	
-	/*
-	// !!! Disabled until an unenroll is created
 	@Test (testName="Member Enrolled - Course Already Started",description="PBI:143589")
 	public void memberEnrolledCourseStarted() {
 		
 				int customerId = 229;
+				String companyId = prop.getProperty("X-CompanyId");
 				String courseBarcodeId = "alwaysAvailCo";
 				String displayedGrandTotal = "100.00";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
@@ -53,22 +54,29 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
 	
 		@Test (testName="Member Enrolled - Course Not Started",description="PBI:143589")
 	public void memberEnrolledCourseNotStarted() {
 		
 				int customerId = 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String courseBarcodeId = "notStartedCo";
 				String displayedGrandTotal = "150.00";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
@@ -82,9 +90,15 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
-
+		/*
 	@Test (testName="Member Enrolled On Standby",description="PBI:143589")
 	public void memberEnrolledOnStandby() {
 		
@@ -112,21 +126,22 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()));
-	} 
+	} */
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:143589")
 	public void memberEnrolledFreeCourse() {
 		
 				int customerId = 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String courseBarcodeId = "freeCo";
 				String displayedGrandTotal = "0.00";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
@@ -140,8 +155,14 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
-	} */
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
+	} 
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:143589") // failed to create invoice because member's billing info not setup
 	public void noFOP_AccountProblem() {
@@ -161,7 +182,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("AccountProblem"));
+						.body("Message", equalTo("Account Problem"));
 	}
 	
 	@Test (testName="Member Already Enrolled",description="PBI:143589")
@@ -371,7 +392,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("AccountProblem"));
+					.body("Message", equalTo("Account Problem"));
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589")
@@ -413,7 +434,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("AccountProblem"));
+					.body("Message", equalTo("Account Problem"));
 	}
 	
 	@Test (testName="Credit Limited Exceeded",description="PBI:143589")
@@ -434,7 +455,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("AccountProblem"));
+					.body("Message", equalTo("Account Problem"));
 	}
 	
 	@Test (testName="Course Enrollment Closed",description="PBI:143589")
