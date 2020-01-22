@@ -17,6 +17,11 @@ import resources.base;
 
 public class GetNextMemberId extends base {
 	
+	/*
+	 * see CreateMember test for a scenario that confirms the Id is
+	 * incremented after a new member is created
+	 */
+	
 	@BeforeTest
 	public void getData() throws IOException {
 		base.getPropertyData();
