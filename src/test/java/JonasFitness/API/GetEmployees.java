@@ -240,10 +240,8 @@ public class GetEmployees extends base {
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Address="+address1+"")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(200)
-//						.assertThat().statusCode(204)
-						.body("Result", nullValue())
-						;
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("No employee record(s) found"));
 	}
 	
 	@Test (testName="Employees Found - Active Only - Username",description="PBI:150855")
@@ -347,5 +345,24 @@ public class GetEmployees extends base {
 						.body("Result[0]", hasKey("MobilePhone"))
 						.body("Result[0].Id", not(nullValue()))
 						;
+	}
+	
+	@Test (testName="Employee Not Found",description="PBI:150855")
+	public void employeeNotFound() { 
+		
+			String username = "NOTONFILE";
+
+				given()
+
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/employee/getemployees?ActiveOnly=true&Username="+username+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("No employee record(s) found"));
 	}
 }

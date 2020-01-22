@@ -81,7 +81,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
 						.then()
-//						.log().body()
+	//					.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -98,6 +98,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						ReusableMethods.delEnrollment(companyId, enrollmentId);
 						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
+		
 		/*
 	@Test (testName="Member Enrolled On Standby",description="PBI:143589")
 	public void memberEnrolledOnStandby() {

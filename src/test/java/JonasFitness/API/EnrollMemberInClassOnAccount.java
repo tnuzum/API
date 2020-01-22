@@ -159,7 +159,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
