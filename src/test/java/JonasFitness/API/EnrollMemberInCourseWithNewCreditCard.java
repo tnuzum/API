@@ -222,7 +222,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Payment Failed"));
+						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
 	@Test (testName="Card Number Invalid",description="PBI:146580")
@@ -270,7 +270,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Payment Failed"));
+						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
 	@Test (testName="Card Number Length Incorrect",description="PBI:146580")
@@ -318,7 +318,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Payment Failed"));
+						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
 	@Test (testName="Course Item Not Found",description="PBI:146580")
