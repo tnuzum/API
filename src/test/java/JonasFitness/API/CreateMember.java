@@ -1,7 +1,7 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -30,10 +30,10 @@ public class CreateMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Member Created",description="PBI:")
+	@Test (testName="Member Created",description="PBI:147807")
 	public void memberCreated() { 
 
-		Response res = given()
+		Response res1 = given()
 
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -44,10 +44,11 @@ public class CreateMember extends base {
 					.then()
 					.extract().response();
 		
-		JsonPath js = ReusableMethods.rawToJson(res);
-				int memberId = js.getInt("Result.BarcodeId");
-
-				given()
+		JsonPath js = ReusableMethods.rawToJson(res1);
+				int nextMemberId = js.getInt("Result.BarcodeId");
+				System.out.println(nextMemberId);
+				
+		Response res2	=	given()
 
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -56,7 +57,7 @@ public class CreateMember extends base {
 				.header("Content-Type", "application/json")
 					.when()
 					.body("{\r\n" + 
-							"  \"MemberId\": \""+memberId+"\",\r\n" + 
+							"  \"MemberId\": \""+nextMemberId+"\",\r\n" + 
 							"  \"HomeClubId\": 1,\r\n" + 
 							"  \"FirstName\": \"Auto\",\r\n" + 
 							"  \"LastName\": \"Generated\",\r\n" + 
@@ -91,12 +92,33 @@ public class CreateMember extends base {
 							"}")
 						.post("/api/v3/member/createmember")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Successful", equalTo(true))
 						.body("CustomerId", not(nullValue()))
 						.body("MemberId", not(nullValue()))
-						.body("Messages", contains("Added customer record: Id = "));
+//						.body("Messages", contains("Added customer record: Id = "))
+						.extract().response();
+		
+				JsonPath js2 = ReusableMethods.rawToJson(res2);
+						int memberId = js2.getInt("MemberId");
+		
+		Response res3 = given()
+				// Get next member ID again
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getnextmemberid")
+						.then()
+						.extract().response();
+			// next, confirm member ID is incremented by 1
+			JsonPath js3 = ReusableMethods.rawToJson(res3);
+				int nextMemberId2 = js3.getInt("Result.BarcodeId");
+				int memberId2 = (memberId + 1);
+				Assert.assertEquals(nextMemberId2, memberId2);
+		
 	}
 }
