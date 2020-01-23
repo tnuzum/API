@@ -335,7 +335,12 @@ public class BookAppointmentByMember extends base {
 				.body("Message", equalTo("FailAppointmentNotAvailable"));
 	}
 	/*
-	//!! disabled until bug is fixed; bug allows booking even though price is different
+	* New test needed - setup a training for club# 2
+	 * the expected message is received when the 
+	 * 'Restrict online scheduling to prepaid trainings / services only'
+	 * parameter is unchecked
+	 * 
+	 *  
 	
 	@Test (testName="Product Price Changed",description="PBI:146227")
 	public void productPriceChanged() { 

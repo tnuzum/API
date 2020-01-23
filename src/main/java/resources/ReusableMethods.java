@@ -50,6 +50,7 @@ public class ReusableMethods extends base {
 		
 		return;
 	}
+	
 	public static void delInvoice(String companyId, int invoiceId)
 	{
 		try {
