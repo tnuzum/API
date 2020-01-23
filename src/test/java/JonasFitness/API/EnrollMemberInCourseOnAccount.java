@@ -81,7 +81,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
 						.then()
-	//					.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -99,20 +99,20 @@ public class EnrollMemberInCourseOnAccount extends base {
 						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
 		
-		/*
 	@Test (testName="Member Enrolled On Standby",description="PBI:143589")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 			= 245;
+				int customerId 			= 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String courseBarcodeId 	= "standbyCo";
 				String displayedGrandTotal	= "1500.00";
 				String enrollCustomerAsStandby = "true";
 
-				given()
-//						.log().all()
+			Response res =	given()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
@@ -126,8 +126,14 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
-	} */
+						.body("Result.PreferredName", not(nullValue()))
+												.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
+	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:143589")
 	public void memberEnrolledFreeCourse() {

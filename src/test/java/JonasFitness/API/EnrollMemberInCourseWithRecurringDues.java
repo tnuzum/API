@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class EnrollMemberInCourseWithRecurringDues extends base {
@@ -25,26 +28,25 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	/*
-// !!! Disabled in TestNG.xml until an unenroll call is created
-	@Test (testName="Member Enrolled",description="PBI:154260")
-	public void memberEnrolled() { 
+	@Test (testName="Member Enrolled - Paid Course",description="PBI:154260")
+	public void memberEnrolledPaidCourse() { 
 		
 		int customerId = 248;
+		String companyId = prop.getProperty("X-CompanyId");
 		String courseBarcodeId = "alwaysAvailCo";
 		String enrollCustomerAsStandBy = "true";
 		
 
-				given()
+			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -54,19 +56,64 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+			
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
 	}
 	
-// !!! Disabled in TestNG.xml until an unenroll call is created	
+	@Test (testName="Member Enrolled - Free Course",description="PBI:154260")
+	public void memberEnrolledFreeCourse() { 
+		
+		int customerId = 248;
+		String companyId = prop.getProperty("X-CompanyId");
+		String courseBarcodeId = "freeCo";
+		String enrollCustomerAsStandBy = "true";
+		
+
+			Response res =	given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+			
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
+	}
+	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154260")
 	public void memberEnrolledOnStandby() { 
 		
 		int customerId = 248;
+		String companyId = prop.getProperty("X-CompanyId");
 		String courseBarcodeId = "standbyCo";
 		String enrollCustomerAsStandBy = "true";
 		
 
-				given()
+			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -75,7 +122,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.EnrollmentStatus", equalTo("StandBy"))
@@ -84,8 +131,15 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
-	} */
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
+	}
 	
 	@Test (testName="Member Already Enrolled",description="PBI:154260")
 	public void memberAlreadyEnrolled() { 
@@ -130,7 +184,6 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
-	
 	
 	@Test (testName="Member Enrolled Not On Standby",description="PBI:154260")
 	public void memberEnrolledNotOnStandby() { 
@@ -261,7 +314,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Course does not allow recurring dues enrollment"));
+						.body("Message", equalTo("Course or customer configuration does not allow recurring dues enrollment"));
 	}
 
 	

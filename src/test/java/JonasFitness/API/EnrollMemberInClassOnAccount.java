@@ -102,7 +102,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					ReusableMethods.delEnrollment(companyId, enrollmentId);
 					ReusableMethods.delInvoice(companyId, invoiceId);
 	}
-	/* disabled until delete standby call is created
+	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
 	public void memberEnrolledOnStandby() {
 		
@@ -121,7 +121,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(false))
 						.body("Result.EnrollmentStatus", equalTo("StandBy"))
@@ -133,12 +133,12 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 				JsonPath js = ReusableMethods.rawToJson(res);
-//					int enrollmentId = js.getInt("Result.EnrollmentId");
-//					int invoiceId = js.getInt("Result.InvoiceId");
+					int enrollmentId = js.getInt("Result.EnrollmentId");
+					int invoiceId = js.getInt("Result.InvoiceId");
 		
-//					ReusableMethods.delEnrollment(companyId, enrollmentId);
-//					ReusableMethods.delInvoice(companyId, invoiceId);
-	} */
+					ReusableMethods.delEnrollment(companyId, enrollmentId);
+					ReusableMethods.delInvoice(companyId, invoiceId);
+	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
 	public void memberEnrolledFreeClass() {

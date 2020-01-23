@@ -12,6 +12,9 @@ import static org.hamcrest.Matchers.nullValue;
 
 import java.io.IOException;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class EnrollMemberInClassWithPunchcard extends base {
@@ -22,26 +25,26 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/*
-	// !!! Disabled until an unenroll is created
-	@Test (testName="Member Enrolled - Class Already Started",description="PBI:147808")
-	public void memberEnrolledClassStarted() {
+	
+	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:147808")
+	public void memberEnrolledPaidClassStarted() {
 		
 				int customerId = 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId = "alwaysAvailCl";
 				String classOccurrence = "2025-12-31";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -51,21 +54,29 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+			
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
 	}
 	
-		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:147808")
-	public void memberEnrolledClassNotStarted() {
+		@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:147808")
+	public void memberEnrolledPaidClassNotStarted() {
 		
 				int customerId = 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId = "notStartedCl";
 				String classOccurrence = "2119-12-25";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
@@ -79,18 +90,26 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);			
+			
 	}
 		
 	@Test (testName="Member Enrolled On Standby",description="PBI:147808")
 	public void memberEnrolledOnStandby() {
 		
 				int customerId 			= 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2025-12-31";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -107,26 +126,33 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
 	public void memberEnrolledFreeClass() {
 		
 				int customerId 			= 248;
+				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId 	= "freeCl";
 				String classOccurrence 	= "2025-12-31";
 				String enrollCustomerAsStandby = "true";
 
-				given()
+			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -135,8 +161,14 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.LastName", not(nullValue()))
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()));
-	} */
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.delEnrollment(companyId, enrollmentId);
+						ReusableMethods.delInvoice(companyId, invoiceId);
+	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147808")
 	public void notEnoughPunches() {
@@ -156,7 +188,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("NotEnoughPunches"));
+//						.body("Message", equalTo("NotEnoughPunches"));
+						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
 		}
 	
 	@Test (testName="Punchcard Not Allowed",description="PBI:147808")
@@ -177,7 +210,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Class does not allow punchcard enrollment"));
+						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
 		}
 	
 	@Test (testName="Class Full - Standby Not Allowed",description="PBI:147808")
@@ -198,6 +231,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Full"));
+//						.body("Message", equalTo("Full"));
+						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
 		}
-	}
+	} 
