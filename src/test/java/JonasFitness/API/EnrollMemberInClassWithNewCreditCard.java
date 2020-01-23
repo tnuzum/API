@@ -76,7 +76,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
-//						.log().body()
+						.log().all()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
