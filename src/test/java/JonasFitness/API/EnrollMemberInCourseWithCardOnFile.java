@@ -18,7 +18,7 @@ import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
 
-public class EnrollMemberInClassWithCardOnFile extends base {
+public class EnrollMemberInCourseWithCardOnFile extends base {
 	
 	@BeforeTest
 	public void getData() throws IOException {
@@ -29,14 +29,13 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	/*
 	 * Need a new test using optional AddressLine2 & Country fields
 	*/
-	@Test (testName="Member Enrolled - Paid Class",description="PBI:146577")
-	public void memberEnrolled_PaidClass() {
+	@Test (testName="Member Enrolled - Paid Course",description="PBI:146578")
+	public void memberEnrolled_PaidCourse() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
 				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String courseBarcodeId 			= "alwaysAvailCo";
+				String displayedGrandTotal 		= "100.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -50,13 +49,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"AccountId\": \""+accountId+"\"," + 
 								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 								"}")
-						.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+						.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -69,13 +67,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						ReusableMethods.delInvoice(companyId, invoiceId);	
 	}
 	
-	@Test (testName="Member Enrolled - Free Class",description="PBI:146577")
-	public void memberEnrolled_FreeClass() {
+	@Test (testName="Member Enrolled - Free Course",description="PBI:146578")
+	public void memberEnrolled_FreeCourse() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
 				int customerId 					= 248;
-				String classBarcodeId 			= "freeCl";
-				String classOccurrence 			= "2025-12-31";
+				String courseBarcodeId 			= "freeCo";
 				String displayedGrandTotal 		= "0.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -90,13 +87,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -107,15 +103,14 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						ReusableMethods.delEnrollment(companyId, enrollmentId);
 						ReusableMethods.delInvoice(companyId, invoiceId);
 	}
-	
-	@Test (testName="Member Enrolled On Standby",description="PBI:146577")
+
+	@Test (testName="Member Enrolled On Standby",description="PBI:146578")
 	public void memberEnrolledOnStandby() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
 				int customerId 					= 248;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.00";
+				String courseBarcodeId 			= "standbyCo";
+				String displayedGrandTotal 		= "1500.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -128,13 +123,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -156,13 +150,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 			
 	} 
 	
-	@Test (testName="Member Not Enrolled On Standby",description="PBI:146577")
+	@Test (testName="Member Not Enrolled On Standby",description="PBI:146578")
 	public void memberNotEnrolledOnStandby() {
 		
 				int customerId 					= 247;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.00";
+				String courseBarcodeId 			= "standbyCo";
+				String displayedGrandTotal 		= "1500.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "false";
 
@@ -175,26 +168,24 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Full"));
 	}
 
-	@Test (testName="Member Already Enrolled",description="PBI:146577")
+	@Test (testName="Member Already Enrolled",description="PBI:146578")
 	public void memberAlreadyEnrolled() {
 		
-				int customerId 					= 245;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.00";
+				int customerId 					= 241;
+				String courseBarcodeId 			= "standbyCo";
+				String displayedGrandTotal 		= "1500.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -208,26 +199,24 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyEnrolled"));
 	}
 	
-	@Test (testName="Member Already On Standby",description="PBI:146577")
+	@Test (testName="Member Already On Standby",description="PBI:146578")
 	public void memberAlreadyOnStandby() {
 		
-				int customerId 					= 246;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.00";
+				int customerId 					= 242;
+				String courseBarcodeId 			= "standbyCo";
+				String displayedGrandTotal 		= "1500.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -241,26 +230,24 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Class Not Available Online",description="PBI:146577")
-	public void classNotAvailableOnline() {
+	@Test (testName="Course Not Available Online",description="PBI:146578")
+	public void courseNotAvailableOnline() {
 		
 				int customerId 					= 248;
-				String classBarcodeId 			= "noWebCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "150.00";
+				String courseBarcodeId 			= "noWebCo";
+				String displayedGrandTotal 		= "1500.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -273,25 +260,23 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
 	}
 	
-	@Test (testName="Class Ended",description="PBI:146577")
-	public void classEnded() {
+	@Test (testName="Course Ended",description="PBI:146578")
+	public void courseEnded() {
 		
 				int customerId 					= 248;
-				String classBarcodeId 			= "endedCl";
-				String classOccurrence 			= "2019-12-13";
+				String courseBarcodeId 			= "endedCo";
 				String displayedGrandTotal 		= "10.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -305,26 +290,24 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
 	}
 	
-	@Test (testName="Customer Not Found",description="PBI:146577")
+	@Test (testName="Customer Not Found",description="PBI:146578")
 	public void customerNotFound() {
 		
 				int customerId 					= 248000;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String courseBarcodeId 			= "alwaysAvailCo";
+				String displayedGrandTotal 		= "100.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -337,26 +320,24 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Class Not Found",description="PBI:146577")
-	public void classNotFound() {
+	@Test (testName="Course Not Found",description="PBI:146578")
+	public void courseNotFound() {
 		
 				int customerId 					= 237;
-				String classBarcodeId 			= "NOTalwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String courseBarcodeId 			= "NOTalwaysAvailCo";
+				String displayedGrandTotal 		= "100.00";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -369,57 +350,23 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Class Occurrence Not Found",description="PBI:146577")
-	public void classOccurrenceNotFound() {
-		
-				int customerId 					= 237;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2225-01-01";
-				String displayedGrandTotal 		= "10.00";
-				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
-
-				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-				.header("Content-Type", "application/json")
-					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
-							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("ItemNotFound"));
-	}
-	
-	@Test (testName="Product Price Changed",description="PBI:146577")
+	@Test (testName="Product Price Changed",description="PBI:146578")
 	public void productPriceChanged() {
 		
 				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
+				String courseBarcodeId 			= "alwaysAvailCo";
 				String displayedGrandTotal 		= "10.01";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -433,13 +380,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -449,10 +395,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	@Test (testName="Scheduling Conflict",description="PBI:146578")
 	public void schedulingConflict() {
 		
-				int customerId 					= 242;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.0";
+				int customerId 					= 246;
+				String courseBarcodeId 			= "standbyCo";
+				String displayedGrandTotal 		= "1500.0";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -465,13 +410,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
-							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 							"}")
-					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)

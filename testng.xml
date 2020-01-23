@@ -12,6 +12,7 @@
 			<class name="JonasFitness.API.EnrollMemberInClassOnAccount" />
 			<class name="JonasFitness.API.EnrollMemberInCourseOnAccount" />	
 			<class name="JonasFitness.API.EnrollMemberInClassWithCardOnFile" />
+			<class name="JonasFitness.API.EnrollMemberInCourseWithCardOnFile" />
 			<class name="JonasFitness.API.EnrollMemberInClassWithNewCreditCard" />
 			<class name="JonasFitness.API.EnrollMemberInCourseWithNewCreditCard" />	
 			<!-- class name="JonasFitness.API.EnrollMemberInClassWithPunchcard" /-->
