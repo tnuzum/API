@@ -234,4 +234,25 @@ public class EnrollMemberInClassWithPunchcard extends base {
 //						.body("Message", equalTo("Full"));
 						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
 		}
+	
+	@Test (testName="Class Not Found",description="PBI:147808")
+	public void classNotFound() {
+		
+				int customerId = 247;
+				String classBarcodeId = "NOTstandbyCl";
+				String classOccurrence 	= "2023-01-02";
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("ItemNotFound"));
+		}
 	} 
