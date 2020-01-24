@@ -25,7 +25,7 @@ public class ReusableMethods extends base {
 		JsonPath x = new JsonPath(respon);
 		return x;
 	}
-	
+	/*
 	public static void delEnrollment(String companyId, int enrollmentId)
 	{
 
@@ -61,6 +61,42 @@ public class ReusableMethods extends base {
 		}
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
+				.then()
+//				.log().body()
+				;
+		
+		return;
+	}*/
+	
+	public static void unenroll(String companyId, int invoiceId, int enrollmentId)
+	{
+		try {
+			base.getPropertyData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		given()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
+				.then()
+//				.log().body()
+				;
 		
 		given()
 		.header("accept", prop.getProperty("accept"))

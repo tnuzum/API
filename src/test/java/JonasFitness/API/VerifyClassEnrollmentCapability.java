@@ -443,5 +443,5 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("AllowedToEnroll", equalTo(false))
 						.body("Message", equalTo("AccountProblem"));
 	}*/
-	
+
 }

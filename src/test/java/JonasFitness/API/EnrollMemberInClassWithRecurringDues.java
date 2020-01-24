@@ -63,8 +63,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:154259")
@@ -102,8 +101,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154259")
@@ -139,8 +137,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	} 
 	
 	@Test (testName="Member Already Enrolled",description="PBI:154259")
@@ -192,7 +189,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 	@Test (testName="Member Enrolled Not On Standby",description="PBI:154259")
 	public void memberEnrolledNotOnStandby() { 
 		
-		int customerId = 223;
+		int customerId = 248;
 		String classBarcodeId = "standbyCl";
 		String classOccurrence = "2022-12-06";
 		String enrollCustomerAsStandBy = "false";
@@ -277,7 +274,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("CustomerNotFound"));
 	} 
 	
@@ -289,7 +286,6 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		String classOccurrence = "2025-12-31";
 		String enrollCustomerAsStandBy = "false";
 		
-
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -300,7 +296,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	} 
 	
@@ -310,9 +306,8 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		int customerId = 248;
 		String classBarcodeId = "alwaysAvailCl";
 		String classOccurrence = "2125-12-31";
-		String enrollCustomerAsStandBy = "false";
+		String enrollCustomerAsStandBy = "true";
 		
-
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -323,7 +318,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	} 
 	

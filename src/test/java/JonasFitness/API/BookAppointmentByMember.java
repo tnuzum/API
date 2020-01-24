@@ -222,7 +222,7 @@ public class BookAppointmentByMember extends base {
 					"\"ItemId\": 243,"+ 
 					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
 					"\"CustomerId\": "+member+","+ 
-					"\"AdditionalCustomerIds\": [224],"+
+					"\"AdditionalCustomerIds\": [247],"+
 					"\"RequestedBooks\": [35],"+ 
 					"\"UserDisplayedPrice\": 10.00"+
 					"}")

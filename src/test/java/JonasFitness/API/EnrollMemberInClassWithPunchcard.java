@@ -60,8 +60,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 		@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:147808")
@@ -95,9 +94,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);			
-			
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);		
 	}
 		
 	@Test (testName="Member Enrolled On Standby",description="PBI:147808")
@@ -131,8 +128,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);	
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
@@ -166,8 +162,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147808")
@@ -252,7 +247,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 		}
 	} 

@@ -26,9 +26,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/*
-	 * Need a new test using optional AddressLine2 & Country fields
-	*/
+
 	@Test (testName="Member Enrolled - Paid Class",description="PBI:146577")
 	public void memberEnrolled_PaidClass() {
 		
@@ -65,8 +63,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);	
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);	
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146577")
@@ -104,8 +101,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146577")
@@ -151,8 +147,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 			
 	} 
 	
@@ -346,14 +341,14 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
 	@Test (testName="Class Not Found",description="PBI:146577")
 	public void classNotFound() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String classBarcodeId 			= "NOTalwaysAvailCl";
 				String classOccurrence 			= "2025-01-01";
 				String displayedGrandTotal 		= "10.00";
@@ -378,14 +373,14 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
 	@Test (testName="Class Occurrence Not Found",description="PBI:146577")
 	public void classOccurrenceNotFound() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
 				String classOccurrence 			= "2225-01-01";
 				String displayedGrandTotal 		= "10.00";
@@ -410,7 +405,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	

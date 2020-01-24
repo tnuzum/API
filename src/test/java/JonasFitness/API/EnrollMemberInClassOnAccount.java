@@ -62,8 +62,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-					ReusableMethods.delEnrollment(companyId, enrollmentId);
-					ReusableMethods.delInvoice(companyId, invoiceId);	
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);	
 	}
 
 		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
@@ -98,15 +97,13 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-				
-					ReusableMethods.delEnrollment(companyId, enrollmentId);
-					ReusableMethods.delInvoice(companyId, invoiceId);
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 			= 223;
+				int customerId 			= 248;
 				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId 	= "standbyCl";
 				String classOccurrence 	= "2022-12-06";
@@ -135,9 +132,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-		
-					ReusableMethods.delEnrollment(companyId, enrollmentId);
-					ReusableMethods.delInvoice(companyId, invoiceId);
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
@@ -174,9 +169,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-			
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:143588") // failed to create invoice because member's billing info not setup
@@ -307,7 +300,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
@@ -329,7 +322,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
