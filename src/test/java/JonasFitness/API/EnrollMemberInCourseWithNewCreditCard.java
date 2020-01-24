@@ -31,7 +31,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 	public void memberEnrolledPaidCourse() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "alwaysAvailCo";
 				String displayedGrandTotal 		= "100.00";
 				String cardNumber				= "5454545454545454";
@@ -79,15 +79,14 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:146580")
 	public void memberEnrolledFreeCourse() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "freeCo";
 				String displayedGrandTotal 		= "0.00";
 				String cardNumber				= "5454545454545454";
@@ -135,8 +134,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146580")
@@ -197,14 +195,13 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:146580")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "standbyCo";
 				String displayedGrandTotal 	= "1500.00";
 				String cardNumber				= "5454545454545454";
@@ -252,7 +249,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 	@Test (testName="Card Expired",description="PBI:146580")
 	public void cardExpired() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "alwaysAvailCo";
 				String displayedGrandTotal 	= "100.00";
 				String cardNumber				= "5454545454545454";
@@ -300,7 +297,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 	@Test (testName="Card Number Invalid",description="PBI:146580")
 	public void cardNumberInvalid() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "alwaysAvailCo";
 				String displayedGrandTotal 	= "100.00";
 				String cardNumber				= "5454545454545400";
@@ -348,7 +345,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 	@Test (testName="Card Number Length Incorrect",description="PBI:146580")
 	public void cardNumberLengthIncorrect() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "alwaysAvailCo";
 				String displayedGrandTotal 	= "100.00";
 				String cardNumber				= "54545454545454540000";
@@ -393,10 +390,10 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Course Item Not Found",description="PBI:146580")
-	public void courseItemNotFound() {
+	@Test (testName="Course Not Found",description="PBI:146580")
+	public void courseNotFound() {
 		
-				int customerId 					= 237;
+				int customerId 					= 248;
 				String courseBarcodeId 			= "NOTalwaysAvailCo";
 				String displayedGrandTotal 	= "100.00";
 				String cardNumber				= "5454545454545454";
@@ -437,7 +434,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	

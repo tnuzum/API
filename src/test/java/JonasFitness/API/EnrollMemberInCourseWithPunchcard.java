@@ -59,8 +59,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 			
 	}
 	 
@@ -95,8 +94,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 
 	@Test (testName="Member Enrolled On Standby",description="PBI:147820")
@@ -130,8 +128,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:147820")
@@ -167,8 +164,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.delEnrollment(companyId, enrollmentId);
-						ReusableMethods.delInvoice(companyId, invoiceId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147820")
@@ -188,7 +184,8 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("NotEnoughPunches"));
+//						.body("Message", equalTo("NotEnoughPunches"));
+						.body("Message", equalTo("Course or customer configuration does not allow punchcard enrollment"));
 		}
 	
 	@Test (testName="Punchcard Not Allowed",description="PBI:147820")
@@ -208,7 +205,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Course does not allow punchcard enrollment"))
+						.body("Message", equalTo("Course or customer configuration does not allow punchcard enrollment"))
 						;
 		}
 	
@@ -229,7 +226,8 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Full"))
+//						.body("Message", equalTo("Full"))
+						.body("Message", equalTo("Course or customer configuration does not allow punchcard enrollment"));
 						;
 		}
 		
