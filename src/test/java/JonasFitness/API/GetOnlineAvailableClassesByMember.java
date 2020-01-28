@@ -9,11 +9,8 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import resources.ReusableDates;
