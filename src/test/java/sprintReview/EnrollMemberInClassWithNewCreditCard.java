@@ -30,9 +30,9 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	public void memberEnrolled_PaidClass() {
 		
 				String companyId				= prop.getProperty("X-CompanyId");
-				int customerId 					= 248;
+				int customerId 					= 234;
 				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
+				String classOccurrence 			= "2020-01-31";
 				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
 				String nameOnCard				= "THOMAS MANNY";
@@ -73,15 +73,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 
-					JsonPath js = ReusableMethods.rawToJson(res);
-						int enrollmentId = js.getInt("Result.EnrollmentId");
-						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
+//					JsonPath js = ReusableMethods.rawToJson(res);
+//						int enrollmentId = js.getInt("Result.EnrollmentId");
+//						int invoiceId = js.getInt("Result.InvoiceId");
+//						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146579")
