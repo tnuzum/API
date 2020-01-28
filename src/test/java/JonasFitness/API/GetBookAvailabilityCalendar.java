@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.hasKey;
 
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;

@@ -9,11 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.hasValue;
-
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;

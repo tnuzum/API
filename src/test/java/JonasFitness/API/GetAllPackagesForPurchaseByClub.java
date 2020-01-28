@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 //import static org.hamcrest.Matchers.hasKey;
 //import static org.hamcrest.Matchers.not;
 
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import resources.base;
 

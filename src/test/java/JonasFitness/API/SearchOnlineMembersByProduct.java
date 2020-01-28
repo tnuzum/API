@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;

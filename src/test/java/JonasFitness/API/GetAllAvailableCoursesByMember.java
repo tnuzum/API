@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
