@@ -93,9 +93,10 @@ public class EnrollMemberInClassOnAccount extends base {
 						.extract().response();
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
+
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
@@ -127,10 +128,11 @@ ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
@@ -163,11 +165,12 @@ ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-				
+			
 				JsonPath js = ReusableMethods.rawToJson(res);
+
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:143588") // failed to create invoice because member's billing info not setup
