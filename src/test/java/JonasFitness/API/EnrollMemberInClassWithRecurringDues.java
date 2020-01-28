@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
-
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -37,7 +36,6 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		String classOccurrence = "2021-01-01";
 		String enrollCustomerAsStandBy = "true";
 		
-
 			Response res =	given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -63,7 +61,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:154259")
@@ -74,7 +72,6 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		String classBarcodeId = "freeCl";
 		String classOccurrence = "2021-01-01";
 		String enrollCustomerAsStandBy = "true";
-		
 
 			Response res =	given()
 //						.log().all()
@@ -101,7 +98,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154259")
@@ -134,10 +131,11 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+			
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	} 
 	
 	@Test (testName="Member Already Enrolled",description="PBI:154259")

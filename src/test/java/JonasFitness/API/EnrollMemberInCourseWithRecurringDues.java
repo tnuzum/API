@@ -62,7 +62,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:154260")
@@ -99,7 +99,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154260")
@@ -135,7 +135,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Already Enrolled",description="PBI:154260")

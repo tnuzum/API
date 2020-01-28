@@ -9,7 +9,6 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -60,6 +59,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
+			
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
@@ -98,11 +98,14 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 //						.log().body()
 						.assertThat().statusCode(200)
 						.extract().response();
+			
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
-	}
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId)
+						;
+	
+			}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146577")
 	public void memberEnrolledOnStandby() {
@@ -147,7 +150,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 			
 	} 
 	
