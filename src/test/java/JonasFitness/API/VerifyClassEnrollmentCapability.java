@@ -21,7 +21,7 @@ public class VerifyClassEnrollmentCapability extends base{
 	 */
 
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -58,9 +58,9 @@ public class VerifyClassEnrollmentCapability extends base{
  
 		String companyId 		= prop.getProperty("X-CompanyId");
 		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 223;
+		int customerId 			= 248;
 		String classBarcodeId 	= "standbyCl";
-		String classOccurrence 	= "2022-12-06";
+		String classOccurrence 	= "2023-01-02";
 		String displayedGrandTotal	= "150.00";
 
 				given()

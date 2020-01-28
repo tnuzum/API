@@ -22,7 +22,7 @@ import resources.base;
 public class EnrollMemberInClassOnAccount extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -62,7 +62,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);	
+ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
 	}
 
 		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
@@ -97,7 +97,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
@@ -106,7 +106,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId 			= 248;
 				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2022-12-06";
+				String classOccurrence 	= "2023-01-02";
 				String displayedGrandTotal	= "150.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -132,7 +132,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
@@ -169,7 +169,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:143588") // failed to create invoice because member's billing info not setup

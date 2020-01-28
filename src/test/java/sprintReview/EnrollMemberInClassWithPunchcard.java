@@ -1,4 +1,4 @@
-package JonasFitness.API;
+package sprintReview;
 
 import static io.restassured.RestAssured.given;
 
@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
@@ -20,7 +19,7 @@ import resources.base;
 public class EnrollMemberInClassWithPunchcard extends base {
 	
 	@BeforeTest
-	public void getData() {
+	public void getData() throws IOException {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -56,11 +55,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-			
+//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 		@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:147808")
@@ -91,10 +91,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);		
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);		
 	}
 		
 	@Test (testName="Member Enrolled On Standby",description="PBI:147808")
@@ -125,10 +127,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
@@ -159,10 +163,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147808")

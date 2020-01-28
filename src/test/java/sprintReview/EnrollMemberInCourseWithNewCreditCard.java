@@ -1,4 +1,4 @@
-package JonasFitness.API;
+package sprintReview;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,7 +21,7 @@ import resources.base;
 public class EnrollMemberInCourseWithNewCreditCard extends base {
 	
 	@BeforeTest
-	public void getData() {
+	public void getData() throws IOException {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -76,10 +76,12 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
+//					ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+	
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:146580")
@@ -131,10 +133,11 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
+//					ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146580")
@@ -192,10 +195,11 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+//					ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:146580")
