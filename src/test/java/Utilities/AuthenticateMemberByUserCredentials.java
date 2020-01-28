@@ -1,13 +1,9 @@
 package Utilities;
 
-import static org.hamcrest.Matchers.*;
-
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import resources.base;
@@ -15,7 +11,7 @@ import resources.base;
 public class AuthenticateMemberByUserCredentials extends base {
 
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");

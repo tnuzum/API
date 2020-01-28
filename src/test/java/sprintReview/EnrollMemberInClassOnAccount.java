@@ -10,8 +10,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import java.io.IOException;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -22,7 +20,7 @@ import resources.base;
 public class EnrollMemberInClassOnAccount extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -30,7 +28,6 @@ public class EnrollMemberInClassOnAccount extends base {
 	
 	@Test (testName="Member Enrolled - Class Already Started",description="PBI:143588")
 	public void memberEnrolledClassStarted(){
-//		System.out.println("Beginning - memberEnrolledClassStarted");
 			
 				int customerId = 248;
 				String companyId = prop.getProperty("X-CompanyId");
@@ -61,7 +58,6 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 			
-//					ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
@@ -70,7 +66,6 @@ public class EnrollMemberInClassOnAccount extends base {
 
 		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
 	public void memberEnrolledClassNotStarted() {
-//		System.out.println("Beginning - memberEnrolledClassNotStarted");
 		
 				int customerId = 248;
 				String companyId = prop.getProperty("X-CompanyId");
@@ -99,7 +94,6 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 	
-//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 
 					int enrollmentId = js.getInt("Result.EnrollmentId");
@@ -109,8 +103,6 @@ public class EnrollMemberInClassOnAccount extends base {
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
 	public void memberEnrolledOnStandby() {
-//		System.out.println("Beginning - memberEnrolledOnStandby");
-		
 		
 				int customerId 			= 248;
 				String companyId = prop.getProperty("X-CompanyId");
@@ -138,7 +130,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-//				ReusableMethods.myWait();
+
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
@@ -147,8 +139,6 @@ public class EnrollMemberInClassOnAccount extends base {
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
 	public void memberEnrolledFreeClass() {
-//		System.out.println("Beginning - memberEnrolledFreeClass");
-
 		
 				int customerId = 248;
 				String companyId = prop.getProperty("X-CompanyId");
@@ -178,9 +168,8 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 			
-//				ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
-//				ReusableMethods.myWait();
+
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
@@ -271,8 +260,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("CustomerAlreadyOnStandby"))
-;
+						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:143588")

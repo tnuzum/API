@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -19,7 +19,7 @@ import resources.base;
 public class EnrollMemberInClassWithPunchcard extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -55,11 +55,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-//				ReusableMethods.myWait();
+
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	

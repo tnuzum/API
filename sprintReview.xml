@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CompeteAPI v3">
+		<test thread-count="5" name="API - Continuous Integration">
+		<classes>
+			<class name="sprintReview.EnrollMemberInClassOnAccount" />
+			<class name="sprintReview.EnrollMemberInClassWithCardOnFile" />
+			<class name="sprintReview.EnrollMemberInClassWithNewCreditCard" />
+			<class name="sprintReview.EnrollMemberInClassWithRecurringDues" />
+			<class name="sprintReview.EnrollMemberInClassWithPunchcard" />
+			<class name="sprintReview.EnrollMemberInCourseOnAccount" />	
+			<class name="sprintReview.EnrollMemberInCourseWithCardOnFile" />
+			<class name="sprintReview.EnrollMemberInCourseWithNewCreditCard" />	
+			<class name="sprintReview.EnrollMemberInCourseWithPunchcard" />		
+			<class name="sprintReview.EnrollMemberInCourseWithRecurringDues" />				
+		</classes>
+	</test>
+</suite>

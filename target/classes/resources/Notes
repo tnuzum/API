@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.lessThan;
 
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -46,7 +46,7 @@ then().log().all()
 //		System.out.println("Response: " + responseString);
 -------------------------------------------------------------
 @BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 	}
 ...	

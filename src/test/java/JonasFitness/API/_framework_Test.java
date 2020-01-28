@@ -2,7 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.IOException;
+
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -23,7 +23,7 @@ public class _framework_Test extends base {
 	
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 	}
 

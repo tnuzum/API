@@ -2,13 +2,8 @@ package Utilities;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import static org.hamcrest.Matchers.*;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -26,7 +21,7 @@ public class E2E extends base {
 	static String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");

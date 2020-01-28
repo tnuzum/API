@@ -4,14 +4,14 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import resources.base;
 
 public class VerifyClassEnrollmentCapability extends base{
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -23,9 +23,9 @@ public class VerifyClassEnrollmentCapability extends base{
 		int companyId = 236;
 		int clubId = 1;
 		int customerId = 223;
-		String classBarcodeId 	= "standbyCl";
+		String classBarcodeId 	= "taxCityCl";
 		String classOccurrence 	= "2022-12-06";
-		String displayedClassPrice	= "0.00";
+		String displayedGrandTotal	= "10.25";
 
 				given()
 				.log().all()
@@ -35,7 +35,7 @@ public class VerifyClassEnrollmentCapability extends base{
 					.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"
-								+classBarcodeId+"/"+classOccurrence+"/"+displayedClassPrice)
+								+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal)
 					.then().log().body();
 	}
 }

@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -21,14 +21,12 @@ import resources.base;
 public class EnrollMemberInCourseWithCardOnFile extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/*
-	 * Need a new test using optional AddressLine2 & Country fields
-	*/
+
 	@Test (testName="Member Enrolled - Paid Course",description="PBI:146578")
 	public void memberEnrolled_PaidCourse() {
 		

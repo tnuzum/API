@@ -9,7 +9,6 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -21,14 +20,12 @@ import resources.base;
 public class EnrollMemberInClassWithNewCreditCard extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	/*
-	 * Need a new test using optional AddressLine2 & Country fields
-	*/
+
 	@Test (testName="Member Enrolled - Paid Class",description="PBI:146579")
 	public void memberEnrolled_PaidClass() {
 		
@@ -38,7 +35,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence 			= "2025-12-31";
 				String displayedGrandTotal 		= "10.00";
 				String cardNumber				= "5454545454545454";
-				String nameOnCard				= "JIM MANNY";
+				String nameOnCard				= "THOMAS MANNY";
 				String month					= "12";
 				int year						= 2025;
 				String securityCode				= "007";
@@ -49,7 +46,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 			Response res =	given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -80,13 +77,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
-//			ReusableMethods.myWait();
+
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
-	
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146579")
@@ -139,13 +134,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 //						.log().body()
 						.assertThat().statusCode(200)
 						.extract().response();
-//			ReusableMethods.myWait();
+
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
-	
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146579")
@@ -205,13 +198,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-//			ReusableMethods.myWait();
+
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
-			
 	} 
 	
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:146579")
@@ -1021,7 +1012,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	}
 	
 	@Test (testName="Missing City",description="PBI:146579")
-	public void missingCity() throws InterruptedException {
+	public void missingCity() {
 		
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
@@ -1038,7 +1029,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String postalCode				= "43015";
 				String enrollCustomerAsStandby 	= "true";
 				
-				Thread.sleep(200);
+				ReusableMethods.myWait(200);
 
 				given()
 //						.log().all()
@@ -1125,7 +1116,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	}
 	
 	@Test (testName="Missing Postal Code",description="PBI:146579")
-	public void missingPostalCode() throws InterruptedException {
+	public void missingPostalCode() {
 		
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
@@ -1142,7 +1133,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String postalCode				= "";
 				String enrollCustomerAsStandby 	= "true";
 				
-				Thread.sleep(200);
+				ReusableMethods.myWait(200);
 				
 				given()
 //						.log().all()
