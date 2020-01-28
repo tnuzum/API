@@ -9,7 +9,6 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -21,7 +20,7 @@ import resources.base;
 public class EnrollMemberInClassWithCardOnFile extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -61,7 +60,6 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 			
-//					ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
@@ -101,11 +99,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.assertThat().statusCode(200)
 						.extract().response();
 			
-//					ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId)
 						;
 	
@@ -150,11 +146,10 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-//			ReusableMethods.myWait();
+
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-//						ReusableMethods.myWait();
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 			
 	} 

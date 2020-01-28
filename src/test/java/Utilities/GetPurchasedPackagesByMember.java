@@ -4,18 +4,13 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.base;
 
 public class GetPurchasedPackagesByMember extends base{
 
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
@@ -25,7 +20,7 @@ public class GetPurchasedPackagesByMember extends base{
 	public void PackagesFound() {
 		
 //		String member = prop.getProperty("activeMember7_CustomerId");
-		int member = 234;
+		int member = 248;
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))

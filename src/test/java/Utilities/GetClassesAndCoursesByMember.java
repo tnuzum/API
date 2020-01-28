@@ -4,14 +4,14 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import java.io.IOException;
+
 import io.restassured.RestAssured;
 import resources.base;
 
 public class GetClassesAndCoursesByMember extends base {
 
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData(){
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -21,7 +21,7 @@ public class GetClassesAndCoursesByMember extends base {
 	public void ClassesCoursesFound() {
 		
 		
-		int member = 247;
+		int member = 248;
 		String sDateTimeNoOffset = "2019-01-01";
 		String eDateTimeNoOffset = "2200-01-01";
 

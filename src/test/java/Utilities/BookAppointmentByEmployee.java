@@ -4,10 +4,6 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -24,7 +20,7 @@ public class BookAppointmentByEmployee extends base {
 	 */ 
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -58,5 +54,6 @@ public class BookAppointmentByEmployee extends base {
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int AppointmentId = book_js.get("Result.AppointmentId");
+		System.out.println(AppointmentId);
 	}
 }

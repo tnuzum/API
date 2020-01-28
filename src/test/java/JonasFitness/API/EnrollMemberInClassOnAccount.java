@@ -8,7 +8,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -56,10 +55,11 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+			
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
+					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 
 		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
@@ -91,6 +91,7 @@ ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
+	
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
