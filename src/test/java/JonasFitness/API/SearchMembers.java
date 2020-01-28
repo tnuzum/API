@@ -18,7 +18,7 @@ import resources.base;
 public class SearchMembers extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		
 		RestAssured.useRelaxedHTTPSValidation();

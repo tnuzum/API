@@ -22,7 +22,7 @@ import resources.base;
 public class EnrollMemberInClassWithRecurringDues extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -63,7 +63,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:154259")
@@ -101,7 +101,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154259")
@@ -110,7 +110,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		int customerId = 248;
 		String companyId = prop.getProperty("X-CompanyId");
 		String classBarcodeId = "standbyCl";
-		String classOccurrence = "2022-12-06";
+		String classOccurrence = "2023-01-02";
 		String enrollCustomerAsStandBy = "true";
 		
 
@@ -137,7 +137,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	} 
 	
 	@Test (testName="Member Already Enrolled",description="PBI:154259")
@@ -191,7 +191,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		
 		int customerId = 248;
 		String classBarcodeId = "standbyCl";
-		String classOccurrence = "2022-12-06";
+		String classOccurrence = "2023-01-02";
 		String enrollCustomerAsStandBy = "false";
 		
 

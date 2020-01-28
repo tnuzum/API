@@ -20,7 +20,7 @@ import resources.base;
 public class EnrollMemberInCourseWithPunchcard extends base {
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -59,7 +59,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 			
 	}
 	 
@@ -94,7 +94,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 
 	@Test (testName="Member Enrolled On Standby",description="PBI:147820")
@@ -128,7 +128,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:147820")
@@ -164,7 +164,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId);
+	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147820")

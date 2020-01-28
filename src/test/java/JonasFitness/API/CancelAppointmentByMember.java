@@ -16,7 +16,7 @@ public class CancelAppointmentByMember extends base {
 	static int member = 230;
 	
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");

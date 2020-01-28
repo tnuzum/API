@@ -19,7 +19,7 @@ public class GetFieldsForProspectCreationByEmployee extends base {
 // !!! Assertions are split into 2 tests to resolve a compile error 'java.lang.StackOverflowError'.
 
 	@BeforeTest
-	public void getData() throws IOException {
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");

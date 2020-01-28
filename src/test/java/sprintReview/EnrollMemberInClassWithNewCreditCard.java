@@ -1,4 +1,4 @@
-package JonasFitness.API;
+package sprintReview;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,7 +21,7 @@ import resources.base;
 public class EnrollMemberInClassWithNewCreditCard extends base {
 	
 	@BeforeTest
-	public void getData() {
+	public void getData() throws IOException {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
@@ -76,14 +76,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
-//						.log().all()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
+//			ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);	
+	
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146579")
@@ -136,10 +139,13 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 //						.log().body()
 						.assertThat().statusCode(200)
 						.extract().response();
+//			ReusableMethods.myWait();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+	
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146579")
@@ -199,11 +205,12 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
-			
+//			ReusableMethods.myWait();
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-	ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//						ReusableMethods.myWait();
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 			
 	} 
 	
@@ -809,8 +816,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Missing Member Name On Call",description="PBI:146579")
-	public void missingMemberNameOnCall() {
+	@Test (testName="Missing Member Name On Card",description="PBI:146579")
+	public void missingMemberNameOnCard() {
 		
 				int customerId 					= 248;
 				String classBarcodeId 			= "alwaysAvailCl";
