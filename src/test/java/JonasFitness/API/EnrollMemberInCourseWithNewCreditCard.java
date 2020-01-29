@@ -74,6 +74,14 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()))
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 			
