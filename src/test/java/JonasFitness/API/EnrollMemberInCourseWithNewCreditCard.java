@@ -147,6 +147,61 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
+	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:146580")
+	public void memberEnrolledFreeCourseCollectionsMember() {
+		
+				String companyId				= prop.getProperty("X-CompanyId");
+				int customerId 					= 227;
+				String courseBarcodeId 			= "freeCo";
+				String displayedGrandTotal 		= "0.00";
+				String cardNumber				= "5454545454545454";
+				String nameOnCard				= "JIM MANNY";
+				String month					= "12";
+				int year						= 2025;
+				String securityCode				= "007";
+				String addressLine1				= "210 Northwoods Blvd";
+				String city						= "Delaware";
+				String state					= "OH";
+				String postalCode				= "43015";
+				String enrollCustomerAsStandby 	= "true";
+
+			Response res =	given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+						.body("{" + 
+								"  \"CustomerId\": "+customerId+"," + 
+								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+								"  \"CardNumber\": \""+cardNumber+"\"," + 
+								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+								"  \"ExpirationDate\": {" + 
+								"    \"Month\": \""+month+"\"," + 
+								"    \"Year\": "+year+"" + 
+								"  }," + 
+								"  \"SecurityCode\": \""+securityCode+"\"," + 
+								"  \"AddressLine1\": \""+addressLine1+"\"," + 
+								"  \"City\": \""+city+"\"," + 
+								"  \"StateProvince\": \""+state+"\"," + 
+								"  \"PostalCode\": \""+postalCode+"\"," + 
+								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"}")
+						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.extract().response();
+					JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+	}
+	
 	@Test (testName="Member Enrolled On Standby",description="PBI:146580")
 	public void memberEnrolledOnStandby() {
 		
