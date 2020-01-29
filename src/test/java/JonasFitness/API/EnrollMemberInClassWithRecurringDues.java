@@ -100,7 +100,44 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
-	
+	/*
+	@Test (testName="Member Enrolled - Free Class - Collections Member",description="PBI:154259")
+	public void memberEnrolledFreeClassCollectionsMember() { 
+		
+		int customerId = 227;
+		String companyId = prop.getProperty("X-CompanyId");
+		String classBarcodeId = "freeCl";
+		String classOccurrence = "2021-01-01";
+		String enrollCustomerAsStandBy = "true";
+
+			Response res =	given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result.Enrolled", equalTo(true))
+						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+						.body("Result.CustomerId", equalTo(customerId))
+						.body("Result.FirstName", not(nullValue()))
+						.body("Result.LastName", not(nullValue()))
+						.body("Result", hasKey("MiddleInitial"))
+						.body("Result.DisplayName", not(nullValue()))
+						.body("Result.PreferredName", not(nullValue()))
+						.extract().response();
+			
+					JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+	}
+	*/
 	@Test (testName="Member Enrolled On Standby",description="PBI:154259")
 	public void memberEnrolledOnStandby() { 
 		
