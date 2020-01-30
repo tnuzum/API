@@ -34,7 +34,8 @@ public class ReusableMethods extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"");
+				.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
+				.then().log().body();
 
 			myWait(1000);
 		given()
@@ -43,8 +44,9 @@ public class ReusableMethods extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-				.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"");
-				
+				.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
+				.then().log().body();
+		
 			myWait(1500);
 		Response res =	given()
 			.header("accept", prop.getProperty("accept"))
