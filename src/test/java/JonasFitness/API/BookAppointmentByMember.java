@@ -156,6 +156,35 @@ public class BookAppointmentByMember extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
+	@Test (testName="Product Price Changed",description="PBI:146227")
+	public void productPriceChanged() { 
+		
+		int member = 248;
+
+	given()
+//						
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", 3)
+		.header("Content-Type", "application/json")
+			.when()
+			.body("{" + 
+					"\"AppointmentClubId\": 1,"+ 
+					"\"ItemId\": 243,"+ 
+					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
+					"\"CustomerId\": "+member+","+ 
+					"\"RequestedBooks\": [35],"+ 
+					"\"UserDisplayedPrice\": 10.01"+
+					"}")
+			.post("/api/v3/appointment/bookappointmentbymember")
+				.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+				.body("Message", equalTo("FailPriceChanged"))
+				;
+	}
+	
 	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:146227")
 	public void punchcardAppointment_SingleMember() { 
 
@@ -333,39 +362,5 @@ public class BookAppointmentByMember extends base {
 				.assertThat().statusCode(404)
 				.body("Message", equalTo("FailAppointmentNotAvailable"));
 	}
-	/*
-	* New test needed - setup a training for club# 2
-	 * the expected message is received when the 
-	 * 'Restrict online scheduling to prepaid trainings / services only'
-	 * parameter is unchecked
-	 * 
-	 *  
-	
-	@Test (testName="Product Price Changed",description="PBI:146227")
-	public void productPriceChanged() { 
 
-		int member = 248;
-		
-	given()
-	.log().all()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-		.header("Content-Type", "application/json")
-			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": 1,"+ 
-					"\"ItemId\": 243,"+ 
-					"\"Occurrence\": \"2022-12-16T11:00:00-05:00\","+ 
-					"\"CustomerId\": "+member+","+ 
-					"\"RequestedBooks\": [35],"+ 
-					"\"UserDisplayedPrice\": 10.01"+
-					"}")
-				.post("/api/v3/appointment/bookappointmentbymember")
-				.then()
-						.log().body()
-				.assertThat().statusCode(404)
-				.body("Message", equalTo("FailPriceChanged"));
-	}  */
 }

@@ -35,7 +35,8 @@ public class ReusableMethods extends base {
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
-				.then().log().body();
+//				.then().log().body()
+				;
 
 			myWait(1000);
 		given()
@@ -45,7 +46,8 @@ public class ReusableMethods extends base {
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
-				.then().log().body();
+//				.then().log().body()
+				;
 		
 			myWait(1500);
 		Response res =	given()
