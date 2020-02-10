@@ -30,7 +30,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 		
 				int customerId = 248;
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
