@@ -24,11 +24,10 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
 	public void AppointmentsFound_NoResources() {
 		
-		String member = prop.getProperty("availableId");  
+		String member = prop.getProperty("appointmentId");  
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
-//		String serviceId = prop.getProperty("service3Id");
-		int serviceId = 36;
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
+		String serviceId = prop.getProperty("freeTId");
 
 				given()
 //						.log().all()
@@ -61,16 +60,16 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 	}
+	
 	@Test (testName="AppointmentsFound_WithResourcess",description="PBI:127498")
 	public void AppointmentsFound_WithResources() {
 		
-		String member = prop.getProperty("availableId");
+		String member = prop.getProperty("appointmentId");  
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
-		int serviceId = 36;
-		int resourceId = 18;
-		int resourceTypeId = 4;
-
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
+		String serviceId = prop.getProperty("freeTId");
+		String resourceId = prop.getProperty("demoBookId");
+		String resourceTypeId = prop.getProperty("resourcePTId");
 
 				given()
 //				.log().all()
@@ -83,7 +82,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -105,60 +104,14 @@ public class GetAvailableAppointments extends base {
 						.body("Result.BooksAndAvailability[0].Books[0]", hasKey("IsAssignedResourceSelectable"))
 						.body("Result.BooksAndAvailability[0]", hasKey("StartingTimes"));
 	}
-	/*
-	@Test (testName="AppointmentsNotFound",description="PBI:127498")
-	public void AppointmentsNotFound() {
-		!! this test's behavior changed after changing
-		 * the Club setting to 'restrict online scheduling to prepaid !!
-		 * 
-		 * This test shows that the appointment is not found
-		 * because the BooksAndAvailability is Null. Date range is
-		 * set far in future so no availability is found. 
-		 
-		String member = prop.getProperty("availableId");
-		String sDateTimeNoOffset = "2025-01-01T00:00";
-		String eDateTimeNoOffset = "2025-01-02T00:00";
-		
-		int serviceId = 215;
-//		int resourceId = 40;
-//		int resourceTypeId = 1;
-
-				given()
-				//.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-//						.queryParam("ResourceTypeId", resourceTypeId)
-//						.queryParam("ResourceId", resourceId)
-					.when()
-					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
-						.then()
-						.log().body()
-						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("ItemBarcodeId"))
-						.body("Result", hasKey("ItemDescription"))
-						.body("Result", hasKey("Duration"))
-						.body("Result", hasKey("ClubId"))
-						.body("Result", hasKey("ClubName"))
-						.body("Result", hasKey("Price"))
-						.body("Result", hasKey("CustomerHasPunchesForItem"))
-						.body("Result", hasKey("AllowOnlineMemberPurchase"))
-						.body("Result", hasKey("DividePriceByMembers"))
-						.body("Result", hasKey("BooksAndAvailability"))
-						.body("Result.BooksAndAvailability[0]", nullValue());
-	}*/
 	
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
 
-		String member = prop.getProperty("availableId");
+		String member = prop.getProperty("noFOPId");
 		String sDateTimeNoOffset = "2025-01-01T00:00";
 		String eDateTimeNoOffset = "2025-01-02T00:00";
-		
-		int serviceId = 215;
+		String serviceId = prop.getProperty("demoId");
 
 				given()
 				//.log().all()
