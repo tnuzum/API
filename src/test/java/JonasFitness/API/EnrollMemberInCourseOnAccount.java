@@ -30,7 +30,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 		
 				int customerId = 248;
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 				String displayedGrandTotal = "100.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -210,7 +210,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void noFOP_AccountProblem() {
 		
 				int customerId = 247;
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 				String displayedGrandTotal = "100.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -252,7 +252,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void productPriceChanged() {
 		
 				int customerId = 247;
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 				String displayedGrandTotal = "10.01";
 				String enrollCustomerAsStandby = "true";
 
