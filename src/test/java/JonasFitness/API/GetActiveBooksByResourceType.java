@@ -15,11 +15,7 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class GetActiveBooksByResourceType extends base{
-	/*
-	 * need a test with resource type id (query parm)
-	 * 
-	 * 
-	 */
+
 	@BeforeTest
 	public void getData() {
 		base.getPropertyData();
@@ -51,7 +47,7 @@ public class GetActiveBooksByResourceType extends base{
 	@Test (testName="BookFound_WithResource",description="PBI:138964")
 	public void BookFound_WithResource() {
 		
-		String resourceTypeId = prop.getProperty("resourceType4Id");
+		String resourceTypeId = prop.getProperty("resourcePTId");
 
 				given()
 						.header("accept", prop.getProperty("accept"))

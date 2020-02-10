@@ -23,9 +23,9 @@ public class GetAllAvailableClassesByMember extends base {
 	@Test (testName="Classes Found",description="PBI:146571")
 	public void classFound() { 
 		
-		int CustomerId = 223;
-		String StartDateTime = ReusableDates.getCurrentDate();
-		String EndDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+		String customerId = prop.getProperty("availableId");
+		String startDateTime = ReusableDates.getCurrentDate();
+		String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
 
 				given()
 //						.log().all()
@@ -34,13 +34,13 @@ public class GetAllAvailableClassesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.get("/api/v3/classcourse/getallavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result.ItemBarcodeId", anyOf(hasItem("Balance44")))// Item is set to Allow Online Sales
-						.body("Result.ItemBarcodeId", anyOf(hasItem("Balance66")))// Item is set to NOT Allow Online Sales
+						.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("alwaysAvailClBarcodeId"))))// Item is set to Allow Online Sales
+						.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("noWebClBarcodeId"))))// Item is set to NOT Allow Online Sales
 						.body("Result.StartDateTime", not(empty()))
 						.body("Result.SubstituteInstructorName", not(empty()))
 						.body("Result.SubstituteInstructorBarcodeId", not(empty()))
@@ -73,9 +73,9 @@ public class GetAllAvailableClassesByMember extends base {
 	@Test (testName="Classes Not Found",description="PBI:146571")
 	public void classNotFound() { 
 		
-		int CustomerId = 223;
-		String StartDateTime = "2099-01-01";
-		String EndDateTime = "2100-01-01";
+		String customerId = prop.getProperty("availableId");
+		String startDateTime = "2099-01-01";
+		String endDateTime = "2100-01-01";
 	
 				given()
 	//					.log().all()
@@ -84,7 +84,7 @@ public class GetAllAvailableClassesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getallavailableclassesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.get("/api/v3/classcourse/getallavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

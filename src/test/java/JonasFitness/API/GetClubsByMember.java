@@ -10,20 +10,18 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class GetClubsByMember extends base{
-	/*
-	 * Other test from PBI is customer NOF 
-	 * 
-	 */
+
 	@BeforeTest
 	public void getData() {
 		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
 	@Test (testName="ClubsFound",description="PBI:127465")
 	public void ClubsFound() {
-		String member = prop.getProperty("activeMember1_CustomerId");
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()
@@ -48,9 +46,8 @@ public class GetClubsByMember extends base{
 	}
 	@Test (testName="MemberNotFound",description="PBI:127465")
 	public void MemberNotFound() {
-		String member = prop.getProperty("activeMember1_CustomerId");
-		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()

@@ -25,14 +25,13 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void wrongCredentials() {
 
 			given()
-//			.log().all()
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"timauto\","+
+						  "\"Username\": \""+prop.getProperty("availableUserName")+"\","+
 						  "\"Password\": \"WrongPassword\""+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
@@ -48,15 +47,14 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void memberFound() {
 
 			given()
-//			.log().all()
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"timauto\","+
-						  "\"Password\": \"Testing1!\""+
+						  "\"Username\": \""+prop.getProperty("availableUserName")+"\","+
+						  "\"Password\": \""+prop.getProperty("availablePassword")+"\","+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
@@ -70,15 +68,14 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void accountLocked() {
 
 			given()
-//			.log().all()
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"locked\","+
-						  "\"Password\": \"Testing1!\""+
+						  "\"Username\": \""+prop.getProperty("accountLockedUserName")+"\","+
+						  "\"Password\": \""+prop.getProperty("accountLockedPassword")+"\","+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
@@ -93,15 +90,14 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void forcePasswordChange() {
 
 			given()
-//			.log().all()
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"change\","+
-						  "\"Password\": \"1141121\""+
+						  "\"Username\": \""+prop.getProperty("passwordChangeUserName")+"\","+
+						  "\"Password\": \""+prop.getProperty("passwordChangePassword")+"\","+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()

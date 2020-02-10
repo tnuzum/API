@@ -27,18 +27,18 @@ public class GetAppointmentsByMember extends base {
 	@Test (testName="AppointmentsFound",description="PBI:124124")
 	public void AppointmentsFound() {
 		
+		String customerId = prop.getProperty("availableId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
-		String member = "229";
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
-						.queryParam(member)
+						.queryParam(customerId)
 					.when()
-						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -72,9 +72,11 @@ public class GetAppointmentsByMember extends base {
 						.body("Result[0]", hasKey("StartDateTime"))
 						.body("Result[0]", hasKey("SubstituteInstructorName"));
 	}
+	
 	@Test (testName="AppointmentsNotFound",description="PBI:124124")
 	public void AppointmentsNotFound() {
-		String member = prop.getProperty("activeMember1_CustomerId");
+		
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = "2025-11-13T00:00";
 		String eDateTimeNoOffset = "2025-11-14T00:00";
 
@@ -92,9 +94,11 @@ public class GetAppointmentsByMember extends base {
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
+	
 	@Test (testName="InvalidDateRange",description="PBI:124124")
 	public void InvalidDateRange() {
-		String member = prop.getProperty("activeMember1_CustomerId");
+		
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = "2025-11-13T00:02";
 		String eDateTimeNoOffset = "2025-11-13T00:01";
 

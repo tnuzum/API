@@ -276,7 +276,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="Single Price Range",description="PBI:143538, 148154")
 	public void singlePriceRange() {
  
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		int itemId = 24;
 		String club = prop.getProperty("X-Club1Id");
 
@@ -314,7 +314,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="MultiplePriceRanges",description="PBI:143538, 148154")
 	public void multiplePriceRanges() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		int itemId = 25;
 		
 		int club = 1; 
@@ -363,7 +363,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="NotServiceTypeV", description="PBI:143538, 148154")
 	public void notServiceTypeV() {
 
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		int item = 76;
 		String club = prop.getProperty("X-Club1Id"); 
 		
@@ -392,7 +392,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="InvalidPackageId", description="PBI:143538, 148154")// using Id of class instead of training or service
 	public void invalidPackageId() {
 
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String item = prop.getProperty("class1Id");
 		String club = prop.getProperty("X-Club1Id"); 
 		
@@ -421,7 +421,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="InvalidCustomerId", description="PBI:143538, 148154")
 	public void invalidCustomerId() {
 	
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String item = prop.getProperty("service1Id");
 		String club = prop.getProperty("X-Club1Id");
 

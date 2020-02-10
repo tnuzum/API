@@ -28,7 +28,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	@Test (testName="ProductFoundSelectableResources",description="PBI:127470")
 	public void ProductFoundSelectableResources() {
 		
-		String training = prop.getProperty("training24Id");
+			String training = prop.getProperty("selectableResourceTrainingId");
 
 				given()
 //						.log().all()
@@ -50,7 +50,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	@Test (testName="ProductFoundNoSelectableResources",description="PBI:127470")
 	public void ProductFoundNoSelectableResources() {
 		
-		String service = prop.getProperty("service1Id");
+				String service = prop.getProperty("demoId");
 
 				given()
 //						.log().all()
@@ -70,7 +70,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 	@Test (testName="ProductNotFound",description="PBI:127470")
 	public void ProductNotFound() {
 		
-		String service = prop.getProperty("service3Id");
+		String service = prop.getProperty("demoId");
 
 				given()
 //				.log().all()

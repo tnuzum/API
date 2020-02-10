@@ -24,8 +24,8 @@ public class GetCourseDetails extends base{
 	@Test (testName="Course Found",description="PBI:143545")
 	public void courseFound() {
  
-		int customerId = 223;
-		String CourseBarcodeId = "alwaysAvailCo";
+		String customerId = prop.getProperty("standbyAId");
+		String CourseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 
 				Response res = given()
 //						.log().all()
@@ -87,7 +87,7 @@ public class GetCourseDetails extends base{
 	@Test (testName="Course Not Found - Invalid CourseBarcodeID",description="PBI:143545")
 	public void courseNotFound_InvalidCourseBarcodeID() {
  
-		int customerId = 223;
+		String customerId = prop.getProperty("standbyAId");
 		String CourseBarcodeId = "invalidCourseBarcodeId";
 
 				given()
@@ -148,8 +148,8 @@ public class GetCourseDetails extends base{
 	@Test (testName="Course Not Found - Class BarcodeID Used",description="PBI:143545")
 	public void courseNotFound_ClassBarcodeIDUsed() {
  
-		int customerId = 223;
-		String CourseBarcodeId = "Balance44";
+		String customerId = prop.getProperty("availableId");
+		String CourseBarcodeId = prop.getProperty("alwaysAvailCl");
 
 				given()
 //						.log().all()
@@ -209,8 +209,8 @@ public class GetCourseDetails extends base{
 	@Test (testName="Course Not Found - Training BarcodeID Used",description="PBI:143545")
 	public void courseNotFound_TrainingBarcodeIDUsed() {
  
-		int customerId = 223;
-		String CourseBarcodeId = "BCA";
+		String customerId = prop.getProperty("availableId");
+		String CourseBarcodeId = prop.getProperty("freeT");
 
 				given()
 //						.log().all()
@@ -271,7 +271,7 @@ public class GetCourseDetails extends base{
 	public void invalidCustomerId() {
 	
 		int customerId = 22300;
-		String CourseBarcodeId = "PBoot430";
+		String CourseBarcodeId = prop.getProperty("alwaysAvailCl");
 
 				given()
 				.header("accept", prop.getProperty("accept"))

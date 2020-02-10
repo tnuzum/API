@@ -25,8 +25,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 	@Test (testName="ProductCategoryFound",description="PBI:127467")
 	public void ProductCategoryFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
-		
+		String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()
@@ -39,7 +38,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0].Description", equalTo("Personal Training"))
@@ -49,7 +48,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 	@Test (testName="MemberNotFound",description="PBI:127467")
 	public void MemberNotFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()
