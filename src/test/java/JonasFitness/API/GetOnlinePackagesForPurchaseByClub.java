@@ -20,7 +20,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	@Test (testName="PackagesFound",description="PBI:143537")
 	public void PackagesFound() { 
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String club = prop.getProperty("X-Club1Id");
 
 				given()
@@ -51,7 +51,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 		 * is not allowed for MSS (online) purchase
 		*/
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String club = prop.getProperty("X-Club1Id");
 		
 				given()

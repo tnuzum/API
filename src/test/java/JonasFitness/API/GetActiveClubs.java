@@ -43,9 +43,9 @@ public class GetActiveClubs extends base {
 						.body("Result[0]", hasKey("Name"))
 						.body("Result[1]", hasKey("Id"))
 						.body("Result[1]", hasKey("Name"))
-						.body("Result[0].Name", equalTo("Jonas Sports-Plex"))
-						.body("Result[1].Name", equalTo("Studio Jonas"))
-						.body("Result[2].Name", equalTo("Jonas Health and Wellness"))
-						.body("Result[3].Name", equalTo("Jonas Fitness"));
+						.body("Result[0].Name", equalTo(prop.getProperty("club1Name")))
+						.body("Result[1].Name", equalTo(prop.getProperty("club2Name")))
+						.body("Result[2].Name", equalTo(prop.getProperty("club3Name")))
+						.body("Result[3].Name", equalTo(prop.getProperty("club4Name")));
 	}
 }

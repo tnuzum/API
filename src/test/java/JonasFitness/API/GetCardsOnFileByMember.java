@@ -25,7 +25,7 @@ public class GetCardsOnFileByMember extends base {
 	@Test (testName="SingleAgreementWithCard", description="PBI:146302")
 	public void SingleAgreementWithCard() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()

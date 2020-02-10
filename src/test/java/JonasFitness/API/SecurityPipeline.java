@@ -25,7 +25,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="InactiveClub", description="PBI:144604")
 	public void InactiveClub() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 //						.log().all()
@@ -48,7 +48,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="InvalidClub", description="PBI:132893")
 	public void InvalidClub() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 					.header("accept", prop.getProperty("accept"))
@@ -69,7 +69,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="InvalidCompany", description="PBI:132893")
 	public void InvalidCompany() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 					.header("accept", prop.getProperty("accept"))
@@ -90,7 +90,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="InvalidAPIKey", description="PBI:145817")
 	public void InvalidAPIKey() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 					.header("accept", prop.getProperty("accept"))
@@ -111,7 +111,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="NoAPIKey", description="PBI:145817")
 	public void NoAPIKey() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 					.header("accept", prop.getProperty("accept"))
@@ -132,7 +132,7 @@ public class SecurityPipeline extends base{
 	@Test (testName="Endpoint Not Found", description="PBI:145817")
 	public void endpointNotFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 					.header("accept", prop.getProperty("accept"))

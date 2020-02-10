@@ -27,7 +27,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_FirstName",description="PBI:139723")
 	public void searchOnlineMembers_FirstName() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");  
 		String fName = "Fred";
@@ -68,7 +68,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_LastName",description="PBI:139723")
 	public void searchOnlineMembers_LastName() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id"); 
 		String lName = "Auto";
@@ -108,7 +108,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_LastFirstName",description="PBI:139723")
 	public void searchOnlineMembers_LastFirstName() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id"); 
 		String name = "Auto Fred";
@@ -147,7 +147,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_FirstLastName",description="PBI:139723")
 	public void searchOnlineMembers_FirstLastName() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id"); 
 		String name = "Fred Auto";
@@ -186,7 +186,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_HomePhoneWithDashes",description="PBI:139723")
 	public void searchOnlineMembers_HomePhoneWithDashes() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");
 		String phone = "614-200-1000";
@@ -226,7 +226,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_HomePhoneNoDashes",description="PBI:139723")
 	public void searchOnlineMembers_HomePhoneNoDashes() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");  
 		String phone = "6142001000";
@@ -266,7 +266,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_MobilePhoneWithDashes",description="PBI:139723")
 	public void searchOnlineMembers_MobilePhoneWithDashes() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");
 		String phone = "614-100-1003";
@@ -306,7 +306,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_MobilePhoneNoDashes",description="PBI:139723")
 	public void searchOnlineMembers_MobilePhoneNoDashes() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");
 		String phone = "6141001003";
@@ -346,7 +346,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_WorkPhone",description="PBI:139723")
 	public void searchOnlineMembers_WorkPhone() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");
 		String phone = "6143001003";
@@ -368,7 +368,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="SearchOnlineMembersByProduct_Email",description="PBI:139723")
 	public void searchOnlineMembers_Email() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("associatedClub1Id");
 		String trainingId = prop.getProperty("training34Id");  
 		String email = "fred.auto@home.com";

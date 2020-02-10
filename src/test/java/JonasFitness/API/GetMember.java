@@ -26,7 +26,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberFound - Active HOH", description="PBI:124934")
 	public void MemberFoundActiveHOH() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 //						.log().all()
@@ -419,7 +419,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberNotFound", description="PBI:124934")
 	public void MemberNotFound() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 
 					given()
 //						.log().all()

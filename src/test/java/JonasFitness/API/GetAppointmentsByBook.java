@@ -22,8 +22,9 @@ public class GetAppointmentsByBook extends base{
 	
 	@Test (testName="AppointmentsFound",description="PBI:132256")
 	public void AppointmentsFound() {
-//		String resourceId = prop.getProperty("resource2Id");
-		int resourceId = 4;
+
+		String resourceTypeId = prop.getProperty("demoBookId");
+			int r = Integer.parseInt(resourceTypeId);
 		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
@@ -34,7 +35,7 @@ public class GetAppointmentsByBook extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/appointment/getappointmentsbybook/"+resourceTypeId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -51,8 +52,8 @@ public class GetAppointmentsByBook extends base{
 						.body("Result[0]", hasKey("ProductCategoryDescription"))
 						.body("Result[0]", hasKey("RecurringId"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookDescription"))
-						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookId"))
-						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookName"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0].BookId", equalTo(r))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0].BookName", equalTo(prop.getProperty("demoBookName")))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeDescription"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeId"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeName"))
@@ -64,11 +65,13 @@ public class GetAppointmentsByBook extends base{
 						.body("Result[0]", hasKey("ScheduledInstanceType"))
 						.body("Result[0]", hasKey("StartDateTime"));
 	}
+	
 	@Test (testName="AppointmentsNotFound",description="PBI:132256")
 	public void AppointmentsNotFound() {
-		String resourceId = prop.getProperty("resource2Id");
-		String sDateTimeNoOffset = "2025-11-13T00:00";
-		String eDateTimeNoOffset = "2025-11-14T00:00";
+		
+		String resourceId = prop.getProperty("demoBookId");
+		String sDateTimeNoOffset = "2125-11-13T00:00";
+		String eDateTimeNoOffset = "2125-11-14T00:00";
 
 				given()
 //						.log().all()
@@ -84,9 +87,11 @@ public class GetAppointmentsByBook extends base{
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
+	
 	@Test (testName="InvalidDateRange",description="PBI:132256")
 	public void InvalidDateRange() {
-		String resourceId = prop.getProperty("resource2Id");
+		
+		String resourceId = prop.getProperty("demoBookId");
 		String sDateTimeNoOffset = "2025-11-13T00:02";
 		String eDateTimeNoOffset = "2025-11-13T00:01";
 

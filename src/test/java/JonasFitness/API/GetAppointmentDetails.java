@@ -25,7 +25,6 @@ public class GetAppointmentDetails extends base {
 	@Test (testName="AppointmentsFound",description="PBI:139310")
 	public void AppointmentsFound() {
 		
-//		String appointment = prop.getProperty("appointmentInFuture1Id");
 		int appointment = 7463;
 
 			Response res =	given()
