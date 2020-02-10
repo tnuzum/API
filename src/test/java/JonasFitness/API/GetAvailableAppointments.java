@@ -24,7 +24,7 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
 	public void AppointmentsFound_NoResources() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");  
+		String member = prop.getProperty("availableId");  
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 //		String serviceId = prop.getProperty("service3Id");
@@ -64,7 +64,7 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_WithResourcess",description="PBI:127498")
 	public void AppointmentsFound_WithResources() {
 		
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 		int serviceId = 36;
@@ -83,7 +83,7 @@ public class GetAvailableAppointments extends base {
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
@@ -115,7 +115,7 @@ public class GetAvailableAppointments extends base {
 		 * because the BooksAndAvailability is Null. Date range is
 		 * set far in future so no availability is found. 
 		 
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = "2025-01-01T00:00";
 		String eDateTimeNoOffset = "2025-01-02T00:00";
 		
@@ -154,7 +154,7 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
 
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = "2025-01-01T00:00";
 		String eDateTimeNoOffset = "2025-01-02T00:00";
 		

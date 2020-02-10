@@ -67,7 +67,7 @@ public class GetScheduleByMember extends base{
 	}
 	@Test (testName="AppointmentFound",description="PBI:124954")
 	public void appointmentFound() {
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 

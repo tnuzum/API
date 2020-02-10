@@ -22,11 +22,11 @@ public class GetAppointmentProductByCategory extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:127468")
-	public void ValidInput() {
+	@Test (testName="ProductsFound",description="PBI:127468")
+	public void ProductsFound() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String prodCategory = prop.getProperty("prodCategory7Id");
+		String associatedClub = prop.getProperty("club1Id");
+		String prodCategory = prop.getProperty("pTProductCategoryId");
 		
 				given()
 //						.log().all()

@@ -25,8 +25,9 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	
 	@Test (testName="PackageFound",description="PBI:143540")
 	public void packageFound() { 
-		String member = prop.getProperty("activeMember1_CustomerId");
-		String club = prop.getProperty("X-Club1Id");
+		
+		String customerId = prop.getProperty("availableId");
+		String clubId = prop.getProperty("club1Id");
 		
 					given()
 //						.log().all()
@@ -35,7 +36,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
@@ -48,16 +49,14 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.body("Result[0]", hasKey("ItemId"))
 						.body("Result[0]", hasKey("LongDescription"))
 						.body("Result[0]", hasKey("PriceRangeDtos"))
-						.body("Result[0]", hasKey("PriceRangeDtos"))
-//						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("EndRange"))))
-//						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("PricePerUnit"))))
-//						.body("Result.PriceRangeDtos", anyOf(anyOf(hasKey("StartRange"))))
-						.body("Result.ItemDescription", anyOf(hasItem("PT 60 Mins")));
+						.body("Result[0]", hasKey("PriceRangeDtos"));
 	}
+	
 	@Test (testName="OnlineNotAllowed_PackageFound",description="PBI:143540")
 	public void onlineNotAllowed_PackageFound() { 
-		String member = prop.getProperty("activeMember1_CustomerId");
-		String club = prop.getProperty("X-Club1Id");
+		
+		String customerId = prop.getProperty("availableId");
+		String clubId = prop.getProperty("club1Id");
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -65,7 +64,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
+					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
 						.then()
 //					.log().body()
 						.assertThat().statusCode(200)
@@ -76,7 +75,8 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	}
 	@Test (testName="PackageNotFound",description="PBI:143540")
 	public void packageNotFound() { 
-		String member = prop.getProperty("activeMember1_CustomerId");
+		
+		String member = prop.getProperty("availableId");
 		String club = prop.getProperty("X-Club1Id");
 				given()
 //						.log().all()
@@ -91,12 +91,13 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ItemDescription"))
-						.body("Result.ItemDescription", anyOf(not(hasItem("Bhagya's Service"))));// assertion that a specific package that is NOT available at club is NOT found
+						.body("Result.ItemDescription", anyOf(not(hasItem("Not A Real Package"))));// assertion that a specific package that is NOT available at club is NOT found
 	}
 	@Test (testName="Customer Not Found",description="PBI:143540")
 	public void customerNotFound() { 
-		int member = 2360000;
-		String club = prop.getProperty("X-Club1Id");
+		
+		int customerId = 2360000;
+		String clubId = prop.getProperty("club1Id");
 		
 					given()
 				.header("accept", prop.getProperty("accept"))
@@ -104,7 +105,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
+					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
 						.then()
 //					    .log().body()
 					    .assertThat().statusCode(500)
