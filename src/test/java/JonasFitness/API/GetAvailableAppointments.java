@@ -24,9 +24,9 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
 	public void AppointmentsFound_NoResources() {
 		
-		String member = prop.getProperty("appointmentId");  
+		String member = prop.getProperty("availableId");  
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 		String serviceId = prop.getProperty("freeTId");
 
 				given()
@@ -64,7 +64,7 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsFound_WithResourcess",description="PBI:127498")
 	public void AppointmentsFound_WithResources() {
 		
-		String member = prop.getProperty("appointmentId");  
+		String member = prop.getProperty("availableId");  
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
 		String serviceId = prop.getProperty("freeTId");
