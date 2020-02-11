@@ -574,4 +574,22 @@ public class GetEmployees extends base {
 						.body("Result[0]", hasKey("MobilePhone"))
 						.body("Result[0].Id", not(nullValue()));
 	}
+	/*
+	@Test (testName="Employee Not Found",description="PBI:150855")
+	public void employee90daysInactive() { 
+			// this employee can't login to BO due to 90 days inactivity, but in this call they are still shown as IsActive=True - Researching correct behavior
+		
+			String username = "scampbell";
+
+				given()
+
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", 101)
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/employee/getemployees?ActiveOnly=false&Username="+username+"")
+						.then()
+						.log().body();
+	} */
 }

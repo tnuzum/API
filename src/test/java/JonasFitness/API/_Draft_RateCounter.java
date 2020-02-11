@@ -46,15 +46,15 @@ public class _Draft_RateCounter extends base {
 		String classBarcodeId 			= "alwaysAvailCl";
 		String classOccurrence 			= "2025-12-31";
 		String displayedGrandTotal 		= "10.00";
-		String cardNumber				= "5454545454545454";
-		String nameOnCard				= "JIM MANNY";
-		String month					= "12";
-		int year						= 2025;
-		String securityCode				= "007";
-		String addressLine1				= "210 Northwoods Blvd";
+		String cardNumber = prop.getProperty("CC1CardNumber");
+		String nameOnCard = prop.getProperty("CC1NameOnCard");
+		String month = prop.getProperty("CC1Month");
+		String year = prop.getProperty("CC1Year");
+		String securityCode = prop.getProperty("CC1SecurityCode");
+		String addressLine1 = prop.getProperty("CC1AddressLine1");
 		String city						= "";
-		String state					= "OH";
-		String postalCode				= "43015";
+		String state = prop.getProperty("CC1State");
+		String postalCode = prop.getProperty("CC1PostalCode");
 		String enrollCustomerAsStandby 	= "true";
 		
 		for (int i=1; i<20; i++) {
