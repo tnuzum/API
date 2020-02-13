@@ -2,7 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
@@ -18,7 +18,7 @@ public class GetFieldsForMemberCreationByMember extends base {
 	
 // !!! Assertions are split into 2 tests to resolve a compile error 'java.lang.StackOverflowError'.
 
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();

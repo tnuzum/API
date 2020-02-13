@@ -28,7 +28,7 @@ public class ReusableMethods extends base {
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
 		int loopCount = 0;
-		if(loopCount <5) // Counting loops so test will fail it unenroll fails 5 times
+		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
 		
 			base.getPropertyData();
@@ -69,13 +69,14 @@ public class ReusableMethods extends base {
 	
 					if(res.statusCode() != 404)	// Message: "Nothing found"
 					{
+						loopCount++;
 						System.out.println("-----------------");
 						System.out.println("Retrying Unenroll");
 						System.out.println("customerId: "+customerId);
 						System.out.println("enrollmentId: "+enrollmentId);
 						System.out.println("invoiceId: "+invoiceId);
+						System.out.println("loopCount: "+loopCount);
 						System.out.println("-----------------");
-						loopCount++;
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
 			}

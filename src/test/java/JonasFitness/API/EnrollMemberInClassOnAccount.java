@@ -2,16 +2,12 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
-
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -21,15 +17,15 @@ import resources.base;
 
 public class EnrollMemberInClassOnAccount extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Member Enrolled - Class Already Started",description="PBI:143588")
-	public void memberEnrolledClassStarted(){
+	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:143588")
+	public void memberEnrolledPaidClassStarted(){
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -50,7 +46,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -67,8 +63,8 @@ public class EnrollMemberInClassOnAccount extends base {
 					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 
-		@Test (testName="Member Enrolled - Class Already Not Started",description="PBI:143588")
-	public void memberEnrolledClassNotStarted() {
+	@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:143588")
+	public void memberEnrolledPaidClassNotStarted() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -339,9 +335,9 @@ public class EnrollMemberInClassOnAccount extends base {
 	public void customerNotFound() {
 		
 				int customerId 			= 245000;
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
-				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -362,9 +358,9 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
-				String classOccurrence 	= "2122-12-06";
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
+				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -380,8 +376,31 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Item",description="PBI:143588")
-	public void enrollmentNotAllowed_Item() {
+	@Test (testName="Occurrence Not Found",description="PBI:143588")
+	public void occurrenceNotFound() {
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence 	= "2122-12-06";
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
+				String enrollCustomerAsStandby = "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
+	}
+	
+	@Test (testName="Class Not Available Online",description="PBI:143588")
+	public void classNotAvailableOnline() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);

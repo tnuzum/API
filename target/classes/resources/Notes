@@ -12,7 +12,7 @@ ASSERTIONS:
 IMPORTS:
 import static io.restassured.RestAssured.given;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -45,7 +45,7 @@ then().log().all()
 //		String responseString = res.asString();
 //		System.out.println("Response: " + responseString);
 -------------------------------------------------------------
-@BeforeTest
+@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 	}

@@ -2,15 +2,12 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -19,7 +16,7 @@ import resources.base;
 
 public class EnrollMemberInClassWithCardOnFile extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -58,7 +55,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -133,8 +130,8 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classBarcodeId = prop.getProperty("freeClBarcodeId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
-				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				int accountId = 1;
+				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
 
@@ -182,8 +179,8 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				int accountId = 1;
+				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -425,9 +422,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
-				String classOccurrence 	= "2122-12-06";
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
+				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 
@@ -458,9 +455,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
 				String classOccurrence 	= "2122-12-06";
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
 

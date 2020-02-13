@@ -3,7 +3,7 @@ package JonasFitness.API;
 import static io.restassured.RestAssured.given;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -26,7 +26,7 @@ public class GetClassCoursePricing extends base {
 	 * because hamcrest is not able to assert on the price values returned
 	 */
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();

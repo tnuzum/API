@@ -2,7 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
@@ -17,7 +17,7 @@ import resources.base;
 
 public class GetAppointmentsByMember extends base {
 
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -27,7 +27,7 @@ public class GetAppointmentsByMember extends base {
 	@Test (testName="AppointmentsFound",description="PBI:124124")
 	public void AppointmentsFound() {
 		
-		String customerId = prop.getProperty("availableId");
+		String customerId = prop.getProperty("appointmentId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 				given()
