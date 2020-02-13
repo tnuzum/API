@@ -516,7 +516,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.body("Message", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Scheduling Conflict",description="PBI:146578")
+	@Test (testName="Scheduling Conflict",description="PBI:146577")
 	public void schedulingConflict() {
 		
 				String c = prop.getProperty("standbyAId");
@@ -547,6 +547,40 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - SchedulingConflict"));
+	}
+	
+	@Test (testName="No FOP - Account Problem",description="PBI:146577")
+	public void noFOP_AccountProblem() {
+		
+		String c = prop.getProperty("noFOPId");
+		int customerId = Integer.parseInt(c);
+		String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+		String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+		String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
+				int accountId = 1;
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+					.body("{" + 
+							"  \"CustomerId\": "+customerId+"," + 
+							"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+							"  \"AccountId\": \""+accountId+"\"," + 
+							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"}")
+					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
+						.then()
+//						.log().body()
+						// this returns "Sequence contains no elements" because there is no card on file
+						.assertThat().statusCode(500)
+						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
 	}
 	
 }
