@@ -2,14 +2,14 @@ package Utilities;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import resources.base;
 
 public class GetPackageDetails extends base{
 
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -18,7 +18,7 @@ public class GetPackageDetails extends base{
 	@Test (testName="SinglePriceRange",description="PBI:143538")
 	public void singlePriceRange() {
  
-		String member = prop.getProperty("activeMember1_CustomerId");
+		String member = prop.getProperty("availableId");
 		//String item = prop.getProperty("training24Id");
 		int item = 36;
 		String club = prop.getProperty("X-Club1Id");

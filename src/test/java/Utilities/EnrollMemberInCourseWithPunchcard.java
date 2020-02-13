@@ -2,7 +2,7 @@ package Utilities;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -10,7 +10,7 @@ import resources.base;
 
 public class EnrollMemberInCourseWithPunchcard extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -21,7 +21,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 	public void memberEnrolled() {
 		
 				int customerId = 248;
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseBarcodeId = "notStartedCo";
 				String enrollCustomerAsStandby = "true";
 
 				given()
