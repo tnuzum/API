@@ -3,7 +3,7 @@ package JonasFitness.API;
 import static io.restassured.RestAssured.given;
 //import static org.hamcrest.Matchers.equalTo;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -12,7 +12,7 @@ import resources.base;
 
 public class _Draft_RateCounter extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();

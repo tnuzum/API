@@ -1,16 +1,12 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -19,7 +15,7 @@ import resources.base;
 
 public class EnrollMemberInClassWithNewCreditCard extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -84,7 +80,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
@@ -95,7 +91,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146579")
 	public void memberEnrolled_FreeClass() {
 		
-				String companyId				= prop.getProperty("X-CompanyId");
+				String companyId = prop.getProperty("X-CompanyId");
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String classBarcodeId = prop.getProperty("freeClBarcodeId");
@@ -377,10 +373,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Member Already On Standby",description="PBI:146579")
 	public void memberAlreadyOnStandby() {
 		
-				int customerId 					= 246;
-				String classBarcodeId 			= "standbyCl";
-				String classOccurrence 			= "2023-01-02";
-				String displayedGrandTotal 		= "150.00";
+				String c = prop.getProperty("standbyDId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
+				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -428,10 +425,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Card Expired",description="PBI:146579")
 	public void cardExpired() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -478,10 +476,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Class Not Available Online",description="PBI:146579")
 	public void classNotAvailableOnline() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "noWebCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "150.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("noWebClBarcodeId");
+				String classOccurrence = prop.getProperty("noWebClOccurrence");
+				String displayedGrandTotal = prop.getProperty("noWebClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -528,10 +527,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Class Ended",description="PBI:146579")
 	public void classEnded() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "endedCl";
-				String classOccurrence 			= "2019-12-13";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("endedClBarcodeId");
+				String classOccurrence = prop.getProperty("endedClOccurrence");
+				String displayedGrandTotal = prop.getProperty("endedClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -579,9 +579,9 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	public void customerNotFound() {
 		
 				int customerId 					= 248000;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -628,10 +628,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Card Number Invalid",description="PBI:146579")
 	public void cardNumberInvalid() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber				= "5454545454545400";
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -678,10 +679,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Card Number Length Incorrect",description="PBI:146579")
 	public void cardNumberLengthIncorrect() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber				= "54545454545454540000";
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -725,13 +727,14 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Class Item Not Found",description="PBI:146579")
-	public void classItemNotFound() {
+	@Test (testName="Class Not Found",description="PBI:146579")
+	public void classNotFound() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "NOTalwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -778,10 +781,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Class Occurrence Not Found",description="PBI:146579")
 	public void classOccurrenceNotFound() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2225-01-01";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = "2225-01-01";
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -828,9 +832,10 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Product Price Changed",description="PBI:146579")
 	public void productPriceChanged() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-01-01";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal 		= "10.01";
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -878,10 +883,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing Member Name On Card",description="PBI:146579")
 	public void missingMemberNameOnCard() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard				= "";
 				String month = prop.getProperty("CC1Month");
@@ -929,11 +935,12 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing Card Number",description="PBI:146579")
 	public void missingCardNumber() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
-				String cardNumber				= "";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
+				String cardNumber = "";
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
 				String year = prop.getProperty("CC1Year");
@@ -980,10 +987,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing Security Code",description="PBI:146579")
 	public void missingSecurityCode() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -1031,16 +1039,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing Address Line1",description="PBI:146579")
 	public void missingAddressLine1() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
 				String year = prop.getProperty("CC1Year");
 				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1				= "";
+				String addressLine1	= "";
 				String city = prop.getProperty("CC1City");
 				String state = prop.getProperty("CC1State");
 				String postalCode = prop.getProperty("CC1PostalCode");
@@ -1082,10 +1091,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing City",description="PBI:146579")
 	public void missingCity() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -1135,10 +1145,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing StateProvince",description="PBI:146579")
 	public void missingStateProvince() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");
@@ -1186,10 +1197,11 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Missing Postal Code",description="PBI:146579")
 	public void missingPostalCode() {
 		
-				int customerId 					= 248;
-				String classBarcodeId 			= "alwaysAvailCl";
-				String classOccurrence 			= "2025-12-31";
-				String displayedGrandTotal 		= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
 				String month = prop.getProperty("CC1Month");

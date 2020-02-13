@@ -2,16 +2,13 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
-
-import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -21,7 +18,7 @@ import resources.base;
 
 public class EnrollMemberInCourseWithRecurringDues extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -31,11 +28,11 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Member Enrolled - Paid Course",description="PBI:154260")
 	public void memberEnrolledPaidCourse() { 
 		
-		int customerId = 248;
-		String companyId = prop.getProperty("X-CompanyId");
-		String courseBarcodeId = "alwaysAvailCo";
-		String enrollCustomerAsStandBy = "true";
-		
+			String c = prop.getProperty("availableId");
+			int customerId = Integer.parseInt(c);
+			String companyId = prop.getProperty("X-CompanyId");
+			String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+			String enrollCustomerAsStandBy = "true";
 
 			Response res =	given()
 //						.log().all()
@@ -48,7 +45,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -68,11 +65,11 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Member Enrolled - Free Course",description="PBI:154260")
 	public void memberEnrolledFreeCourse() { 
 		
-		int customerId = 248;
-		String companyId = prop.getProperty("X-CompanyId");
-		String courseBarcodeId = "freeCo";
-		String enrollCustomerAsStandBy = "true";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String companyId = prop.getProperty("X-CompanyId");
+				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String enrollCustomerAsStandBy = "true";
 
 			Response res =	given()
 //						.log().all()
@@ -85,7 +82,6 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -101,18 +97,18 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
-	/*
+	
 	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:154260")
 	public void memberEnrolledFreeCourseCollectionsMember() { 
 		
-		int customerId = 227;
-		String companyId = prop.getProperty("X-CompanyId");
-		String courseBarcodeId = "freeCo";
-		String enrollCustomerAsStandBy = "true";
-		
+				String c = prop.getProperty("collectionsId");
+				int customerId = Integer.parseInt(c);
+				String companyId = prop.getProperty("X-CompanyId");
+				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String enrollCustomerAsStandBy = "true";
 
 			Response res =	given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -120,9 +116,8 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
 						.body("Result.CustomerId", equalTo(customerId))
@@ -138,18 +133,18 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
-	*/
+	
 	@Test (testName="Member Enrolled On Standby",description="PBI:154260")
 	public void memberEnrolledOnStandby() { 
 		
-		int customerId = 248;
-		String companyId = prop.getProperty("X-CompanyId");
-		String courseBarcodeId = "standbyCo";
-		String enrollCustomerAsStandBy = "true";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String companyId = prop.getProperty("X-CompanyId");
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String enrollCustomerAsStandBy = "true";
 
 			Response res =	given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -159,7 +154,6 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.EnrollmentStatus", equalTo("StandBy"))
 						.body("Result.CustomerId", equalTo(customerId))
 						.body("Result.FirstName", not(nullValue()))
@@ -178,8 +172,9 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Member Already Enrolled",description="PBI:154260")
 	public void memberAlreadyEnrolled() { 
 		
-		int customerId = 241;
-		String courseBarcodeId = "standbyCo";
+		String c = prop.getProperty("standbyAId");
+		int customerId = Integer.parseInt(c);
+		String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
 		String enrollCustomerAsStandBy = "true";
 		
 
@@ -200,13 +195,13 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Member Already Enrolled On Standby",description="PBI:154260")
 	public void memberAlreadyEnrolledOnStandby() { 
 		
-		int customerId = 242;
-		String courseBarcodeId = "standbyCo";
-		String enrollCustomerAsStandBy = "true";
-		
+				String c = prop.getProperty("standbyBId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String enrollCustomerAsStandBy = "true";
 
 				given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -222,10 +217,10 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Member Enrolled Not On Standby",description="PBI:154260")
 	public void memberEnrolledNotOnStandby() { 
 		
-		int customerId = 223;
-		String courseBarcodeId = "standbyCo";
-		String enrollCustomerAsStandBy = "false";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String enrollCustomerAsStandBy = "false";
 
 				given()
 //						.log().all()
@@ -244,10 +239,10 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Course Not Available Online",description="PBI:154260")
 	public void courseNotAvailableOnline() { 
 		
-		int customerId = 223;
-		String courseBarcodeId = "noWebCo";
-		String enrollCustomerAsStandBy = "false";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("noWebCoBarcodeId");
+				String enrollCustomerAsStandBy = "false";
 
 				given()
 //						.log().all()
@@ -266,10 +261,10 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Course Ended",description="PBI:154260")
 	public void courseEnded() { 
 		
-		int customerId = 248;
-		String courseBarcodeId = "endedCo";
-		String enrollCustomerAsStandBy = "false";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("endedCoBarcodeId");
+				String enrollCustomerAsStandBy = "false";
 
 				given()
 //						.log().all()
@@ -288,10 +283,9 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Customer Not Found",description="PBI:154260")
 	public void customerNotFound() { 
 		
-		int customerId = 248000;
-		String courseBarcodeId = "alwaysAvailCo";
-		String enrollCustomerAsStandBy = "false";
-		
+				int customerId = 248000;
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String enrollCustomerAsStandBy = "false";
 
 				given()
 //						.log().all()
@@ -310,10 +304,10 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Course Not Found",description="PBI:154260")
 	public void courseNotFound() { 
 		
-		int customerId = 248;
-		String courseBarcodeId = "NOTalwaysAvailCo";
-		String enrollCustomerAsStandBy = "false";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("NOTalwaysAvailCoBarcodeId");
+				String enrollCustomerAsStandBy = "false";
 
 				given()
 //						.log().all()
@@ -332,10 +326,10 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Recurring Dues Not Accepted",description="PBI:154260")
 	public void recurringDuesNotAccepted() { 
 		
-		int customerId = 248;
-		String courseBarcodeId = "noPunchCo";
-		String enrollCustomerAsStandBy = "true";
-		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("noPunchCoBarcodeId");
+				String enrollCustomerAsStandBy = "true";
 
 				given()
 //						.log().all()

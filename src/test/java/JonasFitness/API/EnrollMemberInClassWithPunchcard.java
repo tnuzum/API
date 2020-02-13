@@ -2,7 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
@@ -18,7 +18,7 @@ import resources.base;
 
 public class EnrollMemberInClassWithPunchcard extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
@@ -28,10 +28,11 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:147808")
 	public void memberEnrolledPaidClassStarted() {
 		
-				int customerId = 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
-				String classOccurrence = "2025-12-31";
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -65,10 +66,11 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:147808")
 	public void memberEnrolledPaidClassNotStarted() {
 		
-				int customerId = 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = "notStartedCl";
-				String classOccurrence = "2119-12-25";
+				String classBarcodeId = prop.getProperty("notStartedClBarcodeId");
+				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -100,10 +102,11 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Member Enrolled On Standby",description="PBI:147808")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 			= 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId 	= "standbyCl";
-				String classOccurrence 	= "2025-12-31";
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -135,10 +138,11 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
 	public void memberEnrolledFreeClass() {
 		
-				int customerId 			= 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId 	= "freeCl";
-				String classOccurrence 	= "2025-12-31";
+				String classBarcodeId = prop.getProperty("freeClBarcodeId");
+				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -166,14 +170,15 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
-	/*
+	
 	@Test (testName="Member Enrolled - Free Class - Collections Member",description="PBI:147808")
 	public void memberEnrolledFreeClassCollectionsMember() {
 		
-				int customerId 			= 227;
+				String c = prop.getProperty("collectionsId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId 	= "freeCl";
-				String classOccurrence 	= "2025-12-31";
+				String classBarcodeId = prop.getProperty("freeClBarcodeId");
+				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -184,7 +189,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 					.when()
 					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -201,13 +206,14 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
-	*/
+	
 	@Test (testName="Not Enough Punches",description="PBI:147808")
 	public void notEnoughPunches() {
 		
-				int customerId = 247;
-				String classBarcodeId = "notStartedCl";
-				String classOccurrence 	= "2119-12-25";
+				String c = prop.getProperty("noFOPId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -227,9 +233,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Punchcard Not Allowed",description="PBI:147808")
 	public void punchcardNotAllowed() {
 		
-				int customerId = 247;
-				String classBarcodeId = "noPunchCl";
-				String classOccurrence 	= "2025-12-31";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("noPunchClBarcodeId");
+				String classOccurrence = prop.getProperty("noPunchClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -248,9 +255,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Class Full - Standby Not Allowed",description="PBI:147808")
 	public void standbyNotAllowed() {
 		
-				int customerId = 247;
-				String classBarcodeId = "standbyCl";
-				String classOccurrence 	= "2023-01-02";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String enrollCustomerAsStandby = "false";
 
 				given()
@@ -263,16 +271,16 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-//						.body("Message", equalTo("Full"));
-						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
+						.body("Message", equalTo("Full"));
 		}
 	
 	@Test (testName="Class Not Found",description="PBI:147808")
 	public void classNotFound() {
 		
-				int customerId = 247;
-				String classBarcodeId = "NOTstandbyCl";
-				String classOccurrence 	= "2023-01-02";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 				given()

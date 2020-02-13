@@ -2,7 +2,7 @@ package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
@@ -18,20 +18,21 @@ import resources.base;
 
 public class EnrollMemberInCourseOnAccount extends base {
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Member Enrolled - Course Already Started",description="PBI:143589")
-	public void memberEnrolledCourseStarted() {
+	@Test (testName="Member Enrolled - Paid Course Already Started",description="PBI:143589")
+	public void memberEnrolledPaidCourseStarted() {
 		
-				int customerId = 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
-				String displayedGrandTotal = "100.00";
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -62,13 +63,14 @@ public class EnrollMemberInCourseOnAccount extends base {
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 	}
 	
-		@Test (testName="Member Enrolled - Course Not Started",description="PBI:143589")
-	public void memberEnrolledCourseNotStarted() {
+		@Test (testName="Member Enrolled - Paid Course Not Started",description="PBI:143589")
+	public void memberEnrolledPaidCourseNotStarted() {
 		
-				int customerId = 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = "notStartedCo";
-				String displayedGrandTotal = "150.00";
+				String courseBarcodeId = prop.getProperty("notStartedCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("notStartedCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -101,10 +103,11 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Enrolled On Standby",description="PBI:143589")
 	public void memberEnrolledOnStandby() {
 		
-				int customerId 			= 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId 	= "standbyCo";
-				String displayedGrandTotal	= "1500.00";
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -137,10 +140,11 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Enrolled - Free Course",description="PBI:143589")
 	public void memberEnrolledFreeCourse() {
 		
-				int customerId = 248;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = "freeCo";
-				String displayedGrandTotal = "0.00";
+				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -173,10 +177,11 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:143589")
 	public void memberEnrolledFreeCourseCollectionsMember() {
 		
-				int customerId = 227;
+				String c = prop.getProperty("collectionsId");
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = "freeCo";
-				String displayedGrandTotal = "0.00";
+				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()
@@ -209,9 +214,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="No FOP - Account Problem",description="PBI:143589") // failed to create invoice because member's billing info not setup
 	public void noFOP_AccountProblem() {
 		
-				int customerId = 247;
+				String c = prop.getProperty("noFOPId");
+				int customerId = Integer.parseInt(c);
 				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
-				String displayedGrandTotal = "100.00";
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -230,9 +236,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Already Enrolled",description="PBI:143589")
 	public void memberAlreadyEnrolled() {
 		
-				int customerId 			= 241;
-				String courseBarcodeId 	= "standbyCo";
-				String displayedGrandTotal	= "1500.00";
+				String c = prop.getProperty("standbyAId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -251,7 +258,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Product Price Changed",description="PBI:143589")
 	public void productPriceChanged() {
 		
-				int customerId = 247;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
 				String displayedGrandTotal = "10.01";
 				String enrollCustomerAsStandby = "true";
@@ -272,9 +280,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Already On Standby",description="PBI:143589")
 	public void memberAlreadyOnStandby() {
 		
-				int customerId 			= 242;
-				String courseBarcodeId 	= "standbyCo";
-				String displayedGrandTotal	= "1500.00";
+				String c = prop.getProperty("standbyBId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -293,9 +302,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Member Not Enrolled On Standby",description="PBI:143589")
 	public void memberNotEnrolledOnStandby() {
 		
-				int customerId 			= 247;
-				String courseBarcodeId 	= "standbyCo";
-				String displayedGrandTotal	= "1500.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String enrollCustomerAsStandby = "false";
 
 				given()
@@ -315,8 +325,8 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void customerNotFound() {
 		
 				int customerId 			= 245000;
-				String courseBarcodeId 	= "standbyCo";
-				String displayedGrandTotal	= "1500.00";
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -335,9 +345,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Course Not Found",description="PBI:143589")
 	public void courseNotFound() {
 		
-				int customerId 			= 245;
-				String courseBarcodeId 	= "NOTstandbyCo";
-				String displayedGrandTotal	= "150.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("NOTalwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -353,12 +364,13 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Item",description="PBI:143589")
-	public void enrollmentNotAllowed_Item() {
+	@Test (testName="Course Not Available Online",description="PBI:143589")
+	public void courseNotAvailableOnline() {
 		
-				int customerId 			= 237;
-				String courseBarcodeId 	= "noWebCo";
-				String displayedGrandTotal	= "1500.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("noWebCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -377,9 +389,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Enrollment Not Open",description="PBI:143589")
 	public void enrollmentNotOpen() {
 		
-				int customerId 			= 237;
-				String courseBarcodeId 	= "neverAvailCo";
-				String displayedGrandTotal	= "1500.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("neverAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("neverAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -398,9 +411,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589")
 	public void enrollmentNotAllowedTerminatedMember() {
 		
-				int customerId 			= 249;
-				String courseBarcodeId 	= "alwaysAvailCo";
-				String displayedGrandTotal	= "100.00";
+				String c = prop.getProperty("terminatedId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -419,9 +433,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:143589")
 	public void enrollmentNotAllowedCollectionsMember() {
 		
-				int customerId 			= 227;
-				String courseBarcodeId 	= "alwaysAvailCo";
-				String displayedGrandTotal	= "100.00";
+				String c = prop.getProperty("collectionsId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -440,9 +455,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589")
 	public void enrollmentNotAllowedFrozenMember() {
 		
-				int customerId 			= 250;
-				String courseBarcodeId 	= "alwaysAvailCo";
-				String displayedGrandTotal	= "100.00";
+				String c = prop.getProperty("frozenId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -461,9 +477,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:143589")
 	public void enrollmentNotAllowedProspectMember() {
 		
-				int customerId 			= 228;
-				String courseBarcodeId 	= "alwaysAvailCo";
-				String displayedGrandTotal	= "100.00";
+				String c = prop.getProperty("prospectId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -482,9 +499,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Credit Limited Exceeded",description="PBI:143589")
 	public void creditLimitedExceeded() {
 		
-				int customerId 			= 251;
-				String courseBarcodeId 	= "alwaysAvailCo";
-				String displayedGrandTotal	= "100.00";
+				String c = prop.getProperty("creditLimitId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -503,9 +521,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Course Enrollment Closed",description="PBI:143589")
 	public void courseEnrollmentClosed() {
 		
-				int customerId 			= 248;
-				String courseBarcodeId 	= "closedCo";
-				String displayedGrandTotal	= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("closedCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("closedCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -524,9 +543,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Course Ended",description="PBI:143589")
 	public void courseEnded() {
 		
-				int customerId 			= 248;
-				String courseBarcodeId 	= "endedCo";
-				String displayedGrandTotal	= "10.00";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseBarcodeId = prop.getProperty("endedCoBarcodeId");
+				String displayedGrandTotal = prop.getProperty("endedCoPrice");
 				String enrollCustomerAsStandby = "true";
 
 				given()
