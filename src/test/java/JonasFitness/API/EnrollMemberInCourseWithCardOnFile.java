@@ -473,4 +473,36 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - SchedulingConflict"));
 	}
 	
+	@Test (testName="No FOP - Account Problem",description="PBI:146578")
+	public void noFOP_AccountProblem() {
+		
+		String c = prop.getProperty("noFOPId");
+		int customerId = Integer.parseInt(c);
+		String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+		String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+				int accountId = 1;
+				String enrollCustomerAsStandby 	= "true";
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("Content-Type", "application/json")
+					.when()
+					.body("{" + 
+							"  \"CustomerId\": "+customerId+"," + 
+							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+							"  \"AccountId\": \""+accountId+"\"," + 
+							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"}")
+					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
+						.then()
+//						.log().body()
+						// this returns "Sequence contains no elements" because there is no card on file
+						.assertThat().statusCode(500)
+						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+	}
+	
 }
