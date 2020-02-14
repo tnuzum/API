@@ -70,6 +70,7 @@ public class GetAllAvailableClassesByMember extends base {
 						;
 
 	}
+	
 	@Test (testName="Classes Not Found",description="PBI:146571")
 	public void classNotFound() { 
 		
@@ -93,6 +94,7 @@ public class GetAllAvailableClassesByMember extends base {
 						;
 	
 	}
+	
 	@Test (testName="Customer Not Found",description="PBI:146571")
 	public void customerNotFound() { 
 		
@@ -114,7 +116,6 @@ public class GetAllAvailableClassesByMember extends base {
 	//					.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
-	
 	}
 }
 

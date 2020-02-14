@@ -1,6 +1,6 @@
 package Utilities;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 
 import io.restassured.RestAssured;
 import resources.ReusableDates;
@@ -14,7 +14,7 @@ public class BookAppointment extends base {
 	static String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 	static String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
 	
-	@BeforeTest
+	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();

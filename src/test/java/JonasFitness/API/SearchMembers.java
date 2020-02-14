@@ -24,10 +24,11 @@ public class SearchMembers extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
+	
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
 	public void searchMembers_LastName() {
 		
-		String lName = prop.getProperty("activeMember1_lName");
+				String lName = prop.getProperty("memberSearchLName");
 
 				given()
 //						.log().all()
@@ -82,13 +83,14 @@ public class SearchMembers extends base {
 					    .body("Result[0].Name.LastName", not(nullValue()))
 					    .body("Result[0].PreferredPhone", not(nullValue()));
 	}
+	
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
 	public void searchMembers_FirstName() { 
 		
-		String fName = prop.getProperty("activeMember1_fName");
+				String fName = prop.getProperty("memberSearchFName");
 
 				given()
-//				.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -126,11 +128,12 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_LastFirstName",description="PBI:124130")
 	public void searchMembers_LastFirstName() {  
 		
-		String fName = prop.getProperty("activeMember1_fName");
-		String lName = prop.getProperty("activeMember1_lName");
+		String fName = prop.getProperty("memberSearchFName");
+		String lName = prop.getProperty("memberSearchLName");
 
 				given()
 //				.log().all()
@@ -171,10 +174,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_HomePhoneDashes", description="PBI:124130")
 	public void searchMembers_HomePhoneDashes() {  
 		
-		String hPhoneD = prop.getProperty("activeMember1_hPhoneD");
+				String hPhoneD = prop.getProperty("memberSearchHPhoneD");
 
 				given()
 //				.log().all()
@@ -215,10 +219,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_HomePhoneNoDashes", description="PBI:124130")
 	public void searchMembers_HomePhoneNoDashes() {   
 		
-		String hPhone = prop.getProperty("activeMember1_hPhone");
+		String hPhone = prop.getProperty("memberSearchHPhone");
 
 				given()
 //				.log().all()
@@ -259,10 +264,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_MobilePhoneDashes", description="PBI:124130")
 	public void searchMembers_MobilePhoneDashes() { 
 		
-			String mPhoneD = prop.getProperty("activeMember1_mPhoneD");
+			String mPhoneD = prop.getProperty("memberSearchMPhoneD");
 
 				given()
 //				.log().all()
@@ -303,10 +309,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_MobilePhoneNoDashes", description="PBI:124130")
 	public void searchMembers_MobilePhoneNoDashes() { 
 		
-		String mPhone = prop.getProperty("activeMember1_mPhone");
+		String mPhone = prop.getProperty("memberSearchMPhone");
 
 				given()
 //				.log().all()
@@ -347,10 +354,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_WorkPhoneDashes",description="PBI:124130")
 	public void searchMembers_WorkPhoneDashes() {  
 		
-		String wPhoneD = prop.getProperty("activeMember1_wPhoneD");
+		String wPhoneD = prop.getProperty("memberSearchWPhoneD");
 
 				given()
 //				.log().all()
@@ -391,10 +399,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_WorkPhoneNoDashes",description="PBI:124130")
 	public void searchMembers_WorkPhoneNoDashes() {  
 		
-		String wPhone = prop.getProperty("activeMember1_wPhone");
+		String wPhone = prop.getProperty("memberSearchWPhone");
 
 				given()
 //				.log().all()
@@ -435,10 +444,11 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
 		
-		String email = prop.getProperty("activeMember4_email");
+		String email = prop.getProperty("memberSearcheMail");
 
 				given()
 //				.log().all()
@@ -479,4 +489,4 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
-	}
+}

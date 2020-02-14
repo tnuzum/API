@@ -20,16 +20,14 @@ public class GetBookAvailabilityCalendar extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="ValidInput",description="PBI:140727")
-	public void ValidInput() { 
+	@Test (testName="Book Availability Calendar Found",description="PBI:140727")
+	public void bookAvailabilityCalendarFound() { 
 
-//		String bookId = prop.getProperty("resource6Id");
-		int bookId = 31;
-//		String resourceTypeId = prop.getProperty("resourceType4Id");
-		int resourceTypeId = 9;
-		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneDay();
-		String associatedClubId = prop.getProperty("associatedClub1Id");
+				String bookId = prop.getProperty("demoBookId");
+				String resourceTypeId = prop.getProperty("resourcePTId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
+				String associatedClubId = prop.getProperty("club1Id");
 		
 				given()
 	//					.log().all()

@@ -22,12 +22,14 @@ public class GetClassDetails extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	
 	@Test (testName="Class Found - Online Sale Allowed",description="PBI:143544")
 	public void classFoundOnlineSaleAllowed() {
  
-		int customerId 			= 231;
-		String ClassBarcodeId 	= "alwaysAvailCl";
-		String ClassDateTime 	= "2022-12-13";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 
 			Response res = given()
 //						.log().all()
@@ -36,7 +38,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -49,8 +51,8 @@ public class GetClassDetails extends base{
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.LongDescription", not(nullValue()))
 						.body("Result.DurationInMinutes", not(nullValue()))
-						.body("Result.InstructorName", not(nullValue()))
-						.body("Result.InstructorBarcodeId", not(nullValue()))
+						.body("Result", hasKey("InstructorName"))
+						.body("Result", hasKey("InstructorBarcodeId"))
 						.body("Result.ClubName", not(nullValue()))
 						.body("Result.ClubNumber", not(nullValue()))
 						.body("Result.CategoryDescription", not(nullValue()))
@@ -91,13 +93,14 @@ public class GetClassDetails extends base{
 						Assert.assertEquals(js.getDouble("Result.CancellationFee"), 0.0);
 						Assert.assertEquals(js.getDouble("Result.RefundableAmount"), 0.0);
 	}
+	
 	@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
 	public void classFoundOnlineSaleNotAllowed() {
- 
-		int customerId 			= 231;
-		String ClassBarcodeId 	= "BalanceItem";
-//		String ClassDateTime 	= "2019-12-03T17:30:00-05:00";
-		String ClassDateTime 	= "2019-12-03";
+			// this call returns all class, so this test returns the same response as the first test
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("noWebClBarcodeId");
+				String classOccurrence = prop.getProperty("noWebClOccurrence");
 
 				given()
 //						.log().all()
@@ -106,20 +109,21 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
+	
 	@Test (testName="Class Not Found - Invalid ClassBarcodeID",description="PBI:143544")
 	public void classNotFound_InvalidClassBarcodeID() {
  
-		int customerId 			= 231;
-		String ClassBarcodeId 	= "invalidClassBarcodeId";
-//		String ClassDateTime 	= "2019-12-03T17:30:00-05:00";
-		String ClassDateTime 	= "2025-12-03";
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 
 				given()
 //						.log().all()
@@ -128,7 +132,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -176,12 +180,14 @@ public class GetClassDetails extends base{
 						.body("Result", not(hasKey("UnenrollmentOperation")))
 						;
 	}
-	@Test (testName="Class Not Found - Class BarcodeID Used",description="PBI:143544")
-	public void classNotFound_ClassBarcodeIDUsed() {
+	
+	@Test (testName="Class Not Found - Course BarcodeID Used",description="PBI:143544")
+	public void classNotFound_CourseBarcodeIDUsed() {
  
-		int customerId = 223;
-		String ClassBarcodeId = "Balance44";
-		String ClassDateTime 	= "2025-12-03";
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String classBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+		String classOccurrence = prop.getProperty("alwaysAvailCoOccurrence");
 
 				given()
 //						.log().all()
@@ -190,7 +196,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -198,12 +204,17 @@ public class GetClassDetails extends base{
 						.body("Message", equalTo("Class not found"))
 						;
 	}
+	
 	@Test (testName="Class Not Found - Training BarcodeID Used",description="PBI:143544")
 	public void classNotFound_TrainingBarcodeIDUsed() {
  
-		int customerId = 223;
-		String ClassBarcodeId = "BCA";
-		String ClassDateTime 	= "2025-12-03";
+//		int customerId = 223;
+//		String ClassBarcodeId = "BCA";
+//		String ClassDateTime 	= "2025-12-03";
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String classBarcodeId = prop.getProperty("freeTId");
+		String classOccurrence = prop.getProperty("freeTOccurrence");
 
 				given()
 //						.log().all()
@@ -212,7 +223,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -220,12 +231,15 @@ public class GetClassDetails extends base{
 						.body("Message", equalTo("Class not found"))
 						;
 	}
+	
 	@Test (testName="InvalidCustomerId", description="PBI:143544")
 	public void invalidCustomerId() {
 	
 		int customerId = 22300;
-		String ClassBarcodeId = "PBoot430";
-		String ClassDateTime 	= "2025-12-03";
+//		String ClassBarcodeId = "PBoot430";
+//		String ClassDateTime 	= "2025-12-03";
+		String classBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+		String classOccurrence = prop.getProperty("alwaysAvailCoOccurrence");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -233,7 +247,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+					.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+classOccurrence+"/"+classBarcodeId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

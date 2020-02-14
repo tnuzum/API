@@ -21,6 +21,7 @@ public class GetCourseDetails extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	
 	@Test (testName="Course Found",description="PBI:143545")
 	public void courseFound() {
  
@@ -84,6 +85,7 @@ public class GetCourseDetails extends base{
 						Assert.assertEquals(js.getDouble("Result.RefundableAmount"), 0.0);
 						
 	}
+	
 	@Test (testName="Course Not Found - Invalid CourseBarcodeID",description="PBI:143545")
 	public void courseNotFound_InvalidCourseBarcodeID() {
  
@@ -145,6 +147,7 @@ public class GetCourseDetails extends base{
 						.body("Result", not(hasKey("UnenrollmentOperation")))
 						;
 	}
+	
 	@Test (testName="Course Not Found - Class BarcodeID Used",description="PBI:143545")
 	public void courseNotFound_ClassBarcodeIDUsed() {
  
@@ -206,6 +209,7 @@ public class GetCourseDetails extends base{
 						.body("Result", not(hasKey("UnenrollmentOperation")))
 						;
 	}
+	
 	@Test (testName="Course Not Found - Training BarcodeID Used",description="PBI:143545")
 	public void courseNotFound_TrainingBarcodeIDUsed() {
  
@@ -267,6 +271,7 @@ public class GetCourseDetails extends base{
 						.body("Result", not(hasKey("UnenrollmentOperation")))
 						;
 	}
+	
 	@Test (testName="InvalidCustomerId", description="PBI:143545")
 	public void invalidCustomerId() {
 	

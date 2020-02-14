@@ -75,7 +75,7 @@ public class GetEmployees extends base {
 	@Test (testName="Employees Found - Active Only - Employee Club Id",description="PBI:150855")
 	public void employeesFound_ActiveOnly_EmployeeClubId() { 
 		
-			int clubId = 1;
+				String clubId = prop.getProperty("club1Id");
 
 				given()
 //						.log().all()
@@ -525,7 +525,7 @@ public class GetEmployees extends base {
 	@Test (testName="Employee Inactive - ActiveTrue",description="PBI:150855")
 	public void employeeInactiveActiveTrue() { 
 		
-			String username = "inactiveE";
+				String username = prop.getProperty("inactiveEmployeeName");
 
 				given()
 
@@ -544,7 +544,7 @@ public class GetEmployees extends base {
 	@Test (testName="Employee Inactive - ActiveFalse",description="PBI:150855")
 	public void employeeInactiveActiveFalse() { 
 		
-			String username = "inactiveE";
+				String username = prop.getProperty("inactiveEmployeeName");
 
 				given()
 

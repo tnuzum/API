@@ -5,11 +5,11 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
 
-public class GetMember extends base{
+public class GetAppointmentsByMember extends base {
 
-	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -17,22 +17,22 @@ public class GetMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test  (testName="MemberFound", description="PBI:124934")
-	public void MemberFound() {
+	@Test (testName="AppointmentsFound",description="PBI:124124")
+	public void AppointmentsFound() {
 		
-		String member = prop.getProperty("availableId");
-
-					given()
+		String customerId = prop.getProperty("availableId");
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.queryParam(customerId)
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200);
+						.log().body();
 	}
-
 }

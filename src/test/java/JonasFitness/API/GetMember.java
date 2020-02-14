@@ -6,11 +6,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
-
-
-import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -26,7 +21,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberFound - Active HOH", description="PBI:124934")
 	public void MemberFoundActiveHOH() {
 		
-		String member = prop.getProperty("availableId");
+					String customerId = prop.getProperty("availableId");
 
 					given()
 //						.log().all()
@@ -35,11 +30,11 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 					    .body("Result", hasKey("Address"))
 					    .body("Result.Address", hasKey("AddressLine1"))
 					    .body("Result.Address", hasKey("AddressLine2"))
@@ -86,15 +81,12 @@ public class GetMember extends base{
 					    .body("Result.WorkPhoneNumber", hasKey("Extension"))
 					    .body("Result.WorkPhoneNumber", hasKey("Number"))
 					    .body("Result.WorkPhoneNumber", hasKey("PhoneType"));
-//					** Assert values **					
-//					.body("Result.Address.AddressLine1", equalTo("7965 N High St"))
-//					.body("Result.Address.AddressLine2", equalTo("Ste 360"))
 	}
 	
 	@Test  (testName="MemberFound - Account Locked", description="PBI:124934")
 	public void MemberFoundAccountLocked() {
 		
-		int member = 232;
+					String customerId = prop.getProperty("accountLockedId");
 
 					given()
 
@@ -103,7 +95,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -152,14 +144,13 @@ public class GetMember extends base{
 					    .body("Result", hasKey("WorkPhoneNumber"))
 					    .body("Result.WorkPhoneNumber", hasKey("Extension"))
 					    .body("Result.WorkPhoneNumber", hasKey("Number"))
-					    .body("Result.WorkPhoneNumber", hasKey("PhoneType"))
-						;
+					    .body("Result.WorkPhoneNumber", hasKey("PhoneType"));
 	}
 	
 	@Test  (testName="MemberFound - Terminated Member", description="PBI:124934")
 	public void MemberFoundTerminatedMember() {
 		
-		int member = 249;
+					String customerId = prop.getProperty("terminatedId");
 
 					given()
 
@@ -168,7 +159,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -224,7 +215,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberFound - Prospect Member", description="PBI:124934")
 	public void MemberFoundProspectMember() {
 		
-		int member = 228;
+				String customerId = prop.getProperty("prospectId");
 
 					given()
 
@@ -233,7 +224,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -289,7 +280,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberFound - Collections Member", description="PBI:124934")
 	public void MemberFoundCollectionsMember() {
 		
-		int member = 227;
+					String customerId = prop.getProperty("collectionsId");
 
 					given()
 
@@ -298,7 +289,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -354,7 +345,7 @@ public class GetMember extends base{
 	@Test  (testName="MemberFound - Frozen Member", description="PBI:124934")
 	public void MemberFoundFrozenMember() {
 		
-		int member = 250;
+					String customerId = prop.getProperty("frozenId");
 
 					given()
 
@@ -363,7 +354,7 @@ public class GetMember extends base{
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -419,20 +410,19 @@ public class GetMember extends base{
 	@Test  (testName="MemberNotFound", description="PBI:124934")
 	public void MemberNotFound() {
 		
-		String member = prop.getProperty("availableId");
+					int customerId = 99999;
 
 					given()
-//						.log().all()
+
 						.header("accept", prop.getProperty("accept"))
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/getmember/9"+member)
+						.get("/api/v3/member/getmember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
 					    .body("Message", equalTo("Nothing found"));
 	}
 }

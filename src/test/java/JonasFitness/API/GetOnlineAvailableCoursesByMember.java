@@ -28,9 +28,9 @@ public class GetOnlineAvailableCoursesByMember extends base {
 	@Test (testName="Courses Found",description="PBI:144257")
 	public void coursesFound() { 
 		
-		int CustomerId = 223;
-		String StartDateTime = ReusableDates.getCurrentDate();
-		String EndDateTime = ReusableDates.getCurrentDatePlusFiveYears();
+				String customerId = prop.getProperty("availableId");
+				String startDateTime = ReusableDates.getCurrentDate();
+				String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
 
 				given()
 //						.log().all()
@@ -39,10 +39,10 @@ public class GetOnlineAvailableCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getonlineavailablecoursesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.get("/api/v3/classcourse/getonlineavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 						.then()
 //						.log().body()
-//						.assertThat().statusCode(200)
+						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.ItemBarcodeId", anyOf(hasItem("PBoot430")))// Item is set to Allow Online Sales
 						.body("Result.ItemBarcodeId", not(anyOf(hasItem("PBoot530"))))// Item is set to NOT Allow Online Sales
@@ -85,16 +85,15 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.body("Result.ServiceVisitId", not(nullValue()))
 						.body("Result.StandbyCount", not(nullValue()))
 						.body("Result.StandbyEnrollmentOnly", not(nullValue()))
-						.body("Result.UnenrollmentOperation", not(nullValue()))
-						;
-
+						.body("Result.UnenrollmentOperation", not(nullValue()));
 	}
+	
 	@Test (testName="Courses Not Found",description="PBI:144257")
 	public void coursesNotFound() { 
 		
-		int CustomerId = 223;
-		String StartDateTime = "2099-01-01";
-		String EndDateTime = "2100-01-01";
+		String customerId = prop.getProperty("availableId");
+		String startDateTime = "2099-01-01";
+		String endDateTime = "2100-01-01";
 
 				given()
 //						.log().all()
@@ -103,15 +102,14 @@ public class GetOnlineAvailableCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getonlineavailablecoursesbymember/"+CustomerId+"/"+StartDateTime+"/"+EndDateTime)
+						.get("/api/v3/classcourse/getonlineavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Message", equalTo("No available online courses found"))
-						;
-
+						.body("Message", equalTo("No available online courses found"));
 	}
+	
 	@Test (testName="Customer Not Found",description="PBI:144257")
 	public void customerNotFound() { 
 		

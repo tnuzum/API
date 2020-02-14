@@ -21,6 +21,7 @@ public class SecurityPipeline extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	
 	/* ** currently no inactive club in company 236 **
 	@Test (testName="InactiveClub", description="PBI:144604")
 	public void InactiveClub() {
@@ -45,6 +46,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not( hasKey("Name")));
 	}
 	*/
+	
 	@Test (testName="InvalidClub", description="PBI:132893")
 	public void InvalidClub() {
 		
@@ -66,6 +68,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	
 	@Test (testName="InvalidCompany", description="PBI:132893")
 	public void InvalidCompany() {
 		
@@ -75,7 +78,7 @@ public class SecurityPipeline extends base{
 					.header("accept", prop.getProperty("accept"))
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", "1010") // Company not on file
-						.header("X-ClubId", "1")
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -87,6 +90,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	
 	@Test (testName="InvalidAPIKey", description="PBI:145817")
 	public void InvalidAPIKey() {
 		
@@ -108,6 +112,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	
 	@Test (testName="NoAPIKey", description="PBI:145817")
 	public void NoAPIKey() {
 		
@@ -129,6 +134,7 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
+	
 	@Test (testName="Endpoint Not Found", description="PBI:145817")
 	public void endpointNotFound() {
 		

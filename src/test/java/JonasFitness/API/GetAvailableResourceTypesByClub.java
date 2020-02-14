@@ -48,6 +48,7 @@ public class GetAvailableResourceTypesByClub extends base{
 						.body("Result[2]", hasKey("ResourceTypeId"))
 						.body("Result[2]", hasKey("ResourceTypeName"));
 	}
+	
 	@Test (testName="ResourceTypesNotFound",description="PBI:138961")
 	public void ResourceTypesNotFound() {
 

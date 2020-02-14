@@ -24,8 +24,8 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="PackagesFound",description="PBI:124125")
 	public void PackagesFound() {
 		
-//		String member = prop.getProperty("activeMember7_CustomerId");
-		int member = 224;
+				String customerId = prop.getProperty("availableId");
+				
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -33,7 +33,7 @@ public class GetPurchasedPackagesByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getpurchasedpackagesbymember/"+member)
+						.get("/api/v3/package/getpurchasedpackagesbymember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -60,18 +60,20 @@ public class GetPurchasedPackagesByMember extends base{
 						.body("Result[0].UnitsPurchased", not(nullValue()))
 						.body("Result[0].UnitsRemaining", not(nullValue()));
 	}
+	
 	@Test (testName="PackagesNotFound",description="PBI:124125")
 	public void PackagesNotFound() {
 		
-		int member = 247;
+				String customerId = prop.getProperty("noFOPId");
+				
 				given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getpurchasedpackagesbymember/"+member)
+						.get("/api/v3/package/getpurchasedpackagesbymember/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
