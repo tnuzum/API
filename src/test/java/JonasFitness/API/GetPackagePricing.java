@@ -45,7 +45,7 @@ public class GetPackagePricing extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.CanPlaceOnAccount", equalTo(true))
 						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
 						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))

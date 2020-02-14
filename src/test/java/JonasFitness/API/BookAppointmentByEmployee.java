@@ -8,6 +8,9 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
+
 import static org.hamcrest.Matchers.empty;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -54,6 +57,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
@@ -94,7 +98,6 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-//				//.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -132,6 +135,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -148,7 +152,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				//.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -187,7 +191,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				//.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -203,7 +207,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //				.log().body()
 				.assertThat().statusCode(200)
-				//.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -242,7 +246,7 @@ public class BookAppointmentByEmployee extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-				//.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.extract().response();
 		// CANCEL APPOINTMENT

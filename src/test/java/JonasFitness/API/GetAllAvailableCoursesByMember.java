@@ -4,7 +4,8 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
@@ -43,7 +44,7 @@ public class GetAllAvailableCoursesByMember extends base {
 		.then()
 //		.log().body()
 		.assertThat().statusCode(200)
-//		.time(lessThan(5L),TimeUnit.SECONDS)
+		.time(lessThan(5L),TimeUnit.SECONDS)
 		.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("alwaysAvailCoBarcodeId"))))// Item is set to Allow Online Sales
 		.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("noWebCoBarcodeId"))))// Item is set to NOT Allow Online Sales
 		.body("Result.EndDate", not(nullValue()))
@@ -106,7 +107,7 @@ public class GetAllAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("No available courses found"));
 	}
 	
@@ -128,7 +129,7 @@ public class GetAllAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 

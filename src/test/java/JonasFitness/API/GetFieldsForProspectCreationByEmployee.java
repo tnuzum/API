@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -34,7 +36,7 @@ public class GetFieldsForProspectCreationByEmployee extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						
 						.body("Result[0].FieldName", equalTo("Title"))
 						.body("Result[0].Description", equalTo("Title"))

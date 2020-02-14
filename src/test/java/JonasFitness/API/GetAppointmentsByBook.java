@@ -6,7 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
-
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -39,7 +40,7 @@ public class GetAppointmentsByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentId"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("CancellationDateTime"))
@@ -84,7 +85,7 @@ public class GetAppointmentsByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 	
@@ -106,7 +107,7 @@ public class GetAppointmentsByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(412)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}
 }

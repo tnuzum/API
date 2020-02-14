@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.equalTo;
-
-
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -40,7 +40,7 @@ public class GetAvailableAppointments extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("ItemBarcodeId"))
 						.body("Result", hasKey("ItemDescription"))
@@ -84,7 +84,7 @@ public class GetAvailableAppointments extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("ItemBarcodeId"))
 						.body("Result", hasKey("ItemDescription"))

@@ -13,6 +13,8 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 
 public class EnrollMemberInCourseWithCardOnFile extends base {
 	
@@ -61,7 +63,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 			
 					JsonPath js = ReusableMethods.rawToJson(res);

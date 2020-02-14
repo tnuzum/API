@@ -5,8 +5,13 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -42,7 +47,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.StartDateTime", not(nullValue()))
 						.body("Result.SubstituteInstructorName", not(empty()))
 						.body("Result.SubstituteInstructorBarcodeId", not(empty()))
@@ -113,7 +118,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
 	
@@ -136,7 +141,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						.body("Result", not(hasKey("EndDate")))
 						.body("Result", not(hasKey("Friday")))
@@ -200,7 +205,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						;
 	}
@@ -227,7 +232,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						;
 	}
@@ -251,7 +256,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 	}

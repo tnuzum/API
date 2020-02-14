@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -34,7 +36,7 @@ public class GetFieldsForMemberCreationByEmployee extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						
 						.body("Result[0].FieldName", equalTo("Title"))
 						.body("Result[0].Description", equalTo("Title"))
@@ -348,6 +350,7 @@ public class GetFieldsForMemberCreationByEmployee extends base {
 						.body("Result[30].MaximumLength", equalTo(0))
 						.body("Result[30].DataType", equalTo("string"));
 	} 
+	
 	@Test (testName="Fields Found - Part 2",description="PBI:147787")
 	public void fieldsFound2() { 
 

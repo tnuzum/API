@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.*;
 //import static org.hamcrest.Matchers.hasKey;
 //import static org.hamcrest.Matchers.not;
 
+import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
 import resources.base;
@@ -40,7 +41,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BasePrice"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("DaysUntilExpiration"))
@@ -73,6 +74,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.body("Result.ItemDescription", anyOf(hasItem("Day Pass")));// assertion that a package that is not allowed for MSS purchase is contained in the response
 				// use same package as negative test in getOnlinePackage...
 	}
+	
 	@Test (testName="PackageNotFound",description="PBI:143540")
 	public void packageNotFound() { 
 		
@@ -89,10 +91,11 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result.ItemDescription", anyOf(not(hasItem("Not A Real Package"))));// assertion that a specific package that is NOT available at club is NOT found
 	}
+	
 	@Test (testName="Customer Not Found",description="PBI:143540")
 	public void customerNotFound() { 
 		

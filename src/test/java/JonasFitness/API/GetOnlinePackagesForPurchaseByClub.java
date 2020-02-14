@@ -4,8 +4,13 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -35,7 +40,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].BasePrice", not(nullValue()))
 						.body("Result[0].DaysUntilExpiration", not(nullValue()))
 						.body("Result[0].ItemBarcodeId", not(nullValue()))
@@ -65,7 +70,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.ItemDescription", not(anyOf(hasItem("noWebClass"))));
 	}
 	
@@ -85,7 +90,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - Customer Not Found"))
-						;
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Internal server error - Customer Not Found"));
 	}
 }

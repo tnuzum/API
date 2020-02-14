@@ -27,7 +27,7 @@ public class GetScheduleByBook extends base{
 		
 				String resourceId = prop.getProperty("pTBook1Id"); 
 				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
 
 				given()
 //						.log().all()
@@ -40,7 +40,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ScheduledClassesCourses"))
 						.body("Result.ScheduledClassesCourses[0]", hasKey("BookedResourcesDTOs"))
 						.body("Result.ScheduledClassesCourses[0].BookedResourcesDTOs[0]", hasKey("BookDescription"))

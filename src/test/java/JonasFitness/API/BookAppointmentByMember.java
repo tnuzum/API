@@ -64,6 +64,7 @@ public class BookAppointmentByMember extends base {
 				.then()
 //						.log().body()
 				.assertThat().statusCode(200)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
@@ -139,7 +140,7 @@ public class BookAppointmentByMember extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//				.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -152,7 +153,6 @@ public class BookAppointmentByMember extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
-//				.post("/api/v3/appointment/cancelappointmentbymember/"+appointmentId+"/"+member)
 				.get("/api/v3/appointment/cancelappointmentbyemployee/"+appointmentId)
 				.then()
 //				.log().body()
@@ -230,7 +230,7 @@ public class BookAppointmentByMember extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//				.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.body("Result.AppointmentId", not(empty()))
 				.extract().response();
@@ -286,7 +286,7 @@ public class BookAppointmentByMember extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//				.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Result.Result", equalTo("Success"))
 				.extract().response();
 		// CANCEL APPOINTMENT
@@ -341,7 +341,7 @@ public class BookAppointmentByMember extends base {
 				.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-//				.time(lessThan(5L),TimeUnit.SECONDS)
+				.time(lessThan(5L),TimeUnit.SECONDS)
 				.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."));
 	}
 	
