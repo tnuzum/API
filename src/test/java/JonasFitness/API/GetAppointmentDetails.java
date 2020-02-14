@@ -22,6 +22,7 @@ public class GetAppointmentDetails extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
+	
 	@Test (testName="AppointmentsFound",description="PBI:139310")
 	public void AppointmentsFound() {
 		
@@ -91,10 +92,11 @@ public class GetAppointmentDetails extends base {
 						Assert.assertEquals(js.getDouble("Result.BookedMembers[1].CancellationFee"), 0.00);
 						Assert.assertEquals(js.getDouble("Result.BookedMembers[1].NoShowFee"), -1.00);		
 	}
+	
 	@Test (testName="AppointmentsNotFound",description="PBI:139310")
 	public void AppointmentsNotFound() {
 
-		String appointment = prop.getProperty("appointmentInFuture1Id");  
+		int appointment = 999999;  
 
 				given()
 //				.log().all()
@@ -103,12 +105,11 @@ public class GetAppointmentDetails extends base {
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/appointment/getappointmentdetails/9"+appointment)// 9 is passed to make appointment id not on file
+						.get("/api/v3/appointment/getappointmentdetails/"+appointment)// 9 is passed to make appointment id not on file
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.statusLine("HTTP/1.1 404 Not Found");
-
 	}
 }
