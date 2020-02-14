@@ -52,7 +52,7 @@ public class BookAppointmentByEmployee extends base {
 					"}")
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
-						.log().body()
+//						.log().body()
 				.assertThat().statusCode(200)
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
@@ -270,7 +270,7 @@ public class BookAppointmentByEmployee extends base {
 	public void notValidBookableItem() { 
 		
 		String appointmentClubId = prop.getProperty("club1Id");
-		String itemId = prop.getProperty("noOnlineId");
+		String itemId = prop.getProperty("noOnlineTId");
 		String occurrence = prop.getProperty("paidTOccurrence");
 		String customerId = prop.getProperty("availableId");
 //		String requestedBooks = prop.getProperty("pTBook1Id");
@@ -326,7 +326,7 @@ public class BookAppointmentByEmployee extends base {
 					"}")
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
-				.log().body()
+//				.log().body()
 				.assertThat().statusCode(404)
 				.body("Message", equalTo("FailAppointmentNotAvailable"));
 	}

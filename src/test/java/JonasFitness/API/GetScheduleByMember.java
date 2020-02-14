@@ -24,10 +24,11 @@ public class GetScheduleByMember extends base{
 	
 	@Test (testName="ClassFound",description="PBI:124954")
 	public void classFound() {
-		String member = prop.getProperty("activeMember5_CustomerId");
-		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
-
+		
+				String c = prop.getProperty("standbyCId");
+				int customerId = Integer.parseInt(c);
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
 				given()
 //						.log().all()
@@ -36,11 +37,11 @@ public class GetScheduleByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/schedule/getschedulebymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/schedule/getschedulebymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("BookedMembers"))
@@ -53,7 +54,7 @@ public class GetScheduleByMember extends base{
 						.body("Result[0]", hasKey ("ClubName"))
 						.body("Result[0]", hasKey ("ClubNumber"))
 						.body("Result[0]", hasKey ("DurationInMinutes"))
-						.body("Result[0]", hasKey ("ForCustomerId"))
+						.body("Result[0].ForCustomerId", equalTo(customerId))
 						.body("Result[0]", hasKey ("Id"))
 						.body("Result[0]", hasKey ("IsRecurring"))
 						.body("Result[0]", hasKey ("ItemBarcodeId"))
@@ -65,20 +66,22 @@ public class GetScheduleByMember extends base{
 						.body("Result[0]", hasKey ("StartDateTime"))
 						.body("Result[0]", hasKey ("SubstituteInstructorName"));
 	}
+	
 	@Test (testName="AppointmentFound",description="PBI:124954")
 	public void appointmentFound() {
-		String member = prop.getProperty("availableId");
-		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+		
+				String customerId = prop.getProperty("appointmentId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
 				given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/schedule/getschedulebymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/schedule/getschedulebymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -107,11 +110,13 @@ public class GetScheduleByMember extends base{
 						.body("Result[0]", hasKey ("StartDateTime"))
 						.body("Result[0]", hasKey ("SubstituteInstructorName"));
 	}
+	
 	@Test (testName="ClassOrAppointmentNotFound",description="PBI:124954")
 	public void classNotFound() {
-		String member = prop.getProperty("activeMember5_CustomerId");
-		String sDateTimeNoOffset = "2119-01-01";
-		String eDateTimeNoOffset = "2120-01-01";
+		
+				String customerId = prop.getProperty("availableId");
+				String sDateTimeNoOffset = "2119-01-01";
+				String eDateTimeNoOffset = "2120-01-01";
 
 				given()
 //						.log().all()
@@ -120,7 +125,7 @@ public class GetScheduleByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/schedule/getschedulebymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/schedule/getschedulebymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

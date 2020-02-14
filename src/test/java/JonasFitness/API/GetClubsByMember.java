@@ -44,6 +44,7 @@ public class GetClubsByMember extends base{
 						.body("Result[2].Name", equalTo("Jonas Health and Wellness"))
 						.body("Result[3].Name", equalTo("Jonas Fitness"));
 	}
+	
 	@Test (testName="MemberNotFound",description="PBI:127465")
 	public void MemberNotFound() {
 		

@@ -28,9 +28,11 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Found - Single Tax",description="PBI:155660")
 	public void itemFound_SingleTax() { 
 		
-		int customerId = 248;
-		int itemId = 260;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("taxSingleTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 		Response res =	given()
 //						.log().all()
@@ -43,7 +45,7 @@ public class GetPackagePricing extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.CanPlaceOnAccount", equalTo(true))
 						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
 						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
@@ -63,9 +65,11 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Found - Multiple Taxes",description="PBI:155660")
 	public void itemFound_MultipleTaxes() { 
 		
-		int customerId = 248;
-		int itemId = 261;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("taxmultipleTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 		Response res =	given()
 
@@ -103,16 +107,18 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Found - Club 2",description="PBI:155660")
 	public void itemFound_Club2() { 
 		
-		int customerId = 248;
-		int itemId = 260;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("taxSingleTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 		Response res =	given()
 
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", 2)
+				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -138,9 +144,12 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Found - No Tax",description="PBI:155660")
 	public void itemFound_NoTax() { 
 		
-		int customerId = 248;
-		int itemId = 243;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+		
 
 		Response res = given()
 //						
@@ -170,9 +179,11 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Found - Free Itemx",description="PBI:155660")
 	public void itemFound_FreeItem() { 
 		
-		int customerId = 248;
-		int itemId = 268;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("freeTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 		Response res =	given()
 
@@ -202,9 +213,11 @@ public class GetPackagePricing extends base {
 	@Test (testName="Tier pricing - Tier 1",description="PBI:155660")
 	public void tierPricingTier1() { 
 		
-		int customerId = 248;
-		int itemId = 262;
-		int quantity = 1;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("tierPricingId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 		Response res =	given()
 
@@ -234,8 +247,10 @@ public class GetPackagePricing extends base {
 	@Test (testName="Tier pricing - Tier 2",description="PBI:155660")
 	public void tierPricingTier2() { 
 		
-		int customerId = 248;
-		int itemId = 262;
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String i = prop.getProperty("tierPricingId");
+		int itemId = Integer.parseInt(i);
 		int quantity = 7;
 
 		Response res =	given()
@@ -266,9 +281,11 @@ public class GetPackagePricing extends base {
 	@Test (testName="Tier pricing - Tier 3",description="PBI:155660")
 	public void tierPricingTier3() { 
 		
-		int customerId = 248;
-		int itemId = 262;
-		int quantity = 12;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("tierPricingId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 12;
 
 		Response res =	given()
 
@@ -298,7 +315,7 @@ public class GetPackagePricing extends base {
 	@Test (testName="Item Not Found",description="PBI:155660")
 	public void itemNotFound() { 
 		
-		int customerId = 248;
+		String customerId = prop.getProperty("availableId");
 		int itemId = 218000;
 		int quantity = 1;
 
@@ -318,9 +335,10 @@ public class GetPackagePricing extends base {
 	@Test (testName="Customer Not Found",description="PBI:155660")
 	public void customerNotFound() { 
 		
-		int customerId = 248000;
-		int itemId = 218;
-		int quantity = 1;
+				int customerId = 248000;
+				String i = prop.getProperty("taxSingleTId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -334,4 +352,27 @@ public class GetPackagePricing extends base {
 						.assertThat().statusCode(404)
 						.body("Message", equalTo("Customer not found"));
 	}
+
+	@Test (testName="Missing Quantity Configuration",description="PBI:155660")
+	public void missingQuantityConfiguration() { 
+		
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String i = prop.getProperty("taxSingleTId");
+		int itemId = Integer.parseInt(i);
+		int quantity = 0;
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.body("Message", equalTo("Missing quantity configuration"));
+	}
+	
 }

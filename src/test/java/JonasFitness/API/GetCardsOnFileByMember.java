@@ -22,10 +22,11 @@ public class GetCardsOnFileByMember extends base {
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
+	
 	@Test (testName="SingleAgreementWithCard", description="PBI:146302")
 	public void SingleAgreementWithCard() {
 		
-		String member = prop.getProperty("availableId");
+				String member = prop.getProperty("availableId");
 
 				given()
 //						.log().all()
@@ -63,10 +64,11 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
+	
 	@Test (testName="MultipleAgreementsWithMultipleCards", description="PBI:146302")
 	public void MultipleAgreementsWithMultipleCards() {
 		
-		String member = prop.getProperty("activeMember4_CustomerId");
+						String member = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
 
 				given()
 //						.log().all()
@@ -121,10 +123,11 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
+	
 	@Test (testName="MultipleAgreementsWithSingleCard", description="PBI:146302")
 	public void MultipleAgreementsWithSingleCard() {
 		
-		String member = prop.getProperty("activeMember7_CustomerId");
+		String member = prop.getProperty("MultipleAgreementsWithSingleCardId");
 
 				given()
 //						.log().all()
@@ -159,10 +162,11 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", hasKey("NameOnCard"))
 						.body("Result[0]", hasKey("TruncatedAccountNumber"));
 	}
+	
 	@Test (testName="SingleAgreementMultipleCardsOnFile", description="PBI:146302")//Multiple Cards on File with 1 Associated with Agreement
 	public void SingleAgreementMultipleCardsOnFile() {
 		
-		String member = prop.getProperty("activeMember5_CustomerId");
+				String member = prop.getProperty("SingleAgreementMultipleCardsOnFileId");
 
 				given()
 //						.log().all()
@@ -217,10 +221,11 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
+	
 	@Test (testName="CardWithoutAgreement", description="PBI:146302")//No Agreements with Card on File
 	public void CardWithoutAgreement() {
 		
-		String member = prop.getProperty("activeMember6_CustomerId");
+		String member = prop.getProperty("CardWithoutAgreementId");
 
 				given()
 //						.log().all()
@@ -260,10 +265,11 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("IsBusiness")))
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
+	
 	@Test (testName="noCardOnFile", description="PBI:146302")
 	public void NoCardOnFile() {
 		
-		int member = 247;
+				String member = prop.getProperty("noFOPId");
 
 				given()
 //						.log().all()

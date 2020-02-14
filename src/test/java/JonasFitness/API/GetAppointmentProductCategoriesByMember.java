@@ -45,6 +45,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 						.body("Result[1].Description", equalTo("Tennis Lessons"));
 
 	}
+	
 	@Test (testName="MemberNotFound",description="PBI:127467")
 	public void MemberNotFound() {
 		

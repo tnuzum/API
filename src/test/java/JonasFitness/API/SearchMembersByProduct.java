@@ -17,17 +17,16 @@ public class SearchMembersByProduct extends base{
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
-		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
-	
 	}
-	@Test (testName="SearchMembersByProduct_FirstName",description="PBI:139726")
-	public void searchMembersByProduct_FirstName() {
+	
+	@Test (testName="FirstName",description="PBI:139726")
+	public void FirstName() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String fName = prop.getProperty("activeMember1_fName");
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId");
+				String fName = prop.getProperty("memberSearchFName");
 
 				given()
 //				.log().all()
@@ -72,12 +71,13 @@ public class SearchMembersByProduct extends base{
 					    .body("Result[0].LastName", not(nullValue()))
 					    .body("Result[0].PreferredPhoneType", not(nullValue()));
 	}
-	@Test (testName="SearchMembersByProduct_LastName",description="PBI:139726")
-	public void searchMembersByProduct_LastName() {
+	
+	@Test (testName="LastName",description="PBI:139726")
+	public void LastName() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id"); 
-		String lName = prop.getProperty("activeMember1_lName");
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId");
+		String lName = prop.getProperty("memberSearchLName");
 
 				given()
 //				.log().all()
@@ -91,15 +91,17 @@ public class SearchMembersByProduct extends base{
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].LastName", equalTo("Auto"));
+						.body("Result[0].LastName", equalTo(lName));
 
 	}
-	@Test (testName="SearchMembersByProduct_LastFirstName",description="PBI:139726")
-	public void searchMembersByProduct_LastFirstName() {
+	
+	@Test (testName="LastFirstName",description="PBI:139726")
+	public void LastFirstName() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id"); 
-		String name = "Auto Fred";
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+		String fName = prop.getProperty("memberSearchFName");
+		String lName = prop.getProperty("memberSearchLName");
 
 				given()
 //				.log().all()
@@ -108,19 +110,21 @@ public class SearchMembersByProduct extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+name+"/"+associatedClub+"/"+trainingId)
+						.get("/api/v3/member/searchmembersbyproduct/"+lName+" "+fName+"/"+associatedClub+"/"+trainingId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].LastName", equalTo("Auto"));
+						.body("Result[0].LastName", equalTo(lName));
 	}
-	@Test (testName="SearchMembersByProduct_FirstLastName",description="PBI:139726")
-	public void searchMembersByProduct_FirstLastName() {
+	
+	@Test (testName="FirstLastName",description="PBI:139726")
+	public void FirstLastName() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id"); 
-		String name = "Fred Auto";
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+		String fName = prop.getProperty("memberSearchFName");
+		String lName = prop.getProperty("memberSearchLName");
 
 				given()
 //				.log().all()
@@ -129,19 +133,20 @@ public class SearchMembersByProduct extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+name+"/"+associatedClub+"/"+trainingId)
+						.get("/api/v3/member/searchmembersbyproduct/"+fName+" "+lName+"/"+associatedClub+"/"+trainingId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].LastName", equalTo("Auto"));
+						.body("Result[0].LastName", equalTo(lName));
 	}
-	@Test (testName="SearchMembersByProduct_HomePhoneWithDashes",description="PBI:139726")
-	public void searchMembersByProduct_HomePhoneWithDashes() {
+	
+	@Test (testName="HomePhoneWithDashes",description="PBI:139726")
+	public void HomePhoneWithDashes() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String hPhoneD = prop.getProperty("activeMember4_hPhoneD");
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+				String hPhoneD = prop.getProperty("memberSearchHPhoneD");
 
 				given()
 //				.log().all()
@@ -155,14 +160,15 @@ public class SearchMembersByProduct extends base{
 //				     	.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].HomePhone", equalTo("6142001003"));
+						.body("Result[0].HomePhone", equalTo("6142001000"));
 	}
-	@Test (testName="SearchMembersByProduct_HomePhoneWithoutDashes",description="PBI:139726")
-	public void searchMembersByProduct_HomePhoneWithoutDashes() {
+	
+	@Test (testName="HomePhoneWithoutDashes",description="PBI:139726")
+	public void HomePhoneWithoutDashes() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String hPhone = prop.getProperty("activeMember4_hPhone");
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+				String hPhone = prop.getProperty("memberSearchHPhone");
 		
 				given()
 //				.log().all()
@@ -176,14 +182,37 @@ public class SearchMembersByProduct extends base{
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].HomePhone", equalTo("6142001003"));
+						.body("Result[0].HomePhone", equalTo(hPhone));
 	}
-	@Test (testName="SearchMembersByProduct_MobilePhoneWithoutDashes",description="PBI:139726")
-	public void searchMembersByProduct_MobilePhoneWithoutDashes() {
+	
+	@Test (testName="MobilePhoneWithoutDashes",description="PBI:139726")
+	public void MobilePhoneWithoutDashes() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String mPhone = "6141001000";
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+				String mPhone = prop.getProperty("memberSearchMPhone");
+		
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/searchmembersbyproduct/"+mPhone+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Result[0].CellPhone", equalTo(mPhone));
+	}
+	
+	@Test (testName="MobilePhoneWithDashes",description="PBI:139726")
+	public void MobilePhoneWithDashes() {
+		
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+		String mPhone = prop.getProperty("memberSearchMPhoneD");
 		
 				given()
 //				.log().all()
@@ -199,35 +228,15 @@ public class SearchMembersByProduct extends base{
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0].CellPhone", equalTo("6141001000"));
 	}
-	@Test (testName="SearchMembersByProduct_MobilePhoneWithDashes",description="PBI:139726")
-	public void searchMembersByProduct_MobilePhoneWithDashes() {
-		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String mPhone = "614-100-1000";
-		
-				given()
-//				.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+mPhone+"/"+associatedClub+"/"+trainingId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].CellPhone", equalTo("6141001000"));
-	}
-	@Test (testName="SearchMembersByProduct_WorkPhoneWithDashes",description="PBI:139726")
-	public void searchMembersByProduct_WorkPhoneWithDashes() {
+	
+	@Test (testName="WorkPhoneWithDashes",description="PBI:139726")
+	public void WorkPhoneWithDashes() {
 		/*
 		 * Work phone not allowed as search criteria
 		 */
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String wPhone = "614-300-1000";
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+				String wPhone = prop.getProperty("memberSearchWPhoneD");
 		
 				given()
 //				.log().all()
@@ -243,12 +252,13 @@ public class SearchMembersByProduct extends base{
 //						.time(lessThan(5L),TimeUnit.SECONDS)
 						;
 	}
-	@Test (testName="SearchMembersByProduct_Email",description="PBI:139726")
-	public void searchMembersByProduct_Email() {
+	
+	@Test (testName="Email",description="PBI:139726")
+	public void Email() {
 		
-		String associatedClub = prop.getProperty("associatedClub1Id");
-		String trainingId = prop.getProperty("training24Id");
-		String email = prop.getProperty("activeMember4_email");
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId");
+		String email = prop.getProperty("memberSearcheMail");
 
 				given()
 //				.log().all()
@@ -262,8 +272,7 @@ public class SearchMembersByProduct extends base{
 //						.log().body()
 						.assertThat().statusCode(200)
 //						.time(lessThan(5L),TimeUnit.SECONDS)
-						.body("Result[0].EmailAddress", equalTo("fred.auto@home.com"));
+						.body("Result[0].EmailAddress", equalTo(email));
 
 	}
-	
 }

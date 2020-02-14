@@ -36,8 +36,10 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - Single Tax",description="PBI:155543")
 	public void itemFound_SingleTax() { 
 		
-		int customerId = 248;
-		int itemId = 250;
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String i = prop.getProperty("taxSingleClId");
+		int itemId = Integer.parseInt(i);
 
 		Response res = given()
 //						.log().all()
@@ -70,8 +72,10 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - Multiple Taxes",description="PBI:155543")
 	public void itemFound_MultipleTaxes() { 
 		
-		int customerId = 248;
-		int itemId = 254;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("taxMultipleClId");
+				int itemId = Integer.parseInt(i);
 
 		Response res =	given()
 				
@@ -109,8 +113,10 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - Club 2",description="PBI:155543")
 	public void itemFound_Club2() { 
 		
-		int customerId = 248;
-		int itemId = 250;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("taxSingleClId");
+				int itemId = Integer.parseInt(i);
 
 		Response res = given()
 //						.log().all()
@@ -143,8 +149,11 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - No Tax",description="PBI:155543")
 	public void itemFound_NoTax() { 
 		
-		int customerId = 248;
-		int itemId = 224;
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String i = prop.getProperty("alwaysAvailClId");
+		int itemId = Integer.parseInt(i);
+//		int itemId = 224;
 
 			Response res = given()
 				.header("accept", prop.getProperty("accept"))
@@ -173,8 +182,10 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - Free Item",description="PBI:155543")
 	public void itemFound_FreeItem() { 
 		
-		int customerId = 248;
-		int itemId = 246;
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("freeClId");
+				int itemId = Integer.parseInt(i);
 
 		Response res =	given()
 						
@@ -204,7 +215,8 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Not Found",description="PBI:155543")
 	public void itemNotFound() { 
 		
-		int customerId = 248;
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
 		int itemId = 246000;
 
 				given()
@@ -225,7 +237,8 @@ public class GetClassCoursePricing extends base {
 	public void customerNotFound() { 
 		
 		int customerId = 248000;
-		int itemId = 246;
+		String i = prop.getProperty("alwaysAvailClId");
+		int itemId = Integer.parseInt(i);
 
 				given()
 				.header("accept", prop.getProperty("accept"))

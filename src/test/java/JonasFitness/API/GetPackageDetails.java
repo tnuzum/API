@@ -8,9 +8,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.hasKey;
-import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -29,9 +27,10 @@ public class GetPackageDetails extends base{
 	@Test (testName="Service - Online Sales Not Allowed",description="PBI:143538, 148154")
 	public void service_OnlineSalesNotAllowed() {
  
-		int member = 223;
-		int item = 13;
-		int club = 1;
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("noWebServiceId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				given()
 //						.log().all()
@@ -40,7 +39,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -61,17 +60,18 @@ public class GetPackageDetails extends base{
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
 						.body("Result.RedeemableClubs[0]", not(nullValue()));
 	}
 	
 	@Test (testName="Service - Online Sales Allowed",description="PBI:143538, 148154")
 	public void service_OnlineSalesAllowed() {
  
-		int member = 223;
-		int itemId = 36;
-		int club = 1;
-
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("paidServiceVId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
+		
 				Response res = given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -79,11 +79,11 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+itemId+"/"+club)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ClubName"))
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemBarcodeId"))
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemDescription"))
@@ -120,9 +120,10 @@ public class GetPackageDetails extends base{
 	@Test (testName="Service - Inactive",description="PBI:143538, 148154")
 	public void service_Inactive() {
  
-		int member = 223;
-		int item = 217;
-		int club = 1;
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("inactiveServiceId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				given()
 //						.log().all()
@@ -131,11 +132,10 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -152,29 +152,29 @@ public class GetPackageDetails extends base{
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
 						.body("Result.RedeemableClubs[0]", not(nullValue()));
 	}
 	
 	@Test (testName="Training - Online Sales Not Allowed",description="PBI:143538, 148154")
 	public void training_OnlineSalesNotAllowed() {
  
-		int member = 223;
-		int item = 75;
-		int club = 1;
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("noOnlineTId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -191,16 +191,17 @@ public class GetPackageDetails extends base{
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
 						.body("Result.RedeemableClubs[0]", not(nullValue()));
 	}
 	
 	@Test (testName="Training - Online Sales Allowed",description="PBI:143538, 148154")
 	public void training_OnlineSalesAllowed() {
  
-		int member = 223;
-		int item = 36;
-		int club = 1;
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("paidTId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				given()
 //						.log().all()
@@ -209,7 +210,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -230,29 +231,29 @@ public class GetPackageDetails extends base{
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
 						.body("Result.RedeemableClubs[0]", not(nullValue()));
 	}
 	
 	@Test (testName="Training - Inactive",description="PBI:143538, 148154")
 	public void training_Inactive() {
  
-		int member = 223;
-		int item = 218;
-		int club = 1;
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("inactiveTrainingId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				given()
-//						.log().all()
+
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -276,9 +277,10 @@ public class GetPackageDetails extends base{
 	@Test (testName="Single Price Range",description="PBI:143538, 148154")
 	public void singlePriceRange() {
  
-		String member = prop.getProperty("availableId");
-		int itemId = 24;
-		String club = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("selectableResourceTrainingId");
+				int itemId = Integer.parseInt(i);
+				String clubId = prop.getProperty("club1Id");
 
 				Response res = given()
 
@@ -287,7 +289,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/"+member+"/"+itemId+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -314,10 +316,10 @@ public class GetPackageDetails extends base{
 	@Test (testName="MultiplePriceRanges",description="PBI:143538, 148154")
 	public void multiplePriceRanges() {
 		
-		String member = prop.getProperty("availableId");
-		int itemId = 25;
-		
-		int club = 1; 
+			String customerId = prop.getProperty("availableId");
+			String i = prop.getProperty("multipleResourcesTrainingId");
+			int itemId = Integer.parseInt(i);
+			String clubId = prop.getProperty("club1Id");
 
 			Response res = given()
 				.header("accept", prop.getProperty("accept"))
@@ -325,7 +327,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/package/getPackageDetails/"+member+"/"+itemId+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -360,12 +362,13 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[4].PricePerUnit"), 60.00);
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[4].StartRange"), 1);
 	}
+	
 	@Test (testName="NotServiceTypeV", description="PBI:143538, 148154")
 	public void notServiceTypeV() {
 
-		String member = prop.getProperty("availableId");
-		int item = 76;
-		String club = prop.getProperty("X-Club1Id"); 
+		String customerId = prop.getProperty("availableId");
+		String itemId = prop.getProperty("notServiceTypeVId");
+		String clubId = prop.getProperty("club1Id");
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -373,7 +376,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -389,12 +392,13 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
+	
 	@Test (testName="InvalidPackageId", description="PBI:143538, 148154")// using Id of class instead of training or service
 	public void invalidPackageId() {
 
-		String member = prop.getProperty("availableId");
-		String item = prop.getProperty("class1Id");
-		String club = prop.getProperty("X-Club1Id"); 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("freeClId");
+				String clubId = prop.getProperty("club1Id");
 		
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -402,7 +406,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/package/getPackageDetails/"+member+"/"+item+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -418,12 +422,13 @@ public class GetPackageDetails extends base{
 						.body("Result", not(hasKey("PriceRangeDtos")))
 						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
 	}
+	
 	@Test (testName="InvalidCustomerId", description="PBI:143538, 148154")
 	public void invalidCustomerId() {
 	
-		String member = prop.getProperty("availableId");
-		String item = prop.getProperty("service1Id");
-		String club = prop.getProperty("X-Club1Id");
+				int customerId = 999999;
+				String itemId = prop.getProperty("paidServiceVId");
+				String clubId = prop.getProperty("club1Id");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -431,7 +436,7 @@ public class GetPackageDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getPackageDetails/9"+member+"/"+item+"/"+club)
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

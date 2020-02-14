@@ -30,12 +30,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Enrollment Capability Verified",description="PBI:150003")
 	public void enrollmentCapabilityVerified() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 223;
-		String classBarcodeId 	= "taxCityCl";
-		String classOccurrence 	= "2022-12-06";
-		String displayedGrandTotal	= "10.25";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 //						.log().all()
@@ -56,12 +56,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Class Full Standby Allowed",description="PBI:150003")
 	public void classFullStandbyAllowed() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 248;
-		String classBarcodeId 	= "standbyCl";
-		String classOccurrence 	= "2023-01-02";
-		String displayedGrandTotal	= "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
+				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -80,12 +80,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Customer Already On Standby",description="PBI:150003")
 	public void customerAlreadyOnStandby() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 246;
-		String classBarcodeId 	= "standbyCl";
-		String classOccurrence 	= "2023-01-02";
-		String displayedGrandTotal	= "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("standbyDId");
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
+				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -104,12 +104,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Customer Already Enrolled",description="PBI:150003")
 	public void customerAlreadyEnrolled() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 245;
-		String classBarcodeId 	= "standbyCl";
-		String classOccurrence 	= "2023-01-02";
-		String displayedGrandTotal	= "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("standbyCId");
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
+				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -128,11 +128,11 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Product Price Changed",description="PBI:150003")
 	public void productPriceChanged() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 223;
-		String classBarcodeId 	= "alwaysAvailCl";
-		String classOccurrence 	= "2024-12-12";
+		String companyId = prop.getProperty("X-CompanyId");
+		String clubId = prop.getProperty("X-Club1Id");
+		String customerId = prop.getProperty("availableId");
+		String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+		String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 		String displayedGrandTotal	= "0.01";
 
 				given()
@@ -152,12 +152,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Scheduling Conflict",description="PBI:150003")
 	public void schedulingConflict() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 241;
-		String classBarcodeId 	= "standbyCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("standbyAId");
+				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classOccurrence = prop.getProperty("standbyClOccurrence");
+				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -177,12 +177,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Invalid Class BarcodeId",description="PBI:150003")
 	public void invalidClassBarcodeId() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 241;
-		String classBarcodeId 	= "NOTstandbyCl";
-		String classOccurrence 	= "2022-12-06";
-		String displayedGrandTotal	= "150.00";
+		String companyId = prop.getProperty("X-CompanyId");
+		String clubId = prop.getProperty("X-Club1Id");
+		String customerId = prop.getProperty("availableId");
+		String classBarcodeId = "NOTalwaysAvailClBarcodeId";
+		String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+		String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -201,12 +201,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Invalid Occurrence",description="PBI:150003")
 	public void invalidOccurrence() {
 		
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 223;
-		String classBarcodeId 	= "Balance44";
-		String classOccurrence 	= "2119-12-12";
-		String displayedGrandTotal	= "0.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence 	= "2119-12-12";
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -225,12 +225,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Invalid CustomerId",description="PBI:150003")
 	public void invalidCustomerId() {
 		
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 223000;
-		String classBarcodeId 	= "Balance44";
-		String classOccurrence 	= "2019-12-12";
-		String displayedGrandTotal	= "0.00";
+		String companyId = prop.getProperty("X-CompanyId");
+		String clubId = prop.getProperty("X-Club1Id");
+		int customerId = 99999;
+		String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+		String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+		String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -243,19 +243,18 @@ public class VerifyClassEnrollmentCapability extends base{
 //						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("CustomerNotFound"))
-						;
+						.body("EnrollmentStatus", equalTo("CustomerNotFound"));
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Item",description="PBI:150003")
 	public void enrollmentNotAllowedItem() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 245;
-		String classBarcodeId 	= "noWebCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classBarcodeId = prop.getProperty("noWebClBarcodeId");
+				String classOccurrence = prop.getProperty("noWebClOccurrence");
+				String displayedGrandTotal = prop.getProperty("noWebClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -275,12 +274,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:150003")
 	public void enrollmentNotAllowedTerminatedMember() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 249;
-		String classBarcodeId 	= "alwaysAvailCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "150.00";
+		String companyId = prop.getProperty("X-CompanyId");
+		String clubId = prop.getProperty("X-Club1Id");
+		String customerId = prop.getProperty("terminatedId");
+		String classBarcodeId = prop.getProperty("taxSingleClBarcodeId");
+		String classOccurrence = prop.getProperty("taxSingleClOccurrence");
+		String displayedGrandTotal = prop.getProperty("taxSingleClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -325,12 +324,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:150003")
 	public void enrollmentNotAllowedFrozenMember() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 250;
-		String classBarcodeId 	= "alwaysAvailCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "10.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("frozenId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -351,12 +350,12 @@ public class VerifyClassEnrollmentCapability extends base{
 		
 !!! this test is not preventing enrollment, but enrollment tests fails with account problem
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 228;
-		String classBarcodeId 	= "alwaysAvailCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "10.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("prospectId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -374,12 +373,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Class Ended",description="PBI:150003")
 	public void classEnded() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 248;
-		String classBarcodeId 	= "endedCl";
-		String classOccurrence 	= "2019-12-13";
-		String displayedGrandTotal	= "10.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classBarcodeId = prop.getProperty("endedClBarcodeId");
+				String classOccurrence = prop.getProperty("endedClOccurrence");
+				String displayedGrandTotal = prop.getProperty("endedClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -398,12 +397,13 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Class Enrollment Closed",description="PBI:150003")
 	public void classEnrollmentClosed() {
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 248;
-		String classBarcodeId 	= "closedCl";
+		String companyId = prop.getProperty("X-CompanyId");
+		String clubId = prop.getProperty("X-Club1Id");
+		String customerId = prop.getProperty("availableId");
+		String classBarcodeId = prop.getProperty("closedClBarcodeId");
 		String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay();
-		String displayedGrandTotal	= "10.00";
+		String displayedGrandTotal = prop.getProperty("closedClPrice");
+		
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -424,12 +424,12 @@ public class VerifyClassEnrollmentCapability extends base{
 	
 !!! this test is not preventing enrollment, but enrollment tests fails with account problem
  
-		String companyId 		= prop.getProperty("X-CompanyId");
-		String clubId 			= prop.getProperty("X-Club1Id");
-		int customerId 			= 251;
-		String classBarcodeId 	= "alwaysAvailCl";
-		String classOccurrence 	= "2025-12-31";
-		String displayedGrandTotal	= "10.00";
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("creditLimitId");
+				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
 				.header("accept", prop.getProperty("accept"))

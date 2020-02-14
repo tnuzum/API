@@ -1,15 +1,12 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
-
-
+import static org.hamcrest.Matchers.equalTo;
 import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -22,12 +19,13 @@ public class GetClassesAndCoursesByBook extends base{
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
+	
 	@Test (testName="ClassesCoursesFound",description="PBI:140729")
 	public void ClassesCoursesFound() {
-//		String resourceId = prop.getProperty("resource1Id");
-		int resourceId = 13;
-		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+
+				String resourceId = prop.getProperty("pTBook1Id");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
 
 				given()
 //						.log().all()
@@ -61,5 +59,93 @@ public class GetClassesAndCoursesByBook extends base{
 						.body("Result[0]", hasKey("ScheduledInstanceType"))
 						.body("Result[0]", hasKey("StartDateTime"))
 						.body("Result[0]", hasKey("SubstituteInstructorName"));
+	}
+	
+	@Test (testName="Classes Courses Not Found",description="PBI:140729")
+	public void ClassesCoursesNotFound() {
+
+				String resourceId = prop.getProperty("availableBookId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneDay();
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
+	
+	@Test (testName="Classes Courses Not Found",description="PBI:140729")
+	public void ClassesCoursesNotFound2() {
+
+				String resourceId = prop.getProperty("availableBookId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(412)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Invalid date range"));
+	}
+	
+	@Test (testName="Invalid ClassCourse",description="PBI:140729")
+	public void invalidClassCourse() {
+
+				String resourceId = prop.getProperty("availableId");// using a member Id instead of resource/book
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
+	
+	@Test (testName="Invalid Date Range",description="PBI:140729")
+	public void invalidDateRange() {
+
+				String resourceId = prop.getProperty("availableId");// using a member Id instead of resource/book
+				String sDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(412)
+						.time(lessThan(5L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Invalid date range"));
 	}
 }
