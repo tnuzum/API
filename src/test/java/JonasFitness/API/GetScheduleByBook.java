@@ -116,8 +116,8 @@ public class GetScheduleByBook extends base{
 	public void GetAppointments() {
 		
 				String resourceId = prop.getProperty("demoBookId"); 
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 
 				given()
 
