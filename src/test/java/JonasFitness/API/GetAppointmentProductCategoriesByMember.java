@@ -38,7 +38,7 @@ public class GetAppointmentProductCategoriesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Description"))
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0].Description", equalTo("Personal Training"))

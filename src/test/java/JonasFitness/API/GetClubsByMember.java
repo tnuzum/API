@@ -4,8 +4,10 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.*;
-
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -34,7 +36,7 @@ public class GetClubsByMember extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("Name"))
 						.body("Result[1]", hasKey("Id"))
@@ -61,7 +63,7 @@ public class GetClubsByMember extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 }

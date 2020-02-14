@@ -109,7 +109,7 @@ public class GetAppointmentDetails extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.statusLine("HTTP/1.1 404 Not Found");
 	}
 }

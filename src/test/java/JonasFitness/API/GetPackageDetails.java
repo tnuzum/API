@@ -9,6 +9,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.hasKey;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -43,7 +45,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -83,7 +85,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ClubName"))
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemBarcodeId"))
 						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemDescription"))
@@ -214,7 +216,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))

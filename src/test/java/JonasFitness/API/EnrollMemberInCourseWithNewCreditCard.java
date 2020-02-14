@@ -83,7 +83,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.body("Result", hasKey("MiddleInitial"))
 						.body("Result.DisplayName", not(nullValue()))
 						.body("Result.PreferredName", not(nullValue()))
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.extract().response();
 			
 					JsonPath js = ReusableMethods.rawToJson(res);

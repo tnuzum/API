@@ -2,12 +2,12 @@ package JonasFitness.API;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import static org.hamcrest.Matchers.not;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
-
 import io.restassured.RestAssured;
 import resources.base;
 
@@ -38,7 +38,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-//			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
@@ -60,7 +60,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(200)
-//			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("Success"));	
 	}
 	
@@ -81,7 +81,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-//			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
 			.body("Result.CustomerId", equalTo(0));	
 	}
@@ -103,7 +103,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(401)
-//			.time(lessThan(5L),TimeUnit.SECONDS)			
+			.time(lessThan(5L),TimeUnit.SECONDS)			
 			.body("Result.AuthenticationResult", equalTo("ForceChangePassword"))
 			.body("Result.CustomerId", not(nullValue()));	
 	}

@@ -4,14 +4,13 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-
-
+import static org.hamcrest.Matchers.lessThan;
+import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -43,7 +42,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Result.ItemBarcodeId", anyOf(hasItem("PBoot430")))// Item is set to Allow Online Sales
 						.body("Result.ItemBarcodeId", not(anyOf(hasItem("PBoot530"))))// Item is set to NOT Allow Online Sales
 						.body("Result.EndDate", not(nullValue()))
@@ -106,7 +105,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("No available online courses found"));
 	}
 	
@@ -128,7 +127,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 
