@@ -33,8 +33,8 @@ public class ReusableMethods extends base {
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
 			System.out.println("loopCount: "+loopCount);
-			loopCount++;
-			System.out.println("loopCount: "+loopCount);
+//			loopCount++;
+//			System.out.println("loopCount: "+loopCount);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -73,7 +73,7 @@ public class ReusableMethods extends base {
 	
 					if(res.statusCode() != 404)	// Message: "Nothing found"
 					{
-//						loopCount++;
+						loopCount++;
 						System.out.println("-----------------");
 						System.out.println("Retrying Unenroll");
 						System.out.println("customerId: "+customerId);
