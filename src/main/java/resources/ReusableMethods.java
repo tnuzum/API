@@ -30,11 +30,9 @@ public class ReusableMethods extends base {
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
 
-//		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
-	//	{
-//			System.out.println("loopCount: "+loopCount);
-//			loopCount++;
-//			System.out.println("loopCount: "+loopCount);
+		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
+		{
+		
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -60,7 +58,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 			
-				myWait(1500);
+//				myWait(1500);
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -75,20 +73,20 @@ public class ReusableMethods extends base {
 					{
 						loopCount++;
 						System.out.println("-----------------");
-						System.out.println("INFO: Retrying Unenroll");
-						System.out.println("INFO: customerId: "+customerId);
-						System.out.println("INFO: enrollmentId: "+enrollmentId);
-						System.out.println("INFO: invoiceId: "+invoiceId);
-						System.out.println("INFO: loopCount: "+loopCount);
+						System.out.println("[INFO]: Retrying Unenroll");
+						System.out.println("[INFO]: customerId: "+customerId);
+						System.out.println("[INFO]: enrollmentId: "+enrollmentId);
+						System.out.println("[INFO]: invoiceId: "+invoiceId);
+						System.out.println("[INFO]: loopCount: "+loopCount);
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
-//			}
-//			else
-//			{
-//				Assert.assertTrue(false); //failing test because loopCount exceeded 5
-//			}
-			System.out.println("INFO: Unenrolled Successfully");
+			}
+			else
+	 		{
+				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+			}
+
 			return;
 	}
 

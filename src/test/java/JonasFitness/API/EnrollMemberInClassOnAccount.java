@@ -61,16 +61,13 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 			
-		// !!! 	
-		//	!!! If 200 unenroll, else ...
-		// !!!	
-			
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
-					
-					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
-		
+
+					if (res.statusCode() == 200) {
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+					}	
 	}
 
 	@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:143588")
