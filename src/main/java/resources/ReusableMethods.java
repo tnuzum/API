@@ -10,6 +10,8 @@ import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 
 public class ReusableMethods extends base {
+	
+	static int loopCount = 0;
 
 	public static XmlPath rawToXML(Response r) {
 		String respon = r.asString();
@@ -27,10 +29,12 @@ public class ReusableMethods extends base {
 	
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
-		int loopCount = 0;
+
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
+			System.out.println("loopCount: "+loopCount);
 			loopCount++;
+			System.out.println("loopCount: "+loopCount);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -79,13 +83,14 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
+					
 
 			}
 			else
 			{
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
-			return;
+//			return;
 	}
 
 	public static void myWait(int duration)
