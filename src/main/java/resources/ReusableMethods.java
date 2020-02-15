@@ -79,6 +79,7 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
+					loopCount++;
 			}
 			else
 			{
