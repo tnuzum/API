@@ -30,8 +30,8 @@ public class ReusableMethods extends base {
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
 
-		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
-		{
+//		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
+	//	{
 //			System.out.println("loopCount: "+loopCount);
 //			loopCount++;
 //			System.out.println("loopCount: "+loopCount);
@@ -83,11 +83,11 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
-			}
-			else
-			{
-				Assert.assertTrue(false); //failing test because loopCount exceeded 5
-			}
+//			}
+//			else
+//			{
+//				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+//			}
 			System.out.println("INFO: Unenrolled Successfully");
 			return;
 	}
