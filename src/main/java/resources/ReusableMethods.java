@@ -21,7 +21,7 @@ public class ReusableMethods extends base {
 
 		String respon = r.asString();
 		JsonPath x = new JsonPath(respon);
-			myWait(1200);
+			myWait(1500);
 		return x;
 	}
 	
@@ -45,7 +45,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(1000);
+				myWait(1500);
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -69,7 +69,7 @@ public class ReusableMethods extends base {
 	
 					if(res.statusCode() != 404)	// Message: "Nothing found"
 					{
-						loopCount++;
+//						loopCount++;
 						System.out.println("-----------------");
 						System.out.println("Retrying Unenroll");
 						System.out.println("customerId: "+customerId);
