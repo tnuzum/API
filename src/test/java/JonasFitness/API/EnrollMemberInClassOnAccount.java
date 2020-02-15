@@ -61,6 +61,10 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Result.PreferredName", not(nullValue()))
 						.extract().response();
 			
+		// !!! 	
+		//	!!! If 200 unenroll, else ...
+		// !!!	
+			
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
