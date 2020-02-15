@@ -11,7 +11,7 @@ import io.restassured.response.Response;
 
 public class ReusableMethods extends base {
 	
-	static int loopCount = 0;
+	public static int loopCount = 0;
 
 	public static XmlPath rawToXML(Response r) {
 		String respon = r.asString();
