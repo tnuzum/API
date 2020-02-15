@@ -32,7 +32,7 @@ public class ReusableMethods extends base {
 
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
-			System.out.println("loopCount: "+loopCount);
+//			System.out.println("loopCount: "+loopCount);
 //			loopCount++;
 //			System.out.println("loopCount: "+loopCount);
 			base.getPropertyData();
@@ -90,7 +90,7 @@ public class ReusableMethods extends base {
 			{
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
-//			return;
+			return;
 	}
 
 	public static void myWait(int duration)
