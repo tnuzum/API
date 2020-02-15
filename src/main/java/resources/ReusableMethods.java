@@ -30,7 +30,7 @@ public class ReusableMethods extends base {
 		int loopCount = 0;
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
-		
+			loopCount++;
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -79,7 +79,7 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
-					loopCount++;
+
 			}
 			else
 			{
