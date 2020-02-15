@@ -68,7 +68,9 @@ public class EnrollMemberInClassOnAccount extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 					int enrollmentId = js.getInt("Result.EnrollmentId");
 					int invoiceId = js.getInt("Result.InvoiceId");
+					
 					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+		
 	}
 
 	@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:143588")
