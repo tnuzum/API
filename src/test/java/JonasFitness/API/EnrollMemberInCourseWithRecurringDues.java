@@ -31,7 +31,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 			String c = prop.getProperty("availableId");
 			int customerId = Integer.parseInt(c);
 			String companyId = prop.getProperty("X-CompanyId");
-			String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+			String courseBarcodeId = prop.getProperty("recurringCoBarcodeId");
 			String enrollCustomerAsStandBy = "true";
 
 			Response res =	given()

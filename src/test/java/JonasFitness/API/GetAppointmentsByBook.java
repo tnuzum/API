@@ -26,8 +26,8 @@ public class GetAppointmentsByBook extends base{
 
 		String resourceTypeId = prop.getProperty("demoBookId");
 			int r = Integer.parseInt(resourceTypeId);
-		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 
 				given()
 //						.log().all()
@@ -40,7 +40,7 @@ public class GetAppointmentsByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(10L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentId"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("CancellationDateTime"))
