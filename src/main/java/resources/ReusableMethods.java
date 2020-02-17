@@ -29,7 +29,7 @@ public class ReusableMethods extends base {
 	
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
-
+		
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
 		
@@ -47,7 +47,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(1500);
+				myWait(2500);
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -58,7 +58,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 			
-//				myWait(1500);
+				myWait(2500);
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -81,12 +81,13 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
+			
 			}
 			else
 	 		{
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
-
+			loopCount = 0;
 			return;
 	}
 

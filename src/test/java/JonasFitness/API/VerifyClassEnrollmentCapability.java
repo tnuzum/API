@@ -36,7 +36,7 @@ public class VerifyClassEnrollmentCapability extends base{
 				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-
+				
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -50,7 +50,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.assertThat()
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(true))
-						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));		
 	}
 	
 	@Test (testName="Class Full Standby Allowed",description="PBI:150003")

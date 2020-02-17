@@ -1,8 +1,33 @@
 package resources;
 
-public class Payload {
+import static io.restassured.RestAssured.given;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class Payload extends base {
 		
-	
+	public static Response verifyClassEnrollmentCapability(String companyId, String clubId, String customerId, String classBarcodeId, String classOccurrence, String displayedGrandTotal)
+	{
+		
+		// use this in methods with Payload.verifyClassEnrollmentCapability(companyId, clubId, customerId, classBarcodeId, classOccurrence, displayedGrandTotal)
+		// !!! next step !!! identify syntax for using JsonPath to parse response then use TestNG assertion to test response
+		
+		base.getPropertyData();
+		RestAssured.useRelaxedHTTPSValidation();
+		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		Response res =	given()
+		//		.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+displayedGrandTotal)
+				.then().extract().response();
+		
+		return res;
+	}
 	
 	
 	/*
