@@ -1,14 +1,10 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
-
-
 import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
@@ -50,7 +46,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.assertThat()
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(true))
-						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));		
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));			
 	}
 	
 	@Test (testName="Class Full Standby Allowed",description="PBI:150003")

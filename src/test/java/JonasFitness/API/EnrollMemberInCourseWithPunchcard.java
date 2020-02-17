@@ -59,8 +59,10 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
-			
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						}		
 	}
 	 
 	@Test (testName="Member Enrolled - Paid Course Not Started",description="PBI:147820")
@@ -95,7 +97,10 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						}
 	}
 
 	@Test (testName="Member Enrolled On Standby",description="PBI:147820")
@@ -130,7 +135,10 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						}
 	}
 	
 	@Test (testName="Member Enrolled - Free Course",description="PBI:147820")
@@ -167,7 +175,10 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						}
 	}
 	
 	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:147820")
@@ -203,7 +214,10 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						}
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147820")

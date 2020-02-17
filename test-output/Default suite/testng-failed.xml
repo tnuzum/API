@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Utilities.GetPurchasedPackagesByMember">
+      <class name="Utilities.GetClassesAndCoursesByMember">
         <methods>
-          <include name="PackagesFound"/>
+          <include name="ClassesCoursesFound"/>
           <include name="getData"/>
         </methods>
-      </class> <!-- Utilities.GetPurchasedPackagesByMember -->
+      </class> <!-- Utilities.GetClassesAndCoursesByMember -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
