@@ -193,7 +193,7 @@ public class GetScheduleByBook extends base{
 					.when()
 						.get("/api/v3/schedule/getschedulebybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(404)
 						.time(lessThan(5L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
