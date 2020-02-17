@@ -3,6 +3,7 @@ package Utilities;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
@@ -17,10 +18,24 @@ public class GetAppointmentsByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="AppointmentsFound",description="PBI:124124")
-	public void AppointmentsFound() {
+	@DataProvider
+	public Object[] getDataProvider(){
 		
-		String customerId = prop.getProperty("availableId");
+		Object[][] data = new Object[6][1];
+		
+				data[0][0]=prop.getProperty("availableId");
+				data[1][0]=prop.getProperty("collectionsId");
+				data[2][0]=prop.getProperty("noFOPId");
+				data[3][0]=prop.getProperty("prospectId");
+				data[4][0]=prop.getProperty("noWebId");
+				data[5][0]=prop.getProperty("creditLimitId");
+				return data;
+	}
+	
+	@Test (testName="AppointmentsFound",description="PBI:124124",dataProvider="getDataProvider")
+	public void AppointmentsFound(String customerId) {
+		
+//		String customerId = prop.getProperty("availableId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 				given()
