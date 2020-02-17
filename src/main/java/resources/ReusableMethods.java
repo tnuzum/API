@@ -23,7 +23,7 @@ public class ReusableMethods extends base {
 
 		String respon = r.asString();
 		JsonPath x = new JsonPath(respon);
-			myWait(1500);
+			myWait(500);
 		return x;
 	}
 	
@@ -47,7 +47,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(2500);
+				myWait(1000);
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))

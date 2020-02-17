@@ -21,7 +21,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 	public void memberEnrolled() {
 		
 				int customerId = 248;
-				String courseBarcodeId = "notStartedCo";
+				String courseBarcodeId = "alwaysAvailCo";
 				String enrollCustomerAsStandby = "true";
 
 				given()

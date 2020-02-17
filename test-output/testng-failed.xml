@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite name="Failed suite [CompeteAPI v3]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="API - Continuous Integration(failed)">
     <classes>
-      <class name="Utilities.GetPurchasedPackagesByMember">
+      <class name="JonasFitness.API.EnrollMemberInClassWithRecurringDues">
         <methods>
-          <include name="PackagesFound"/>
+          <include name="getData"/>
+          <include name="memberEnrolledFreeClassCollectionsMember"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInClassWithRecurringDues -->
+      <class name="JonasFitness.API.EnrollMemberInCourseWithRecurringDues">
+        <methods>
+          <include name="memberEnrolledFreeCourseCollectionsMember"/>
           <include name="getData"/>
         </methods>
-      </class> <!-- Utilities.GetPurchasedPackagesByMember -->
+      </class> <!-- JonasFitness.API.EnrollMemberInCourseWithRecurringDues -->
+      <class name="JonasFitness.API.EnrollMemberInClassWithPunchcard">
+        <methods>
+          <include name="memberEnrolledFreeClassCollectionsMember"/>
+          <include name="getData"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInClassWithPunchcard -->
+      <class name="JonasFitness.API.EnrollMemberInClassOnAccount">
+        <methods>
+          <include name="getData"/>
+          <include name="enrollmentNotAllowedCollectionsMember"/>
+          <include name="memberEnrolledFreeClassCollectionsMember"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInClassOnAccount -->
+      <class name="JonasFitness.API.EnrollMemberInCourseOnAccount">
+        <methods>
+          <include name="enrollmentNotAllowedCollectionsMember"/>
+          <include name="getData"/>
+          <include name="memberEnrolledFreeCourseCollectionsMember"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInCourseOnAccount -->
+      <class name="JonasFitness.API.EnrollMemberInCourseWithCardOnFile">
+        <methods>
+          <include name="getData"/>
+          <include name="memberEnrolledFreeCourseCollectionsMember"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInCourseWithCardOnFile -->
+      <class name="JonasFitness.API.EnrollMemberInCourseWithNewCreditCard">
+        <methods>
+          <include name="memberEnrolledFreeCourseCollectionsMember"/>
+          <include name="getData"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInCourseWithNewCreditCard -->
+      <class name="JonasFitness.API.EnrollMemberInCourseWithPunchcard">
+        <methods>
+          <include name="getData"/>
+          <include name="memberEnrolledFreeCourseCollectionsMember"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInCourseWithPunchcard -->
+      <class name="JonasFitness.API.EnrollMemberInClassWithNewCreditCard">
+        <methods>
+          <include name="memberEnrolled_FreeClassCollectionsMember"/>
+          <include name="getData"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInClassWithNewCreditCard -->
+      <class name="JonasFitness.API.EnrollMemberInClassWithCardOnFile">
+        <methods>
+          <include name="memberEnrolled_FreeClassCollectionsMember"/>
+          <include name="getData"/>
+        </methods>
+      </class> <!-- JonasFitness.API.EnrollMemberInClassWithCardOnFile -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- API - Continuous Integration(failed) -->
+</suite> <!-- Failed suite [CompeteAPI v3] -->

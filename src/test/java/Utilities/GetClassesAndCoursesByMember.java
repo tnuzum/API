@@ -3,6 +3,7 @@ package Utilities;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -17,14 +18,15 @@ public class GetClassesAndCoursesByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
+//	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
+//	public void ClassesCoursesFound(String customerId) {
 	@Test (testName="ClassesCoursesFound",description="PBI:124953")
 	public void ClassesCoursesFound() {
 		
 		
-		int member = 248;
+		int customerId = 227;
 		String sDateTimeNoOffset = "2019-01-01";
 		String eDateTimeNoOffset = "2200-01-01";
-
 		
 				given()
 //						.log().all()
@@ -33,9 +35,20 @@ public class GetClassesAndCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-						.log().body()
-;
+						.log().body();
+	}
+	
+	@DataProvider
+	public Object[]getDataProvider(){
+		Object[]data=new Object[1];
+				data[0]=227;
+				data[1]=248;
+				data[2]=247;
+//				data[0]=prop.getProperty("availableId");
+//				data[1]=prop.getProperty("collectionsId");
+//				data[2]=prop.getProperty("noFOPId");
+				return data;
 	}
 }
