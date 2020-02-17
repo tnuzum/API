@@ -18,13 +18,23 @@ public class GetClassesAndCoursesByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-//	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
-//	public void ClassesCoursesFound(String customerId) {
-	@Test (testName="ClassesCoursesFound",description="PBI:124953")
-	public void ClassesCoursesFound() {
+	@DataProvider
+	public Object[] getDataProvider(){
 		
+		Object[][] data = new Object[6][1];
 		
-		int customerId = 227;
+				data[0][0]=prop.getProperty("availableId");
+				data[1][0]=prop.getProperty("collectionsId");
+				data[2][0]=prop.getProperty("noFOPId");
+				data[3][0]=prop.getProperty("prospectId");
+				data[4][0]=prop.getProperty("noWebId");
+				data[5][0]=prop.getProperty("creditLimitId");
+				return data;
+	}
+	
+	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
+	public void ClassesCoursesFound(String customerId) {
+
 		String sDateTimeNoOffset = "2019-01-01";
 		String eDateTimeNoOffset = "2200-01-01";
 		
@@ -38,17 +48,5 @@ public class GetClassesAndCoursesByMember extends base {
 						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 						.log().body();
-	}
-	
-	@DataProvider
-	public Object[]getDataProvider(){
-		Object[]data=new Object[1];
-				data[0]=227;
-				data[1]=248;
-				data[2]=247;
-//				data[0]=prop.getProperty("availableId");
-//				data[1]=prop.getProperty("collectionsId");
-//				data[2]=prop.getProperty("noFOPId");
-				return data;
 	}
 }
