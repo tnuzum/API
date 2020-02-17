@@ -30,8 +30,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String classBarcodeId = prop.getProperty("punchClBarcodeId");
+				String classOccurrence = prop.getProperty("punchClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
 			Response res =	given()

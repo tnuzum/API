@@ -23,9 +23,9 @@ public class GetClassesAndCoursesByBook extends base{
 	@Test (testName="ClassesCoursesFound",description="PBI:140729")
 	public void ClassesCoursesFound() {
 
-				String resourceId = prop.getProperty("pTBook1Id");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+				String resourceId = prop.getProperty("classBookId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
 
 				given()
 //						.log().all()
