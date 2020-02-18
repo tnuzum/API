@@ -7,6 +7,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetClassesAndCoursesByMember extends base {
@@ -48,5 +51,6 @@ public class GetClassesAndCoursesByMember extends base {
 						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 						.log().body();
+
 	}
 }

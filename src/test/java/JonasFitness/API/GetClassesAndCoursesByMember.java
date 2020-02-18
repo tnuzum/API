@@ -133,12 +133,12 @@ public class GetClassesAndCoursesByMember extends base {
 ;
 	}
 	
-	@Test (testName="Invalid ClassCourse",description="PBI:124953")
+	@Test (testName="Class Not Found",description="PBI:124953")
 	public void invalidClassCourse() {
 		
 				String customerId = prop.getProperty("availableId");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+				String sDateTimeNoOffset = "2200-01-01";
+				String eDateTimeNoOffset = "2200-01-02";
 
 				given()
 //						.log().all()
