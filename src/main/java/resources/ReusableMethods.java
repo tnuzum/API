@@ -32,7 +32,75 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
-			myWait(7000);
+			myWait(5000);
+			base.getPropertyData();
+			RestAssured.useRelaxedHTTPSValidation();
+			RestAssured.baseURI = prop.getProperty("baseURI");
+			
+			given()
+			.header("accept", prop.getProperty("accept"))
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.when()
+					.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
+					.then().log().body()
+					;
+	
+				myWait(5000);
+			given()
+			.header("accept", prop.getProperty("accept"))
+			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.when()
+					.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
+					.then().log().body()
+					;
+			
+				myWait(5000);
+			Response res =	given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
+						.then()
+						.extract().response();
+			
+				JsonPath js = rawToJson(res);
+	
+					if(res.statusCode() != 404)	// Message: "Nothing found"
+					{
+						loopCount++;
+						System.out.println("-----------------");
+						System.out.println("[INFO]: Retrying Unenroll");
+						System.out.println("[INFO]: Item Description: "+js.getString("Result[0].ItemDescription"));
+						System.out.println("[INFO]: Item Description: "+js.getString("Result[0].StartDateTime"));
+						System.out.println("[INFO]: customerId: "+customerId);
+						System.out.println("[INFO]: enrollmentId: "+enrollmentId);
+						System.out.println("[INFO]: invoiceId: "+invoiceId);
+						System.out.println("[INFO]: loopCount: "+loopCount);
+						System.out.println("-----------------");
+						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+					}
+			
+			}
+//			else
+//	 		{
+//				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+//			}
+			loopCount = 0;
+			return;
+	}
+	
+	public static void deleteEnrollment(String companyId, int enrollmentId, int customerId)
+	{
+		
+		if(loopCount<5)
+		{
+			myWait(1000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -47,7 +115,39 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(2000);
+				myWait(5000);
+
+					if (isEnrolled(customerId) == true)
+					{
+						loopCount++;
+						System.out.println("-----------------");
+						System.out.println("[INFO]: Retry Delete Enrollment");
+						System.out.println("[INFO]: customerId: "+customerId);
+						System.out.println("[INFO]: enrollmentId: "+enrollmentId);
+						System.out.println("[INFO]: loopCount: "+loopCount);
+						System.out.println("-----------------");
+						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+					}
+			
+			}
+			else
+	 		{
+				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+			}
+			loopCount = 0;
+			return;
+	}
+	
+	public static void deleteInvoice(String companyId, int invoiceId, int customerId)
+	{
+		
+		if(loopCount<5)
+		{
+			myWait(1000);
+			base.getPropertyData();
+			RestAssured.useRelaxedHTTPSValidation();
+			RestAssured.baseURI = prop.getProperty("baseURI");
+			
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -59,27 +159,17 @@ public class ReusableMethods extends base {
 					;
 			
 				myWait(5000);
-			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
-						.then()
-						.extract().response();
-	
-					if(res.statusCode() != 404)	// Message: "Nothing found"
+
+					if (isEnrolled(customerId) == true)
 					{
 						loopCount++;
 						System.out.println("-----------------");
-						System.out.println("[INFO]: Retrying Unenroll");
+						System.out.println("[INFO]: Retry Delete Invoice");
 						System.out.println("[INFO]: customerId: "+customerId);
-						System.out.println("[INFO]: enrollmentId: "+enrollmentId);
 						System.out.println("[INFO]: invoiceId: "+invoiceId);
-						System.out.println("[INFO]: loopCount: "+loopCount);
+						System.out.println("[INFO]: Retry Count: "+loopCount);
 						System.out.println("-----------------");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 					}
 			
 			}
@@ -89,6 +179,27 @@ public class ReusableMethods extends base {
 			}
 			loopCount = 0;
 			return;
+	}
+	
+	public static boolean isEnrolled(int customerId){
+		Response res =	given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
+						.then()
+						.extract().response();
+				
+				if(res.statusCode() != 404)
+				{
+					return true;
+				}
+				else
+					{
+						return false;
+					}
 	}
 
 	public static void myWait(int duration)

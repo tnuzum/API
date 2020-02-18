@@ -75,7 +75,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 						}		
 	}
 	
@@ -126,7 +128,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 						}	
 			}
 	
@@ -177,7 +181,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 						}	
 			}
 	
@@ -227,7 +233,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 						}		
 	} 
 	

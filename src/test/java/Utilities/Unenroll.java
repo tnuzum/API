@@ -20,9 +20,11 @@ public class Unenroll extends base {
 	public void unenroll(){
 				
 				int customerId = 248;
-				int enrollmentId = 11964;
-				int invoiceId = 13772;
+				int enrollmentId = 11270;
+				int invoiceId = 13185;
 				String companyId = prop.getProperty("X-CompanyId");
-					ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+//				ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+				ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+				ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 	}
 }
