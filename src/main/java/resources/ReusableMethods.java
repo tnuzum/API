@@ -1,9 +1,7 @@
 package resources;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.Assert;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
@@ -112,7 +110,9 @@ public class ReusableMethods extends base {
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
-//					.then().log().body()
+					.then()
+					.assertThat().statusCode(200)
+//					.log().body()
 					;
 	
 				myWait(5000);
@@ -120,18 +120,24 @@ public class ReusableMethods extends base {
 					if (isEnrolled(customerId) == true)
 					{
 						loopCount++;
-						System.out.println("-----------------");
-						System.out.println("[INFO]: Retry Delete Enrollment");
-						System.out.println("[INFO]: customerId: "+customerId);
-						System.out.println("[INFO]: enrollmentId: "+enrollmentId);
-						System.out.println("[INFO]: loopCount: "+loopCount);
-						System.out.println("-----------------");
+						System.out.println("----------------------------------");
+						System.out.println("[WARNING]: Retry Delete Enrollment");
+						System.out.println("[WARNING]: customerId: "+customerId);
+						System.out.println("[WARNING]: enrollmentId: "+enrollmentId);
+						System.out.println("[WARNING]: loopCount: "+loopCount);
+						System.out.println("----------------------------------");
 						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
 					}
 			
 			}
 			else
 	 		{
+				System.out.println("----------------------------------");
+				System.out.println("[ERROR]: Retry Loop Count Exceeded");
+				System.out.println("[ERROR]: customerId: "+customerId);
+				System.out.println("[ERROR]: enrollmentId: "+enrollmentId);
+				System.out.println("[ERROR]: loopCount: "+loopCount);
+				System.out.println("----------------------------------");
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
 			loopCount = 0;
@@ -155,7 +161,9 @@ public class ReusableMethods extends base {
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
-//					.then().log().body()
+					.then()
+					.assertThat().statusCode(200)
+//					.log().body()
 					;
 			
 				myWait(5000);
@@ -163,18 +171,23 @@ public class ReusableMethods extends base {
 					if (isEnrolled(customerId) == true)
 					{
 						loopCount++;
-						System.out.println("-----------------");
-						System.out.println("[INFO]: Retry Delete Invoice");
-						System.out.println("[INFO]: customerId: "+customerId);
-						System.out.println("[INFO]: invoiceId: "+invoiceId);
-						System.out.println("[INFO]: Retry Count: "+loopCount);
-						System.out.println("-----------------");
+						System.out.println("----------------------------------");
+						System.out.println("[WARNING]: Retry Delete Invoice");
+						System.out.println("[WARNING]: customerId: "+customerId);
+						System.out.println("[WARNING]: invoiceId: "+invoiceId);
+						System.out.println("[WARNING]: Retry Count: "+loopCount);
+						System.out.println("----------------------------------");
 						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 					}
-			
 			}
 			else
 	 		{
+				System.out.println("----------------------------------");
+				System.out.println("[ERROR]: Retry Loop Count Exceeded");
+				System.out.println("[ERROR]: customerId: "+customerId);
+				System.out.println("[ERROR]: enrollmentId: "+invoiceId);
+				System.out.println("[ERROR]: loopCount: "+loopCount);
+				System.out.println("----------------------------------");
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
 			loopCount = 0;
