@@ -41,7 +41,6 @@ public class CreateMember extends base {
 		
 		JsonPath js = ReusableMethods.rawToJson(res1);
 				int nextMemberId = js.getInt("Result.BarcodeId");
-				System.out.println(nextMemberId);
 				
 		Response res2	=	given()
 
