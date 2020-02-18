@@ -32,7 +32,7 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
-		
+			myWait(7000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -47,7 +47,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(1500);
+				myWait(2000);
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -58,14 +58,14 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 			
-				myWait(2500);
+				myWait(5000);
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2019-01-01/2200-01-01")
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
 						.then()
 						.extract().response();
 	
