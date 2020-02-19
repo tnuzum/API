@@ -39,7 +39,7 @@ public class GetAppointmentDetails extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.BookedMembers[0]", hasKey("AppointmentOutcome"))
 						.body("Result.BookedMembers[0]", hasKey("AttendedIndicator"))
 						.body("Result.BookedMembers[0]", hasKey("BarcodeId"))
@@ -109,7 +109,7 @@ public class GetAppointmentDetails extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.statusLine("HTTP/1.1 404 Not Found");
 	}
 }

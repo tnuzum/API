@@ -39,7 +39,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]",  hasKey("AddressLine1"))
 						.body("Result[0]",  hasKey("AddressLine2"))
 						.body("Result[0]",  hasKey("BarcodeId"))
@@ -90,7 +90,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].LastName", equalTo(lName));
 
 	}
@@ -114,7 +114,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].LastName", equalTo(lName));
 	}
 	
@@ -137,7 +137,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].LastName", equalTo(lName));
 	}
 	
@@ -159,7 +159,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //				     	.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].HomePhone", equalTo("6142001000"));
 	}
 	
@@ -181,7 +181,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].HomePhone", equalTo(hPhone));
 	}
 	
@@ -203,7 +203,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].CellPhone", equalTo(mPhone));
 	}
 	
@@ -225,7 +225,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].CellPhone", equalTo("6141001000"));
 	}
 	
@@ -249,7 +249,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						;
 	}
 	
@@ -271,7 +271,7 @@ public class SearchMembersByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].EmailAddress", equalTo(email));
 
 	}

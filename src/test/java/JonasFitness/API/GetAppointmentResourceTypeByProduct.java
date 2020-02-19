@@ -41,7 +41,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemHasSelectableResourceTypes",equalTo(true))
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("Id"))
 						.body("Result.PrimarySelectableResourceType.Books[0]", hasKey("Name"))
@@ -63,7 +63,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemHasSelectableResourceTypes",equalTo(false))
 						.body("Result.PrimarySelectableResourceType", nullValue());
 	}
@@ -83,7 +83,7 @@ public class GetAppointmentResourceTypeByProduct extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemHasSelectableResourceTypes",equalTo(false))
 						.body("Result.PrimarySelectableResourceType.Books[0]", nullValue())
 						.body("Result.PrimarySelectableResourceType.Books[0]", not(hasKey("Id")))

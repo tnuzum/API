@@ -37,7 +37,7 @@ public class CancelAppointmentByEmployee extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 	
@@ -55,7 +55,7 @@ public class CancelAppointmentByEmployee extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Status", equalTo("Failed"))
 						.body("Result.ConfirmationCode", nullValue())
 						.body("Result", hasKey("Reason"))

@@ -47,7 +47,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.StartDateTime", not(nullValue()))
 						.body("Result.SubstituteInstructorName", not(empty()))
 						.body("Result.SubstituteInstructorBarcodeId", not(empty()))
@@ -118,7 +118,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						;
 	}
 	
@@ -141,7 +141,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						.body("Result", not(hasKey("EndDate")))
 						.body("Result", not(hasKey("Friday")))
@@ -205,7 +205,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						;
 	}
@@ -232,7 +232,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"))
 						;
 	}
@@ -256,7 +256,7 @@ public class GetClassDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 	}

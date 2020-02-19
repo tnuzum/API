@@ -36,7 +36,7 @@ public class GetFieldsForProspectCreationByEmployee extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						
 						.body("Result[0].FieldName", equalTo("Title"))
 						.body("Result[0].Description", equalTo("Title"))

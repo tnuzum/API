@@ -40,7 +40,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].BasePrice", not(nullValue()))
 						.body("Result[0].DaysUntilExpiration", not(nullValue()))
 						.body("Result[0].ItemBarcodeId", not(nullValue()))
@@ -70,7 +70,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemDescription", not(anyOf(hasItem("noWebClass"))));
 	}
 	
@@ -90,7 +90,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Internal server error - Customer Not Found"));
 	}
 }

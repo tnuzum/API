@@ -42,7 +42,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemBarcodeId", anyOf(hasItem("PBoot430")))// Item is set to Allow Online Sales
 						.body("Result.ItemBarcodeId", not(anyOf(hasItem("PBoot530"))))// Item is set to NOT Allow Online Sales
 						.body("Result.EndDate", not(nullValue()))
@@ -105,7 +105,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("No available online courses found"));
 	}
 	
@@ -127,7 +127,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 

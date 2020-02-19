@@ -36,7 +36,7 @@ public class GetProductByBook extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ProductId"))
 						.body("Result[0]", hasKey("BarcodeId"))
 						.body("Result[0]", hasKey("ProductDescription"))
@@ -72,7 +72,7 @@ public class GetProductByBook extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 }

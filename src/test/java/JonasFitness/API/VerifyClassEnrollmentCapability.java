@@ -44,7 +44,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.then()
 //						.log().body()
 						.assertThat()
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(true))
 						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));			
 	}
