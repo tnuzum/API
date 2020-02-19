@@ -121,10 +121,10 @@ public class ReusableMethods extends base {
 					{
 						loopCount++;
 						System.out.println("----------------------------------");
-						System.out.println("[WARNING]: Retry Delete Enrollment");
-						System.out.println("[WARNING]: customerId: "+customerId);
-						System.out.println("[WARNING]: enrollmentId: "+enrollmentId);
-						System.out.println("[WARNING]: loopCount: "+loopCount);
+						System.out.println("[WARNING] Retry Delete Enrollment");
+						System.out.println("[WARNING] customerId: "+customerId);
+						System.out.println("[WARNING] enrollmentId: "+enrollmentId);
+						System.out.println("[WARNING] loopCount: "+loopCount);
 						System.out.println("----------------------------------");
 						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
 					}
@@ -133,10 +133,10 @@ public class ReusableMethods extends base {
 			else
 	 		{
 				System.out.println("----------------------------------");
-				System.out.println("[ERROR]: Retry Loop Count Exceeded");
-				System.out.println("[ERROR]: customerId: "+customerId);
-				System.out.println("[ERROR]: enrollmentId: "+enrollmentId);
-				System.out.println("[ERROR]: loopCount: "+loopCount);
+				System.out.println("[ERROR] Retry Loop Count Exceeded");
+				System.out.println("[ERROR] customerId: "+customerId);
+				System.out.println("[ERROR] enrollmentId: "+enrollmentId);
+				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("----------------------------------");
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
@@ -172,10 +172,10 @@ public class ReusableMethods extends base {
 					{
 						loopCount++;
 						System.out.println("----------------------------------");
-						System.out.println("[WARNING]: Retry Delete Invoice");
-						System.out.println("[WARNING]: customerId: "+customerId);
-						System.out.println("[WARNING]: invoiceId: "+invoiceId);
-						System.out.println("[WARNING]: Retry Count: "+loopCount);
+						System.out.println("[WARNING] Retry Delete Invoice");
+						System.out.println("[WARNING] customerId: "+customerId);
+						System.out.println("[WARNING] invoiceId: "+invoiceId);
+						System.out.println("[WARNING] Retry Count: "+loopCount);
 						System.out.println("----------------------------------");
 						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
 					}
@@ -183,10 +183,10 @@ public class ReusableMethods extends base {
 			else
 	 		{
 				System.out.println("----------------------------------");
-				System.out.println("[ERROR]: Retry Loop Count Exceeded");
-				System.out.println("[ERROR]: customerId: "+customerId);
-				System.out.println("[ERROR]: enrollmentId: "+invoiceId);
-				System.out.println("[ERROR]: loopCount: "+loopCount);
+				System.out.println("[ERROR] Retry Loop Count Exceeded");
+				System.out.println("[ERROR] customerId: "+customerId);
+				System.out.println("[ERROR] enrollmentId: "+invoiceId);
+				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("----------------------------------");
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
@@ -195,13 +195,16 @@ public class ReusableMethods extends base {
 	}
 	
 	public static boolean isEnrolled(int customerId){
+		
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		
 		Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
 						.then()
 						.extract().response();
 				
@@ -213,6 +216,32 @@ public class ReusableMethods extends base {
 					{
 						return false;
 					}
+	}
+	
+	public static boolean hasAppointment(String customerId)
+	{
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+			
+		Response res = 			given()
+//							.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.queryParam(customerId)
+					.when()
+							.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
+							.then()
+							.extract().response();
+					if(res.statusCode() != 404)
+					{
+						return true;
+					}
+					else
+						{
+							return false;
+						}
+		
 	}
 
 	public static void myWait(int duration)
