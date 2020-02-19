@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetAppointmentsByMember extends base {
@@ -35,9 +36,8 @@ public class GetAppointmentsByMember extends base {
 	@Test (testName="AppointmentsFound",description="PBI:124124",dataProvider="getDataProvider")
 	public void AppointmentsFound(String customerId) {
 		
-//		String customerId = prop.getProperty("availableId");
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+		
 				given()
 //						.log().all()
 						.header("accept", prop.getProperty("accept"))
@@ -46,7 +46,7 @@ public class GetAppointmentsByMember extends base {
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 						.queryParam(customerId)
 					.when()
-						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
 						.then()
 						.log().body();
 	}
