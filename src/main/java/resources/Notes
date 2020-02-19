@@ -6,7 +6,7 @@ ASSERTIONS:
 * Contains				.body("Result.Name", anyOf(hasItem("string")))
 * Null Value			.body("Result.PrimarySelectableResourceType.Books[0]", nullValue())
 * Response status		.assertThat().statusCode(200)
-* Response time			.time(lessThan(5L),TimeUnit.SECONDS)
+* Response time			.time(lessThan(60L),TimeUnit.SECONDS)
 
 
 IMPORTS:

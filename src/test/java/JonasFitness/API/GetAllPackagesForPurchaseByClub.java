@@ -41,7 +41,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("BasePrice"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("DaysUntilExpiration"))
@@ -69,7 +69,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //					.log().body()
 						.assertThat().statusCode(200)
-//				        .time(lessThan(5L),TimeUnit.SECONDS)
+//				        .time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result.ItemDescription", anyOf(hasItem("Day Pass")));// assertion that a package that is not allowed for MSS purchase is contained in the response
 				// use same package as negative test in getOnlinePackage...
@@ -91,7 +91,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result.ItemDescription", anyOf(not(hasItem("Not A Real Package"))));// assertion that a specific package that is NOT available at club is NOT found
 	}

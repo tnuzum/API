@@ -41,7 +41,7 @@ public class GetOnlineAvailableClassesByMember extends base {
 		.then()
 //		.log().body()
 		.assertThat().statusCode(200)
-//		.time(lessThan(5L),TimeUnit.SECONDS)
+//		.time(lessThan(60L),TimeUnit.SECONDS)
 		.body("Result.ItemBarcodeId", anyOf(hasItem("alwaysAvailCl")))// Item is set to Allow Online Sales
 		.body("Result.ItemBarcodeId", not(anyOf(hasItem("noWebCl"))))// Item is set to NOT Allow Online Sales
 		.body("Result.StartDateTime", not(empty()))
@@ -90,7 +90,7 @@ public class GetOnlineAvailableClassesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("No available online classes found"));
 	}
 	

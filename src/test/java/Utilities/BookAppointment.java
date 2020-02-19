@@ -39,7 +39,7 @@ public class BookAppointment extends base {
 			then()
 //			.log().all()
 			.assertThat().statusCode(200)
-//			.time(lessThan(5L),TimeUnit.SECONDS)			
+//			.time(lessThan(60L),TimeUnit.SECONDS)			
 			.extract().response();
 			
 			JsonPath js = ReusableMethods.rawToJson(res);

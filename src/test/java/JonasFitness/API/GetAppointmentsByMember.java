@@ -42,7 +42,7 @@ public class GetAppointmentsByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("BookedMembers"))
@@ -91,7 +91,7 @@ public class GetAppointmentsByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 	
@@ -113,7 +113,7 @@ public class GetAppointmentsByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(412)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}
 	

@@ -15,7 +15,9 @@ public class base {
 		prop = new Properties();
 		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\rest.properties");
+//			fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\rest.properties");
+//			fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\future.properties");
+			fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\future2.properties");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -26,6 +28,8 @@ public class base {
 		}
 		
 	}
+	
+	
 
 }
 

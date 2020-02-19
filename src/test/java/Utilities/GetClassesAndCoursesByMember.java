@@ -1,15 +1,10 @@
 package Utilities;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetClassesAndCoursesByMember extends base {
@@ -38,7 +33,7 @@ public class GetClassesAndCoursesByMember extends base {
 	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
 	public void ClassesCoursesFound(String customerId) {
 
-		String sDateTimeNoOffset = "2019-01-01";
+		String sDateTimeNoOffset = "2020-01-01";
 		String eDateTimeNoOffset = "2200-01-01";
 		
 				given()

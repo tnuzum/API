@@ -43,7 +43,7 @@ public class GetNextMemberId extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.BarcodeId", not(nullValue()))
 						.body("Result", hasKey("Message"));	
 	}

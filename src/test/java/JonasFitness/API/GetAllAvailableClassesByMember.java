@@ -41,7 +41,7 @@ public class GetAllAvailableClassesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("alwaysAvailClBarcodeId"))))// Item is set to Allow Online Sales
 						.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("noWebClBarcodeId"))))// Item is set to NOT Allow Online Sales
 						.body("Result.StartDateTime", not(empty()))
@@ -92,7 +92,7 @@ public class GetAllAvailableClassesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-	//					.time(lessThan(5L),TimeUnit.SECONDS)
+	//					.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("No available classes found"))
 						;
 	
@@ -116,7 +116,7 @@ public class GetAllAvailableClassesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-	//					.time(lessThan(5L),TimeUnit.SECONDS)
+	//					.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"))
 						;
 	}

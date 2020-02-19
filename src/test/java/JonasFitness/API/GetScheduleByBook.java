@@ -40,7 +40,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ScheduledClassesCourses"))
 						.body("Result.ScheduledClassesCourses[0]", hasKey("BookedResourcesDTOs"))
 						.body("Result.ScheduledClassesCourses[0].BookedResourcesDTOs[0]", hasKey("BookDescription"))
@@ -81,7 +81,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 	
@@ -103,7 +103,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(5L),TimeUnit.SECONDS)
+//						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ScheduledAppointments"))
 						.body("Result.ScheduledAppointments[0]", hasKey("AppointmentId"))
 						.body("Result.ScheduledAppointments[0]", hasKey("AppointmentNotes"))
@@ -151,7 +151,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 	
@@ -173,7 +173,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(412)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}
 	
@@ -195,7 +195,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(5L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Nothing found"));
 	}
 }
