@@ -1,6 +1,7 @@
 package resources;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import org.testng.Assert;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -81,16 +82,24 @@ public class ReusableMethods extends base {
 						System.out.println("[INFO]: invoiceId: "+invoiceId);
 						System.out.println("[INFO]: loopCount: "+loopCount);
 						System.out.println("-----------------");
-						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
+						unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
 			
 			}
-//			else
-//	 		{
-//				Assert.assertTrue(false); //failing test because loopCount exceeded 5
-//			}
+			else
+	 		{
+				System.out.println("----------------------------------");
+				System.out.println("[ERROR] Retry Loop Count Exceeded");
+				System.out.println("[ERROR] customerId: "+customerId);
+				System.out.println("[ERROR] invoiceId: "+invoiceId);
+				System.out.println("[ERROR] enrollmentId: "+enrollmentId);
+				System.out.println("[ERROR] loopCount: "+loopCount);
+				System.out.println("----------------------------------");
+				loopCount = 0;
+				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+			}
 			loopCount = 0;
-			return;
+//			return;
 	}
 	
 	public static void deleteEnrollment(String companyId, int enrollmentId, int customerId)
@@ -98,7 +107,7 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5)
 		{
-			myWait(1000);
+			myWait(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -126,7 +135,7 @@ public class ReusableMethods extends base {
 						System.out.println("[WARNING] enrollmentId: "+enrollmentId);
 						System.out.println("[WARNING] loopCount: "+loopCount);
 						System.out.println("----------------------------------");
-						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+						deleteEnrollment(companyId, enrollmentId, customerId);
 					}
 			
 			}
@@ -138,18 +147,19 @@ public class ReusableMethods extends base {
 				System.out.println("[ERROR] enrollmentId: "+enrollmentId);
 				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("----------------------------------");
+				loopCount = 0;
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
 			loopCount = 0;
-			return;
+//			return;
 	}
 	
-	public static void deleteInvoice(String companyId, int invoiceId, int customerId)
+	public static void deleteInvoice(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
 		
 		if(loopCount<5)
 		{
-			myWait(1000);
+			myWait(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -172,12 +182,12 @@ public class ReusableMethods extends base {
 					{
 						loopCount++;
 						System.out.println("----------------------------------");
-						System.out.println("[WARNING] Retry Delete Invoice");
+						System.out.println("[WARNING] Retry Unenroll");
 						System.out.println("[WARNING] customerId: "+customerId);
 						System.out.println("[WARNING] invoiceId: "+invoiceId);
 						System.out.println("[WARNING] Retry Count: "+loopCount);
 						System.out.println("----------------------------------");
-						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
+						unenroll(companyId, invoiceId, enrollmentId, customerId); // going to unenroll method so deleteEnrollment and deleteInvoice are both reran
 					}
 			}
 			else
@@ -188,10 +198,12 @@ public class ReusableMethods extends base {
 				System.out.println("[ERROR] enrollmentId: "+invoiceId);
 				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("----------------------------------");
+				loopCount = 0;
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+//				return;
 			}
 			loopCount = 0;
-			return;
+//			return;
 	}
 	
 	public static boolean isEnrolled(int customerId){
@@ -243,6 +255,34 @@ public class ReusableMethods extends base {
 						}
 		
 	}
+	
+	public static int getCustomerId(int companyId, int clubId, String userName, String password) {
+		
+		int customerId;
+
+		Response res = given()
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+//				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+//				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
+				.when()
+					.body("{"+
+							  "\"Username\": \""+userName+"\","+
+							  "\"Password\": \""+password+"\","+
+							"}")
+					.post("/api/v3/member/authenticatememberbyusercredentials").
+				then()
+				.body("Result.AuthenticationResult", equalTo("Success"))
+				.extract().response();	
+				
+				JsonPath js = rawToJson(res);
+				
+				customerId = js.getInt("Result.CustomerId");
+				
+				return customerId;
+}
 
 	public static void myWait(int duration)
 		{

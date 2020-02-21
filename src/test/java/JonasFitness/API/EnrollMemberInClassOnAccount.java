@@ -1,7 +1,7 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
-
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -9,9 +9,7 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.lessThan;
-
 import java.util.concurrent.TimeUnit;
-
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -38,7 +36,9 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String enrollCustomerAsStandby = "true";
-
+				
+			if (ReusableMethods.isEnrolled(customerId) == false) {
+			
 			Response res = given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -66,11 +66,13 @@ public class EnrollMemberInClassOnAccount extends base {
 					int invoiceId = js.getInt("Result.InvoiceId");
 
 					if (res.statusCode() == 200) {
-//						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						
+						ReusableMethods.deleteInvoice(companyId, invoiceId, enrollmentId, customerId);
 					}	
+			}
+			else{
+				Assert.assertTrue(false); //failing test because isEnrolled() == true
+			}
 	}
 
 	@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:143588")
@@ -83,6 +85,8 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				String displayedGrandTotal = prop.getProperty("notStartedClPrice");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res = given()
 				.header("accept", prop.getProperty("accept"))
@@ -110,10 +114,13 @@ public class EnrollMemberInClassOnAccount extends base {
 					int invoiceId = js.getInt("Result.InvoiceId");
 					
 					if (res.statusCode() == 200) {
-//						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
+						ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 					}	
+				}
+				else{
+					Assert.assertTrue(false); //failing test because isEnrolled() == true
+				}
 	}
 	
 	@Test (testName="Member Enrolled On Standby",description="PBI:143588")
@@ -126,6 +133,8 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -152,10 +161,12 @@ public class EnrollMemberInClassOnAccount extends base {
 					int invoiceId = js.getInt("Result.InvoiceId");
 					
 					if (res.statusCode() == 200) {
-//						ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-						ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-					}	
+						ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+		} else {
+			Assert.assertTrue(false); // failing test because isEnrolled() == true
+		}
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:143588")
@@ -168,6 +179,8 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -196,10 +209,12 @@ public class EnrollMemberInClassOnAccount extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}	
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+							}
+		} else {
+			Assert.assertTrue(false); // failing test because isEnrolled() == true
+		}
 	}
 	
 	@Test (testName="Member Enrolled - Free Class - Collections Member",description="PBI:143588")
@@ -212,6 +227,8 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -240,10 +257,12 @@ public class EnrollMemberInClassOnAccount extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}	
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+		} else {
+			Assert.assertTrue(false); // failing test because isEnrolled() == true
+		}
 	}
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:143588") // failed to create invoice because member's billing info not setup

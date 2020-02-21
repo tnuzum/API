@@ -25,6 +25,6 @@ public class Unenroll extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 //				ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 				ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-				ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
+				ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 	}
 }
