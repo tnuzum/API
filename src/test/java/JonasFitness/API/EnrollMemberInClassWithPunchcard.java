@@ -1,6 +1,8 @@
 package JonasFitness.API;
 
 import static io.restassured.RestAssured.given;
+
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -33,6 +35,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classBarcodeId = prop.getProperty("punchClBarcodeId");
 				String classOccurrence = prop.getProperty("punchClOccurrence");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -61,10 +65,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 						}	
+				}
+				else{
+					Assert.assertTrue(false); //failing test because isEnrolled() == true
+				}
 	}
 	
 		@Test (testName="Member Enrolled - Paid Class Not Started",description="PBI:147808")
@@ -76,6 +83,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classBarcodeId = prop.getProperty("notStartedClBarcodeId");
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				String enrollCustomerAsStandby = "true";
+			
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -102,10 +111,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}		
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+			}
+			else{
+				Assert.assertTrue(false); //failing test because isEnrolled() == true
+			}
 	}
 		
 	@Test (testName="Member Enrolled On Standby",description="PBI:147808")
@@ -117,6 +129,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -143,10 +157,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}	
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+				}
+				else{
+					Assert.assertTrue(false); //failing test because isEnrolled() == true
+				}
 	}
 	
 	@Test (testName="Member Enrolled - Free Class",description="PBI:147808")
@@ -158,6 +175,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classBarcodeId = prop.getProperty("freeClBarcodeId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -184,10 +203,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}	
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+			}
+			else{
+				Assert.assertTrue(false); //failing test because isEnrolled() == true
+			}
 	}
 	
 	@Test (testName="Member Enrolled - Free Class - Collections Member",description="PBI:147808")
@@ -199,6 +221,8 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classBarcodeId = prop.getProperty("freeClBarcodeId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -225,10 +249,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
-							ReusableMethods.deleteInvoice(companyId, invoiceId, customerId);
-						}	
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+				}
+				else{
+					Assert.assertTrue(false); //failing test because isEnrolled() == true
+				}
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:147808")

@@ -5,15 +5,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
 
-public class GetClassesAndCoursesByMember extends base {
+public class GetMemberScheduleByUserId extends base {
+	
+	static int customerId;
+	public static String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 
 	@BeforeClass
 	public void getData(){
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		System.out.println("[INFO] Test Environment: "+prop.getProperty("environment"));
 	}
 	
 	@DataProvider
@@ -29,9 +34,9 @@ public class GetClassesAndCoursesByMember extends base {
 				data[5][0]=prop.getProperty("creditLimitId");
 				return data;
 	}
-	
-	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
-	public void ClassesCoursesFound(String customerId) {
+
+	@Test (priority = 2, dataProvider="getDataProvider")
+	public void findClassesCourses(String customerId) {
 		
 				given()
 //						.log().all()
@@ -40,8 +45,26 @@ public class GetClassesAndCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
+						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
+						.then()
+						.log().body();
+
+	}
+	
+	@Test (priority = 3, dataProvider="getDataProvider")
+	public void findAppointments(String customerId) {
+		
+				given()
+//						.log().all()
+						.header("accept", prop.getProperty("accept"))
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
 						.then()
 						.log().body();
 	}
+	
 }

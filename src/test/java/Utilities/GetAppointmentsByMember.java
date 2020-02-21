@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
-import resources.ReusableMethods;
 import resources.base;
 
 public class GetAppointmentsByMember extends base {

@@ -63,6 +63,7 @@
 			<class name="JonasFitness.API.SecurityPipeline" />
 			<class name="JonasFitness.API.VerifyClassEnrollmentCapability" />
 			<class name="JonasFitness.API.VerifyCourseEnrollmentCapability" />	
+			<class name="functionalTests.ScheduleAppointment" />
 			<!-- class name="JonasFitness.API.CLASSNAME">
 				<methods>
 				<exclude name="METHODNAME"/>

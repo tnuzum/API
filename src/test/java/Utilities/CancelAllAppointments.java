@@ -1,21 +1,29 @@
 package Utilities;
 
 import static io.restassured.RestAssured.given;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import io.restassured.RestAssured;
+import resources.ReusableDates;
 import resources.base;
+import resources.myGets;
 
-public class GetClassesAndCoursesByMember extends base {
-
+public class CancelAllAppointments extends base {
+	
+	static String customerId;
+	static int appointmentId;
+	public static String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+	
 	@BeforeClass
-	public void getData(){
+	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
-	
+
 	@DataProvider
 	public Object[] getDataProvider(){
 		
@@ -29,9 +37,21 @@ public class GetClassesAndCoursesByMember extends base {
 				data[5][0]=prop.getProperty("creditLimitId");
 				return data;
 	}
+
+	@Test (priority = 3, dataProvider="getDataProvider")
+	public void findAppointments(String customerId) {
+		
+			try {
+				appointmentId = myGets.getAppointmentsByMember(customerId);
+			} catch (Exception e) {
+//				e.printStackTrace();
+				return;
+			}
+				
+	}
 	
-	@Test (testName="ClassesCoursesFound",description="PBI:124953",dataProvider="getDataProvider")
-	public void ClassesCoursesFound(String customerId) {
+	@Test (testName="ApptCancelled",description="PBI:141862")
+	public void ApptCancelled() { 
 		
 				given()
 //						.log().all()
@@ -40,8 +60,25 @@ public class GetClassesAndCoursesByMember extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
+						.get("/api/v3/appointment/cancelappointmentbyemployee/"+appointmentId)
 						.then()
 						.log().body();
 	}
+	
+	@Test (testName="ApptCheck",description="PBI:141862")
+	public void ApptCheck() { 
+		
+		try {
+			System.out.println(appointmentId);
+			if (appointmentId >= 0) {
+				findAppointments(customerId);
+				ApptCancelled();
+			}
+			System.out.println("No Appointments Found");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			return;
+		}
+	}
+	
 }
