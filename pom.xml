@@ -137,12 +137,12 @@
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
-			<version>4.1.2</version>
+			<version>4.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>xml-path</artifactId>
-			<version>4.1.2</version>
+			<version>4.2.0</version>
 		</dependency>
 		<!-- Optional dependencies -->
 		<!--dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
@@ -214,12 +214,12 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
-			<version>4.1.2</version>
+			<version>4.2.0</version>
 		</dependency>
 	</dependencies>
 </project>

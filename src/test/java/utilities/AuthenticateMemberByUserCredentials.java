@@ -28,8 +28,8 @@ public class AuthenticateMemberByUserCredentials extends base {
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
-						  "\"Username\": \"1141138\","+
-						  "\"Password\": \"1141138\""+
+						  "\"Username\": \"appointment\","+
+						  "\"Password\": \"1141340\""+
 						"}")
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
