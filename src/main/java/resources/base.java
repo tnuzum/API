@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class base {
 	
-	static String environment = "FUTURE2";
+	static String environment = "FUTURE";
 	
 	public static Properties prop = new Properties();
 	static String projectPath = System.getenv("API_HOME");
