@@ -274,8 +274,8 @@ public class BookAppointmentByEmployee extends base {
 	public void notValidBookableItem() { 
 		
 		String appointmentClubId = prop.getProperty("club1Id");
-		String itemId = prop.getProperty("noOnlineTId");
-		String occurrence = prop.getProperty("paidTOccurrence");
+		String itemId = prop.getProperty("noWebTId");
+		String occurrence = prop.getProperty("noWebTOccurrence");
 		String customerId = prop.getProperty("availableId");
 //		String requestedBooks = prop.getProperty("pTBook1Id");
 		String userDisplayedPrice = prop.getProperty("paidTPrice");
@@ -299,8 +299,9 @@ public class BookAppointmentByEmployee extends base {
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //				.log().body()
-				.assertThat().statusCode(500)
-				.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."));
+				.assertThat()
+				.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."))
+				.statusCode(500);
 	}
 	
 	@Test (testName="Appointment Not Found",description="PBI:146227")

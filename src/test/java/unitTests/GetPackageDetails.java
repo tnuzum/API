@@ -86,10 +86,10 @@ public class GetPackageDetails extends base{
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result.AssociatedSessionDtos[0]", hasKey("ClubName"))
-						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemBarcodeId"))
-						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemDescription"))
-						.body("Result.AssociatedSessionDtos[0].SessionType", equalTo("ClassCourse"))
+//						.body("Result.AssociatedSessionDtos[0]", hasKey("ClubName"))
+//						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemBarcodeId"))
+//						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemDescription"))
+//						.body("Result.AssociatedSessionDtos[0].SessionType", equalTo("ClassCourse"))
 						.body("Result", hasKey("CategoryDescription"))
 						.body("Result", hasKey("DaysUntilExpiration"))
 						.body("Result", hasKey("ItemBarcodeId"))
@@ -103,20 +103,20 @@ public class GetPackageDetails extends base{
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.AssociatedSessionDtos[0].BasePrice"), 15.00);
+//						Assert.assertEquals(js.getDouble("Result.AssociatedSessionDtos[0].BasePrice"), 15.00);
 						Assert.assertEquals(js.getDouble("Result.BasePrice"), 15.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 1);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 5);
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 15.00);
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].EndRange"), 5);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].EndRange"), 10);
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[1].PricePerUnit"), 10.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].StartRange"), 5);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].EndRange"), 10);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].StartRange"), 6);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].EndRange"), 20);
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[2].PricePerUnit"), 8.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].StartRange"), 10);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].EndRange"), 20);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].StartRange"), 11);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].EndRange"), 999);
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[3].PricePerUnit"), 5.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].StartRange"), 15);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].StartRange"), 21);
 	}
 	
 	@Test (testName="Service - Inactive",description="PBI:143538, 148154")
@@ -162,7 +162,7 @@ public class GetPackageDetails extends base{
 	public void training_OnlineSalesNotAllowed() {
  
 				String customerId = prop.getProperty("availableId");
-				String i = prop.getProperty("noOnlineTId");
+				String i = prop.getProperty("noWebTId");
 				int itemId = Integer.parseInt(i);
 				String clubId = prop.getProperty("club1Id");
 

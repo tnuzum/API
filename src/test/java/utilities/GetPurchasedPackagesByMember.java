@@ -19,7 +19,6 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="PackagesFound",description="PBI:124125")
 	public void PackagesFound() {
 		
-//		String member = prop.getProperty("activeMember7_CustomerId");
 		int member = 248;
 				given()
 //						.log().all()
