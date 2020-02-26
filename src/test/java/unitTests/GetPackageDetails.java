@@ -55,15 +55,16 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("LongDescription"))
 						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
 						.body("Result", hasKey("RedeemableClubs"))
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.body("Result.RedeemableClubs[0]", not(nullValue()))
+						;
 	}
 	
 	@Test (testName="Service - Online Sales Allowed",description="PBI:143538, 148154")
