@@ -40,7 +40,8 @@ public class BookAppointmentByMember extends base {
 		String appointmentClubId = prop.getProperty("club1Id");
 		String itemId = prop.getProperty("demoId");
 		String occurrence = prop.getProperty("demoOccurrence");
-		String customerId = prop.getProperty("availableId");
+//		String customerId = prop.getProperty("availableId");
+		String customerId = "227";
 		String requestedBooks = prop.getProperty("demoBookId");
 		String userDisplayedPrice = prop.getProperty("demoPrice");
 		
@@ -315,7 +316,7 @@ public class BookAppointmentByMember extends base {
 	public void notValidBookableItem() { 
 		
 		String appointmentClubId = prop.getProperty("club1Id");
-		String itemId = prop.getProperty("noOnlineTId");
+		String itemId = prop.getProperty("noWebTId");
 		String occurrence = prop.getProperty("paidTOccurrence");
 		String customerId = prop.getProperty("availableId");
 //		String requestedBooks = prop.getProperty("pTBook1Id");

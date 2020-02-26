@@ -18,7 +18,6 @@ public class AuthenticateMemberByUserCredentials extends base {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
-		System.out.println("[INFO] Test Environment: "+prop.getProperty("environment"));
 	}
 	
 	@Test (priority=1,testName="WrongCredentials",description="PBI:139705")

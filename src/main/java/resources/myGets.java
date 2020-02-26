@@ -71,7 +71,7 @@ public class myGets extends base {
 						.when()
 						.get("/api/v3/appointment/getavailableappointments/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+itemId)
 							.then()
-//							.log().body()
+							.log().body()
 							.extract().response();
 					
 					JsonPath js = ReusableMethods.rawToJson(res);
