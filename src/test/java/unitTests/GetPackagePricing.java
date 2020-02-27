@@ -238,10 +238,10 @@ public class GetPackagePricing extends base {
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getString("Result.GrandTotal"), prop.getProperty("tierPriceingGrandTotal"));
-						Assert.assertEquals(js.getString("Result.PriceDetails[0].Price"), prop.getProperty("tierPriceingBasePrice"));
-						Assert.assertEquals(js.getString("Result.SubTotal"), prop.getProperty("tierPriceingBasePrice"));
-						Assert.assertEquals(js.getString("Result.Tax"), 0.25);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.25);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.00);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.00);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.25);
 	}
 	
 	@Test (testName="Tier pricing - Tier 2",description="PBI:155660")
