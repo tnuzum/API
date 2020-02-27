@@ -291,7 +291,8 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("MemberTerminated"));
 	}
 	
-	/*@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150003")
+	/*
+	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150003")
 	public void enrollmentNotAllowedCollectionsMember() {
 	
 !!! this test is not preventing enrollment, but enrollment tests fails with account problem
@@ -341,7 +342,8 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("MemberFrozen"));
 	}
 	
-	/*@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:150003")
+	/*
+	@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:150003")
 	public void enrollmentNotAllowedProspectMember() {
 		
 !!! this test is not preventing enrollment, but enrollment tests fails with account problem
@@ -415,10 +417,11 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("ItemRestrictions"));
 	}
 	
-	/*@Test (testName="Credit Limited Exceeded",description="PBI:150003")
+	/*
+	@Test (testName="Credit Limited Exceeded",description="PBI:150003")
 	public void creditLimitedExceeded() {
 	
-!!! this test is not preventing enrollment, but enrollment tests fails with account problem
+	!!! this test is not preventing enrollment, but enrollment tests fails with account problem
  
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
@@ -438,6 +441,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("Message", equalTo("AccountProblem"));
-	}*/
+	}
+	*/
 
 }
