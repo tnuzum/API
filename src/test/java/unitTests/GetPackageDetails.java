@@ -320,7 +320,7 @@ public class GetPackageDetails extends base{
 	public void multiplePriceRanges() {
 		
 			String customerId = prop.getProperty("availableId");
-			String i = prop.getProperty("multipleResourcesTrainingId");
+			String i = prop.getProperty("tierPricingId");
 			int itemId = Integer.parseInt(i);
 			String clubId = prop.getProperty("club1Id");
 
@@ -332,7 +332,7 @@ public class GetPackageDetails extends base{
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
-//						.log().body()
+	//					.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.AssociatedSessionDtos", nullValue())
 						.body("Result", hasKey("CategoryDescription"))
@@ -348,22 +348,19 @@ public class GetPackageDetails extends base{
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.BasePrice"), 60.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 99);
-						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 45.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 15);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].EndRange"), 10);
-						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[1].PricePerUnit"), 50.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[1].StartRange"), 10);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].EndRange"), 5);
-						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[2].PricePerUnit"), 55.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[2].StartRange"), 5);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].EndRange"), 3);
-						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[3].PricePerUnit"), 58.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].StartRange"), 3);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[4].EndRange"), 1);
-						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[4].PricePerUnit"), 60.00);
-						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[4].StartRange"), 1);
+						Assert.assertEquals(js.getString("Result.BasePrice"), prop.getProperty("tierPricingBasePrice"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[0].EndRange"), prop.getProperty("tierPricingTier1EndRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[0].PricePerUnit"), prop.getProperty("tierPricingTier1Price"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[0].StartRange"), prop.getProperty("tierPricingTier1StartRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[1].EndRange"), prop.getProperty("tierPricingTier2EndRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[1].PricePerUnit"), prop.getProperty("tierPricingTier2Price"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[1].StartRange"), prop.getProperty("tierPricingTier2StartRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[2].EndRange"), prop.getProperty("tierPricingTier3EndRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[2].PricePerUnit"), prop.getProperty("tierPricingTier3Price"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[2].StartRange"), prop.getProperty("tierPricingTier3StartRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[3].EndRange"), prop.getProperty("tierPricingTier4EndRange"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[3].PricePerUnit"), prop.getProperty("tierPricingTier4Price"));
+						Assert.assertEquals(js.getString("Result.PriceRangeDtos[3].StartRange"), prop.getProperty("tierPricingTier4StartRange"));
 	}
 	
 	@Test (testName="NotServiceTypeV", description="PBI:143538, 148154")
