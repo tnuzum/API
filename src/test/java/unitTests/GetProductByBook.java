@@ -34,7 +34,7 @@ public class GetProductByBook extends base {
 					.when()
 						.get("/api/v3/bookview/getproductbybook/"+resourceId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ProductId"))
