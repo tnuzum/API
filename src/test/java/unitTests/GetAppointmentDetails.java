@@ -77,7 +77,7 @@ public class GetAppointmentDetails extends base {
 						.body("Result.Details.CanCancel", hasKey("CancellationReason"))
 						.body("Result.Details", hasKey("CancelDate"))
 						.body("Result.Details", hasKey("DateAppointmentCreated"))
-						.body("Result.ProductDetails", hasKey("ProductBarcodeId"))
+						.body("Result.ProductDetails", hasKey("ProductId"))
 						.body("Result.ProductDetails", hasKey("ProductCategoryDescription"))
 						.body("Result.ProductDetails", hasKey("ProductDescription"))
 						.body("Result.ProductDetails", hasKey("ProductId"))

@@ -22,7 +22,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 	public void memberEnrolled() {
 		
 				int customerId = 248;
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseId = "alwaysAvailCo";
 				String displayedCoursePrice = "100.00";
 				String enrollCustomerAsStandby = "true";
 
@@ -33,7 +33,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseBarcodeId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedCoursePrice+"/"+enrollCustomerAsStandby)
 						.then()
 						.log().body();
 	}

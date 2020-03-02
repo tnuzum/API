@@ -21,7 +21,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 	public void memberEnrolled() {
 		
 				int customerId = 248;
-				String courseBarcodeId = "alwaysAvailCo";
+				String courseId = "alwaysAvailCo";
 				String enrollCustomerAsStandby = "true";
 
 				given()
@@ -30,7 +30,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
 						.then()
 						.log().body();
 	}

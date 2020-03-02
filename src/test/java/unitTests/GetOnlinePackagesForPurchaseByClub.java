@@ -43,7 +43,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].BasePrice", not(nullValue()))
 						.body("Result[0].DaysUntilExpiration", not(nullValue()))
-						.body("Result[0].ItemBarcodeId", not(nullValue()))
+						.body("Result[0].ItemId", not(nullValue()))
 						.body("Result[0].ItemId", not(nullValue()))
 						.body("Result[0].RedeemableClubs[0]", not(nullValue()));
 	}

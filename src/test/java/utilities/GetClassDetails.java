@@ -19,7 +19,7 @@ public class GetClassDetails extends base{
 	public void classFound() {
  
 		int customerId 			= 248;
-		String ClassBarcodeId 	= "noWebCl";
+		String ClassId 	= "noWebCl";
 		String ClassDateTime 	= "2022-12-13";
 
 				given()
@@ -29,7 +29,7 @@ public class GetClassDetails extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassBarcodeId)
+						.get("/api/v3/classcourse/getclassdetails/"+customerId+"/"+ClassDateTime+"/"+ClassId)
 						.then()
 						.log().body();
 	}

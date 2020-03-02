@@ -67,7 +67,7 @@ public class GetOnlineAvailableCoursesByMember extends base {
 						.body("Result.DurationInMinutes", not(nullValue()))
 						.body("Result.EnrollmentCount", not(nullValue()))
 						.body("Result.EnrollmentPaymentType", not(nullValue()))
-						.body("Result.InstructorBarcodeId", not(nullValue()))
+						.body("Result.InstructorId", not(nullValue()))
 						.body("Result.InstructorName", not(nullValue()))
 						.body("Result.ItemBarcodeId", not(nullValue()))
 						.body("Result.ItemDescription", not(nullValue()))

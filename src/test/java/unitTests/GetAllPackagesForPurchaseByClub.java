@@ -45,7 +45,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 						.body("Result[0]", hasKey("BasePrice"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("DaysUntilExpiration"))
-						.body("Result[0]", hasKey("ItemBarcodeId"))
+						.body("Result[0]", hasKey("ItemId"))
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result[0]", hasKey("ItemId"))
 						.body("Result[0]", hasKey("LongDescription"))

@@ -21,8 +21,8 @@ public class GetPackagePricing extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				int itemId = 243;
-				int quantity = 1;
+				int itemId = 262;
+				int quantity = 6;
 
 		given()
 //						.log().all()

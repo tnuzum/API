@@ -11,7 +11,7 @@
 			<class name="unitTests.CancelAppointmentByEmployee" />
 			<class name="unitTests.CancelAppointmentByMember" />
 			<class name="unitTests.CreateMember" />
-			<class name="unitTests.EnrollMemberInClassOnAccount" />
+			<!-- class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInCourseWithCardOnFile" />
@@ -20,7 +20,7 @@
 			<class name="unitTests.EnrollMemberInClassWithPunchcard" />
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
-			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
+			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" /-->
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
 			<class name="unitTests.GetAllAvailableClassesByMember" />
@@ -40,8 +40,8 @@
 			<class name="unitTests.GetClassesAndCoursesByBook" />
 			<class name="unitTests.GetClassesAndCoursesByMember" />
 			<class name="unitTests.GetClubsByMember" />
-			<class name="unitTests.GetClassDetails" />
-			<class name="unitTests.GetCourseDetails" />
+			<class name="unitTests.GetClassDetailsByMember" />
+			<class name="unitTests.GetCourseDetailsByMember" />
 			<class name="unitTests.GetEmployees" />
 			<class name="unitTests.GetFieldsForAddOnMemberCreationByEmployee" />
 			<class name="unitTests.GetFieldsForMemberCreationByEmployee" />
@@ -63,8 +63,8 @@
 			<class name="unitTests.SearchMembersByProduct" />
 			<class name="unitTests.SearchOnlineMembersByProduct" />
 			<class name="unitTests.SecurityPipeline" />
-			<class name="unitTests.VerifyClassEnrollmentCapability" />
-			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
+			<!-- class name="unitTests.VerifyClassEnrollmentCapability" />
+			<class name="unitTests.VerifyCourseEnrollmentCapability" /-->	
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>
 				<exclude name="METHODNAME"/>

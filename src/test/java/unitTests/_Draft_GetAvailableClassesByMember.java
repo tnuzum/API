@@ -14,7 +14,7 @@ import io.restassured.RestAssured;
 import resources.ReusableDates;
 import resources.base;
 
-public class GetOnlineAvailableClassesByMember extends base {
+public class _Draft_GetAvailableClassesByMember extends base {
 	
 	@BeforeClass
 	public void getData() {
@@ -37,23 +37,23 @@ public class GetOnlineAvailableClassesByMember extends base {
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
 	.when()
-		.get("/api/v3/classcourse/getonlineavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
+		.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 		.then()
 //		.log().body()
 		.assertThat().statusCode(200)
 //		.time(lessThan(60L),TimeUnit.SECONDS)
-		.body("Result.ItemBarcodeId", anyOf(hasItem("alwaysAvailCl")))// Item is set to Allow Online Sales
-		.body("Result.ItemBarcodeId", not(anyOf(hasItem("noWebCl"))))// Item is set to NOT Allow Online Sales
+		.body("Result.ItemId", anyOf(hasItem("alwaysAvailCl")))// Item is set to Allow Online Sales
+		.body("Result.ItemId", not(anyOf(hasItem("noWebCl"))))// Item is set to NOT Allow Online Sales
 		.body("Result.StartDateTime", not(empty()))
 		.body("Result.SubstituteInstructorName", not(empty()))
 		.body("Result.SubstituteInstructorId", not(empty()))
 		.body("Result.ItemDescription", not(empty()))
 		.body("Result.ItemId", not(empty()))
-		.body("Result.ItemBarcodeId", not(empty()))
+		.body("Result.ItemId", not(empty()))
 		.body("Result.LongDescription", not(empty()))
 		.body("Result.DurationInMinutes", not(empty()))
 		.body("Result.InstructorName", not(empty()))
-		.body("Result.InstructorBarcodeId", not(empty()))
+		.body("Result.InstructorId", not(empty()))
 		.body("Result.ClubName", not(empty()))
 		.body("Result.ClubNumber", not(empty()))
 		.body("Result.CategoryDescription", not(empty()))
