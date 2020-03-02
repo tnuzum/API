@@ -32,7 +32,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 			String c = prop.getProperty("availableId");
 			int customerId = Integer.parseInt(c);
 			String companyId = prop.getProperty("X-CompanyId");
-			String courseBarcodeId = prop.getProperty("recurringCoBarcodeId");
+			String courseId = prop.getProperty("recurringCoId");
 			String enrollCustomerAsStandBy = "true";
 			
 			if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -44,7 +44,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -79,7 +79,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String enrollCustomerAsStandBy = "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -91,7 +91,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -125,7 +125,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String enrollCustomerAsStandBy = "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -137,7 +137,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -171,7 +171,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String enrollCustomerAsStandBy = "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -183,7 +183,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -215,7 +215,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 		String c = prop.getProperty("standbyAId");
 		int customerId = Integer.parseInt(c);
-		String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+		String courseId = prop.getProperty("standbyCoId");
 		String enrollCustomerAsStandBy = "true";
 		
 
@@ -226,7 +226,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -238,7 +238,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("standbyBId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String enrollCustomerAsStandBy = "true";
 
 				given()
@@ -248,7 +248,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -260,7 +260,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
@@ -270,7 +270,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -282,7 +282,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("noWebCoBarcodeId");
+				String courseId = prop.getProperty("noWebCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
@@ -292,7 +292,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -304,7 +304,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("endedCoBarcodeId");
+				String courseId = prop.getProperty("endedCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
@@ -314,7 +314,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -325,7 +325,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	public void customerNotFound() { 
 		
 				int customerId = 248000;
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
@@ -335,7 +335,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -347,7 +347,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("NOTalwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("NOTalwaysAvailCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
@@ -357,7 +357,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -369,7 +369,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("noPunchCoBarcodeId");
+				String courseId = prop.getProperty("noPunchCoId");
 				String enrollCustomerAsStandBy = "true";
 
 				given()
@@ -379,7 +379,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseBarcodeId+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)

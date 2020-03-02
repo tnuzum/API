@@ -32,7 +32,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 		String companyId = prop.getProperty("X-CompanyId");
 		String clubId = prop.getProperty("X-Club1Id");
 		String customerId = prop.getProperty("availableId");
-		String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+		String courseId = prop.getProperty("alwaysAvailCoId");
 		String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 
 				given()
@@ -42,7 +42,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -57,7 +57,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 
 				given()
@@ -66,7 +66,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -80,7 +80,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("standbyBId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 
 				given()
@@ -89,7 +89,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -103,7 +103,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("standbyAId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 
 				given()
@@ -112,7 +112,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -126,7 +126,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal	= "0.01";
 
 				given()
@@ -135,7 +135,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -143,13 +143,13 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("EnrollmentStatus", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Invalid Course BarcodeId",description="PBI:150004")
-	public void invalidCourseBarcodeId() {
+	@Test (testName="Invalid Course Id",description="PBI:150004")
+	public void invalidCourseId() {
  
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = "NOTalwaysAvailCoBarcodeId";
+				String courseId = "NOTalwaysAvailCoId";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 
 				given()
@@ -158,7 +158,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -172,7 +172,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				int customerId = 99999;
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 
 				given()
@@ -181,7 +181,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat()
@@ -195,7 +195,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = prop.getProperty("noWebCoBarcodeId");
+				String courseId = prop.getProperty("noWebCoId");
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 
 				given()
@@ -204,7 +204,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
@@ -218,7 +218,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("terminatedId");
-				String courseBarcodeId = prop.getProperty("taxSingleCoBarcodeId");
+				String courseId = prop.getProperty("taxSingleCoId");
 				String displayedGrandTotal = prop.getProperty("taxSingleCoPrice");
 
 				given()
@@ -227,7 +227,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
@@ -241,7 +241,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("frozenId");
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 
 				given()
@@ -250,7 +250,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
@@ -264,7 +264,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = prop.getProperty("closedCoBarcodeId");
+				String courseId = prop.getProperty("closedCoId");
 				String displayedGrandTotal = prop.getProperty("closedCoPrice");
 
 				given()
@@ -273,7 +273,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
@@ -287,7 +287,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseBarcodeId = prop.getProperty("endedCoBarcodeId");
+				String courseId = prop.getProperty("endedCoId");
 				String displayedGrandTotal = prop.getProperty("endedCoPrice");
 
 				given()
@@ -296,7 +296,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseBarcodeId+"/"+displayedGrandTotal)
+						.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.body("AllowedToEnroll", equalTo(false))

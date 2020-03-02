@@ -23,7 +23,7 @@ public class VerifyCourseEnrollmentCapability extends base {
 		int companyId = 236;
 		int clubId = 1;
 		int customerId = 248;
-		String courseBarcodeId = "noPunchCo";
+		String courseId = "noPunchCo";
 		String displayedGrandTotal = "150.00";
 
 		given()	
@@ -34,7 +34,7 @@ public class VerifyCourseEnrollmentCapability extends base {
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/" + companyId + "/" + clubId + "/"
-						+ customerId + "/" + courseBarcodeId + "/" + displayedGrandTotal)
+						+ customerId + "/" + courseId + "/" + displayedGrandTotal)
 				.then().log().body();
 	}
 }

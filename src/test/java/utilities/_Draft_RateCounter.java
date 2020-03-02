@@ -43,7 +43,7 @@ public class _Draft_RateCounter extends base {
 	public void missingCity() {
 		
 		int customerId 					= 248;
-		String classBarcodeId 			= "alwaysAvailCl";
+		String classId 			= "alwaysAvailCl";
 		String classOccurrence 			= "2025-12-31";
 		String displayedGrandTotal 		= "10.00";
 		String cardNumber = prop.getProperty("CC1CardNumber");
@@ -69,7 +69,7 @@ public class _Draft_RateCounter extends base {
 			.when()
 				.body("{" + 
 						"  \"CustomerId\": "+customerId+"," + 
-						"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
 						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 						"  \"CardNumber\": \""+cardNumber+"\"," + 
@@ -100,7 +100,7 @@ public class _Draft_RateCounter extends base {
 	.when()
 		.body("{" + 
 				"  \"CustomerId\": "+customerId+"," + 
-				"  \"ClassBarcodeId\": \""+classBarcodeId+"\"," + 
+				"  \"ClassId\": \""+classId+"\"," + 
 				"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 				"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 				"  \"CardNumber\": \""+cardNumber+"\"," + 

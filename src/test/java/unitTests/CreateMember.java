@@ -37,6 +37,7 @@ public class CreateMember extends base {
 				.when()
 					.get("/api/v3/member/getnextmemberid")
 					.then()
+//					.log().all()
 					.extract().response();
 		
 		JsonPath js = ReusableMethods.rawToJson(res1);

@@ -32,7 +32,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -49,7 +49,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"AccountId\": \""+accountId+"\"," + 
 								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -89,7 +89,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -106,7 +106,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -137,7 +137,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -154,7 +154,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -185,7 +185,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -201,7 +201,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -239,7 +239,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "false";
@@ -253,7 +253,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -270,7 +270,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("standbyAId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -285,7 +285,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -302,7 +302,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("standbyBId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -317,7 +317,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -334,7 +334,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("noWebCoBarcodeId");
+				String courseId = prop.getProperty("noWebCoId");
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -348,7 +348,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -366,7 +366,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("endedCoBarcodeId");
+				String courseId = prop.getProperty("endedCoId");
 				String displayedGrandTotal = prop.getProperty("endedCoPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -380,7 +380,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -396,7 +396,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 	public void customerNotFound() {
 		
 				int customerId = 245000;
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -410,7 +410,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -427,7 +427,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("NOTalwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("NOTalwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -441,7 +441,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -458,7 +458,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal 		= "10.01";
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -472,7 +472,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -489,7 +489,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("standbyCId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId					= 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -503,7 +503,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
@@ -520,7 +520,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 		String c = prop.getProperty("noFOPId");
 		int customerId = Integer.parseInt(c);
-		String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+		String courseId = prop.getProperty("alwaysAvailCoId");
 		String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -534,7 +534,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 

@@ -32,7 +32,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("punchClBarcodeId");
+				String classId = prop.getProperty("punchClId");
 				String classOccurrence = prop.getProperty("punchClOccurrence");
 				String enrollCustomerAsStandby = "true";
 				
@@ -45,7 +45,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -80,7 +80,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("notStartedClBarcodeId");
+				String classId = prop.getProperty("notStartedClId");
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				String enrollCustomerAsStandby = "true";
 			
@@ -92,7 +92,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -126,7 +126,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String enrollCustomerAsStandby = "true";
 				
@@ -138,7 +138,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -172,7 +172,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("freeClBarcodeId");
+				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
 				
@@ -184,7 +184,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -218,7 +218,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String classBarcodeId = prop.getProperty("freeClBarcodeId");
+				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String enrollCustomerAsStandby = "true";
 				
@@ -230,7 +230,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -263,7 +263,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		
 				String c = prop.getProperty("noFOPId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("alwaysAvailClBarcodeId");
+				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
@@ -273,7 +273,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -286,7 +286,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("noPunchClBarcodeId");
+				String classId = prop.getProperty("noPunchClId");
 				String classOccurrence = prop.getProperty("noPunchClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
@@ -296,7 +296,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -308,7 +308,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("standbyClBarcodeId");
+				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String enrollCustomerAsStandby = "false";
 
@@ -318,7 +318,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -330,7 +330,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classBarcodeId = prop.getProperty("NOTalwaysAvailClBarcodeId");
+				String classId = prop.getProperty("NOTalwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 
@@ -340,7 +340,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classBarcodeId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)

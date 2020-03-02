@@ -34,7 +34,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -59,7 +59,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -110,7 +110,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -135,7 +135,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -176,7 +176,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("freeCoBarcodeId");
+				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -201,7 +201,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -242,7 +242,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -266,7 +266,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -313,7 +313,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("standbyCoBarcodeId");
+				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -335,7 +335,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -362,7 +362,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -384,7 +384,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -411,7 +411,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = "5454545454545400";
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -433,7 +433,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -460,7 +460,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("alwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = "54545454545454540000";
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -482,7 +482,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -509,7 +509,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseBarcodeId = prop.getProperty("NOTalwaysAvailCoBarcodeId");
+				String courseId = prop.getProperty("NOTalwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");
@@ -531,7 +531,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseBarcodeId\": \""+courseBarcodeId+"\"," + 
+								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
