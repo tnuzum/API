@@ -26,7 +26,7 @@ public class GetPackageDetails extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Service - Online Sales Not Allowed",description="PBI:143538, 148154")
+	@Test (testName="Service - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = false)
 	public void service_OnlineSalesNotAllowed() {
  
 				String customerId = prop.getProperty("availableId");
@@ -35,7 +35,7 @@ public class GetPackageDetails extends base{
 				String clubId = prop.getProperty("club1Id");
 
 				given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -43,7 +43,7 @@ public class GetPackageDetails extends base{
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
@@ -63,8 +63,7 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs[0]", not(nullValue()))
-						;
+						.body("Result.RedeemableClubs", not(nullValue()));
 	}
 	
 	@Test (testName="Service - Online Sales Allowed",description="PBI:143538, 148154")
@@ -100,7 +99,7 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("RedeemableClubs"))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs[0]", not(nullValue()))
+						.body("Result.RedeemableClubs", not(nullValue()))
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
@@ -120,7 +119,7 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].StartRange"), 21);
 	}
 	
-	@Test (testName="Service - Inactive",description="PBI:143538, 148154")
+	@Test (testName="Service - Inactive",description="PBI:143538, 148154", enabled = false)
 	public void service_Inactive() {
  
 				String customerId = prop.getProperty("availableId");
@@ -129,7 +128,7 @@ public class GetPackageDetails extends base{
 				String clubId = prop.getProperty("club1Id");
 
 				given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -137,7 +136,7 @@ public class GetPackageDetails extends base{
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
@@ -156,10 +155,10 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.body("Result.RedeemableClubs", not(nullValue()));
 	}
 	
-	@Test (testName="Training - Online Sales Not Allowed",description="PBI:143538, 148154")
+	@Test (testName="Training - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = false)
 	public void training_OnlineSalesNotAllowed() {
  
 				String customerId = prop.getProperty("availableId");
@@ -195,7 +194,7 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.body("Result.RedeemableClubs", not(nullValue()));
 	}
 	
 	@Test (testName="Training - Online Sales Allowed",description="PBI:143538, 148154")
@@ -235,10 +234,10 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.body("Result.RedeemableClubs", not(nullValue()));
 	}
 	
-	@Test (testName="Training - Inactive",description="PBI:143538, 148154")
+	@Test (testName="Training - Inactive",description="PBI:143538, 148154", enabled = false)
 	public void training_Inactive() {
  
 				String customerId = prop.getProperty("availableId");
@@ -274,7 +273,7 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs[0]", not(nullValue()));
+						.body("Result.RedeemableClubs", not(nullValue()));
 	}
 	
 	@Test (testName="Single Price Range",description="PBI:143538, 148154")
@@ -306,7 +305,7 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("RedeemableClubs"))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs[0]", not(nullValue()))
+						.body("Result.RedeemableClubs", not(nullValue()))
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
@@ -344,7 +343,7 @@ public class GetPackageDetails extends base{
 						.body("Result", hasKey("RedeemableClubs"))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs[0]", not(nullValue()))
+						.body("Result.RedeemableClubs", not(nullValue()))
 						.extract().response();
 				
 					JsonPath js = ReusableMethods.rawToJson(res);
@@ -380,17 +379,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.body("Message", equalTo("Package not found"))
-						.body("Result", not(hasKey("AssociatedSessionDtos")))
-						.body("Result", not(hasKey("BasePrice")))
-						.body("Result", not(hasKey("CategoryDescription")))
-						.body("Result", not(hasKey("DaysUntilExpiration")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("ItemDescription")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("LongDescription")))
-						.body("Result", not(hasKey("PriceRangeDtos")))
-						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
+						.body("Message", equalTo("Package not found"));
 	}
 	
 	@Test (testName="InvalidPackageId", description="PBI:143538, 148154")// using Id of class instead of training or service
@@ -410,17 +399,7 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.body("Message", equalTo("Package not found"))
-						.body("Result", not(hasKey("AssociatedSessionDtos")))
-						.body("Result", not(hasKey("BasePrice")))
-						.body("Result", not(hasKey("CategoryDescription")))
-						.body("Result", not(hasKey("DaysUntilExpiration")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("ItemDescription")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("LongDescription")))
-						.body("Result", not(hasKey("PriceRangeDtos")))
-						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
+						.body("Message", equalTo("Package not found"));
 	}
 	
 	@Test (testName="InvalidCustomerId", description="PBI:143538, 148154")
@@ -440,17 +419,66 @@ public class GetPackageDetails extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.body("Message", equalTo("Customer not found"))
-						.body("Result", not(hasKey("AssociatedSessionDtos")))
-						.body("Result", not(hasKey("BasePrice")))
-						.body("Result", not(hasKey("CategoryDescription")))
-						.body("Result", not(hasKey("DaysUntilExpiration")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("ItemDescription")))
-						.body("Result", not(hasKey("ItemId")))
-						.body("Result", not(hasKey("LongDescription")))
-						.body("Result", not(hasKey("PriceRangeDtos")))
-						.body("Result.RedeemableClubs[0]", not(hasKey("string")));
+						.body("Message", equalTo("Customer not found"));
+	}
+	
+	@Test (testName="InvalidClubId", description="PBI:143538, 148154", enabled = false)
+	public void invalidClubId() {
+	
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidServiceVId");
+				int clubId = 99999;
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(401);
+	}
+	
+	@Test (testName="TrainingNotAvailableAtClub", description="PBI:143538, 148154", enabled = true)
+	public void trainingNotAvailableAtClub() {
+	
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidTClub1Id");
+				String clubId = prop.getProperty("club2Id");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club2Id"))
+					.when()
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Package not found"));
+	}
+	
+	@Test (testName="ServiceNotAvailableAtClub", description="PBI:143538, 148154", enabled = true)
+	public void serviceNotAvailableAtClub() {
+	
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidServiceVClub1Id");
+				String clubId = prop.getProperty("club2Id");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club2Id"))
+					.when()
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId+"/"+clubId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("Package not found"));
 	}
 	
 }

@@ -375,4 +375,25 @@ public class GetPackagePricing extends base {
 						.body("Message", equalTo("Missing quantity configuration"));
 	}
 	
+	@Test (testName="TrainingNotAvailableAtClub",description="PBI:155660", enabled = false)
+	public void trainingNotAvailableAtClub() { 
+		
+		// this call returns results even though the item is not available at the club
+		
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidServiceVClub1Id");
+				int quantity = 1;
+
+		given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club2Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+						.log().body();
+	}
+	
 }
