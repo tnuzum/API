@@ -89,11 +89,11 @@ public class GetScheduleByBook extends base{
 	public void GetAppointments() {
 		
 				String resourceId = prop.getProperty("demoBookId"); 
-				String sDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneWeek();
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
 				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 
 				given()
-
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -103,7 +103,7 @@ public class GetScheduleByBook extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-//						.time(lessThan(60L),TimeUnit.SECONDS)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ScheduledAppointments"))
 						.body("Result.ScheduledAppointments[0]", hasKey("AppointmentId"))
 						.body("Result.ScheduledAppointments[0]", hasKey("AppointmentNotes"))

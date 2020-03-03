@@ -8,10 +8,17 @@ import java.util.Date;
 public class ReusableDates {
 	
 	public static String getCurrentDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		return dateFormat.format(currentDate);
+	}
+	
+	public static String getCurrentDateTime() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();
 		return dateFormat.format(currentDate);
 	}
+	
 	public static String getCurrentDatePlusOneDay() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate = new Date();
