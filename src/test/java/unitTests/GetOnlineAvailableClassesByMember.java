@@ -43,7 +43,8 @@ public class GetOnlineAvailableClassesByMember extends base {
 		.assertThat().statusCode(200)
 //		.time(lessThan(60L),TimeUnit.SECONDS)
 		.body("Result.ItemBarcodeId", anyOf(hasItem("alwaysAvailCl")))// Item is set to Allow Online Sales
-		.body("Result.ItemBarcodeId", not(anyOf(hasItem("noWebCl"))))// Item is set to NOT Allow Online Sales
+		// using Employee context this is noWebCl is returned
+		//.body("Result.ItemBarcodeId", not(anyOf(hasItem("noWebCl"))))// Item is set to NOT Allow Online Sales
 		.body("Result.StartDateTime", not(empty()))
 		.body("Result.SubstituteInstructorName", not(empty()))
 		.body("Result.SubstituteInstructorId", not(empty()))

@@ -42,14 +42,14 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
+//						.log().all()
 						.assertThat()
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(true))
 						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));			
 	}
 	
-	@Test (testName="Class Full Standby Allowed",description="PBI:150003", enabled = false)
+	@Test (testName="Class Full Standby Allowed",description="PBI:150003", enabled = true)
 	public void classFullStandbyAllowed() {
  
 				String companyId = prop.getProperty("X-CompanyId");
@@ -60,7 +60,7 @@ public class VerifyClassEnrollmentCapability extends base{
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -68,13 +68,13 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(true))
 						.body("EnrollmentStatus", equalTo("ClassFullStandbyAllowed"));
 	}
 	
-	@Test (testName="Customer Already On Standby",description="PBI:150003", enabled = false)
+	@Test (testName="Customer Already On Standby",description="PBI:150003", enabled = true)
 	public void customerAlreadyOnStandby() {
  
 				String companyId = prop.getProperty("X-CompanyId");
@@ -85,7 +85,7 @@ public class VerifyClassEnrollmentCapability extends base{
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -93,13 +93,13 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Customer Already Enrolled",description="PBI:150003", enabled = false)
+	@Test (testName="Customer Already Enrolled",description="PBI:150003", enabled = true)
 	public void customerAlreadyEnrolled() {
  
 				String companyId = prop.getProperty("X-CompanyId");
@@ -110,7 +110,7 @@ public class VerifyClassEnrollmentCapability extends base{
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -118,7 +118,7 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("CustomerAlreadyEnrolled"));
@@ -409,18 +409,19 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("EnrollmentHasEnded"));
 	}
 	
-	@Test (testName="Class Enrollment Closed",description="PBI:150003")
+	@Test (testName="Class Enrollment Closed",description="PBI:150003", enabled = false)
 	public void classEnrollmentClosed() {
  
 		String companyId = prop.getProperty("X-CompanyId");
 		String clubId = prop.getProperty("X-Club1Id");
 		String customerId = prop.getProperty("availableId");
 		String classId = prop.getProperty("closedClId");
-		String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay();
+		String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay8AM();
 		String displayedGrandTotal = prop.getProperty("closedClPrice");
 		
 
 				given()
+				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -428,11 +429,10 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
+						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
-//						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-//						.body("Details", equalTo("ItemRestrictions"))
-						.body("EnrollmentStatus", equalTo("ItemNotFound"));
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("ItemRestrictions"));
 	}
 	
 	@Test (testName="Credit Limited Exceeded",description="PBI:150003", enabled = false)

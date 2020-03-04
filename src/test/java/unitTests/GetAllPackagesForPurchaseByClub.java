@@ -28,7 +28,6 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	public void packageFound() { 
 		
 		String customerId = prop.getProperty("availableId");
-		String clubId = prop.getProperty("club1Id");
 		
 					given()
 //						.log().all()
@@ -37,7 +36,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
+						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId)
 						.then()
 //					    .log().body()
 						.assertThat().statusCode(200)
@@ -57,7 +56,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	public void onlineNotAllowed_PackageFound() { 
 		
 		String customerId = prop.getProperty("availableId");
-		String clubId = prop.getProperty("club1Id");
+
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -65,7 +64,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
+					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId)
 						.then()
 //					.log().body()
 						.assertThat().statusCode(200)
@@ -78,8 +77,8 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	@Test (testName="PackageNotFound",description="PBI:143540")
 	public void packageNotFound() { 
 		
-		String member = prop.getProperty("availableId");
-		String club = prop.getProperty("X-Club1Id");
+		String customerId = prop.getProperty("availableId");
+		
 				given()
 //						.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -87,7 +86,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getallpackagesforpurchasebyclub/"+member+"/"+club+"")
+					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -99,8 +98,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 	@Test (testName="Customer Not Found",description="PBI:143540")
 	public void customerNotFound() { 
 		
-		int customerId = 2360000;
-		String clubId = prop.getProperty("club1Id");
+		int customerId = 99999;
 		
 					given()
 				.header("accept", prop.getProperty("accept"))
@@ -108,7 +106,7 @@ public class GetAllPackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId+"/"+clubId+"")
+					.get("/api/v3/package/getallpackagesforpurchasebyclub/"+customerId)
 						.then()
 //					    .log().body()
 					    .assertThat().statusCode(500)

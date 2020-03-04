@@ -27,7 +27,6 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	public void PackagesFound() { 
 		
 		String customerId = prop.getProperty("availableId");
-		String clubId = prop.getProperty("club1Id");
 
 				given()
 //						.log().all()
@@ -36,7 +35,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId+"/"+clubId)
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -57,7 +56,6 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 		*/
 		
 		String customerId = prop.getProperty("availableId");
-		String clubId = prop.getProperty("club1Id");
 		
 				given()
 //						.log().all()
@@ -66,7 +64,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId+"/"+clubId)
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -77,8 +75,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 	@Test (testName="Customer Not Found",description="PBI:143537")
 	public void customerNotFound() { 
 		
-		int customerId = 236000;
-		String clubId = prop.getProperty("club1Id");
+		int customerId = 99999;
 
 				given()
 				.header("accept", prop.getProperty("accept"))
@@ -86,7 +83,7 @@ public class GetOnlinePackagesForPurchaseByClub extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId+"/"+clubId)
+						.get("/api/v3/package/getonlinepackagesforpurchasebyclub/"+customerId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
