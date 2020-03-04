@@ -78,14 +78,14 @@ public class GetCourseDetailsByMember extends base{
 						Assert.assertEquals(js.getString("Result.ItemId"), courseId);				
 	}
 	
-	@Test (testName="Course Found - Online Sale Not Allowed",description="PBI:143544")
+	@Test (testName="Course Found - Online Sale Not Allowed",description="PBI:143544", enabled = false)
 	public void courseFoundOnlineSaleNotAllowed() {
 
 				String customerId = prop.getProperty("availableId");
 				String courseId = prop.getProperty("noWebClId");
 
 				given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -93,7 +93,7 @@ public class GetCourseDetailsByMember extends base{
 					.when()
 						.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}

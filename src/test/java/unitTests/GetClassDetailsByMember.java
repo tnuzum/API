@@ -77,11 +77,11 @@ public class GetClassDetailsByMember extends base{
 						Assert.assertEquals(js.getString("Result.ItemId"), classId);
 	}
 
+	@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
 	
 	/*
-	 * disabled due to bug# 160419
-	 * 
-	 * @Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
+	 * disabled due to bug# 160419; if I change item to allow web sales the call is successful
+	 */ 
 	public void classFoundOnlineSaleNotAllowed() {
 
 				String c = prop.getProperty("availableId");
@@ -90,7 +90,7 @@ public class GetClassDetailsByMember extends base{
 				String classOccurrence = prop.getProperty("noWebClOccurrence");
 
 				given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -98,11 +98,10 @@ public class GetClassDetailsByMember extends base{
 					.when()
 						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
-	*/
 	
 	@Test (testName="Class Not Found - Invalid ClassID",description="PBI:143544")
 	public void classNotFound_InvalidClassID() {
