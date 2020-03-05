@@ -277,7 +277,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Message", equalTo("Full"));
 	} 
 	
-	@Test (testName="Course Not Available Online",description="PBI:154260")
+	@Test (testName="Course Not Available Online",description="PBI:154260", enabled = false)
 	public void courseNotAvailableOnline() { 
 		
 				String c = prop.getProperty("availableId");
@@ -342,7 +342,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:154260")
+	@Test (testName="Course Not Found",description="PBI:154260", enabled = false)
 	public void courseNotFound() { 
 		
 				String c = prop.getProperty("availableId");

@@ -31,7 +31,7 @@ public class GetMemberScheduleByUserId extends base {
 				data[2][0]=prop.getProperty("noFOPId");
 				data[3][0]=prop.getProperty("prospectId");
 				data[4][0]=prop.getProperty("noWebId");
-				data[5][0]=prop.getProperty("creditLimitId");
+				data[5][0]=prop.getProperty("frozenId");
 				return data;
 	}
 

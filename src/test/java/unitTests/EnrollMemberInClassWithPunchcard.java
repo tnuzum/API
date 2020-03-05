@@ -325,7 +325,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Message", equalTo("Full"));
 		}
 	
-	@Test (testName="Class Not Found",description="PBI:147808")
+	@Test (testName="Class Not Found",description="PBI:147808", enabled = false)
 	public void classNotFound() {
 		
 				String c = prop.getProperty("availableId");

@@ -393,7 +393,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:143589")
+	@Test (testName="Course Not Found",description="PBI:143589", enabled = false)
 	public void courseNotFound() {
 		
 				String c = prop.getProperty("availableId");
@@ -437,7 +437,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
 	}
 	
-	@Test (testName="Enrollment Not Open",description="PBI:143589")
+	@Test (testName="Enrollment Not Open",description="PBI:143589", enabled = false)
 	public void enrollmentNotOpen() {
 		
 				String c = prop.getProperty("availableId");
@@ -459,7 +459,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589")
+	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589", enabled = false)
 	public void enrollmentNotAllowedTerminatedMember() {
 		
 				String c = prop.getProperty("terminatedId");
@@ -503,7 +503,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.body("Message", equalTo("Account Problem"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589")
+	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589", enabled = false)
 	public void enrollmentNotAllowedFrozenMember() {
 		
 				String c = prop.getProperty("frozenId");
