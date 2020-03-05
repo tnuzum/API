@@ -42,7 +42,9 @@ public class base {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-	//		System.out.println("[INFO] Environment: "+prop.getProperty("environment"));
+//		this isn't working as expected	
+//			String methodName = ReusableMethods.getMethodName();
+//			System.out.println("Test Name: "+methodName);
 }
 }
 

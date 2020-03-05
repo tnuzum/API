@@ -518,7 +518,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Class Not Available Online",description="PBI:146579")
+	@Test (testName="Class Not Available Online",description="PBI:146579", enabled = false)
 	public void classNotAvailableOnline() {
 		
 				String c = prop.getProperty("availableId");
@@ -772,7 +772,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Class Not Found",description="PBI:146579")
+	@Test (testName="Class Not Found",description="PBI:146579", enabled = false)
 	public void classNotFound() {
 		
 				String c = prop.getProperty("availableId");

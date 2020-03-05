@@ -329,7 +329,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Course Not Available Online",description="PBI:146578")
+	@Test (testName="Course Not Available Online",description="PBI:146578", enabled = false)
 	public void courseNotAvailableOnline() {
 		
 				String c = prop.getProperty("availableId");
@@ -422,7 +422,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:146578")
+	@Test (testName="Course Not Found",description="PBI:146578", enabled = false)
 	public void courseNotFound() {
 		
 				String c = prop.getProperty("availableId");
@@ -484,7 +484,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Scheduling Conflict",description="PBI:146578")
+	@Test (testName="Scheduling Conflict",description="PBI:146578", enabled = false)
 	public void schedulingConflict() {
 		
 				String c = prop.getProperty("standbyCId");
@@ -510,7 +510,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - SchedulingConflict"));
 	}

@@ -293,4 +293,15 @@ public class ReusableMethods extends base {
 			e.printStackTrace();
 		}
 	}
+	
+	public static String getMethodName() {
+		
+		String methodName = new Object() {}
+		.getClass()
+		.getEnclosingMethod()
+		.getName();
+		
+		return methodName;
+		
+	}
 }
