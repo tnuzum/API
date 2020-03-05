@@ -389,7 +389,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:146578")

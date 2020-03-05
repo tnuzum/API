@@ -19,6 +19,8 @@ import resources.base;
 
 public class EnrollMemberInClassWithRecurringDues extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -26,7 +28,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 
-	@Test (testName="Member Enrolled - Paid Class",description="PBI:154259")
+	@Test (testName="Member Enrolled - Paid Class",description="PBI:154259", enabled = false)
 	public void memberEnrolledPaidClass() { 
 		
 				String c = prop.getProperty("availableId");
@@ -45,7 +47,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -94,7 +96,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -141,7 +143,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -188,7 +190,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -231,7 +233,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -254,7 +256,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -277,7 +279,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -300,7 +302,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -323,11 +325,11 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	} 
 	
 	@Test (testName="Customer Not Found",description="PBI:154259")
@@ -345,7 +347,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -368,7 +370,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -391,14 +393,14 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	} 
 	
-	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259")
+	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259", enabled = false)
 	public void recurringDuesNotAccepted() { 
 		
 				String c = prop.getProperty("availableId");
@@ -414,7 +416,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy)
+						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)

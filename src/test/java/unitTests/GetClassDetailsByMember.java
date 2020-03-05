@@ -16,6 +16,8 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetClassDetailsByMember extends base{
+	
+	public static Boolean onlineEnrollment = true;
 
 	@BeforeClass
 	public void getData() {
@@ -38,7 +40,7 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -96,7 +98,7 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -117,7 +119,7 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)						
@@ -141,7 +143,7 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 						.log().body()
 						.assertThat()
@@ -165,7 +167,7 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -187,12 +189,37 @@ public class GetClassDetailsByMember extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId)
+					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Customer not found"));
 	}
+	
+	@Test (testName="Enrollment Not Open",description="PBI:143588", enabled = true)
+	public void enrollmentNotOpen() {
+		
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("neverAvailClId");
+				String classOccurrence = prop.getProperty("neverAvailClOccurrence");
+
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.EnrollmentEligibilities[0].EnrollmentEligibilityStatus", equalTo("EnrollmentNotOpen"));
+	}
+	
+	
+	
+	
 	
 }

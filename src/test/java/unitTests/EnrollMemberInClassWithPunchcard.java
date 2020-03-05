@@ -19,6 +19,8 @@ import resources.base;
 
 public class EnrollMemberInClassWithPunchcard extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -26,7 +28,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:147808")
+	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:147808", enabled = false)
 	public void memberEnrolledPaidClassStarted() {
 		
 				String c = prop.getProperty("availableId");
@@ -39,15 +41,15 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -92,7 +94,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -138,7 +140,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -184,7 +186,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -230,7 +232,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -273,7 +275,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -281,7 +283,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Message", equalTo("Class or customer configuration does not allow punchcard enrollment"));
 		}
 	
-	@Test (testName="Punchcard Not Allowed",description="PBI:147808")
+	@Test (testName="Punchcard Not Allowed",description="PBI:147808", enabled = false)
 	public void punchcardNotAllowed() {
 		
 				String c = prop.getProperty("availableId");
@@ -296,7 +298,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -318,7 +320,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -340,7 +342,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberinclasswithpunchcard/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
