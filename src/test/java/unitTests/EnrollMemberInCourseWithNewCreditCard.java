@@ -21,6 +21,8 @@ import resources.base;
 
 public class EnrollMemberInCourseWithNewCreditCard extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();

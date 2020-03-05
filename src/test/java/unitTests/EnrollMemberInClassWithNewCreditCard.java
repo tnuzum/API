@@ -19,6 +19,8 @@ import resources.base;
 
 public class EnrollMemberInClassWithNewCreditCard extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -49,7 +51,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -72,11 +74,12 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then().assertThat()
-//						.log().all()
+						.log().all()
 						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -617,7 +620,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:146579")

@@ -19,6 +19,8 @@ import resources.base;
 
 public class EnrollMemberInCourseOnAccount extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -45,7 +47,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -93,7 +95,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -140,7 +142,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -187,7 +189,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -234,7 +236,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -277,7 +279,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -299,7 +301,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -321,7 +323,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -343,7 +345,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -365,7 +367,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -386,7 +388,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
@@ -408,15 +410,15 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Course Not Available Online",description="PBI:143589")
-	public void courseNotAvailableOnline() {
+	@Test (testName="Course Not Available Online - Member",description="PBI:143589", enabled = false)
+	public void courseNotAvailableOnlineMember() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -430,11 +432,36 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+	}
+	
+	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = false)
+	public void courseNotAvailableOnlineEmployee() {
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String courseId = prop.getProperty("noWebCoId");
+				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
+				String enrollCustomerAsStandby = "true";
+				Boolean onlineEnrollment = false;
+
+				given()
+				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.then()
+						.log().body()
+//						.assertThat().statusCode(400)
+//						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmenttAllowed"))
+						;
 	}
 	
 	@Test (testName="Enrollment Not Open",description="PBI:143589", enabled = false)
@@ -452,14 +479,14 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby)
+						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589", enabled = false)
+	@Test (testName="Enrollment Not Allowed - Terminated Member",description="PBI:143589", enabled = true)
 	public void enrollmentNotAllowedTerminatedMember() {
 		
 				String c = prop.getProperty("terminatedId");
@@ -474,7 +501,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
@@ -496,14 +523,14 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
 					.body("Message", equalTo("Account Problem"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589", enabled = false)
+	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143589", enabled = true)
 	public void enrollmentNotAllowedFrozenMember() {
 		
 				String c = prop.getProperty("frozenId");
@@ -518,7 +545,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
@@ -540,7 +567,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
@@ -562,7 +589,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
@@ -584,11 +611,11 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+					.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasClosed"));
 	}
 	
 	@Test (testName="Course Ended",description="PBI:143589")
@@ -606,10 +633,10 @@ public class EnrollMemberInCourseOnAccount extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("EnrollmentNotAllowed - ItemHasEnded"));
+					.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	}
 }

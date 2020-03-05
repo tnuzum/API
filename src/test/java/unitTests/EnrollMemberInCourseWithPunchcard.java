@@ -19,6 +19,8 @@ import resources.base;
 
 public class EnrollMemberInCourseWithPunchcard extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -44,7 +46,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -90,7 +92,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -135,7 +137,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -181,7 +183,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -228,7 +230,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -270,7 +272,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -292,7 +294,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -314,7 +316,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+					.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -337,7 +339,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"")
+						.get("/api/v3/classcourse/enrollmemberincoursewithpunchcard/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
