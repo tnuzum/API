@@ -217,7 +217,7 @@ public class GetClassCoursePricing extends base {
 		
 		String c = prop.getProperty("availableId");
 		int customerId = Integer.parseInt(c);
-		int itemId = 246000;
+		int itemId = 99999;
 
 				given()
 				.header("accept", prop.getProperty("accept"))

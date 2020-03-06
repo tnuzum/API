@@ -316,7 +316,7 @@ public class GetPackagePricing extends base {
 	public void itemNotFound() { 
 		
 		String customerId = prop.getProperty("availableId");
-		int itemId = 218000;
+		int itemId = 99999;
 		int quantity = 1;
 
 				given()

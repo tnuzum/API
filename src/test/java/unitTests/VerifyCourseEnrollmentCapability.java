@@ -146,13 +146,13 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("EnrollmentStatus", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Invalid Course Id",description="PBI:150004", enabled = false)
+	@Test (testName="Invalid Course Id",description="PBI:150004", enabled = true)
 	public void invalidCourseId() {
  
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
 				String customerId = prop.getProperty("availableId");
-				String courseId = "NOTalwaysAvailCoId";
+				int courseId = 99999;
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 
 				given()

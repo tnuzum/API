@@ -327,12 +327,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 						.body("Message", equalTo("Full"));
 		}
 	
-	@Test (testName="Class Not Found",description="PBI:147808", enabled = false)
+	@Test (testName="Class Not Found",description="PBI:147808", enabled = true)
 	public void classNotFound() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("NOTalwaysAvailClId");
+				int classId = 99999;
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String enrollCustomerAsStandby = "true";
 

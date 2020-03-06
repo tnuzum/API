@@ -178,7 +178,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("MemberSchedulingConflict"));
 	}
 	
-	@Test (testName="Invalid Class Id",description="PBI:150003", enabled = false)
+	@Test (testName="Invalid Class Id",description="PBI:150003", enabled = true)
 	public void invalidClassId() {
  
 		String companyId = prop.getProperty("X-CompanyId");
@@ -189,7 +189,7 @@ public class VerifyClassEnrollmentCapability extends base{
 		String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -197,7 +197,7 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("ItemNotFound"));

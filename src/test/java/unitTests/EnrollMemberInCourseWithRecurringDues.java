@@ -346,12 +346,12 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:154260", enabled = false)
+	@Test (testName="Course Not Found",description="PBI:154260", enabled = true)
 	public void courseNotFound() { 
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseId = prop.getProperty("NOTalwaysAvailCoId");
+				int courseId = 99999;
 				String enrollCustomerAsStandBy = "false";
 
 				given()
