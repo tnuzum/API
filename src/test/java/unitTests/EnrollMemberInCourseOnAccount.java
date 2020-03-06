@@ -395,12 +395,12 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:143589", enabled = false)
+	@Test (testName="Course Not Found",description="PBI:143589", enabled = true)
 	public void courseNotFound() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseId = prop.getProperty("NOTalwaysAvailCoId");
+				int courseId = 99999;
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String enrollCustomerAsStandby = "true";
 

@@ -514,12 +514,12 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Course Not Found",description="PBI:146580", enabled = false)
+	@Test (testName="Course Not Found",description="PBI:146580", enabled = true)
 	public void courseNotFound() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String courseId = prop.getProperty("NOTalwaysAvailCoId");
+				int courseId = 99999;
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
 				String nameOnCard = prop.getProperty("CC1NameOnCard");

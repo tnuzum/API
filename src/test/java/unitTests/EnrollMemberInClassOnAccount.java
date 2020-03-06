@@ -404,12 +404,12 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Class Not Found",description="PBI:143588", enabled = false)
+	@Test (testName="Class Not Found",description="PBI:143588", enabled = true)
 	public void classNotFound() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("NOTalwaysAvailClId");
+				int classId = 99999;
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String enrollCustomerAsStandby = "true";
@@ -424,10 +424,8 @@ public class EnrollMemberInClassOnAccount extends base {
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
-//						.assertThat().statusCode(404)
-//						.body("Message", equalTo("ItemNotFound"));
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The value 'null' is not valid for ItemId."));
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
 	}
 	
 	@Test (testName="Occurrence Not Found",description="PBI:143588")

@@ -323,13 +323,13 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 						.body("Message", equalTo("Full"));
 		}
 	
-	@Test (testName="Course Not Found",description="PBI:147820", enabled = false)
+	@Test (testName="Course Not Found",description="PBI:147820", enabled = true)
 	public void courseNotFound() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
-				String courseId = prop.getProperty("NOTalwaysAvailCoId");
+				int courseId = 99999;
 				String enrollCustomerAsStandby = "true";
 
 			given()
