@@ -436,7 +436,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.then()
 						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = false)

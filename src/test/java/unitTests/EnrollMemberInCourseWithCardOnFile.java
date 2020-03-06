@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class EnrollMemberInCourseWithCardOnFile extends base {
 	
+	public static Boolean onlineEnrollment = true;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
@@ -52,7 +54,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 								"  \"CourseId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"AccountId\": \""+accountId+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -109,7 +112,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -157,7 +161,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -204,7 +209,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -256,7 +262,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -288,7 +295,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -320,7 +328,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -351,7 +360,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -383,7 +393,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -413,7 +424,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -444,7 +456,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -475,7 +488,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
@@ -484,7 +498,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Scheduling Conflict",description="PBI:146578", enabled = false)
+	@Test (testName="Scheduling Conflict",description="PBI:146578", enabled = true)
 	public void schedulingConflict() {
 		
 				String c = prop.getProperty("standbyCId");
@@ -495,6 +509,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
+				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -506,13 +521,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
-						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - SchedulingConflict"));
+						.log().all()
+						.assertThat()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Message", equalTo("EnrollmentNotAllowed - MemberSchedulingConflict"));
 	}
 	
 	@Test (testName="No FOP - Account Problem",description="PBI:146578")
@@ -537,7 +555,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"  \"CourseId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()

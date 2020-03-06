@@ -28,7 +28,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Member Enrolled - Paid Course",description="PBI:154260", enabled = false)
+	@Test (testName="Member Enrolled - Paid Course",description="PBI:154260", enabled = true)
 	public void memberEnrolledPaidCourse() { 
 		
 			String c = prop.getProperty("availableId");
@@ -48,7 +48,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -282,13 +282,15 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 	@Test (testName="Course Not Available Online",description="PBI:154260", enabled = false)
 	public void courseNotAvailableOnline() { 
 		
+		Boolean onlineEnrollment = false;
+		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String courseId = prop.getProperty("noWebCoId");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -296,7 +298,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
 	} 

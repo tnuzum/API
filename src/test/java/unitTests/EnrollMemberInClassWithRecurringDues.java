@@ -28,7 +28,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 
-	@Test (testName="Member Enrolled - Paid Class",description="PBI:154259", enabled = false)
+	@Test (testName="Member Enrolled - Paid Class",description="PBI:154259", enabled = true)
 	public void memberEnrolledPaidClass() { 
 		
 				String c = prop.getProperty("availableId");
@@ -67,7 +67,6 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						int invoiceId = js.getInt("Result.InvoiceId");
 						
 						if (res.statusCode() == 200) {
-//							ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
 							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
 							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 						}	
@@ -286,8 +285,8 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.body("Message", equalTo("Full"));
 	} 
 	
-	@Test (testName="Class Not Available Online",description="PBI:154259", enabled = false)
-	public void classNotAvailableOnline() { 
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:154259", enabled = true)
+	public void onlineSalesNotAllowedMember() { 
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -306,7 +305,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	} 
 	
 	@Test (testName="Class Ended",description="PBI:154259")
@@ -400,17 +399,16 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	} 
 	
-	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259", enabled = false)
+	@Test (testName="Recurring Dues Not Accepted",description="PBI:154259", enabled = true)
 	public void recurringDuesNotAccepted() { 
 		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
+				String customerId = prop.getProperty("availableId");
 				String classId = prop.getProperty("noPunchClId");
 				String classOccurrence = prop.getProperty("noPunchClOccurrence");
 				String enrollCustomerAsStandBy = "false";
 
 				given()
-
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))

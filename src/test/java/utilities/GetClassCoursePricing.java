@@ -26,7 +26,7 @@ public class GetClassCoursePricing extends base {
 	public void itemFound_SingleTax() { 
 		
 		int customerId = 248;
-		int itemId = 256;
+		int itemId = 229;
 
 		given()
 //						.log().all()

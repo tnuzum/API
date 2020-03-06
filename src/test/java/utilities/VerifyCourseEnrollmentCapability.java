@@ -22,19 +22,24 @@ public class VerifyCourseEnrollmentCapability extends base {
 
 		int companyId = 236;
 		int clubId = 1;
-		int customerId = 248;
-		String courseId = "noPunchCo";
-		String displayedGrandTotal = "150.00";
+//		int customerId = 248;
+//		String courseId = "noPunchCo";
+//		String displayedGrandTotal = "150.00";
+		Boolean onlineEnrollment = true;
+		String c = prop.getProperty("availableId");
+		int customerId = Integer.parseInt(c);
+		String courseId = prop.getProperty("noWebCoId");
+		String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 
 		given()	
-//			.log().all()
+			.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 			.when()
 				.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/" + companyId + "/" + clubId + "/"
-						+ customerId + "/" + courseId + "/" + displayedGrandTotal)
+						+ customerId + "/" + courseId + "/" + displayedGrandTotal+ "/" + onlineEnrollment)
 				.then().log().body();
 	}
 }

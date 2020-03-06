@@ -22,14 +22,19 @@ public class VerifyClassEnrollmentCapability extends base{
 
 		int companyId = 236;
 		int clubId = 1;
-		String customerId = "247"; // always available
-		String classId = "284"; // StandByOnly-Class
-		String classOccurrence = "2025-12-25T08:00:00";
-		String displayedGrandTotal = "10.00";
-		Boolean onlineEnrollment = false;
+//		String customerId = "247"; // always available
+//		String classId = "284"; // StandByOnly-Class
+//		String classOccurrence = "2025-12-25T08:00:00";
+//		String displayedGrandTotal = "10.00";
+		Boolean onlineEnrollment = true;
+		
+		String customerId = prop.getProperty("availableId");
+		String classId = prop.getProperty("noWebClId");
+		String displayedGrandTotal = prop.getProperty("noWebClPrice");
+		String classOccurrence = prop.getProperty("noWebClOccurrence");
 
 				given()
-				.log().all()
+//				.log().all()
 					.header("accept", prop.getProperty("accept"))
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))

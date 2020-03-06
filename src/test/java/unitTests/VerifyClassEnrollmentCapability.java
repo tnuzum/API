@@ -152,7 +152,7 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("EnrollmentStatus", equalTo("ProductPriceChanged"));
 	}
 	
-	@Test (testName="Scheduling Conflict",description="PBI:150003", enabled = false)
+	@Test (testName="Scheduling Conflict",description="PBI:150003", enabled = true)
 	public void schedulingConflict() {
  
 				String companyId = prop.getProperty("X-CompanyId");
@@ -171,11 +171,11 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+//						.log().all()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-						.body("Details", equalTo("SchedulingConflict"));
+						.body("Details", equalTo("MemberSchedulingConflict"));
 	}
 	
 	@Test (testName="Invalid Class Id",description="PBI:150003", enabled = false)
