@@ -152,7 +152,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -219,7 +220,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -285,7 +287,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -357,7 +360,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -409,7 +413,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -461,7 +466,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -512,7 +518,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -521,8 +528,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Class Not Available Online",description="PBI:146579", enabled = false)
-	public void classNotAvailableOnline() {
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:146579", enabled = false)
+	public void onlineSalesNotAllowedMember() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -563,13 +570,14 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Class Ended",description="PBI:146579")
@@ -614,7 +622,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -664,7 +673,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -715,7 +725,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -766,7 +777,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -817,7 +829,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -868,7 +881,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -919,7 +933,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -971,7 +986,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1023,7 +1039,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1075,7 +1092,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1127,7 +1145,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1181,7 +1200,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1233,7 +1253,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
@@ -1287,7 +1308,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"  \"City\": \""+city+"\"," + 
 								"  \"StateProvince\": \""+state+"\"," + 
 								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
+								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
 								"}")
 						
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
