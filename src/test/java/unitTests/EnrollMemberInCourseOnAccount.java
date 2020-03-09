@@ -442,25 +442,16 @@ public class EnrollMemberInCourseOnAccount extends base {
 	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = true)
 	public void courseNotAvailableOnlineEmployee() {
 		
-//				String c = prop.getProperty("availableId");
-//				int customerId = Integer.parseInt(c);
-//				String courseId = prop.getProperty("noWebCoId");
-//				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
 				String enrollCustomerAsStandby = "true";
-//				Boolean onlineEnrollment = false;
-				
-				int companyId = 236;
-				int clubId = 1;
-//				int customerId = 248;
-//				String courseId = "noPunchCo";
-//				String displayedGrandTotal = "150.00";
+				String companyId = prop.getProperty("X-CompanyId");
 				Boolean onlineEnrollment = false;
-				int customerId = 229;
 				String courseId = prop.getProperty("noWebCoId");
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 
-				given()
-				.log().all()
+				Response res = given()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -468,10 +459,18 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-						.log().body()
-//						.assertThat().statusCode(400)
-//						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentAllowed"))
-						;
+//						.log().body()
+						.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+						int enrollmentId = js.getInt("Result.EnrollmentId");
+						int invoiceId = js.getInt("Result.InvoiceId");	
+						
+						if (res.statusCode() == 200) {
+							ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
+						}
+
 	}
 	
 	@Test (testName="Enrollment Not Open",description="PBI:143589", enabled = false)
@@ -515,7 +514,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
+					.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:143589")
@@ -581,7 +580,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-					.body("Message", equalTo("Account Problem"));
+					.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Credit Limited Exceeded",description="PBI:143589")

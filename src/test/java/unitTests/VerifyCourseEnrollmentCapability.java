@@ -296,6 +296,90 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("Details", equalTo("MemberFrozen"));
 	}
 	
+	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150004", enabled = true)		 
+	
+	public void enrollmentNotAllowedCollectionsMember() {
+		
+		// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
+		
+				Boolean onlineEnrollment = true;
+
+				String companyId  = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("collectionsId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
+	}
+	
+	@Test (testName="Prospect - Employee Context",description="PBI:150004", enabled = true)
+
+	public void prospectEmployeeContext() {
+		
+				Boolean onlineEnrollment = false;
+
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("prospectId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
+	}
+	
+	@Test (testName="Prospect - Member Context",description="PBI:150004", enabled = true)
+
+	public void prospectMemberContext() {
+		
+				Boolean onlineEnrollment = true;
+
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("prospectId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"));
+	}
+	
 	@Test (testName="Course Enrollment Closed",description="PBI:150004", enabled = true)
 	public void courseEnrollmentClosed() {
  
@@ -366,5 +450,57 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
 						.body("Details", equalTo("EnrollmentNotOpen"));
+	}
+	
+	@Test (testName="Credit Limited Exceeded - Member Context",description="PBI:150004", enabled = true)
+	
+	public void creditLimitedExceededMemberContext() {
+		// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
+		
+		Boolean onlineEnrollment = true;
+ 
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("creditLimitId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
+	}
+	
+	@Test (testName="Credit Limited Exceeded - Employee Context",description="PBI:150004", enabled = true)
+	
+	public void creditLimitedExceededEmployeeContext() {
+ 
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("creditLimitId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+				given()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
 	}
 }

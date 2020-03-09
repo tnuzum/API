@@ -34,8 +34,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	public void memberEnrolled_PaidClass() {
 		
 				String c = prop.getProperty("availableId");
-//				int customerId = Integer.parseInt(c);
-				int customerId = 224;
+				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = "2020-03-11T00:00:00";
@@ -578,8 +577,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	public void schedulingConflict() {
 		
 				String c = prop.getProperty("standbyAId");
-//				int customerId = Integer.parseInt(c);
-				int customerId = 226;
+				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
