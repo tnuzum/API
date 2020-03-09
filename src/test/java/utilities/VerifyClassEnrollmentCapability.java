@@ -22,16 +22,11 @@ public class VerifyClassEnrollmentCapability extends base{
 
 		int companyId = 236;
 		int clubId = 1;
-//		String customerId = "247"; // always available
-//		String classId = "284"; // StandByOnly-Class
-//		String classOccurrence = "2025-12-25T08:00:00";
-//		String displayedGrandTotal = "10.00";
+		String customerId = "230";
+		String classId = "224";
+		String classOccurrence = "2020-03-11T00:00:00";
+		String displayedGrandTotal = "10.00";
 		Boolean onlineEnrollment = true;
-		
-		String customerId = prop.getProperty("availableId");
-		String classId = prop.getProperty("noWebClId");
-		String displayedGrandTotal = prop.getProperty("noWebClPrice");
-		String classOccurrence = prop.getProperty("noWebClOccurrence");
 
 				given()
 //				.log().all()

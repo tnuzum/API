@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_VerifyPackagePurchaseCapability extends base{
+public class VerifyPackagePurchaseCapability extends base{
 	
 	/*
 	 * This call is not shown in Swagger
@@ -42,13 +42,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:159118")
@@ -67,13 +67,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
 	@Test (testName="Tier Pricing Package - Taxed Item",description="PBI:159118")
@@ -91,13 +91,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));				
 	}
 	
 	@Test (testName="Free Package",description="PBI:159118")
@@ -115,13 +115,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:159118")
@@ -139,13 +139,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Quantity Zero Not Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(false))
+						.body("PackageStatus", equalTo("NonZeroQuantityRequired"));				
 	}
 	
 	@Test (testName="Member Not Found",description="PBI:159118")
@@ -163,13 +163,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Customer Not Found"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(false))
+						.body("PackageStatus", equalTo("CustomerNotFound"));				
 	}
 	
 	@Test (testName="Terminated Member",description="PBI:159118")
@@ -187,13 +187,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
 	@Test (testName="Collections Member",description="PBI:159118")
@@ -211,13 +211,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
 	@Test (testName="Frozen Member",description="PBI:159118")
@@ -235,13 +235,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
 	@Test (testName="Prospect",description="PBI:159118")
@@ -259,13 +259,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:159118")
@@ -283,13 +283,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("TBD"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:159118")
@@ -307,13 +307,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Package Purchase Allowed"))
-						.body("Result.AllowedToEnroll", equalTo(true));			
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
 	@Test (testName="Item Not Found",description="PBI:159118")
@@ -331,13 +331,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Item Not Found"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(false))
+						.body("PackageStatus", equalTo("ItemNotFound"));		
 	}
 	
 	@Test (testName="Item Not Package",description="PBI:159118")
@@ -355,13 +355,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Item Not Found"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(false))
+						.body("PackageStatus", equalTo("ItemNotFound"));			
 	}
 	
 	@Test (testName="Product Price Changed",description="PBI:159118")
@@ -379,13 +379,13 @@ public class _Draft_VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/purchasecapability/verifypackagepurchasecapability/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Product Price Changed"))
-						.body("Result.AllowedToEnroll", equalTo(false));			
+						.body("AllowedToPurchase", equalTo(false))
+						.body("PackageStatus", equalTo("ProductPriceChanged"));			
 	}
 	
 	

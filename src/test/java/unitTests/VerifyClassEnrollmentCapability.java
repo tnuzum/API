@@ -331,18 +331,21 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("MemberTerminated"));
 	}
 
-	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150003", enabled = false)
-			 
+	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150003", enabled = false)		 
+	
 	public void enrollmentNotAllowedCollectionsMember() {
+		
+				Boolean onlineEnrollment = true;
 
 				String companyId  = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("collectionsId");
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 
 				given()
+				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -356,8 +359,6 @@ public class VerifyClassEnrollmentCapability extends base{
 	}
 
 	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:150003", enabled = true)
-	
-	// disabled while research why AllowedToEnroll = true now for terminated member
 	
 	public void enrollmentNotAllowedFrozenMember() {
  
@@ -386,6 +387,8 @@ public class VerifyClassEnrollmentCapability extends base{
 	@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:150003", enabled = false)
 
 	public void enrollmentNotAllowedProspectMember() {
+		
+				Boolean onlineEnrollment = false;
 
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
@@ -402,7 +405,7 @@ public class VerifyClassEnrollmentCapability extends base{
 					.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("Message", equalTo("AccountProblem"));
 	}

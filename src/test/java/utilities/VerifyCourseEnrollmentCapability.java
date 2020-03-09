@@ -25,7 +25,7 @@ public class VerifyCourseEnrollmentCapability extends base {
 //		int customerId = 248;
 //		String courseId = "noPunchCo";
 //		String displayedGrandTotal = "150.00";
-		Boolean onlineEnrollment = true;
+		Boolean onlineEnrollment = false;
 		String c = prop.getProperty("availableId");
 		int customerId = Integer.parseInt(c);
 		String courseId = prop.getProperty("noWebCoId");
