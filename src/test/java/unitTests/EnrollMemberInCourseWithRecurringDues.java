@@ -279,10 +279,8 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 						.body("Message", equalTo("Full"));
 	} 
 	
-	@Test (testName="Course Not Available Online",description="PBI:154260", enabled = false)
+	@Test (testName="Course Not Available Online",description="PBI:154260", enabled = true)
 	public void courseNotAvailableOnline() { 
-		
-		Boolean onlineEnrollment = false;
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -290,7 +288,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 				String enrollCustomerAsStandBy = "false";
 
 				given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -298,9 +296,9 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincoursewithrecurringdues/"+customerId+"/"+courseId+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	} 
 	
 	@Test (testName="Course Ended",description="PBI:154260")

@@ -80,14 +80,17 @@ public class GetCourseDetailsByMember extends base{
 						Assert.assertEquals(js.getString("Result.ItemId"), courseId);				
 	}
 	
-	@Test (testName="Course Found - Online Sale Not Allowed",description="PBI:143544", enabled = false)
-	public void courseFoundOnlineSaleNotAllowed() {
+	@Test (testName="Course Found - Online Sale Not Allowed - Member",description="PBI:143544", enabled = false)
+	
+	// this now returns 200 when before 3/1 it didn't; unexpected change
+	
+	public void courseFoundOnlineSaleNotAllowedMember() {
 
 				String customerId = prop.getProperty("availableId");
-				String courseId = prop.getProperty("noWebClId");
+				String courseId = prop.getProperty("noWebCoId");
 
 				given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -95,8 +98,30 @@ public class GetCourseDetailsByMember extends base{
 					.when()
 						.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
 						.then()
-						.log().body()
-						.assertThat().statusCode(200)
+//						.log().body()
+						.statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Course not found"));
+	}
+	
+	@Test (testName="Course Found - Online Sale Not Allowed - Employee",description="PBI:143544", enabled = true)
+	public void courseFoundOnlineSaleNotAllowedEmployee() {
+
+				String customerId = prop.getProperty("availableId");
+				String courseId = prop.getProperty("noWebCoId");
+				Boolean onlineEnrollment = false;
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	

@@ -65,6 +65,7 @@
 			<class name="unitTests.SecurityPipeline" />
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
 			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
+			<class name="unitTests.VerifyPackagePurchaseCapability" />
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>
 				<exclude name="METHODNAME"/>

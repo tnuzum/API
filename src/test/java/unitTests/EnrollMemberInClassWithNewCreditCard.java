@@ -528,7 +528,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:146579", enabled = false)
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:146579", enabled = true)
 	public void onlineSalesNotAllowedMember() {
 		
 				String c = prop.getProperty("availableId");

@@ -385,7 +385,7 @@ public class GetPackagePricing extends base {
 				int quantity = 1;
 
 		given()
-//						.log().all()
+						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))

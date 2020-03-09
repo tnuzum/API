@@ -192,7 +192,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.body("EnrollmentStatus", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:150004", enabled = false)
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:150004", enabled = true)
 	public void onlineSalesNotAllowedMember() {
 		
 		// 500 error
@@ -205,7 +205,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				Boolean onlineEnrollment = true;
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -213,12 +213,15 @@ public class VerifyCourseEnrollmentCapability extends base{
 					.when()
 					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-						.body("Details", equalTo("NotAllowed"));
+						.body("Details", equalTo("NotAllowed"))
+//						.body("EnrollmentStatus", equalTo("ItemNotFound"))
+//						.body("Details", equalTo(""))
+						;
 	}
 	
 	@Test (testName="Online Sales Not Allowed - Employee Context",description="PBI:150004", enabled = true)

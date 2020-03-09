@@ -417,7 +417,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Course Not Available Online - Member",description="PBI:143589", enabled = false)
+	@Test (testName="Course Not Available Online - Member",description="PBI:143589", enabled = true)
 	public void courseNotAvailableOnlineMember() {
 		
 				String c = prop.getProperty("availableId");
@@ -434,20 +434,30 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
-	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = false)
+	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = true)
 	public void courseNotAvailableOnlineEmployee() {
 		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
+//				String c = prop.getProperty("availableId");
+//				int customerId = Integer.parseInt(c);
+//				String courseId = prop.getProperty("noWebCoId");
+//				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
+				String enrollCustomerAsStandby = "true";
+//				Boolean onlineEnrollment = false;
+				
+				int companyId = 236;
+				int clubId = 1;
+//				int customerId = 248;
+//				String courseId = "noPunchCo";
+//				String displayedGrandTotal = "150.00";
+				Boolean onlineEnrollment = false;
+				int customerId = 229;
 				String courseId = prop.getProperty("noWebCoId");
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
-				String enrollCustomerAsStandby = "true";
-				Boolean onlineEnrollment = false;
 
 				given()
 				.log().all()
@@ -460,7 +470,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.then()
 						.log().body()
 //						.assertThat().statusCode(400)
-//						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmenttAllowed"))
+//						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentAllowed"))
 						;
 	}
 	

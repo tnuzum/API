@@ -34,10 +34,11 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	public void memberEnrolled_PaidClass() {
 		
 				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
+//				int customerId = Integer.parseInt(c);
+				int customerId = 224;
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String classOccurrence = "2020-03-11T00:00:00";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -97,9 +98,9 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
-				String classOccurrence = prop.getProperty("freeClOccurrence");
+				String classOccurrence = "2020-03-11T00:00:00";
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
-				int accountId					= 1;
+				int accountId = 1;
 				String enrollCustomerAsStandby 	= "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -370,7 +371,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Class Not Available Online",description="PBI:146577", enabled = false)
+	@Test (testName="Class Not Available Online",description="PBI:146577", enabled = true)
 	public void classNotAvailableOnline() {
 		
 				String c = prop.getProperty("availableId");
