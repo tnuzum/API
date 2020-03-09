@@ -540,7 +540,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:143588")
@@ -609,7 +609,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("Account Problem"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Class Ended",description="PBI:143588")
@@ -659,7 +659,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasClosed"));
 	}
 	
-	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = false)
+	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = true)
 	public void creditLimitedExceeded() {
 		
 				String c = prop.getProperty("creditLimitId");
