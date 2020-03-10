@@ -396,4 +396,109 @@ public class GetPackagePricing extends base {
 						.log().body();
 	}
 	
+	@Test (testName="Club Pricing - Club 1",description="PBI:155660", enabled = true)
+	public void clubPricingClub1() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidSVClubPriceId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res = given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+		
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Club Pricing - Club 2",description="PBI:155660", enabled = true)
+	public void clubPricingClub2() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidSVClubPriceId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res = given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club2Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+		
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 11.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 11.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 11.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Club Pricing - Club 3",description="PBI:155660", enabled = true)
+	public void clubPricingClub3() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidSVClubPriceId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res = given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club3Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+		
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 12.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 12.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 12.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
 }

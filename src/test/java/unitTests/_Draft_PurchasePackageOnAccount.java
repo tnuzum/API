@@ -8,12 +8,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class VerifyPackagePurchaseCapability extends base{
-	
-	/*
-	 * This call is not shown in Swagger
-	 * because it's hidden from integrators
-	 */
+public class _Draft_PurchasePackageOnAccount extends base{
 	
 	public static String companyId;
 	public static String clubId;
@@ -27,7 +22,7 @@ public class VerifyPackagePurchaseCapability extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Paid Training",description="PBI:159118")
+	@Test (testName="Paid Training",description="PBI:143539")
 	public void paidTraining() {
  
 				String customerId = prop.getProperty("availableId");
@@ -42,16 +37,17 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));
+//						.body("AllowedToPurchase", equalTo(true))
+//						.body("PackageStatus", equalTo("PurchaseAllowed"))
+						;
 	}
 	
-	@Test (testName="Paid ServiceV",description="PBI:159118")
+	@Test (testName="Paid ServiceV",description="PBI:143539")
 	public void paidServiceV() {
  
 				String customerId = prop.getProperty("availableId");
@@ -66,7 +62,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -75,7 +71,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
-	@Test (testName="Free Training",description="PBI:159118")
+	@Test (testName="Free Training",description="PBI:143539")
 	public void freeTraining() {
  
 				String customerId = prop.getProperty("availableId");
@@ -90,7 +86,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -99,7 +95,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
-	@Test (testName="Free Service",description="PBI:159118")
+	@Test (testName="Free Service",description="PBI:143539")
 	public void freeService() {
  
 				String customerId = prop.getProperty("availableId");
@@ -114,7 +110,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -123,7 +119,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
-	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:159118")
+	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143539")
 	public void tierPricingPackage_Tier1() {
  
 				String customerId = prop.getProperty("availableId");
@@ -138,7 +134,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -147,7 +143,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
-	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:159118")
+	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143539")
 	public void tierPricingPackage_Tier2() {
  
 				String customerId = prop.getProperty("availableId");
@@ -163,7 +159,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -172,85 +168,8 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
-	@Test (testName="Club Pricing - Club 1",description="PBI:159118")
-	public void clubPricingClub1() {
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("paidSVClubPriceId");
-				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub1Price");
-				
-				
-				given()
-//						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
-	}
-	
-	@Test (testName="Club Pricing - Club 2",description="PBI:159118")
-	public void clubPricingClub2() {
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("paidSVClubPriceId");
-				int quantity = 1;
-				int clubId = 2;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub2Price");
-				
-				
-				given()
-//						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club2Id"))
-					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
-	}
-	
-	@Test (testName="Club Pricing - Club 3",description="PBI:159118")
-	public void clubPricingClub3() {
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("paidSVClubPriceId");
-				int quantity = 1;
-				int clubId = 3;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub3Price");
-				
-				
-				given()
-//						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club3Id"))
-					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
-	}
-	
-	@Test (testName="Taxed Item",description="PBI:159118")
-	public void taxedItem() {
+	@Test (testName="Tier Pricing Package - Taxed Item",description="PBI:143539")
+	public void tierPricingPackage_TaxedItem() {
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
@@ -264,7 +183,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -272,8 +191,32 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("AllowedToPurchase", equalTo(true))
 						.body("PackageStatus", equalTo("PurchaseAllowed"));				
 	}
-
-	@Test (testName="Quantity Zero",description="PBI:159118")
+	
+	@Test (testName="Free Package",description="PBI:143539")
+	public void freePackage() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("freeTId");
+				String quantity = "1";
+				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToPurchase", equalTo(true))
+						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+	}
+	
+	@Test (testName="Quantity Zero",description="PBI:143539")
 	public void quantityZero() {
  
 				String customerId = prop.getProperty("availableId");
@@ -288,7 +231,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -297,7 +240,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("NonZeroQuantityRequired"));				
 	}
 	
-	@Test (testName="Member Not Found",description="PBI:159118")
+	@Test (testName="Member Not Found",description="PBI:143539")
 	public void memberNotFound() {
  
 				String customerId = "99999";
@@ -312,7 +255,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -321,7 +264,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("CustomerNotFound"));				
 	}
 	
-	@Test (testName="Terminated Member",description="PBI:159118")
+	@Test (testName="Terminated Member",description="PBI:143539")
 	public void terminatedMember() {
  
 				String customerId = prop.getProperty("terminatedId");
@@ -336,7 +279,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -345,7 +288,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
-	@Test (testName="Collections Member",description="PBI:159118")
+	@Test (testName="Collections Member",description="PBI:143539")
 	public void collectionsMember() {
  
 				String customerId = prop.getProperty("collectionsId");
@@ -360,7 +303,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -369,7 +312,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
-	@Test (testName="Frozen Member",description="PBI:159118")
+	@Test (testName="Frozen Member",description="PBI:143539")
 	public void frozenMember() {
  
 				String customerId = prop.getProperty("frozenId");
@@ -384,7 +327,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -393,7 +336,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
-	@Test (testName="Prospect",description="PBI:159118")
+	@Test (testName="Prospect",description="PBI:143539")
 	public void prospect() {
  
 				String customerId = prop.getProperty("prospectId");
@@ -408,7 +351,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -417,7 +360,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:159118")
+	@Test (testName="Credit Limit Exceeded",description="PBI:143539")
 	public void creditLimitExceeded() {
  
 				String customerId = prop.getProperty("creditLimitId");
@@ -432,7 +375,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -441,7 +384,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));			
 	}
 	
-	@Test (testName="Credit Limit Not Exceeded",description="PBI:159118")
+	@Test (testName="Credit Limit Not Exceeded",description="PBI:143539")
 	public void creditLimitNotExceeded() {
  
 				String customerId = prop.getProperty("creditLimitId");
@@ -456,7 +399,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -465,7 +408,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("PurchaseAllowed"));		
 	}
 	
-	@Test (testName="Item Not Found",description="PBI:159118")
+	@Test (testName="Item Not Found",description="PBI:143539")
 	public void itemNotFound() {
  
 				String customerId = prop.getProperty("availableId");
@@ -480,7 +423,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -489,7 +432,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("ItemNotFound"));		
 	}
 	
-	@Test (testName="Item Not Package",description="PBI:159118")
+	@Test (testName="Item Not Package",description="PBI:143539")
 	public void itemNotPackage() {
  
 				String customerId = prop.getProperty("availableId");
@@ -504,7 +447,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -513,7 +456,7 @@ public class VerifyPackagePurchaseCapability extends base{
 						.body("PackageStatus", equalTo("ItemNotFound"));			
 	}
 	
-	@Test (testName="Product Price Changed",description="PBI:159118")
+	@Test (testName="Product Price Changed",description="PBI:143539")
 	public void productPriceChanged() {
  
 				String customerId = prop.getProperty("availableId");
@@ -528,7 +471,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)

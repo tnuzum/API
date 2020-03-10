@@ -330,7 +330,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-//						.log().body()
+						.log().all()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyEnrolled"));
 	}
