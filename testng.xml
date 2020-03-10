@@ -23,8 +23,8 @@
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
-			<class name="unitTests.GetAllAvailableClassesByMember" />
-			<class name="unitTests.GetAllAvailableCoursesByMember" />
+			<!-- class name="unitTests.GetAllAvailableClassesByMember" /-->
+			<!-- class name="unitTests.GetAllAvailableCoursesByMember" /-->
 			<class name="unitTests.GetAllPackagesForPurchaseByClub" />
 			<class name="unitTests.GetAppointmentDetails" />
 			<class name="unitTests.GetAppointmentProductByCategory" />
@@ -33,6 +33,8 @@
 			<class name="unitTests.GetAppointmentsByBook" />
 			<class name="unitTests.GetAppointmentsByMember" />
 			<class name="unitTests.GetAvailableAppointments" />
+			<class name="unitTests.GetAvailableClassesByMember" />
+			<class name="unitTests.GetAvailableCoursesByMember" />
 			<class name="unitTests.GetAvailableResourceTypesByClub" />
 			<class name="unitTests.GetBookAvailabilityCalendar" />
 			<class name="unitTests.GetCardsOnFileByMember" />
@@ -50,8 +52,8 @@
 			<class name="unitTests.GetMember" />
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
-			<class name="unitTests.GetOnlineAvailableClassesByMember" />
-			<class name="unitTests.GetOnlineAvailableCoursesByMember" />
+			<!-- class name="unitTests.GetOnlineAvailableClassesByMember" /-->
+			<!-- class name="unitTests.GetOnlineAvailableCoursesByMember" /-->
 			<class name="unitTests.GetOnlinePackagesForPurchaseByClub" />
 			<class name="unitTests.GetPackageDetails" />
 			<class name="unitTests.GetPackagePricing" />

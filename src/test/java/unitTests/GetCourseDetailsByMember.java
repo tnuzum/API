@@ -25,8 +25,8 @@ public class GetCourseDetailsByMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Course Found",description="PBI:143545")
-	public void courseFound() {
+	@Test (testName="Online Sale Allowed",description="PBI:143545")
+	public void onlineSaleAllowed() {
  
 		String customerId = prop.getProperty("availableId");
 		String courseId = prop.getProperty("alwaysAvailCoId");
@@ -77,14 +77,16 @@ public class GetCourseDetailsByMember extends base{
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PunchesRequired"));
 						Assert.assertNotNull(js.getString("Result.StartDate"));
 						Assert.assertNotNull(js.getString("Result.StartTime"));
+						
+						Assert.assertEquals(js.getString("Result.EnrollmentEligibilities[0].CustomerId"), customerId);
 						Assert.assertEquals(js.getString("Result.ItemId"), courseId);				
 	}
 	
-	@Test (testName="Course Found - Online Sale Not Allowed - Member",description="PBI:143544", enabled = false)
+	@Test (testName="Online Sale Not Allowed - Member",description="PBI:143545", enabled = false)
 	
 	// this now returns 200 when before 3/1 it didn't; unexpected change
 	
-	public void courseFoundOnlineSaleNotAllowedMember() {
+	public void onlineSaleNotAllowed_MemberContext() {
 
 				String customerId = prop.getProperty("availableId");
 				String courseId = prop.getProperty("noWebCoId");
@@ -104,8 +106,8 @@ public class GetCourseDetailsByMember extends base{
 						.body("Message", equalTo("Course not found"));
 	}
 	
-	@Test (testName="Course Found - Online Sale Not Allowed - Employee",description="PBI:143544", enabled = true)
-	public void courseFoundOnlineSaleNotAllowedEmployee() {
+	@Test (testName="Online Sale Not Allowed - Employee",description="PBI:143545", enabled = true)
+	public void onlineSaleNotAllowed_EmployeeContext() {
 
 				String customerId = prop.getProperty("availableId");
 				String courseId = prop.getProperty("noWebCoId");
@@ -125,8 +127,8 @@ public class GetCourseDetailsByMember extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Course Not Found - Invalid CourseID",description="PBI:143545")
-	public void courseNotFound_InvalidCourseID() {
+	@Test (testName="Invalid CourseID",description="PBI:143545")
+	public void invalidCourseID() {
  
 		String customerId = prop.getProperty("standbyAId");
 		String courseId = "99999";
@@ -146,11 +148,12 @@ public class GetCourseDetailsByMember extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Course not found"));
 	}
+ 
+	@Test (testName="Class ID Used",description="PBI:143545", enabled = false)
 	
-	/*
-	 * disabled for research; now returning results for class details too
-	@Test (testName="Course Not Found - Class ID Used",description="PBI:143545")
-	public void courseNotFound_ClassIDUsed() {
+//	disabled for research; now returning results for class details too
+	
+	public void classIDUsed() {
  
 		String customerId = prop.getProperty("availableId");
 		String courseId = prop.getProperty("alwaysAvailClId");
@@ -168,10 +171,9 @@ public class GetCourseDetailsByMember extends base{
 						.assertThat().statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
-	*/
 	
-	@Test (testName="Course Not Found - Training ID Used",description="PBI:143545")
-	public void courseNotFound_TrainingIDUsed() {
+	@Test (testName="Training ID Used",description="PBI:143545")
+	public void trainingIDUsed() {
  
 		String customerId = prop.getProperty("availableId");
 		String courseId = prop.getProperty("freeTId");
