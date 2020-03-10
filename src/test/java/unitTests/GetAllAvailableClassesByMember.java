@@ -39,7 +39,7 @@ public class GetAllAvailableClassesByMember extends base {
 					.when()
 						.get("/api/v3/classcourse/getallavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.ItemBarcodeId", anyOf(hasItem(prop.getProperty("alwaysAvailClBarcodeId"))))// Item is set to Allow Online Sales

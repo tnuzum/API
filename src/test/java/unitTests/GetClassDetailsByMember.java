@@ -26,8 +26,8 @@ public class GetClassDetailsByMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Class Found - Online Sale Allowed",description="PBI:143544")
-	public void classFoundOnlineSaleAllowed() {
+	@Test (testName="Online Sale Allowed",description="PBI:143544")
+	public void onlineSaleAllowed() {
  
 				String customerId = prop.getProperty("availableId");
 				String classId = prop.getProperty("alwaysAvailClId");
@@ -76,15 +76,16 @@ public class GetClassDetailsByMember extends base{
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PackageId"));
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PackageName"));
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PunchesRequired"));
+						
+						Assert.assertEquals(js.getString("Result.EnrollmentEligibilities[0].CustomerId"), customerId);
 						Assert.assertEquals(js.getString("Result.ItemId"), classId);
 	}
 
-	@Test (testName="Class Found - Online Sale Not Allowed",description="PBI:143544")
+	@Test (testName="Online Sale Not Allowed - Member Context",description="PBI:143544", enabled = false)
 	
-	/*
-	 * disabled due to bug# 160419; if I change item to allow web sales the call is successful
-	 */ 
-	public void classFoundOnlineSaleNotAllowed() {
+	// this now returns 200 when before 3/1 it didn't; unexpected change
+	
+	public void onlineSaleNotAllowed_MemberContext() {
 
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -100,13 +101,38 @@ public class GetClassDetailsByMember extends base{
 					.when()
 						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
+						.log().body()
+						.statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Class not found"));
+	}
+	
+	@Test (testName="Online Sale Not Allowed - Employee Context",description="PBI:143544")
+	
+	public void onlineSaleNotAllowed_EmployeeContext() {
+
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classId = prop.getProperty("noWebClId");
+				String classOccurrence = prop.getProperty("noWebClOccurrence");
+				Boolean onlineEnrollment = false;
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
+						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Class Not Found - Invalid ClassID",description="PBI:143544")
-	public void classNotFound_InvalidClassID() {
+	@Test (testName="Invalid ClassID",description="PBI:143544")
+	public void invalidClassID() {
  
 				String customerId = prop.getProperty("availableId");
 				String classId = "99999";
@@ -127,10 +153,9 @@ public class GetClassDetailsByMember extends base{
 						.body("Message", equalTo("Class not found"));
 	}
 	
-	/*
-	 * disabled for research; now returning results for course details too
-	@Test (testName="Class Not Found - Course ID Used",description="PBI:143544")
-	public void classNotFound_CourseIDUsed() {
+	@Test (testName="Course ID Used",description="PBI:143544")
+	 
+	public void courseIDUsed() {
  
 			String customerId = prop.getProperty("availableId");
 			String classId = prop.getProperty("alwaysAvailCoId");
@@ -145,16 +170,15 @@ public class GetClassDetailsByMember extends base{
 					.when()
 					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.body("Message", equalTo("Class not found"))						
 						.statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS);
 	}
-		 */
 	
-	@Test (testName="Class Not Found - Training ID Used",description="PBI:143544")
-	public void classNotFound_TrainingIDUsed() {
+	@Test (testName="Training ID Used",description="PBI:143544")
+	public void trainingIDUsed() {
  
 			String customerId = prop.getProperty("availableId");
 			String classId = prop.getProperty("freeTId");

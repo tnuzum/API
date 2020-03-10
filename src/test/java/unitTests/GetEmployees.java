@@ -498,7 +498,7 @@ public class GetEmployees extends base {
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&HomePhone="+hPhone+"")
 						.then()
 	//					.log().body()
-						.assertThat().statusCode(412)
+						.assertThat().statusCode(400)
 						.body("Message", equalTo("Parsing HomePhone failed, please make sure you submit 10 digits"))
 						;
 	}

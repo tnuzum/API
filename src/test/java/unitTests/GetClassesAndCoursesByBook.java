@@ -100,7 +100,7 @@ public class GetClassesAndCoursesByBook extends base{
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(412)
+						.assertThat().statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}
@@ -144,7 +144,7 @@ public class GetClassesAndCoursesByBook extends base{
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(412)
+						.assertThat().statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}

@@ -603,7 +603,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-//						.log().all()
+						.log().all()
 						.assertThat()
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))

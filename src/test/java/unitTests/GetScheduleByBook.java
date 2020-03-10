@@ -172,7 +172,7 @@ public class GetScheduleByBook extends base{
 						.get("/api/v3/schedule/getschedulebybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(412)
+						.assertThat().statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Invalid date range"));
 	}
