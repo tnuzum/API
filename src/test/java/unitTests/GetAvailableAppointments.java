@@ -42,7 +42,6 @@ public class GetAvailableAppointments extends base {
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("ItemId"))
 						.body("Result", hasKey("ItemDescription"))
 						.body("Result", hasKey("Duration"))
 						.body("Result", hasKey("ClubId"))

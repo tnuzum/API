@@ -1,7 +1,6 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -29,9 +28,9 @@ public class GetAvailableClassesByMember extends base {
 	@Test (testName="Classes Found",description="PBI:144256")
 	public void classesFound() { 
 		
-				String customerId = prop.getProperty("availableId");
-				String startDateTime = ReusableDates.getCurrentDate();
-				String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+			String customerId = prop.getProperty("availableId");
+			String startDateTime = ReusableDates.getCurrentDate();
+			String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
 
 		Response res = given()
 //				.log().all()
@@ -42,64 +41,47 @@ public class GetAvailableClassesByMember extends base {
 			.when()
 				.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 				.then()
-				.log().all()
-				.assertThat().statusCode(200)
+//				.log().body()
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-//				.body("Result.StartDateTime", not(empty()))
-//				.body("Result.SubstituteInstructorName", not(empty()))
-//				.body("Result.SubstituteInstructorId", not(empty()))
-//				.body("Result.ItemDescription", not(empty()))
-//				.body("Result.ItemId", not(empty()))
-//				.body("Result.ItemId", not(empty()))
-//				.body("Result.LongDescription", not(empty()))
-//				.body("Result.DurationInMinutes", not(empty()))
-//				.body("Result.InstructorName", not(empty()))
-//				.body("Result.InstructorId", not(empty()))
-//				.body("Result.ClubName", not(empty()))
-//				.body("Result.ClubNumber", not(empty()))
-//				.body("Result.CategoryDescription", not(empty()))
-//				.body("Result.EnrollmentCount", not(empty()))
-//				.body("Result.StandbyCount", not(empty()))
-//				.body("Result.MemberEnrollmentStatus", not(empty()))
-//				.body("Result.ClassCapacity", not(empty()))
-//				.body("Result.StandbyEnrollmentOnly", not(empty()))
-//				.body("Result.Price", not(empty()))
-//				.body("Result.AllowEnrollment", not(empty()))
-//				.body("Result.AllowServiceDueEnrollment", not(empty()))
-//				.body("Result.PackageEnrollmentAvailable", not(empty()))
-//				.body("Result.ServiceVisitId", not(empty()))
-//				.body("Result.PunchesRequired", not(empty()))
-//				.body("Result.PunchesRemaining", not(empty()))
-//				.body("Result.PackageName", not(empty()))
 				.extract().response();
 		
 			JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertNotNull(js.getString("Result.StartDateTime"));
-				Assert.assertNotNull(js.getString("Result.SubstituteInstructorName"));
-				Assert.assertNotNull(js.getString("Result.SubstituteInstructorId"));
-				Assert.assertNotNull(js.getString("Result.ItemDescription"));
-				Assert.assertNotNull(js.getString("Result.ItemId"));
-				Assert.assertNotNull(js.getString("Result.LongDescription"));
-				Assert.assertNotNull(js.getString("Result.DurationInMinutes"));
-				Assert.assertNotNull(js.getString("Result.InstructorName"));
-				Assert.assertNotNull(js.getString("Result.InstructorId"));
-				Assert.assertNotNull(js.getString("Result.ClubName"));
-				Assert.assertNotNull(js.getString("Result.ClubNumber"));
-				Assert.assertNotNull(js.getString("Result.CategoryDescription"));
-				Assert.assertNotNull(js.getString("Result.EnrollmentCount"));
-				Assert.assertNotNull(js.getString("Result.StandbyCount"));
-				Assert.assertNotNull(js.getString("Result.MemberEnrollmentStatus"));
-				Assert.assertNotNull(js.getString("Result.ClassCapacity"));
-				Assert.assertNotNull(js.getString("Result.StandbyEnrollmentOnly"));
-				Assert.assertNotNull(js.getString("Result.Price"));
-				Assert.assertNotNull(js.getString("Result.AllowEnrollment"));
-				Assert.assertNotNull(js.getString("Result.AllowServiceDueEnrollment"));
-				Assert.assertNotNull(js.getString("Result.PackageEnrollmentAvailable"));
-				Assert.assertNotNull(js.getString("Result.ServiceVisitId"));
-				Assert.assertNotNull(js.getString("Result.PunchesRequired"));
-				Assert.assertNotNull(js.getString("Result.PunchesRemaining"));
-				Assert.assertNotNull(js.getString("Result.PackageName"));
+				Assert.assertTrue(js.getString("Result[0]").contains("StartDateTime"));
+				Assert.assertTrue(js.getString("Result[0]").contains("SubstituteInstructorBarcodeId"));
+				Assert.assertTrue(js.getString("Result[0]").contains("SubstituteInstructorName"));
+				Assert.assertTrue(js.getString("Result[0]").contains("LongDescription"));
+				Assert.assertTrue(js.getString("Result[0]").contains("PackageName"));
+				Assert.assertTrue(js.getString("Result[0]").contains("PunchesRequired"));
+				Assert.assertTrue(js.getString("Result[0]").contains("ServiceVisitId"));
+				
+				Assert.assertNotNull(js.getString("Result[0].StartDateTime"));
+				Assert.assertNotNull(js.getString("Result[0].AllowEnrollment"));
+				Assert.assertNotNull(js.getString("Result[0].AllowServiceDueEnrollment"));
+				Assert.assertNotNull(js.getString("Result[0].CanBePaidByPackageInCart"));
+				Assert.assertNotNull(js.getString("Result[0].CancellationFee"));
+				Assert.assertNotNull(js.getString("Result[0].CategoryDescription"));
+				Assert.assertNotNull(js.getString("Result[0].ChargeCancellationFee"));
+				Assert.assertNotNull(js.getString("Result[0].ClassCapacity"));
+				Assert.assertNotNull(js.getString("Result[0].ClubName"));
+				Assert.assertNotNull(js.getString("Result[0].ClubNumber"));
+				Assert.assertNotNull(js.getString("Result[0].DurationInMinutes"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentCount"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentPaymentType"));
+				Assert.assertNotNull(js.getString("Result[0].InstructorBarcodeId"));
+				Assert.assertNotNull(js.getString("Result[0].InstructorName"));
+				Assert.assertNotNull(js.getString("Result[0].ItemBarcodeId"));
+				Assert.assertNotNull(js.getString("Result[0].ItemId"));
+				Assert.assertNotNull(js.getString("Result[0].MemberEnrollmentStatus"));
+				Assert.assertNotNull(js.getString("Result[0].PackageEnrollmentAvailable"));
+				Assert.assertNotNull(js.getString("Result[0].Price"));
+				Assert.assertNotNull(js.getString("Result[0].PunchesRemaining"));
+				Assert.assertNotNull(js.getString("Result[0].RefundableAmount"));
+				Assert.assertNotNull(js.getString("Result[0].RefundablePunchAmount"));
+				Assert.assertNotNull(js.getString("Result[0].StandbyCount"));
+				Assert.assertNotNull(js.getString("Result[0].StandbyEnrollmentOnly"));
+				Assert.assertNotNull(js.getString("Result[0].UnenrollmentOperation"));
 	}
 	
 	@Test (testName="Class Not Found",description="PBI:144256")
@@ -109,19 +91,18 @@ public class GetAvailableClassesByMember extends base {
 		String startDateTime = "2099-01-01";
 		String endDateTime = "2100-01-01";
 
-				given()
-//						.log().all()
+			given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-					.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(404)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("No available classes found"));
+			.when()
+				.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
+				.then()
+//					.log().body()
+				.statusCode(404)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Message", equalTo("No available classes found"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:144256")
@@ -131,17 +112,16 @@ public class GetAvailableClassesByMember extends base {
 		String startDateTime = ReusableDates.getCurrentDate();
 		String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
 
-				given()
-
+			given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-					.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(404)
-						.body("Message", equalTo("Customer not found"));
+			.when()
+				.get("/api/v3/classcourse/getavailableclassesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
+				.then()
+//					.log().body()
+				.statusCode(404)
+				.body("Message", equalTo("Customer not found"));
 	}
 }

@@ -77,6 +77,8 @@ public class GetClassDetailsByMember extends base{
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PackageName"));
 						Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PunchesRequired"));
 						
+						Assert.assertTrue(js.getString("Result").contains("SubstituteInstructor"));
+						
 						Assert.assertEquals(js.getString("Result.EnrollmentEligibilities[0].CustomerId"), customerId);
 						Assert.assertEquals(js.getString("Result.ItemId"), classId);
 	}
