@@ -194,8 +194,6 @@ public class VerifyCourseEnrollmentCapability extends base{
 	
 	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:150004", enabled = true)
 	public void onlineSalesNotAllowedMember() {
-		
-		// 500 error
  
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
@@ -218,10 +216,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToEnroll", equalTo(false))
 						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-						.body("Details", equalTo("NotAllowed"))
-//						.body("EnrollmentStatus", equalTo("ItemNotFound"))
-//						.body("Details", equalTo(""))
-						;
+						.body("Details", equalTo("NotAllowed"));
 	}
 	
 	@Test (testName="Online Sales Not Allowed - Employee Context",description="PBI:150004", enabled = true)

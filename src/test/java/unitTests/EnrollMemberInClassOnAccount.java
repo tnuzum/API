@@ -474,7 +474,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
-	@Test (testName="Enrollment Not Open",description="PBI:143588", enabled = false)
+	@Test (testName="Enrollment Not Open",description="PBI:143588", enabled = true)
 	public void enrollmentNotOpen() {
 		
 				String c = prop.getProperty("availableId");
@@ -492,9 +492,9 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - ItemRestrictions"));
+						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotOpen"));
 	}
 	
 	@Test (testName="Scheduling Conflict",description="PBI:143588", enabled = true)
