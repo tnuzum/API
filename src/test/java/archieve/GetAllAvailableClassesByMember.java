@@ -1,4 +1,4 @@
-package unitTests;
+package archieve;
 
 import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeClass;

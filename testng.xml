@@ -23,8 +23,6 @@
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
-			<!-- class name="unitTests.GetAllAvailableClassesByMember" /-->
-			<!-- class name="unitTests.GetAllAvailableCoursesByMember" /-->
 			<class name="unitTests.GetAllPackagesForPurchaseByClub" />
 			<class name="unitTests.GetAppointmentDetails" />
 			<class name="unitTests.GetAppointmentProductByCategory" />
@@ -52,8 +50,6 @@
 			<class name="unitTests.GetMember" />
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
-			<!-- class name="unitTests.GetOnlineAvailableClassesByMember" /-->
-			<!-- class name="unitTests.GetOnlineAvailableCoursesByMember" /-->
 			<class name="unitTests.GetOnlinePackagesForPurchaseByClub" />
 			<class name="unitTests.GetPackageDetails" />
 			<class name="unitTests.GetPackagePricing" />
