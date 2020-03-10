@@ -1,4 +1,4 @@
-package unitTests;
+package utilities;
 
 import org.testng.annotations.BeforeSuite;
 
