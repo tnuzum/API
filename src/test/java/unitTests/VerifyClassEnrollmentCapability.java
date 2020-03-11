@@ -25,8 +25,8 @@ public class VerifyClassEnrollmentCapability extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="Enrollment Capability Verified",description="PBI:150003")
-	public void enrollmentCapabilityVerified() {
+	@Test (testName="Enrollment Capability Verified - Member Context",description="PBI:150003")
+	public void enrollmentCapabilityVerifiedMember() {
  
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");
@@ -34,7 +34,33 @@ public class VerifyClassEnrollmentCapability extends base{
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				Boolean onlineEnrollment = false;
+				Boolean onlineEnrollment = true;
+				
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().all()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("AllowedToEnroll", equalTo(true))
+						.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));			
+	}
+	
+	@Test (testName="Enrollment Capability Verified - Employee Context",description="PBI:150003")
+	public void enrollmentCapabilityVerifiedEmployee() {
+ 
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("alwaysAvailClId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				
 				given()
 //						.log().all()
@@ -467,16 +493,16 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("EnrollmentHasEnded"));
 	}
 	
-	@Test (testName="Enrollment Closed",description="PBI:150003", enabled = true)
-	public void enrollmentClosed() {
+	@Test (testName="Enrollment Closed - Member Context",description="PBI:150003", enabled = true)
+	public void enrollmentClosedMember() {
  
-		String companyId = prop.getProperty("X-CompanyId");
-		String clubId = prop.getProperty("X-Club1Id");
-		String customerId = prop.getProperty("availableId");
-		String classId = prop.getProperty("closedClId");
-		String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay8AM();
-		String displayedGrandTotal = prop.getProperty("closedClPrice");
-		
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("closedClId");
+				String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay8AM();
+				String displayedGrandTotal = prop.getProperty("closedClPrice");
+				Boolean onlineEnrollment = true;
 
 				given()
 //				.log().all()
@@ -493,8 +519,61 @@ public class VerifyClassEnrollmentCapability extends base{
 						.body("Details", equalTo("EnrollmentHasClosed"));
 	}
 	
-	@Test (testName="Enrollment Not Open",description="PBI:143588", enabled = true)
-	public void enrollmentNotOpen() {
+	@Test (testName="Enrollment Closed - Employee Context",description="PBI:150003", enabled = true)
+	public void enrollmentClosedEmployee() {
+ 
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("closedClId");
+				String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay8AM();
+				String displayedGrandTotal = prop.getProperty("closedClPrice");
+
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("EnrollmentHasClosed"));
+	}
+	
+	@Test (testName="Enrollment Not Open - Member Context",description="PBI:143588", enabled = true)
+	public void enrollmentNotOpenMember() {
+		
+				String companyId = prop.getProperty("X-CompanyId");
+				String clubId = prop.getProperty("X-Club1Id");
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String classId = prop.getProperty("neverAvailClId");
+				String classOccurrence = prop.getProperty("neverAvailClOccurrence");
+				String displayedGrandTotal = prop.getProperty("neverAvailClPrice");
+				Boolean onlineEnrollment = true;
+
+				given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+					.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("AllowedToEnroll", equalTo(false))
+						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+						.body("Details", equalTo("EnrollmentNotOpen"));
+	}
+	
+	@Test (testName="Enrollment Not Open - Employee Context",description="PBI:143588", enabled = true)
+	public void enrollmentNotOpenEmployee() {
 		
 				String companyId = prop.getProperty("X-CompanyId");
 				String clubId = prop.getProperty("X-Club1Id");

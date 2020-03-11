@@ -148,6 +148,48 @@ public class GetCourseDetailsByMember extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Course not found"));
 	}
+	
+	@Test (testName="Null CourseID",description="PBI:143545")
+	public void nullCourseId() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String courseId = prop.getProperty("NOTalwaysAvailCoId");
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)						
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for ItemId."));
+	}
+	
+	@Test (testName="Null CustomerID",description="PBI:143545")
+	public void nullCustomerId() {
+ 
+				String customerId = prop.getProperty("NOTavailableId");
+				String courseId = prop.getProperty("alwaysAvailCoId");
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)						
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for CustomerId."));
+	}
  
 	@Test (testName="Class ID Used",description="PBI:143545", enabled = false)
 	
