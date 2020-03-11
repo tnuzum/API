@@ -30,7 +30,8 @@ public class GetAvailableClassesByMember extends base {
 		
 			String customerId = prop.getProperty("availableId");
 			String startDateTime = ReusableDates.getCurrentDate();
-			String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+//			String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+			String endDateTime = ReusableDates.getCurrentDatePlusOneDay();
 
 		Response res = given()
 //				.log().all()
@@ -48,40 +49,37 @@ public class GetAvailableClassesByMember extends base {
 		
 			JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertTrue(js.getString("Result[0]").contains("StartDateTime"));
-				Assert.assertTrue(js.getString("Result[0]").contains("SubstituteInstructorBarcodeId"));
-				Assert.assertTrue(js.getString("Result[0]").contains("SubstituteInstructorName"));
-				Assert.assertTrue(js.getString("Result[0]").contains("LongDescription"));
-				Assert.assertTrue(js.getString("Result[0]").contains("PackageName"));
-				Assert.assertTrue(js.getString("Result[0]").contains("PunchesRequired"));
-				Assert.assertTrue(js.getString("Result[0]").contains("ServiceVisitId"));
-				
-				Assert.assertNotNull(js.getString("Result[0].StartDateTime"));
-				Assert.assertNotNull(js.getString("Result[0].AllowEnrollment"));
-				Assert.assertNotNull(js.getString("Result[0].AllowServiceDueEnrollment"));
-				Assert.assertNotNull(js.getString("Result[0].CanBePaidByPackageInCart"));
-				Assert.assertNotNull(js.getString("Result[0].CancellationFee"));
-				Assert.assertNotNull(js.getString("Result[0].CategoryDescription"));
-				Assert.assertNotNull(js.getString("Result[0].ChargeCancellationFee"));
-				Assert.assertNotNull(js.getString("Result[0].ClassCapacity"));
-				Assert.assertNotNull(js.getString("Result[0].ClubName"));
-				Assert.assertNotNull(js.getString("Result[0].ClubNumber"));
-				Assert.assertNotNull(js.getString("Result[0].DurationInMinutes"));
-				Assert.assertNotNull(js.getString("Result[0].EnrollmentCount"));
-				Assert.assertNotNull(js.getString("Result[0].EnrollmentPaymentType"));
-				Assert.assertNotNull(js.getString("Result[0].InstructorBarcodeId"));
-				Assert.assertNotNull(js.getString("Result[0].InstructorName"));
-				Assert.assertNotNull(js.getString("Result[0].ItemBarcodeId"));
+				Assert.assertNotNull(js.getString("Result[0].BarcodeId"));
+				Assert.assertNotNull(js.getInt("Result[0].Capacity"));
+				Assert.assertNotNull(js.getString("Result[0].Category.Description"));
+				Assert.assertNotNull(js.getInt("Result[0].Category.Id"));
+				Assert.assertNotNull(js.getString("Result[0].ClubId"));
+				Assert.assertNotNull(js.getString("Result[0].Description"));
+				Assert.assertNotNull(js.getString("Result[0].Duration"));
+				Assert.assertNotNull(js.getString("Result[0].EnrolledCount"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].CanEnrollUsingPunches"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].CanEnrollUsingServiceDue"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].CustomerDisplayName"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].CustomerId"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].CustomerPunchCountForPackageItem"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].EnrollmentEligibilityStatus"));
+				Assert.assertNotNull(js.getString("Result[0].EnrollmentEligibilities[0].EnrollmentStatus"));
+				Assert.assertNotNull(js.getDouble("Result[0].EnrollmentEligibilities[0].Price"));
+				Assert.assertNotNull(js.getString("Result[0].Instructor.BarcodeId"));
+				Assert.assertNotNull(js.getString("Result[0].Instructor.DisplayName"));
+				Assert.assertNotNull(js.getString("Result[0].Instructor.EmployeeId"));
+				Assert.assertNotNull(js.getString("Result[0].IsFull"));
+				Assert.assertNotNull(js.getString("Result[0].ItemEnrollmentEligibility"));
 				Assert.assertNotNull(js.getString("Result[0].ItemId"));
-				Assert.assertNotNull(js.getString("Result[0].MemberEnrollmentStatus"));
-				Assert.assertNotNull(js.getString("Result[0].PackageEnrollmentAvailable"));
-				Assert.assertNotNull(js.getString("Result[0].Price"));
-				Assert.assertNotNull(js.getString("Result[0].PunchesRemaining"));
-				Assert.assertNotNull(js.getString("Result[0].RefundableAmount"));
-				Assert.assertNotNull(js.getString("Result[0].RefundablePunchAmount"));
-				Assert.assertNotNull(js.getString("Result[0].StandbyCount"));
-				Assert.assertNotNull(js.getString("Result[0].StandbyEnrollmentOnly"));
-				Assert.assertNotNull(js.getString("Result[0].UnenrollmentOperation"));
+				Assert.assertNotNull(js.getString("Result[0].Name"));
+				Assert.assertNotNull(js.getString("Result[0].Occurrence"));
+				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PackageId"));
+				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PackageName"));
+				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PunchesRequired"));
+				
+				Assert.assertTrue(js.getString("Result[0]").contains("SubstituteInstructor"));
+				
+				Assert.assertEquals(js.getString("Result[0].EnrollmentEligibilities[0].CustomerId"), customerId);
 	}
 	
 	@Test (testName="Class Not Found",description="PBI:144256")

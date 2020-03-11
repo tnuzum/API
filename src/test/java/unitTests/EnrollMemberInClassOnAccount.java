@@ -31,6 +31,8 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:143588")
 	public void memberEnrolledPaidClassStarted(){
 		
+		Boolean onlineEnrollment = false;
+		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");

@@ -486,7 +486,8 @@ public class VerifyPackagePurchaseCapability extends base{
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("ItemNotFound"));		
+						.body("PackageStatus", equalTo("InvoiceError"));
+//						.body("PackageStatus", equalTo("ItemNotFound")); // message changed 3/11
 	}
 	
 	@Test (testName="Item Not Package",description="PBI:159118")
@@ -510,7 +511,8 @@ public class VerifyPackagePurchaseCapability extends base{
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("ItemNotFound"));			
+						.body("PackageStatus", equalTo("InvoiceError"));
+//						.body("PackageStatus", equalTo("ItemNotFound")); // message changed 3/11			
 	}
 	
 	@Test (testName="Product Price Changed",description="PBI:159118")

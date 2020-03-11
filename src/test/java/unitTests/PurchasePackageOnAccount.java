@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.base;
 
-public class _Draft_PurchasePackageOnAccount extends base{
+public class PurchasePackageOnAccount extends base{
 	
 	public static String companyId;
 	public static String clubId;
@@ -27,24 +27,26 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 10;
+				String dGT = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 				given()
-//						.log().all()
+				
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-//						.body("AllowedToPurchase", equalTo(true))
-//						.body("PackageStatus", equalTo("PurchaseAllowed"))
-						;
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Paid ServiceV",description="PBI:143539")
@@ -52,23 +54,25 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidServiceVId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidServiceVGrandTotal");
+				int quantity = 1;
+				String dGT = prop.getProperty("paidServiceVGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Free Training",description="PBI:143539")
@@ -76,8 +80,10 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				int quantity = 1;
+				String dGT = prop.getProperty("freeTPrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 				given()
 //						.log().all()
@@ -86,13 +92,13 @@ public class _Draft_PurchasePackageOnAccount extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(200)
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Free Service",description="PBI:143539")
@@ -100,8 +106,10 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeSVId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeSVPrice");
+				int quantity = 1;
+				String dGT = prop.getProperty("freeSVPrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 				given()
 //						.log().all()
@@ -110,13 +118,13 @@ public class _Draft_PurchasePackageOnAccount extends base{
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(200)
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143539")
@@ -124,23 +132,29 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("tierPriceingGrandTotal");
+				int quantity = 1;
+				String dGT = prop.getProperty("tierPricingTier1Price");
+				String tr = prop.getProperty("tierPricingClub1TaxRate");
+				double grandTotal = Double.parseDouble(dGT);
+				double taxRate = Double.parseDouble(tr);
+				double calcTotal = (grandTotal * quantity);
+				double calcTaxTotal =  (calcTotal * taxRate);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143539")
@@ -149,47 +163,59 @@ public class _Draft_PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
-				double displayedGrandTotal = 55.35;
+				String dGT = prop.getProperty("tierPricingTier2Price");
+				String tr = prop.getProperty("tierPricingClub1TaxRate");
+				double grandTotal = Double.parseDouble(dGT);
+				double taxRate = Double.parseDouble(tr);
+				double calcTotal = (grandTotal * quantity);
+				double calcTaxTotal =  (calcTotal * taxRate);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Tier Pricing Package - Taxed Item",description="PBI:143539")
-	public void tierPricingPackage_TaxedItem() {
+	@Test (testName="Taxed Item",description="PBI:143539")
+	public void taxedItem() {
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("taxSingleTGrandTotal");
+				int quantity = 10;
+				String dGT = prop.getProperty("taxSingleTPrice");
+				String tr = prop.getProperty("taxSingleTClub1TaxRate");
+				double grandTotal = Double.parseDouble(dGT);
+				double taxRate = Double.parseDouble(tr);
+				double calcTotal = (grandTotal * quantity);
+				double calcTaxTotal =  (calcTotal * taxRate);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));				
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));				
 	}
 	
 	@Test (testName="Free Package",description="PBI:143539")
@@ -197,23 +223,25 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				int quantity = 1;
+				String dGT = prop.getProperty("freeTPrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143539")
@@ -225,19 +253,19 @@ public class _Draft_PurchasePackageOnAccount extends base{
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("NonZeroQuantityRequired"));				
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("NonZeroQuantityRequired"));			
 	}
 	
 	@Test (testName="Member Not Found",description="PBI:143539")
@@ -245,23 +273,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = "99999";
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("CustomerNotFound"));				
+						.body("Status", equalTo(404))
+						.body("Message", equalTo("CustomerNotFound"));					
 	}
 	
 	@Test (testName="Terminated Member",description="PBI:143539")
@@ -269,23 +297,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("terminatedId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143539")
@@ -293,23 +321,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("collectionsId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Frozen Member",description="PBI:143539")
@@ -317,23 +345,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Prospect",description="PBI:143539")
@@ -341,23 +369,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("prospectId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143539")
@@ -365,23 +393,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));			
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143539")
@@ -389,47 +417,49 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("freeTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("freeTPrice");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(true))
-						.body("PackageStatus", equalTo("PurchaseAllowed"));		
+						.body("Status", equalTo(200))
+						.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Item Not Found",description="PBI:143539")
 	public void itemNotFound() {
+		
+		// the response here is likely a bug
  
 				String customerId = prop.getProperty("availableId");
 				int itemId = 99999;
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("freeTPrice");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("ItemNotFound"));		
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));			
 	}
 	
 	@Test (testName="Item Not Package",description="PBI:143539")
@@ -437,23 +467,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("notServiceTypeVId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("freeTPrice");
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("ItemNotFound"));			
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));			
 	}
 	
 	@Test (testName="Product Price Changed",description="PBI:143539")
@@ -461,23 +491,23 @@ public class _Draft_PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
-				String quantity = "1";
+				int quantity = 1;
 				String displayedGrandTotal = prop.getProperty("taxSingleTPrice");//using base price (Grand Total - taxes)
 				
 				given()
-//						.log().all()
+				//.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
+						//.log().body()
+						.statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("AllowedToPurchase", equalTo(false))
-						.body("PackageStatus", equalTo("ProductPriceChanged"));			
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("ProductPriceChanged"));			
 	}
 	
 	

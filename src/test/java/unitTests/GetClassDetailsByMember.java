@@ -103,7 +103,7 @@ public class GetClassDetailsByMember extends base{
 					.when()
 						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"));
@@ -153,6 +153,73 @@ public class GetClassDetailsByMember extends base{
 						.assertThat().statusCode(404)						
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Message", equalTo("Class not found"));
+	}
+	
+	@Test (testName="Null ClassID",description="PBI:143544")
+	public void nullClassId() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("NOTalwaysAvailClId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)						
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for ItemId."));
+	}
+	
+	@Test (testName="Null CustomerID",description="PBI:143544")
+	public void nullCustomerId() {
+ 
+				String customerId = prop.getProperty("NOTavailableId");
+				String classId = prop.getProperty("alwaysAvailClId");
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)						
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for CustomerId."));
+	}
+	
+	@Test (testName="Null Class Occurrence",description="PBI:143544")
+	public void nullClassOccurrence() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String classId = prop.getProperty("alwaysAvailClId");
+				String classOccurrence = prop.getProperty("NOTalwaysAvailClOccurrence");
+
+				given()
+//						.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
+						.then()
+//						.log().body();
+					.assertThat().
+						statusCode(400)						
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for ClassDate."));
 	}
 	
 	@Test (testName="Course ID Used",description="PBI:143544")
