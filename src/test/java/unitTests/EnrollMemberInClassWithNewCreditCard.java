@@ -51,7 +51,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-						.log().all()
+//						.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -79,7 +79,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then().assertThat()
-						.log().all()
+//						.log().all()
 						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))

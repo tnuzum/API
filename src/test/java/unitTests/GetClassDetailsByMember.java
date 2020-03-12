@@ -28,6 +28,8 @@ public class GetClassDetailsByMember extends base{
 	
 	@Test (testName="Online Sale Allowed",description="PBI:143544")
 	public void onlineSaleAllowed() {
+		
+				ReusableMethods.myWait(1000);//waiting to avoid exceeding rate counter since occasionally the tests execute too fast
  
 				String customerId = prop.getProperty("availableId");
 				String classId = prop.getProperty("alwaysAvailClId");
