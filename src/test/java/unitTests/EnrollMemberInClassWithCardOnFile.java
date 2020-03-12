@@ -37,7 +37,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = "2020-03-11T00:00:00";
+				String classOccurrence = "2020-03-14T00:00:00";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby = "true";
@@ -45,7 +45,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -54,7 +54,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ClassId\": \""+classId+"\"," + 
+								"  \"ItemId\": \""+classId+"\"," + 
 								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"AccountId\": \""+accountId+"\"," + 
@@ -63,7 +63,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 								"}")
 						.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
@@ -97,7 +97,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
-				String classOccurrence = "2020-03-11T00:00:00";
+				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				int accountId = 1;
 				String enrollCustomerAsStandby 	= "true";
@@ -105,7 +105,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
@@ -114,7 +114,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -123,7 +123,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -173,7 +173,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -231,7 +231,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -286,7 +286,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -295,7 +295,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Full"));
 	}
@@ -321,7 +321,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -330,7 +330,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().all()
+//						.log().all()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("CustomerAlreadyEnrolled"));
 	}
@@ -356,7 +356,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -390,7 +390,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -424,7 +424,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -433,7 +433,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	}
@@ -457,7 +457,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -491,7 +491,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -525,7 +525,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -559,7 +559,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -585,7 +585,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -594,7 +594,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
@@ -603,10 +603,10 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-						.log().all()
+//						.log().all()
 						.assertThat()
-						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+//						.body("AllowedToEnroll", equalTo(false))
+						.body("Status", equalTo(400))
 						.body("Message", equalTo("EnrollmentNotAllowed - MemberSchedulingConflict"));
 	}
 	
@@ -630,7 +630,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ClassId\": \""+classId+"\"," + 
+							"  \"ItemId\": \""+classId+"\"," + 
 							"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 

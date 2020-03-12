@@ -61,7 +61,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -138,7 +138,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -205,7 +205,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -271,7 +271,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -341,7 +341,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -391,7 +391,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -441,7 +441,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -491,7 +491,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
@@ -541,7 +541,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"CardNumber\": \""+cardNumber+"\"," + 
 								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
