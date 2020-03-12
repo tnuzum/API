@@ -419,6 +419,8 @@ public class VerifyPackagePurchaseCapability extends base{
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:159118")
 	public void creditLimitExceeded() {
+		
+				// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
