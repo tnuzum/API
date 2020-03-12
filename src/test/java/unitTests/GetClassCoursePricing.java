@@ -78,7 +78,7 @@ public class GetClassCoursePricing extends base {
 				int itemId = Integer.parseInt(i);
 
 		Response res =	given()
-				
+//				.log().all()				
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))

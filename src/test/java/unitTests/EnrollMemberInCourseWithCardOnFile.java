@@ -51,7 +51,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 						.body("{" + 
 								"  \"CustomerId\": "+customerId+"," + 
-								"  \"CourseId\": \""+courseId+"\"," + 
+								"  \"ItemId\": \""+courseId+"\"," + 
 								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 								"  \"AccountId\": \""+accountId+"\"," + 
 								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -109,7 +109,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -158,7 +158,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -206,7 +206,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -259,7 +259,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -292,7 +292,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -325,7 +325,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -357,7 +357,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -390,7 +390,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -421,7 +421,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -453,7 +453,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -485,7 +485,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -509,7 +509,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -518,7 +518,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
@@ -526,10 +526,10 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 							"}")
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
-						.log().all()
+//						.log().all()
 						.assertThat()
-						.body("AllowedToEnroll", equalTo(false))
-						.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
+//						.body("AllowedToEnroll", equalTo(false))
+						.body("Status", equalTo(400))
 						.body("Message", equalTo("EnrollmentNotAllowed - MemberSchedulingConflict"));
 	}
 	
@@ -552,7 +552,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 					.when()
 					.body("{" + 
 							"  \"CustomerId\": "+customerId+"," + 
-							"  \"CourseId\": \""+courseId+"\"," + 
+							"  \"ItemId\": \""+courseId+"\"," + 
 							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
 							"  \"AccountId\": \""+accountId+"\"," + 
 							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +

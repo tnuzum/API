@@ -13,10 +13,10 @@
 			<class name="unitTests.CreateMember" />
 			<class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
-			<!-- class name="unitTests.EnrollMemberInClassWithCardOnFile" /-->
-			<!-- class name="unitTests.EnrollMemberInCourseWithCardOnFile" /-->
-			<!-- class name="unitTests.EnrollMemberInClassWithNewCreditCard" /-->
-			<!-- class name="unitTests.EnrollMemberInCourseWithNewCreditCard" /-->	
+			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
+			<class name="unitTests.EnrollMemberInCourseWithCardOnFile" />
+			<class name="unitTests.EnrollMemberInClassWithNewCreditCard" />
+			<class name="unitTests.EnrollMemberInCourseWithNewCreditCard" />	
 			<class name="unitTests.EnrollMemberInClassWithPunchcard" />
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
