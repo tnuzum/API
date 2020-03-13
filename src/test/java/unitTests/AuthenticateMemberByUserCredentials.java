@@ -12,12 +12,20 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class AuthenticateMemberByUserCredentials extends base {
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (priority=1,testName="WrongCredentials",description="PBI:139705")
@@ -25,9 +33,9 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void wrongCredentials() {
 
 			given()
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("X-Api-Key",aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
@@ -47,9 +55,9 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void memberFound() {
 
 			given()
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("X-Api-Key",aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
@@ -68,9 +76,9 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void accountLocked() {
 
 			given()
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("X-Api-Key",aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+
@@ -90,9 +98,9 @@ public class AuthenticateMemberByUserCredentials extends base {
 	public void forcePasswordChange() {
 
 			given()
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("X-Api-Key",aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
 			.header("Content-Type", "application/json")
 			.when()
 				.body("{"+

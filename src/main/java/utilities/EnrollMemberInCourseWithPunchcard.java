@@ -22,7 +22,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 		
 				int customerId = 248;
 				String courseId = "alwaysAvailCo";
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", prop.getProperty("accept"))

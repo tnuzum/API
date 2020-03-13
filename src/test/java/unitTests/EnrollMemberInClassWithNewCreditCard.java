@@ -14,84 +14,87 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import resources.Payloads;
 import resources.ReusableMethods;
 import resources.base;
 
 public class EnrollMemberInClassWithNewCreditCard extends base {
 	
-	public static Boolean onlineEnrollment = true;
+		static String aPIKey;
+		static String companyId;
+		static String clubId;
+	
+		static String cardNumber;
+		static String nameOnCard;
+		static String month;
+		static String year;
+		static String securityCode;
+		static String addressLine1;
+		static String city;
+		static String state;
+		static String postalCode;
+		
+		static Boolean enrollCustomerAsStandby 	= true;
+		static Boolean onlineEnrollment = true;
 	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
+		
+		cardNumber = prop.getProperty("CC1CardNumber");
+		nameOnCard = prop.getProperty("CC1NameOnCard");
+		month = prop.getProperty("CC1Month");
+		year = prop.getProperty("CC1Year");
+		securityCode = prop.getProperty("CC1SecurityCode");
+		addressLine1 = prop.getProperty("CC1AddressLine1");
+		city = prop.getProperty("CC1City");
+		state = prop.getProperty("CC1State");
+		postalCode = prop.getProperty("CC1PostalCode");
 	}
 
 	@Test (testName="Member Enrolled - Paid Class",description="PBI:146579")
 	public void memberEnrolled_PaidClass() {
-		
+
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby = "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-//						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+//					.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then().assertThat()
-//						.log().all()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result.Enrolled", equalTo(true))
-						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
-						.body("Result.CustomerId", equalTo(customerId))
-						.body("Result.FirstName", not(nullValue()))
-						.body("Result.LastName", not(nullValue()))
-						.body("Result", hasKey("MiddleInitial"))
-						.body("Result.DisplayName", not(nullValue()))
-						.body("Result.PreferredName", not(nullValue()))
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.extract().response();
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+							.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+							.then()
+						.assertThat()
+	//						.log().all()
+							.statusCode(200)
+							.time(lessThan(60L),TimeUnit.SECONDS)
+							.body("Result.Enrolled", equalTo(true))
+							.body("Result.EnrollmentStatus", equalTo("Enrolled"))
+							.body("Result.CustomerId", equalTo(customerId))
+							.body("Result.FirstName", not(nullValue()))
+							.body("Result.LastName", not(nullValue()))
+							.body("Result", hasKey("MiddleInitial"))
+							.body("Result.DisplayName", not(nullValue()))
+							.body("Result.PreferredName", not(nullValue()))
+							.time(lessThan(60L),TimeUnit.SECONDS)
+							.extract().response();
+			
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
@@ -109,57 +112,29 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 	@Test (testName="Member Enrolled - Free Class",description="PBI:146579")
 	public void memberEnrolled_FreeClass() {
 		
-				String companyId = prop.getProperty("X-CompanyId");
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"displayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.extract().response();
+			
 					JsonPath js = ReusableMethods.rawToJson(res);
 						int enrollmentId = js.getInt("Result.EnrollmentId");
 						int invoiceId = js.getInt("Result.InvoiceId");
@@ -179,50 +154,21 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"displayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -247,49 +193,20 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"displayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -326,43 +243,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "false";
+				Boolean enrollCustomerAsStandby 	= false;
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -378,44 +268,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -431,44 +293,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -484,43 +318,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				int year						= 2019;
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String year = "2019";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -536,43 +343,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("noWebClId");
 				String classOccurrence = prop.getProperty("noWebClOccurrence");
 				String displayedGrandTotal = prop.getProperty("noWebClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				int year						= 2019;
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -588,43 +367,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("endedClId");
 				String classOccurrence = prop.getProperty("endedClOccurrence");
 				String displayedGrandTotal = prop.getProperty("endedClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				int year						= 2019;
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -639,43 +390,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				int year						= 2019;
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -692,42 +415,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber				= "5454545454545400";
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -744,42 +440,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber				= "54545454545454540000";
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+						.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -792,46 +461,18 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				int classId = 99999;
+				String classId = "99999";
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -847,43 +488,15 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = "2225-01-01";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -898,44 +511,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal 		= "10.01";
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String displayedGrandTotal = "10.01";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -952,43 +537,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard				= "";
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String nameOnCard = "";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1005,43 +564,16 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String cardNumber = "";
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1057,44 +589,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode				= "";
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String securityCode = "";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1110,44 +615,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
 				String addressLine1	= "";
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1163,46 +641,19 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city						= "";
-				String state = prop.getProperty("CC1State");
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String city = "";
 				
 				ReusableMethods.myWait(200);
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1218,44 +669,17 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state					= "";
-				String postalCode = prop.getProperty("CC1PostalCode");
-				String enrollCustomerAsStandby 	= "true";
+				String state = "";
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+
-								"}")
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
@@ -1271,47 +695,19 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("CC1CardNumber");
-				String nameOnCard = prop.getProperty("CC1NameOnCard");
-				String month = prop.getProperty("CC1Month");
-				String year = prop.getProperty("CC1Year");
-				String securityCode = prop.getProperty("CC1SecurityCode");
-				String addressLine1 = prop.getProperty("CC1AddressLine1");
-				String city = prop.getProperty("CC1City");
-				String state = prop.getProperty("CC1State");
-				String postalCode				= "";
-				String enrollCustomerAsStandby 	= "true";
+				String postalCode = "";
 				
 				ReusableMethods.myWait(200);
 				
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+classId+"\"," + 
-								"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"CardNumber\": \""+cardNumber+"\"," + 
-								"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-								"  \"ExpirationDate\": {" + 
-								"    \"Month\": \""+month+"\"," + 
-								"    \"Year\": "+year+"" + 
-								"  }," + 
-								"  \"SecurityCode\": \""+securityCode+"\"," + 
-								"  \"AddressLine1\": \""+addressLine1+"\"," + 
-								"  \"City\": \""+city+"\"," + 
-								"  \"StateProvince\": \""+state+"\"," + 
-								"  \"PostalCode\": \""+postalCode+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"onlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
-						
+					.body(Payloads.EnrollMemberInClassWithNewCreditCardPL(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()

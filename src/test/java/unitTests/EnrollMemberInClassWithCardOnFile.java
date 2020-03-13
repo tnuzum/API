@@ -40,13 +40,13 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classOccurrence = "2020-03-14T00:00:00";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId = 1;
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 //				.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -106,7 +106,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 
 			Response res =	given()
 //				.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -159,13 +159,13 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				int accountId = 1;
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -218,12 +218,12 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				int accountId = 1;
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -278,7 +278,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "false";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -313,7 +313,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -348,7 +348,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -382,7 +382,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -416,7 +416,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -449,7 +449,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -483,7 +483,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -517,7 +517,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -551,7 +551,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -586,7 +586,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 
 				given()
 //				.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -622,7 +622,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String enrollCustomerAsStandby 	= "true";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))

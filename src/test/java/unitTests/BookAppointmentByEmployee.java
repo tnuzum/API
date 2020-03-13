@@ -15,16 +15,25 @@ import static org.hamcrest.Matchers.empty;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import resources.Payloads;
 import resources.ReusableMethods;
 import resources.base;
 
 public class BookAppointmentByEmployee extends base { 
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Free Appointment Single Member",description="PBI:146227")
@@ -39,20 +48,21 @@ public class BookAppointmentByEmployee extends base {
 		
 	Response book_res = given()
 //						.log().all()
-		.header("accept", prop.getProperty("accept"))
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("accept", "application/json")
 		.header("Content-Type", "application/json")
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 			.when()
-			.body("{" + 
+			.body(Payloads.BookAppointmentByEmployeePL(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
+/*			.body("{" + 
 					"\"AppointmentClubId\": "+appointmentClubId+","+ 
 					"\"ItemId\": "+itemId+","+ 
 					"\"Occurrence\": \""+occurrence+"\","+
 					"\"CustomerId\": "+customerId+","+ 
 					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
 					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+					"}")*/
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
@@ -64,7 +74,7 @@ public class BookAppointmentByEmployee extends base {
 
 		// ** Attempt to book same appointment
 			given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -89,7 +99,7 @@ public class BookAppointmentByEmployee extends base {
 				// is configured with Product > Booking > Appt Fee Details = Per Appt Basis
 				
 				given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -117,7 +127,7 @@ public class BookAppointmentByEmployee extends base {
 
 	Response book_res = given()
 //						.log().all()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -143,7 +153,7 @@ public class BookAppointmentByEmployee extends base {
 		int appointmentId = book_js.get("Result.AppointmentId");
 	
 		given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -173,7 +183,7 @@ public class BookAppointmentByEmployee extends base {
 
 	Response book_res = given()
 //						.log().all()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -198,7 +208,7 @@ public class BookAppointmentByEmployee extends base {
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
 		given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -227,7 +237,7 @@ public class BookAppointmentByEmployee extends base {
 		String userDisplayedPrice = prop.getProperty("paidTPrice");
 		
 		Response book_res = given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -253,7 +263,7 @@ public class BookAppointmentByEmployee extends base {
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
 		given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -282,7 +292,7 @@ public class BookAppointmentByEmployee extends base {
 	
 	given()
 //						.log().all()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -315,7 +325,7 @@ public class BookAppointmentByEmployee extends base {
 		String userDisplayedPrice = prop.getProperty("paidTPrice");
 		
 	given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -347,7 +357,7 @@ public class BookAppointmentByEmployee extends base {
 		double userDisplayedPrice = 0.01;
 		
 	given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -383,7 +393,7 @@ public class BookAppointmentByEmployee extends base {
 		
 		Response book_res = given()
 //						.log().all()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -405,7 +415,7 @@ public class BookAppointmentByEmployee extends base {
 		int appointmentId = book_js.get("Result.AppointmentId");
 
 				given()
-		.header("accept", prop.getProperty("accept"))
+		.header("accept", "application/json")
 		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 		.header("X-ClubId", prop.getProperty("X-Club1Id"))

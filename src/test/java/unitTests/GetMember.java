@@ -27,7 +27,7 @@ public class GetMember extends base{
 
 					given()
 //						.log().all()
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -92,7 +92,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -156,7 +156,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -221,7 +221,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -286,7 +286,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -351,7 +351,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -416,7 +416,7 @@ public class GetMember extends base{
 
 					given()
 
-						.header("accept", prop.getProperty("accept"))
+						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))

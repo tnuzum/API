@@ -24,7 +24,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				int customerId = 248;
 				String courseId = "alwaysAvailCo";
 				String displayedCoursePrice = "100.00";
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 //						.log().all()
