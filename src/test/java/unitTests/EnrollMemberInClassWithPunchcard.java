@@ -36,13 +36,13 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("punchClId");
 				String classOccurrence = prop.getProperty("punchClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -84,12 +84,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("notStartedClId");
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 			
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -130,12 +130,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -176,12 +176,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -222,12 +222,12 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -267,10 +267,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -290,10 +290,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("noPunchClId");
 				String classOccurrence = prop.getProperty("noPunchClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -315,7 +315,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String enrollCustomerAsStandby = "false";
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -334,10 +334,10 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				int customerId = Integer.parseInt(c);
 				int classId = 99999;
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String enrollCustomerAsStandby = "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))

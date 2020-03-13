@@ -30,7 +30,7 @@ public class SecurityPipeline extends base{
 
 					given()
 //						.log().all()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", "311986")
@@ -53,7 +53,7 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("availableId");
 
 					given()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", "3119860") // Club not on file
@@ -75,7 +75,7 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("availableId");
 
 					given()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 						.header("X-CompanyId", "1010") // Company not on file
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -97,7 +97,7 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("availableId");
 
 					given()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 						.header("X-Api-Key", "NOTVALIDB50A8F2BF7315812CF2A21690A7FF5FDA33A156C") // Not valid API Key
 						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -119,7 +119,7 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("availableId");
 
 					given()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 //					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -141,7 +141,7 @@ public class SecurityPipeline extends base{
 		String member = prop.getProperty("availableId");
 
 					given()
-					.header("accept", prop.getProperty("accept"))
+					.header("accept", "application/json")
 					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))

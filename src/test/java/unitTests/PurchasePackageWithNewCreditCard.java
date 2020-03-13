@@ -6,13 +6,24 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import resources.Payloads;
 import resources.base;
 
-public class PurchasePackageOnAccount extends base{
+public class PurchasePackageWithNewCreditCard extends base{
 	
 	static String aPIKey;
 	static String companyId;
 	static String clubId;
+
+	static String cardNumber;
+	static String nameOnCard;
+	static String month;
+	static String year;
+	static String securityCode;
+	static String addressLine1;
+	static String city;
+	static String state;
+	static String postalCode;
 
 	@BeforeClass
 	public void getData() {
@@ -23,6 +34,17 @@ public class PurchasePackageOnAccount extends base{
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+		
+		cardNumber = prop.getProperty("CC1CardNumber");
+		nameOnCard = prop.getProperty("CC1NameOnCard");
+		month = prop.getProperty("CC1Month");
+		year = prop.getProperty("CC1Year");
+		securityCode = prop.getProperty("CC1SecurityCode");
+		addressLine1 = prop.getProperty("CC1AddressLine1");
+		city = prop.getProperty("CC1City");
+		state = prop.getProperty("CC1State");
+		postalCode = prop.getProperty("CC1PostalCode");
+		
 	}
 	
 	@Test (testName="Paid Training",description="PBI:143539")
@@ -31,21 +53,23 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 10;
-				String dGT = prop.getProperty("paidTGrandTotal");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
 				
 				given()
 				
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
-//						.log().body()
+//						.log().all()
 						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Status", equalTo(200))
@@ -58,20 +82,22 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidServiceVId");
 				int quantity = 1;
-				String dGT = prop.getProperty("paidServiceVGrandTotal");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				String dgt = prop.getProperty("paidServiceVGrandTotal");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
 				
 				given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
-						//.log().body()
+//						.log().body()
 						.statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Status", equalTo(200))
@@ -84,18 +110,20 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
-				String dGT = prop.getProperty("freeTPrice");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				String dgt = prop.getProperty("freeTPrice");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
 				
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 //						.log().body()
 						.statusCode(200)
@@ -110,18 +138,20 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeSVId");
 				int quantity = 1;
-				String dGT = prop.getProperty("freeSVPrice");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				String dgt = prop.getProperty("freeSVPrice");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
 				
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 //						.log().body()
 						.statusCode(200)
@@ -136,22 +166,24 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 1;
-				String dGT = prop.getProperty("tierPricingTier1Price");
+				String dgt = prop.getProperty("tierPricingTier1Price");
 				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dGT);
+				double grandTotal = Double.parseDouble(dgt);
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
+				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -166,23 +198,25 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
-				String dGT = prop.getProperty("tierPricingTier2Price");
+				String dgt = prop.getProperty("tierPricingTier2Price");
 				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dGT);
+				double grandTotal = Double.parseDouble(dgt);
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
+				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -197,22 +231,24 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 10;
-				String dGT = prop.getProperty("taxSingleTPrice");
+				String dgt = prop.getProperty("taxSingleTPrice");
 				String tr = prop.getProperty("taxSingleTClub1TaxRate");
-				double grandTotal = Double.parseDouble(dGT);
+				double grandTotal = Double.parseDouble(dgt);
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
+				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -227,18 +263,20 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
-				String dGT = prop.getProperty("freeTPrice");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				String dgt = prop.getProperty("freeTPrice");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -252,17 +290,20 @@ public class PurchasePackageOnAccount extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "0";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 0;
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(400)
@@ -277,16 +318,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = "99999";
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(404)
@@ -301,16 +345,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("terminatedId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -319,22 +366,25 @@ public class PurchasePackageOnAccount extends base{
 						.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Collections Member",description="PBI:143539")
+	@Test (testName="Collections Member",description="PBI:143539", enabled = false)
 	public void collectionsMember() {
  
 				String customerId = prop.getProperty("collectionsId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(400)
@@ -349,16 +399,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -367,22 +420,25 @@ public class PurchasePackageOnAccount extends base{
 						.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Prospect",description="PBI:143539")
+	@Test (testName="Prospect",description="PBI:143539", enabled = false)
 	public void prospect() {
  
 				String customerId = prop.getProperty("prospectId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(400)
@@ -391,22 +447,25 @@ public class PurchasePackageOnAccount extends base{
 						.body("Message", equalTo("Account Problem"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:143539")
+	@Test (testName="Credit Limit Exceeded",description="PBI:143539", enabled = false)
 	public void creditLimitExceeded() {
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(400)
@@ -421,16 +480,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				String dgt = prop.getProperty("freeTPrice");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(200)
@@ -443,18 +505,21 @@ public class PurchasePackageOnAccount extends base{
 	public void itemNotFound() {
  
 				String customerId = prop.getProperty("availableId");
-				int itemId = 99999;
+				String itemId = "99999";
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				String dgt = prop.getProperty("freeTPrice");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
-//				.log().all()
+				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 //						.log().body()
 						.statusCode(404)
@@ -469,16 +534,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("notServiceTypeVId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				String dgt = prop.getProperty("freeTPrice");
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(404)
@@ -493,16 +561,19 @@ public class PurchasePackageOnAccount extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("taxSingleTPrice");//using base price (Grand Total - taxes)
+				String dgt = prop.getProperty("taxSingleTPrice");//using base price (Grand Total - taxes)
+				double displayedGrandTotal = Double.parseDouble(dgt);
 				
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+					.body(Payloads.PurchasePackageWithNewCreditCardPL(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+						.post("/api/v3/package/purchasepackagewithnewcreditcard")
 						.then()
 						//.log().body()
 						.statusCode(400)

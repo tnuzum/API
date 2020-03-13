@@ -113,9 +113,9 @@ public class ReusableMethods extends base {
 			RestAssured.baseURI = prop.getProperty("baseURI");
 			
 			given()
-			.header("accept", prop.getProperty("accept"))
+			.header("accept", "application/json")
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-CompanyId", companyId)
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
@@ -165,9 +165,9 @@ public class ReusableMethods extends base {
 			RestAssured.baseURI = prop.getProperty("baseURI");
 			
 			given()
-			.header("accept", prop.getProperty("accept"))
+			.header("accept", "application/json")
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+			.header("X-CompanyId", companyId)
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")

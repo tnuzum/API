@@ -58,6 +58,7 @@
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
+			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.SearchMembers" />
 			<class name="unitTests.SearchMembersByProduct" />
 			<class name="unitTests.SearchOnlineMembersByProduct" />

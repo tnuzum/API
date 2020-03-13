@@ -30,7 +30,7 @@ public class GetEmployees extends base {
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -79,7 +79,7 @@ public class GetEmployees extends base {
 
 				given()
 //						.log().all()
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -128,7 +128,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -163,7 +163,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -198,7 +198,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -232,7 +232,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -266,7 +266,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -300,7 +300,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -334,7 +334,7 @@ public class GetEmployees extends base {
 			// sending employee's address line 2 to confirm employee not found by address line 2
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -353,7 +353,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -387,7 +387,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -421,7 +421,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -455,7 +455,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -490,7 +490,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -510,7 +510,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -529,7 +529,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -548,7 +548,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
@@ -583,7 +583,7 @@ public class GetEmployees extends base {
 
 				given()
 
-				.header("accept", prop.getProperty("accept"))
+				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", 101)
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))

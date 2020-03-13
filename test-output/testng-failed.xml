@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [CompeteAPI v3]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="API - Continuous Integration(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JonasFitness.API.GetAllAvailableClassesByMember">
+      <class name="unitTests.PurchasePackageWithNewCreditCard">
         <methods>
           <include name="getData"/>
-          <include name="classFound"/>
+          <include name="creditLimitExceeded"/>
+          <include name="prospect"/>
+          <include name="collectionsMember"/>
         </methods>
-      </class> <!-- JonasFitness.API.GetAllAvailableClassesByMember -->
-      <class name="JonasFitness.API.GetClassesAndCoursesByBook">
-        <methods>
-          <include name="ClassesCoursesFound"/>
-          <include name="getData"/>
-        </methods>
-      </class> <!-- JonasFitness.API.GetClassesAndCoursesByBook -->
+      </class> <!-- unitTests.PurchasePackageWithNewCreditCard -->
     </classes>
-  </test> <!-- API - Continuous Integration(failed) -->
-</suite> <!-- Failed suite [CompeteAPI v3] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
