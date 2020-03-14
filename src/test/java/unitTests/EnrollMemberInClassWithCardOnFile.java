@@ -37,7 +37,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				int customerId = Integer.parseInt(c);
 				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = "2020-03-14T00:00:00";
+				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				int accountId = 1;
 				Boolean enrollCustomerAsStandby = true;

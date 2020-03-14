@@ -22,7 +22,6 @@ public class Payloads extends base {
 				"}";
 				
 				return payload;
-		
 		}
 	
 	public static String EnrollMemberInClassWithNewCreditCardPL
@@ -142,8 +141,27 @@ public class Payloads extends base {
 				"}";
 
 		return payload;
-
 	}
+	
+	public static String PurchasePackageWithCardOnFilePL	
+			(
+			String customerId,
+			String itemId,
+			int quantity,
+			Double displayedGrandTotal,
+			int account
+			) {
+
+		String payload = "{" + 
+				"  \"CustomerId\": "+customerId+"," + 
+				"  \"ItemId\": \""+itemId+"\"," + 
+				"  \"Quantity\": \""+quantity+"\"," + 
+				"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+				"  \"Account\": \""+account+"\"" +
+				"}";
+
+		return payload;
+}
 	
 
 }
