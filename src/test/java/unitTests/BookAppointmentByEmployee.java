@@ -55,14 +55,6 @@ public class BookAppointmentByEmployee extends base {
 		.header("X-ClubId", clubId)
 			.when()
 			.body(Payloads.BookAppointmentByEmployeePL(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
-/*			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")*/
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 				.then()
 //						.log().body()
@@ -72,37 +64,30 @@ public class BookAppointmentByEmployee extends base {
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
 
-		// ** Attempt to book same appointment
+// ** Attempt to book same appointment
 			given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.header("Content-Type", "application/json")
-				.when()
-				.body("{" + 
-						"\"AppointmentClubId\": "+appointmentClubId+","+ 
-						"\"ItemId\": "+itemId+","+ 
-						"\"Occurrence\": \""+occurrence+"\","+
-						"\"CustomerId\": "+customerId+","+ 
-						"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-						"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
-				.post("/api/v3/appointment/bookappointmentbyemployee")
-				.then()
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.body(Payloads.BookAppointmentByEmployeePL(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
+					.post("/api/v3/appointment/bookappointmentbyemployee")
+					.then()
 		//				.log().body()
 						.assertThat().statusCode(404)
 				.body("Message", equalTo("FailAppointmentNotAvailable"));
 
-		// ** Cancel Appointment **
-				// This appt can be cancelled by a member becauase the item
+// ** Cancel Appointment **
+				// This appt can be cancelled by a member because the item
 				// is configured with Product > Booking > Appt Fee Details = Per Appt Basis
 				
 				given()
-		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 			.get("/api/v3/appointment/cancelappointmentbymember/"+appointmentId+"/"+prop.getProperty("availableId"))
 				.then()
