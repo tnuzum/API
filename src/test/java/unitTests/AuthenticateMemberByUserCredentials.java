@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import io.restassured.RestAssured;
+import payloads.MemberPL;
 import resources.base;
 
 public class AuthenticateMemberByUserCredentials extends base {
@@ -31,88 +32,88 @@ public class AuthenticateMemberByUserCredentials extends base {
 	@Test (priority=1,testName="WrongCredentials",description="PBI:139705")
 	 
 	public void wrongCredentials() {
+		
+		String username = prop.getProperty("availableUserName");
+		String password = "Wrongpassword";
 
 			given()
-			.header("X-Api-Key",aPIKey)
-			.header("X-CompanyId", companyId)
-			.header("X-ClubId", clubId)
-			.header("Content-Type", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 			.when()
-				.body("{"+
-						  "\"Username\": \""+prop.getProperty("availableUserName")+"\","+
-						  "\"Password\": \"WrongPassword\""+
-						"}")
+				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
-//			.log().all()
-			.assertThat().statusCode(401)
-			.time(lessThan(60L),TimeUnit.SECONDS)			
-			.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
-			.body("Result.CustomerId", equalTo(0));	
+//				.log().all()
+				.assertThat().statusCode(401)
+				.time(lessThan(60L),TimeUnit.SECONDS)			
+				.body("Result.AuthenticationResult", equalTo("WrongCredentials"))
+				.body("Result.CustomerId", equalTo(0));	
 	}
 	
 	@Test (priority=2,testName="MemberFound",description="PBI:139705")
 	public void memberFound() {
+		
+			String username = prop.getProperty("availableUserName");
+			String password = prop.getProperty("availablePassword");
 
 			given()
-			.header("X-Api-Key",aPIKey)
-			.header("X-CompanyId", companyId)
-			.header("X-ClubId", clubId)
-			.header("Content-Type", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 			.when()
-				.body("{"+
-						  "\"Username\": \""+prop.getProperty("availableUserName")+"\","+
-						  "\"Password\": \""+prop.getProperty("availablePassword")+"\","+
-						"}")
+			.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
-//			.log().all()
-			.assertThat().statusCode(200)
-			.time(lessThan(60L),TimeUnit.SECONDS)			
-			.body("Result.AuthenticationResult", equalTo("Success"));	
+	//			.log().all()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)			
+				.body("Result.AuthenticationResult", equalTo("Success"));	
 	}
 	
 	@Test (priority=3,testName="AccountLocked",description="PBI:139705")
 	public void accountLocked() {
+		
+			String username = prop.getProperty("accountLockedUserName");
+			String password = prop.getProperty("accountLockedPassword");
 
 			given()
-			.header("X-Api-Key",aPIKey)
-			.header("X-CompanyId", companyId)
-			.header("X-ClubId", clubId)
-			.header("Content-Type", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 			.when()
-				.body("{"+
-						  "\"Username\": \""+prop.getProperty("accountLockedUserName")+"\","+
-						  "\"Password\": \""+prop.getProperty("accountLockedPassword")+"\","+
-						"}")
+				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
-//			.log().all()
-			.assertThat().statusCode(401)
-			.time(lessThan(60L),TimeUnit.SECONDS)			
-			.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
-			.body("Result.CustomerId", equalTo(0));	
+	//			.log().all()
+				.assertThat().statusCode(401)
+				.time(lessThan(60L),TimeUnit.SECONDS)			
+				.body("Result.AuthenticationResult", equalTo("AccountIsLocked"))
+				.body("Result.CustomerId", equalTo(0));	
 	}
 	
 	@Test (priority=4,testName="ForcePasswordChange",description="PBI:139705")
 	public void forcePasswordChange() {
+		
+			String username = prop.getProperty("passwordChangeUserName");
+			String password = prop.getProperty("passwordChangePassword");
 
 			given()
-			.header("X-Api-Key",aPIKey)
-			.header("X-CompanyId", companyId)
-			.header("X-ClubId", clubId)
-			.header("Content-Type", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 			.when()
-				.body("{"+
-						  "\"Username\": \""+prop.getProperty("passwordChangeUserName")+"\","+
-						  "\"Password\": \""+prop.getProperty("passwordChangePassword")+"\","+
-						"}")
+				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
-//			.log().all()
-			.assertThat().statusCode(401)
-			.time(lessThan(60L),TimeUnit.SECONDS)			
-			.body("Result.AuthenticationResult", equalTo("ForceChangePassword"))
-			.body("Result.CustomerId", not(nullValue()));	
+	//			.log().all()
+				.assertThat().statusCode(401)
+				.time(lessThan(60L),TimeUnit.SECONDS)			
+				.body("Result.AuthenticationResult", equalTo("ForceChangePassword"))
+				.body("Result.CustomerId", not(nullValue()));	
 	}
 }
