@@ -4,7 +4,7 @@ import resources.base;
 
 public class AppointmentPL extends base {
 	
-	public static String BookAppointmentByEmployee_SingleMember
+	public static String BookAppointment_SingleMember
 		(
 				String appointmentClubId,
 				String itemId,
@@ -26,7 +26,7 @@ public class AppointmentPL extends base {
 				return payload;
 		}
 	
-	public static String BookAppointmentByEmployee_MultiMember
+	public static String BookAppointment_MultiMember
 	(
 			String appointmentClubId,
 			String itemId,
@@ -50,7 +50,7 @@ public class AppointmentPL extends base {
 			return payload;
 	}
 	
-	public static String BookAppointmentByEmployee_NoBook
+	public static String BookAppointment_NoBook
 	(
 			String appointmentClubId,
 			String itemId,
@@ -71,7 +71,7 @@ public class AppointmentPL extends base {
 			return payload;
 	}
 	
-	public static String BookAppointmentByEmployee_MultiBook
+	public static String BookAppointment_MultiBook
 	(
 			String appointmentClubId,
 			String itemId,

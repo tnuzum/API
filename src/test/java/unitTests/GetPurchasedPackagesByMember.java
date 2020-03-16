@@ -64,7 +64,7 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="PackagesNotFound",description="PBI:124125")
 	public void PackagesNotFound() {
 		
-				String customerId = prop.getProperty("noFOPId");
+				String customerId = "100";
 				
 				given()
 

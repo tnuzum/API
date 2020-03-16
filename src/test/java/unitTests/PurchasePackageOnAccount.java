@@ -463,6 +463,33 @@ public class PurchasePackageOnAccount extends base{
 				.body("Message", equalTo("ItemNotFound"));			
 	}
 	
+	@Test (testName="No FOP On File",description="PBI:143539")
+	public void noFOP() {
+ 
+				String customerId = prop.getProperty("noFOPId");
+				String itemId = prop.getProperty("paidTId");
+				int quantity = 10;
+				String dGT = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+				
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("Account Problem"));
+	}
+	
 	@Test (testName="Item Not Package",description="PBI:143539")
 	public void itemNotPackage() {
  
@@ -511,17 +538,36 @@ public class PurchasePackageOnAccount extends base{
 				.body("Message", equalTo("ProductPriceChanged"));			
 	}
 	
+	@Test (testName="OnAccount Payment Not Allowed",description="PBI:143539", enabled = false)
+	public void onAccountPaymentNotAllowed() {
+		
+				String clubId = prop.getProperty("X-Club3Id");
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidTId");
+				int quantity = 10;
+				String dGT = prop.getProperty("paidTGrandTotal");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+				
+				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+				.log().body()
+//				.statusCode(200)
+//				.time(lessThan(60L),TimeUnit.SECONDS)
+//				.body("Status", equalTo(200))
+//				.body("Result", not(nullValue()))
+				;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	
