@@ -12,6 +12,7 @@ import static org.hamcrest.Matchers.nullValue;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import payloads.ClassCoursePL;
 import resources.ReusableMethods;
 import resources.base;
 import static org.hamcrest.Matchers.lessThan;
@@ -19,13 +20,22 @@ import java.util.concurrent.TimeUnit;
 
 public class EnrollMemberInCourseWithCardOnFile extends base {
 	
-	public static Boolean onlineEnrollment = true;
+			static String aPIKey;
+			static String companyId;
+			static String clubId;
+			
+			static Boolean enrollCustomerAsStandby 	= true;
+			static Boolean onlineEnrollment = true;
 	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 
 	@Test (testName="Member Enrolled - Paid Course",description="PBI:146578")
@@ -33,30 +43,22 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-						.body("{" + 
-								"  \"CustomerId\": "+customerId+"," + 
-								"  \"ItemId\": \""+courseId+"\"," + 
-								"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-								"  \"AccountId\": \""+accountId+"\"," + 
-								"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-								"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-								"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -91,7 +93,6 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				int accountId = 1;
@@ -102,19 +103,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 			Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -140,7 +134,6 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String courseId = prop.getProperty("freeCoId");
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				int accountId = 1;
@@ -151,19 +144,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 			Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -189,7 +175,6 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
@@ -199,19 +184,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 
 			Response res =	given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -248,23 +226,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId = 1;
-				String enrollCustomerAsStandby = "false";
+				Boolean enrollCustomerAsStandby = false;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -285,19 +256,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -318,19 +282,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -346,23 +303,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String courseId = prop.getProperty("noWebCoId");
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -379,23 +329,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String courseId = prop.getProperty("endedCoId");
 				String displayedGrandTotal = prop.getProperty("endedCoPrice");
 				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -414,19 +357,12 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -439,26 +375,19 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				int courseId = 99999;
+				String courseId = "99999";
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId = 1;
 				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -474,23 +403,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal 		= "10.01";
 				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()
@@ -506,24 +428,17 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				String courseId = prop.getProperty("standbyCoId");
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				int accountId					= 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+  
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().all()
@@ -541,23 +456,16 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 		String courseId = prop.getProperty("alwaysAvailCoId");
 		String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				int accountId = 1;
-				String enrollCustomerAsStandby 	= "true";
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body("{" + 
-							"  \"CustomerId\": "+customerId+"," + 
-							"  \"ItemId\": \""+courseId+"\"," + 
-							"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-							"  \"AccountId\": \""+accountId+"\"," + 
-							"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
-							"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+ 
-							"}")
+					.body(ClassCoursePL.EnrollMemberInCourseWithCardOnFile(customerId,courseId,displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 					.post("/api/v3/classcourse/enrollmemberincoursewithcardonfile")
 						.then()
 //						.log().body()

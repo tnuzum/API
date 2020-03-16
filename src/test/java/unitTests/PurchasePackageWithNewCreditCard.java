@@ -57,7 +57,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
-				given()
+			given()
 				
 //				.log().all()
 				.header("accept", "application/json")
@@ -65,15 +65,15 @@ public class PurchasePackageWithNewCreditCard extends base{
 					.header("X-Api-Key", aPIKey)
 					.header("X-CompanyId", companyId)
 					.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-//						.log().all()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().all()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Paid ServiceV",description="PBI:143539")
@@ -86,22 +86,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
-				given()
+			given()
 //				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-//						.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Free Training",description="PBI:143539")
@@ -114,22 +114,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
-				given()
-//						.log().all()
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-//						.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Free Service",description="PBI:143539")
@@ -142,22 +142,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
-				given()
-//						.log().all()
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-//						.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143539")
@@ -174,22 +174,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double calcTaxTotal =  (calcTotal * taxRate);
 				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143539")
@@ -207,22 +207,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Taxed Item",description="PBI:143539")
@@ -239,22 +239,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double calcTaxTotal =  (calcTotal * taxRate);
 				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));				
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));				
 	}
 	
 	@Test (testName="Free Package",description="PBI:143539")
@@ -267,22 +267,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143539")
@@ -294,22 +294,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(400)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
-						.body("Message", equalTo("NonZeroQuantityRequired"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("NonZeroQuantityRequired"));			
 	}
 	
 	@Test (testName="Member Not Found",description="PBI:143539")
@@ -321,22 +321,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(404)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(404))
-						.body("Message", equalTo("CustomerNotFound"));					
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(404)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(404))
+				.body("Message", equalTo("CustomerNotFound"));					
 	}
 	
 	@Test (testName="Terminated Member",description="PBI:143539")
@@ -348,22 +348,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143539", enabled = false)
@@ -375,22 +375,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(400)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
-						.body("Message", equalTo("Account Problem"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Frozen Member",description="PBI:143539")
@@ -402,22 +402,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Prospect",description="PBI:143539", enabled = false)
@@ -429,22 +429,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(400)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
-						.body("Message", equalTo("Account Problem"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143539", enabled = false)
@@ -456,22 +456,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(400)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
-						.body("Message", equalTo("Account Problem"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("Account Problem"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143539")
@@ -483,22 +483,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(200))
-						.body("Result", not(nullValue()));		
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Item Not Found",description="PBI:143539")
@@ -510,22 +510,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-//						.log().body()
-						.statusCode(404)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(404))
-						.body("Message", equalTo("ItemNotFound"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(404)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(404))
+				.body("Message", equalTo("ItemNotFound"));			
 	}
 	
 	@Test (testName="Item Not Package",description="PBI:143539")
@@ -537,22 +537,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(404)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(404))
-						.body("Message", equalTo("ItemNotFound"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(404)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(404))
+				.body("Message", equalTo("ItemNotFound"));			
 	}
 	
 	@Test (testName="Product Price Changed",description="PBI:143539")
@@ -564,22 +564,22 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("taxSingleTPrice");//using base price (Grand Total - taxes)
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				
-				given()
+			given()
 				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
+			.when()
 					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-						.post("/api/v3/package/purchasepackagewithnewcreditcard")
-						.then()
-						//.log().body()
-						.statusCode(400)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
-						.body("Message", equalTo("ProductPriceChanged"));			
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+				//.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("ProductPriceChanged"));			
 	}
 	
 	
