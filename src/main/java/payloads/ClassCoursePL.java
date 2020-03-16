@@ -1,30 +1,10 @@
-package resources;
+package payloads;
 
-public class Payloads extends base {
+import resources.base;
+
+public class ClassCoursePL extends base {
 	
-	public static String BookAppointmentByEmployeePL
-		(
-				String appointmentClubId,
-				String itemId,
-				String occurrence,
-				String customerId,
-				String requestedBooks,
-				String userDisplayedPrice
-				)
-		{
-		String payload = "{" + 
-				"\"AppointmentClubId\": "+appointmentClubId+","+ 
-				"\"ItemId\": "+itemId+","+ 
-				"\"Occurrence\": \""+occurrence+"\","+
-				"\"CustomerId\": "+customerId+","+ 
-				"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-				"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-				"}";
-				
-				return payload;
-		}
-	
-	public static String EnrollMemberInClassWithNewCreditCardPL
+	public static String EnrollMemberInClassWithNewCreditCard
 			(
 			int customerId,
 			String classId,
@@ -65,7 +45,7 @@ public class Payloads extends base {
 		return payload;	
 	}
 	
-	public static String EnrollMemberInCourseWithNewCreditCardPL
+	public static String EnrollMemberInCourseWithNewCreditCard
 			(
 			int customerId,
 			String courseId,
@@ -104,64 +84,5 @@ public class Payloads extends base {
 		
 		return payload;
 	}
-	
-	public static String PurchasePackageWithNewCreditCardPL	
-			(
-			String customerId,
-			String itemId,
-			int quantity,
-			Double displayedGrandTotal,
-			String cardNumber,
-			String nameOnCard,
-			String month,
-			String year,
-			String securityCode,
-			String addressLine1,
-			String city,
-			String state,
-			String postalCode
-			) {
-		
-		String payload = "{" + 
-				"  \"CustomerId\": "+customerId+"," + 
-				"  \"ItemId\": \""+itemId+"\"," + 
-				"  \"Quantity\": \""+quantity+"\"," + 
-				"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-				"  \"CardNumber\": \""+cardNumber+"\"," + 
-				"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-				"  \"ExpirationDate\": {" + 
-				"    \"Month\": \""+month+"\"," + 
-				"    \"Year\": "+year+"" + 
-				"  }," + 
-				"  \"SecurityCode\": \""+securityCode+"\"," + 
-				"  \"AddressLine1\": \""+addressLine1+"\"," + 
-				"  \"City\": \""+city+"\"," + 
-				"  \"StateProvince\": \""+state+"\"," + 
-				"  \"PostalCode\": \""+postalCode+"\"" +
-				"}";
-
-		return payload;
-	}
-	
-	public static String PurchasePackageWithCardOnFilePL	
-			(
-			String customerId,
-			String itemId,
-			int quantity,
-			Double displayedGrandTotal,
-			int account
-			) {
-
-		String payload = "{" + 
-				"  \"CustomerId\": "+customerId+"," + 
-				"  \"ItemId\": \""+itemId+"\"," + 
-				"  \"Quantity\": \""+quantity+"\"," + 
-				"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-				"  \"Account\": \""+account+"\"" +
-				"}";
-
-		return payload;
-}
-	
 
 }

@@ -129,24 +129,24 @@ public class ReusableMethods extends base {
 					if (isEnrolled(customerId) == true)
 					{
 						loopCount++;
-						System.out.println("-------------------------------------------------------");
+						System.out.println("[WARNING]----------------------------------------------");
 						System.out.println("[WARNING] Retry Delete Enrollment");
 						System.out.println("[WARNING] customerId: "+customerId);
 						System.out.println("[WARNING] enrollmentId: "+enrollmentId);
 						System.out.println("[WARNING] loopCount: "+loopCount);
-						System.out.println("-------------------------------------------------------");
+						System.out.println("[WARNING]----------------------------------------------");
 						deleteEnrollment(companyId, enrollmentId, customerId);
 					}
 			
 			}
 			else
 	 		{
-				System.out.println("-------------------------------------------------------");
+				System.out.println("[ERROR]------------------------------------------------");
 				System.out.println("[ERROR] Retry Loop Count Exceeded");
 				System.out.println("[ERROR] customerId: "+customerId);
 				System.out.println("[ERROR] enrollmentId: "+enrollmentId);
 				System.out.println("[ERROR] loopCount: "+loopCount);
-				System.out.println("-------------------------------------------------------");
+				System.out.println("[ERROR]------------------------------------------------");
 				loopCount = 0;
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 			}
@@ -181,23 +181,23 @@ public class ReusableMethods extends base {
 					if (isEnrolled(customerId) == true)
 					{
 						loopCount++;
-						System.out.println("-------------------------------------------------------");
+						System.out.println("[WARNING]----------------------------------------------");
 						System.out.println("[WARNING] Retry Unenroll");
 						System.out.println("[WARNING] customerId: "+customerId);
 						System.out.println("[WARNING] invoiceId: "+invoiceId);
 						System.out.println("[WARNING] Retry Count: "+loopCount);
-						System.out.println("----------------------------------");
+						System.out.println("[WARNING]----------------------------------------------");
 						unenroll(companyId, invoiceId, enrollmentId, customerId); // going to unenroll method so deleteEnrollment and deleteInvoice are both reran
 					}
 			}
 			else
 	 		{
-				System.out.println("-------------------------------------------------------");
+				System.out.println("[ERROR]------------------------------------------------");
 				System.out.println("[ERROR] Retry Loop Count Exceeded");
 				System.out.println("[ERROR] customerId: "+customerId);
 				System.out.println("[ERROR] enrollmentId: "+invoiceId);
 				System.out.println("[ERROR] loopCount: "+loopCount);
-				System.out.println("-------------------------------------------------------");
+				System.out.println("[ERROR]------------------------------------------------");
 				loopCount = 0;
 				Assert.assertTrue(false); //failing test because loopCount exceeded 5
 //				return;
