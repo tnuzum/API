@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import payloads.AppointmentPL;
 import resources.ReusableMethods;
 import resources.base;
 
@@ -27,11 +28,19 @@ public class BookAppointmentByMember extends base {
 	 * Cancel appointment
 	 */ 
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Free Appointment Single Member",description="PBI:127168")
@@ -40,70 +49,57 @@ public class BookAppointmentByMember extends base {
 		String appointmentClubId = prop.getProperty("club1Id");
 		String itemId = prop.getProperty("demoId");
 		String occurrence = prop.getProperty("demoOccurrence");
-//		String customerId = prop.getProperty("availableId");
-		String customerId = "227";
+		String customerId = prop.getProperty("availableId");
 		String requestedBooks = prop.getProperty("demoBookId");
 		String userDisplayedPrice = prop.getProperty("demoPrice");
 		
 	Response book_res = given()
 //						.log().all()
-		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-		.header("Content-Type", "application/json")
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+				.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 				.post("/api/v3/appointment/bookappointmentbymember")
-				.then()
+			.then()
 //						.log().body()
-				.assertThat().statusCode(200)
+				.assertThat()
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
 		JsonPath book_js = ReusableMethods.rawToJson(book_res);
 		int appointmentId = book_js.get("Result.AppointmentId");
 
 		// ** Attempt to book same appointment
-				given()
+			given()
 		//		.log().all()
-		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
-		.header("Content-Type", "application/json")
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
 		.when()
-		.body("{" + 
-				"\"AppointmentClubId\": "+appointmentClubId+","+ 
-				"\"ItemId\": "+itemId+","+ 
-				"\"Occurrence\": \""+occurrence+"\","+
-				"\"CustomerId\": "+customerId+","+ 
-				"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-				"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-			"}")
-		.post("/api/v3/appointment/bookappointmentbymember")
+				.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
+				.post("/api/v3/appointment/bookappointmentbymember")
 		.then()
 //				.log().body()
 				.assertThat().statusCode(404)
 		.body("Message", equalTo("FailAppointmentNotAvailable"));
 
 		// ** Cancel Appointment **
-				given()
-		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			given()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 				.get("/api/v3/appointment/cancelappointmentbymember/"+appointmentId+"/"+customerId)
-				.then()
+			.then()
 //				.log().body()
-				.assertThat().statusCode(200)
+				.assertThat()
+				.statusCode(200)
 				.body("Status", equalTo("Success"))
 				.body("Result", hasKey("ConfirmationCode"))
 				.body("Result.ConfirmationCode", not(empty()))
@@ -124,19 +120,12 @@ public class BookAppointmentByMember extends base {
 	Response book_res = given()
 //						.log().all()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 		.header("Content-Type", "application/json")
 			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+			.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -150,9 +139,9 @@ public class BookAppointmentByMember extends base {
 	
 		given()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 			.when()
 				.get("/api/v3/appointment/cancelappointmentbyemployee/"+appointmentId)
 				.then()
@@ -174,24 +163,17 @@ public class BookAppointmentByMember extends base {
 		String occurrence = prop.getProperty("paidTOccurrence");
 		String customerId = prop.getProperty("availableId");
 		String requestedBooks = prop.getProperty("pTBook1Id");
-		double userDisplayedPrice = 0.01;
+		String userDisplayedPrice = "0.01";
 
 	given()
 //						
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
 		.header("X-ClubId", 3)
 		.header("Content-Type", "application/json")
 			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+			.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -214,19 +196,12 @@ public class BookAppointmentByMember extends base {
 	Response book_res = given()
 //						.log().all()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 		.header("Content-Type", "application/json")
 			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"RequestedBooks\": ["+requestedBook1+","+requestedBook2+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+			.body(AppointmentPL.BookAppointment_MultiBook(appointmentClubId, itemId, occurrence, customerId, requestedBook1,requestedBook2, userDisplayedPrice))
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -239,9 +214,9 @@ public class BookAppointmentByMember extends base {
 		int appointmentId = book_js.get("Result.AppointmentId");
 		given()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 			.when()
 				.get("/api/v3/appointment/cancelappointmentbyemployee/"+appointmentId)
 				.then()
@@ -262,27 +237,20 @@ public class BookAppointmentByMember extends base {
 		String itemId = prop.getProperty("paidTId");
 		String occurrence = prop.getProperty("paidTOccurrence");
 		String customerId = prop.getProperty("availableId");
-		String AdditionalCustomerIds = prop.getProperty("noFOPId");
+		String additionalCustomerIds = prop.getProperty("noFOPId");
 		String requestedBooks = prop.getProperty("pTBook1Id");
 		String userDisplayedPrice = prop.getProperty("paidTPrice");
 		
 		Response book_res = given()
 //						.log().all()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 		.header("Content-Type", "application/json")
 			.when()
-			.body("{" + 
-					"\"AppointmentClubId\": "+appointmentClubId+","+ 
-					"\"ItemId\": "+itemId+","+ 
-					"\"Occurrence\": \""+occurrence+"\","+
-					"\"CustomerId\": "+customerId+","+ 
-					"\"AdditionalCustomerIds\": ["+AdditionalCustomerIds+"],"+
-					"\"RequestedBooks\": ["+requestedBooks+"],"+ 
-					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
-					"}")
+			.body(AppointmentPL.BookAppointment_MultiMember(appointmentClubId, itemId, occurrence, customerId, additionalCustomerIds, requestedBooks, userDisplayedPrice))
+			
 				.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
 //						.log().body()
@@ -295,9 +263,9 @@ public class BookAppointmentByMember extends base {
 		int appointmentId = book_js.get("Result.AppointmentId");
 		given()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 			.when()
 				.get("/api/v3/appointment/cancelappointmentbyemployee/"+appointmentId)
 				.then()
@@ -325,11 +293,12 @@ public class BookAppointmentByMember extends base {
 	given()
 //						.log().all()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 		.header("Content-Type", "application/json")
 			.when()
+			.body(AppointmentPL.BookAppointment_NoBook(appointmentClubId, itemId, occurrence, customerId, userDisplayedPrice))
 			.body("{" + 
 					"\"AppointmentClubId\": "+appointmentClubId+","+ 
 					"\"ItemId\": "+itemId+","+ 
@@ -359,11 +328,12 @@ public class BookAppointmentByMember extends base {
 
 	given()
 		.header("accept", "application/json")
-		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("X-Api-Key", aPIKey)
+		.header("X-CompanyId", companyId)
+		.header("X-ClubId", clubId)
 		.header("Content-Type", "application/json")
 			.when()
+			.body(AppointmentPL.BookAppointment_MultiBook(appointmentClubId, itemId, occurrence, customerId, requestedBook1, requestedBook2, userDisplayedPrice))
 			.body("{" + 
 					"\"AppointmentClubId\": "+appointmentClubId+","+ 
 					"\"ItemId\": "+itemId+","+ 
@@ -391,11 +361,12 @@ public class BookAppointmentByMember extends base {
 		
 		given()
 			.header("accept", "application/json")
-			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-			.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-			.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
 			.header("Content-Type", "application/json")
 			.when()
+			.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 			.body("{" + 
 					"\"AppointmentClubId\": "+appointmentClubId+","+ 
 					"\"ItemId\": "+itemId+","+ 
