@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import resources.Payloads;
+import payloads.ClassCoursePL;
 import resources.ReusableMethods;
 import resources.base;
 
@@ -78,7 +78,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -126,7 +126,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -165,7 +165,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -203,7 +203,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -247,7 +247,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -271,7 +271,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -295,7 +295,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -319,7 +319,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
@@ -342,7 +342,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 					.when()
-					.body(Payloads.EnrollMemberInCourseWithNewCreditCardPL(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
+					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
 //						.log().body()
