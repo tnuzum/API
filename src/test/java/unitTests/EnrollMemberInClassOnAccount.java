@@ -19,13 +19,20 @@ import resources.base;
 
 public class EnrollMemberInClassOnAccount extends base {
 	
-	public static Boolean onlineEnrollment = true;
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	static Boolean onlineEnrollment = true;
 	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Member Enrolled - Paid Class Already Started",description="PBI:143588")
@@ -35,7 +42,6 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
@@ -46,9 +52,9 @@ public class EnrollMemberInClassOnAccount extends base {
 			Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -84,7 +90,6 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("notStartedClId");
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				String displayedGrandTotal = prop.getProperty("notStartedClPrice");
@@ -94,9 +99,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 			Response res = given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -132,7 +137,7 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
+				
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
@@ -142,9 +147,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 			Response res =	given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -178,7 +183,6 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
@@ -189,9 +193,9 @@ public class EnrollMemberInClassOnAccount extends base {
 			Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -226,7 +230,6 @@ public class EnrollMemberInClassOnAccount extends base {
 		
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);
-				String companyId = prop.getProperty("X-CompanyId");
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
@@ -237,9 +240,9 @@ public class EnrollMemberInClassOnAccount extends base {
 			Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -281,9 +284,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -304,9 +307,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -327,9 +330,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -350,9 +353,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -373,9 +376,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -395,9 +398,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -419,9 +422,9 @@ public class EnrollMemberInClassOnAccount extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -442,9 +445,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -465,9 +468,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -488,9 +491,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -511,9 +514,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -534,9 +537,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -557,9 +560,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -580,9 +583,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -603,9 +606,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -627,9 +630,9 @@ public class EnrollMemberInClassOnAccount extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -650,9 +653,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
@@ -673,9 +676,9 @@ public class EnrollMemberInClassOnAccount extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()

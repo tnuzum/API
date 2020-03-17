@@ -551,7 +551,7 @@ public class PurchasePackageOnAccount extends base{
 				
 			given()
 				
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)

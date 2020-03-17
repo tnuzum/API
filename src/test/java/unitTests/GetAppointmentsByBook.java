@@ -13,12 +13,20 @@ import resources.ReusableDates;
 import resources.base;
 
 public class GetAppointmentsByBook extends base{
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="AppointmentsFound",description="PBI:132256")
@@ -32,9 +40,9 @@ public class GetAppointmentsByBook extends base{
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbybook/"+resourceTypeId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -77,9 +85,9 @@ public class GetAppointmentsByBook extends base{
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -99,9 +107,9 @@ public class GetAppointmentsByBook extends base{
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbybook/"+resourceId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
