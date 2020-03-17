@@ -52,7 +52,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 	@Test (testName="Paid Training",description="PBI:143541")
 	public void paidTraining() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 15;
 				String dgt = prop.getProperty("paidTGrandTotal");
@@ -81,9 +81,9 @@ public class PurchasePackageWithNewCreditCard extends base{
 	@Test (testName="Paid ServiceV",description="PBI:143541")
 	public void paidServiceV() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidServiceVId");
-				int quantity = 1;
+				int quantity = 5;
 				String dgt = prop.getProperty("paidServiceVGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
@@ -109,9 +109,9 @@ public class PurchasePackageWithNewCreditCard extends base{
 	@Test (testName="Free Training",description="PBI:143541")
 	public void freeTraining() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeTId");
-				int quantity = 1;
+				int quantity = 10;
 				String dgt = prop.getProperty("freeTPrice");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
@@ -137,9 +137,9 @@ public class PurchasePackageWithNewCreditCard extends base{
 	@Test (testName="Free Service",description="PBI:143541")
 	public void freeService() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeSVId");
-				int quantity = 1;
+				int quantity = 10;
 				String dgt = prop.getProperty("freeSVPrice");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
@@ -165,7 +165,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143541")
 	public void tierPricingPackage_Tier1() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 1;
 				String dgt = prop.getProperty("tierPricingTier1Price");
@@ -372,6 +372,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 	
 	@Test (testName="Terminated Member",description="PBI:143541")
 	public void terminatedMember() {
+		
+		// This restriction is not considered because the member is using a new card
  
 				String customerId = prop.getProperty("terminatedId");
 				String itemId = prop.getProperty("paidTId");
@@ -394,11 +396,13 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Collections Member",description="PBI:143541", enabled = false)
+	@Test (testName="Collections Member",description="PBI:143541", enabled = true)
 	public void collectionsMember() {
+		
+		// This restriction is not considered because the member is using a new card
  
 				String customerId = prop.getProperty("collectionsId");
 				String itemId = prop.getProperty("paidTId");
@@ -418,10 +422,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("Account Problem"));			
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));			
 	}
 	
 	@Test (testName="Frozen Member",description="PBI:143541")
@@ -451,7 +455,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Prospect",description="PBI:143541", enabled = false)
+	@Test (testName="Prospect",description="PBI:143541", enabled = true)
 	public void prospect() {
  
 				String customerId = prop.getProperty("prospectId");
@@ -472,14 +476,16 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("Account Problem"));			
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:143541", enabled = false)
+	@Test (testName="Credit Limit Exceeded",description="PBI:143541", enabled = true)
 	public void creditLimitExceeded() {
+		
+				// This restriction is not considered because the member is using a new card
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
@@ -499,10 +505,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("Account Problem"));			
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143541")

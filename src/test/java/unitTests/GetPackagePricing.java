@@ -18,11 +18,19 @@ import resources.base;
 
 public class GetPackagePricing extends base {
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Item Found - Single Tax",description="PBI:155660")
@@ -37,9 +45,9 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -74,9 +82,9 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -116,8 +124,8 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
@@ -141,22 +149,21 @@ public class GetPackagePricing extends base {
 						Assert.assertEquals(js.getDouble("Result.TaxDetails[0].TaxAmount"), 0.29);
 	}
 	
-	@Test (testName="Item Found - No Tax",description="PBI:155660")
-	public void itemFound_NoTax() { 
+	@Test (testName="Paid Training",description="PBI:155660")
+	public void paidTraining() { 
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String i = prop.getProperty("paidTId");
 				int itemId = Integer.parseInt(i);
 				int quantity = 1;
-		
 
 		Response res = given()
 //						
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -176,8 +183,76 @@ public class GetPackagePricing extends base {
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
 	}
 	
-	@Test (testName="Item Found - Free Itemx",description="PBI:155660")
-	public void itemFound_FreeItem() { 
+	@Test (testName="Paid Service",description="PBI:155660")
+	public void paidService() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidServiceVId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 5;
+
+		Response res = given()
+//						
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+			
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 75.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 75.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 75.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Paid Punchcard",description="PBI:155660")
+	public void paidPunchcard() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("paidPId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res = given()
+//						
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+			
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 1.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 1.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 1.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Free Training",description="PBI:155660")
+	public void freeTraining() { 
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -188,9 +263,77 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Free Service",description="PBI:155660")
+	public void freeService() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("freeSVId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res =	given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result.CanPlaceOnAccount", equalTo(true))
+						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
+						.body("Result.PriceDetails[0].CustomerId", equalTo(customerId))
+						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
+						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 0.0);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Free Punchcard",description="PBI:155660")
+	public void freePunchard() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("freePId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 1;
+
+		Response res =	given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -222,9 +365,9 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -256,9 +399,9 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -290,9 +433,9 @@ public class GetPackagePricing extends base {
 		Response res =	given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -321,9 +464,9 @@ public class GetPackagePricing extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -342,9 +485,9 @@ public class GetPackagePricing extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -364,9 +507,9 @@ public class GetPackagePricing extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -387,8 +530,8 @@ public class GetPackagePricing extends base {
 		given()
 						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
@@ -408,9 +551,9 @@ public class GetPackagePricing extends base {
 		Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
@@ -443,8 +586,8 @@ public class GetPackagePricing extends base {
 		Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
@@ -478,8 +621,8 @@ public class GetPackagePricing extends base {
 		Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club3Id"))
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
@@ -499,6 +642,31 @@ public class GetPackagePricing extends base {
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 12.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 12.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+	}
+	
+	@Test (testName="Package Quantity Limit Exceeded",description="PBI:155660", enabled = true)
+	public void packageQuantityLimitExceeded() { 
+		
+				String c = prop.getProperty("availableId");
+				int customerId = Integer.parseInt(c);
+				String i = prop.getProperty("limit10PId");
+				int itemId = Integer.parseInt(i);
+				int quantity = 15;
+
+		given()
+//						.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", prop.getProperty("X-Club3Id"))
+					.when()
+						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Status", equalTo(400))
+						.body("Message", equalTo("Missing quantity configuration"));
 	}
 	
 }

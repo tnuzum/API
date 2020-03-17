@@ -47,11 +47,11 @@ public class BookAppointmentByMember extends base {
 	public void FreeAppointment_SingleMember() { 
 
 		String appointmentClubId = prop.getProperty("club1Id");
-		String itemId = prop.getProperty("demoId");
-		String occurrence = prop.getProperty("demoOccurrence");
+		String itemId = prop.getProperty("freePId");
+		String occurrence = prop.getProperty("freePOccurrence");
 		String customerId = prop.getProperty("availableId");
 		String requestedBooks = prop.getProperty("demoBookId");
-		String userDisplayedPrice = prop.getProperty("demoPrice");
+		String userDisplayedPrice = prop.getProperty("freePPrice");
 		
 	Response book_res = given()
 //						.log().all()

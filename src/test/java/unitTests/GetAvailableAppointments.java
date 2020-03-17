@@ -13,12 +13,20 @@ import resources.ReusableDates;
 import resources.base;
 
 public class GetAvailableAppointments extends base {
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="AppointmentsFound_NoResources",description="PBI:127498")
@@ -32,9 +40,9 @@ public class GetAvailableAppointments extends base {
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
@@ -73,9 +81,9 @@ public class GetAvailableAppointments extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("ResourceTypeId", resourceTypeId)
 						.queryParam("ResourceId", resourceId)
 					.when()
@@ -107,17 +115,17 @@ public class GetAvailableAppointments extends base {
 	@Test (testName="AppointmentsNotFound",description="PBI:127498")
 	public void AppointmentsNotFound() {
 
-		String member = prop.getProperty("noFOPId");
+		String member = prop.getProperty("noPunchesId");
 		String sDateTimeNoOffset = "2025-01-01T00:00";
 		String eDateTimeNoOffset = "2025-01-02T00:00";
-		String serviceId = prop.getProperty("demoId");
+		String serviceId = prop.getProperty("freePId");
 
 				given()
 				//.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/appointment/getavailableappointments/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset+"/"+serviceId)
 						.then()
