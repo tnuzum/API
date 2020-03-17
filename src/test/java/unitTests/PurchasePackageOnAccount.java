@@ -25,6 +25,60 @@ public class PurchasePackageOnAccount extends base{
 		clubId = prop.getProperty("X-Club1Id");
 	}
 	
+	@Test (testName="Free Punchcard",description="PBI:143539")
+	public void freePunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("freePId");
+				int quantity = 15;
+				String dGT = prop.getProperty("freePPrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+//				.log().body()
+				.assertThat()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));	
+	}
+	
+	@Test (testName="Paid Punchcard",description="PBI:143539")
+	public void paidPunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidPId");
+				int quantity = 10;
+				String dGT = prop.getProperty("paidPBasePrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+				
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+//				.log().all()
+				.assertThat()
+				.statusCode(200)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));
+	}
+	
 	@Test (testName="Paid Training",description="PBI:143539")
 	public void paidTraining() {
  
@@ -81,7 +135,7 @@ public class PurchasePackageOnAccount extends base{
 	@Test (testName="Free Training",description="PBI:143539")
 	public void freeTraining() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("noFOPId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
 				String dGT = prop.getProperty("freeTPrice");
@@ -107,7 +161,7 @@ public class PurchasePackageOnAccount extends base{
 	@Test (testName="Free Service",description="PBI:143539")
 	public void freeService() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("noFOPId");
 				String itemId = prop.getProperty("freeSVId");
 				int quantity = 1;
 				String dGT = prop.getProperty("freeSVPrice");
@@ -191,6 +245,80 @@ public class PurchasePackageOnAccount extends base{
 				.body("Result", not(nullValue()));		
 	}
 	
+	@Test (testName="Club Pricing - Club 1",description="PBI:143539")
+	public void clubPricingClub1() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidSVClubPriceId");
+				int quantity = 1;
+				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub1Price");
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
+	}
+	
+	@Test (testName="Club Pricing - Club 2",description="PBI:143539", enabled = true)
+	public void clubPricingClub2() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidSVClubPriceId");
+				int quantity = 1;
+				int clubId = 2;
+				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub2Price");
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
+	}
+	
+	@Test (testName="Club Pricing - Club 3",description="PBI:143539", enabled = true)
+	public void clubPricingClub3() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidSVClubPriceId");
+				int quantity = 1;
+				int clubId = 3;
+				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub3Price");
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
+	}
+	
 	@Test (testName="Taxed Item",description="PBI:143539")
 	public void taxedItem() {
  
@@ -219,32 +347,6 @@ public class PurchasePackageOnAccount extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
 				.body("Result", not(nullValue()));				
-	}
-	
-	@Test (testName="Free Package",description="PBI:143539")
-	public void freePackage() {
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("freeTId");
-				int quantity = 1;
-				String dGT = prop.getProperty("freeTPrice");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
-				
-			given()
-				//.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-			.when()
-				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
-			.then()
-				//.log().body()
-				.statusCode(200)
-				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143539")
@@ -567,7 +669,33 @@ public class PurchasePackageOnAccount extends base{
 				;
 	}
 	
-		
+	@Test (testName="Package Quantity Limit Exceeded",description="PBI:143539")
+	public void packageQuantityLimitExceeded() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("limit10PId");
+				int quantity = 15;
+				String dGT = prop.getProperty("limit10PBasePrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("InvoiceError - Missing quantity configuration"))
+				
+				;		
+	}	
 	
 	
 	

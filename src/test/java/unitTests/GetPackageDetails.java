@@ -18,55 +18,24 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetPackageDetails extends base{
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
-	@Test (testName="Service - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = true)
-	public void service_OnlineSalesNotAllowed() {
- 
-				String customerId = prop.getProperty("availableId");
-				String i = prop.getProperty("noWebServiceId");
-				int itemId = Integer.parseInt(i);
-
-				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result", hasKey("AssociatedSessionDtos"))
-						.body("Result", hasKey("BasePrice"))
-						.body("Result", hasKey("CategoryDescription"))
-						.body("Result", hasKey("DaysUntilExpiration"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("ItemDescription"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("LongDescription"))
-						.body("Result", hasKey("PriceRangeDtos"))
-//						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
-//						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
-//						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
-						.body("Result", hasKey("RedeemableClubs"))
-						.body("Result.BasePrice", not(nullValue()))
-						.body("Result.DaysUntilExpiration", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
-						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs", not(nullValue()));
-	}
-	
-	@Test (testName="Service - Online Sales Allowed",description="PBI:143538, 148154")
-	public void service_OnlineSalesAllowed() {
+	@Test (testName="Paid Service",description="PBI:143538, 148154")
+	public void paidService() {
  
 				String customerId = prop.getProperty("availableId");
 				String i = prop.getProperty("paidServiceVId");
@@ -75,9 +44,9 @@ public class GetPackageDetails extends base{
 				Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -117,95 +86,19 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[3].StartRange"), 21);
 	}
 	
-	@Test (testName="Service - Inactive",description="PBI:143538, 148154", enabled = true)
-	public void service_Inactive() {
- 
-				String customerId = prop.getProperty("availableId");
-				String i = prop.getProperty("inactiveServiceId");
-				int itemId = Integer.parseInt(i);
-
-				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.body("Result", hasKey("AssociatedSessionDtos"))
-						.body("Result", hasKey("BasePrice"))
-						.body("Result", hasKey("CategoryDescription"))
-						.body("Result", hasKey("DaysUntilExpiration"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("ItemDescription"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("LongDescription"))
-						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
-						.body("Result", hasKey("RedeemableClubs"))
-						.body("Result.BasePrice", not(nullValue()))
-						.body("Result.DaysUntilExpiration", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
-						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs", not(nullValue()));
-	}
-	
-	@Test (testName="Training - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = true)
-	public void training_OnlineSalesNotAllowed() {
- 
-				String customerId = prop.getProperty("availableId");
-				String i = prop.getProperty("noWebTId");
-				int itemId = Integer.parseInt(i);
-
-				given()
-
-				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
-					.when()
-						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(200)
-						.body("Result", hasKey("AssociatedSessionDtos"))
-						.body("Result", hasKey("BasePrice"))
-						.body("Result", hasKey("CategoryDescription"))
-						.body("Result", hasKey("DaysUntilExpiration"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("ItemDescription"))
-						.body("Result", hasKey("ItemId"))
-						.body("Result", hasKey("LongDescription"))
-						.body("Result", hasKey("PriceRangeDtos"))
-						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
-						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
-						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
-						.body("Result", hasKey("RedeemableClubs"))
-						.body("Result.BasePrice", not(nullValue()))
-						.body("Result.DaysUntilExpiration", not(nullValue()))
-						.body("Result.ItemId", not(nullValue()))
-						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs", not(nullValue()));
-	}
-	
-	@Test (testName="Training - Online Sales Allowed",description="PBI:143538, 148154")
-	public void training_OnlineSalesAllowed() {
+	@Test (testName="Paid Training",description="PBI:143538, 148154")
+	public void paidTraining() {
  
 				String customerId = prop.getProperty("availableId");
 				String i = prop.getProperty("paidTId");
 				int itemId = Integer.parseInt(i);
 
-				given()
+				Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -229,27 +122,32 @@ public class GetPackageDetails extends base{
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
 						.body("Result.ItemId", equalTo(itemId))
-						.body("Result.RedeemableClubs", not(nullValue()));
+						.body("Result.RedeemableClubs", not(nullValue()))
+						.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				Assert.assertEquals(js.getDouble("Result.ItemId"), itemId);
 	}
 	
-	@Test (testName="Training - Inactive",description="PBI:143538, 148154", enabled = true)
-	public void training_Inactive() {
+	@Test (testName="Free Training",description="PBI:143538, 148154")
+	public void freeTraining() {
  
 				String customerId = prop.getProperty("availableId");
-				String i = prop.getProperty("inactiveTrainingId");
+				String i = prop.getProperty("freeTId");
 				int itemId = Integer.parseInt(i);
 
-				given()
-
+				Response res = given()
+//						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
-					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result", hasKey("AssociatedSessionDtos"))
 						.body("Result", hasKey("BasePrice"))
 						.body("Result", hasKey("CategoryDescription"))
@@ -266,8 +164,150 @@ public class GetPackageDetails extends base{
 						.body("Result.BasePrice", not(nullValue()))
 						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.BasePrice"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 999);
+						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
+						Assert.assertEquals(js.getString("Result.RedeemableClubs[0]"), "Jonas Sports-Plex");
+	}
+	
+	@Test (testName="Free Service",description="PBI:143538, 148154")
+	public void freeService() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("freeSVId");
+				int itemId = Integer.parseInt(i);
+
+				Response res = given()
+//						.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
 						.body("Result.ItemId", not(nullValue()))
-						.body("Result.RedeemableClubs", not(nullValue()));
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.BasePrice"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 999);
+						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
+						Assert.assertEquals(js.getString("Result.RedeemableClubs[0]"), "Jonas Sports-Plex");
+	}
+	
+	@Test (testName="Free Punchcard",description="PBI:143538, 148154")
+	public void freePunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("freePId");
+				int itemId = Integer.parseInt(i);
+
+				Response res = given()
+//						.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.BasePrice"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 999);
+						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 0.00);
+						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
+						Assert.assertEquals(js.getString("Result.RedeemableClubs[0]"), "Jonas Sports-Plex");
+	}
+	
+	@Test (testName="Paid Punchcard",description="PBI:143538, 148154")
+	public void paidPunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("paidPId");
+				int itemId = Integer.parseInt(i);
+
+				Response res = given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+					.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.AssociatedSessionDtos[0]", hasKey("ClubName"))
+						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemBarcodeId"))
+						.body("Result.AssociatedSessionDtos[0]", hasKey("ItemDescription"))
+						.body("Result.AssociatedSessionDtos[0].SessionType", equalTo("ClassCourse"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.RedeemableClubs", not(nullValue()))
+						.extract().response();
+				
+					JsonPath js = ReusableMethods.rawToJson(res);
+					Assert.assertEquals(js.getDouble("Result.ItemId"), itemId)
+					;
 	}
 	
 	@Test (testName="Single Price Range",description="PBI:143538, 148154")
@@ -280,9 +320,9 @@ public class GetPackageDetails extends base{
 				Response res = given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -308,8 +348,8 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
 	}
 	
-	@Test (testName="MultiplePriceRanges",description="PBI:143538, 148154")
-	public void multiplePriceRanges() {
+	@Test (testName="Tier Pricing",description="PBI:143538, 148154")
+	public void tierPricing() {
 		
 			String customerId = prop.getProperty("availableId");
 			String i = prop.getProperty("tierPricingId");
@@ -317,9 +357,9 @@ public class GetPackageDetails extends base{
 
 			Response res = given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -354,6 +394,159 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getString("Result.PriceRangeDtos[3].StartRange"), prop.getProperty("tierPricingTier4StartRange"));
 	}
 	
+	@Test (testName="Service - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = true)
+	public void service_OnlineSalesNotAllowed() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("noWebServiceId");
+				int itemId = Integer.parseInt(i);
+
+				given()
+//						.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+//						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()));
+	}
+	
+	@Test (testName="Training - Online Sales Not Allowed",description="PBI:143538, 148154", enabled = true)
+	public void training_OnlineSalesNotAllowed() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("noWebTId");
+				int itemId = Integer.parseInt(i);
+
+				given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()));
+	}
+	
+	@Test (testName="Service - Inactive",description="PBI:143538, 148154", enabled = true)
+	public void service_Inactive() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("inactiveServiceId");
+				int itemId = Integer.parseInt(i);
+
+				given()
+//						.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", equalTo(itemId))
+						.body("Result.RedeemableClubs", not(nullValue()));
+	}
+	
+	@Test (testName="Training - Inactive",description="PBI:143538, 148154", enabled = true)
+	public void training_Inactive() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String i = prop.getProperty("inactiveTrainingId");
+				int itemId = Integer.parseInt(i);
+
+				given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.body("Result", hasKey("AssociatedSessionDtos"))
+						.body("Result", hasKey("BasePrice"))
+						.body("Result", hasKey("CategoryDescription"))
+						.body("Result", hasKey("DaysUntilExpiration"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("ItemDescription"))
+						.body("Result", hasKey("ItemId"))
+						.body("Result", hasKey("LongDescription"))
+						.body("Result", hasKey("PriceRangeDtos"))
+						.body("Result.PriceRangeDtos[0]", hasKey("EndRange"))
+						.body("Result.PriceRangeDtos[0]", hasKey("PricePerUnit"))
+						.body("Result.PriceRangeDtos[0]", hasKey("StartRange"))
+						.body("Result", hasKey("RedeemableClubs"))
+						.body("Result.BasePrice", not(nullValue()))
+						.body("Result.DaysUntilExpiration", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.ItemId", not(nullValue()))
+						.body("Result.RedeemableClubs", not(nullValue()));
+	}
+	
 	@Test (testName="NotServiceTypeV", description="PBI:143538, 148154")
 	public void notServiceTypeV() {
 
@@ -362,9 +555,9 @@ public class GetPackageDetails extends base{
 		
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -381,9 +574,9 @@ public class GetPackageDetails extends base{
 		
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -400,9 +593,9 @@ public class GetPackageDetails extends base{
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
 						.then()
@@ -419,8 +612,8 @@ public class GetPackageDetails extends base{
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", 99999)
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
@@ -438,8 +631,8 @@ public class GetPackageDetails extends base{
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
@@ -457,8 +650,8 @@ public class GetPackageDetails extends base{
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 					.when()
 					.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)

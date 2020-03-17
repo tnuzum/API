@@ -16,12 +16,20 @@ import resources.ReusableDates;
 import resources.base;
 
 public class GetAppointmentsByMember extends base {
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="AppointmentsFound",description="PBI:124124")
@@ -33,9 +41,9 @@ public class GetAppointmentsByMember extends base {
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 						.queryParam(customerId)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
@@ -83,12 +91,12 @@ public class GetAppointmentsByMember extends base {
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
-					.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
-						.then()
+						.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+					.then()
 //						.log().body()
 						.assertThat().statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS)
@@ -105,9 +113,9 @@ public class GetAppointmentsByMember extends base {
 				given()
 //						.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/appointment/getappointmentsbymember/"+member+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()

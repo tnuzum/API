@@ -263,7 +263,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 	@Test (testName="Not Enough Punches",description="PBI:147820")
 	public void notEnoughPunches() {
 		
-				String c = prop.getProperty("noFOPId");
+				String c = prop.getProperty("noPunchesId");
 				int customerId = Integer.parseInt(c);
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				Boolean enrollCustomerAsStandby = true;

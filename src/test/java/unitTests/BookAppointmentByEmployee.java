@@ -40,16 +40,16 @@ public class BookAppointmentByEmployee extends base {
 	public void FreeAppointment_SingleMember() { 
 		
 		String appointmentClubId = prop.getProperty("club1Id");
-		String itemId = prop.getProperty("demoId");
-		String occurrence = prop.getProperty("demoOccurrence");
+		String itemId = prop.getProperty("freePId");
+		String occurrence = prop.getProperty("freePOccurrence");
 		String customerId = prop.getProperty("availableId");
 		String requestedBooks = prop.getProperty("demoBookId");
-		String userDisplayedPrice = prop.getProperty("demoPrice");
+		String userDisplayedPrice = prop.getProperty("freePPrice");
 		
 		Response book_res =
 			
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -59,7 +59,7 @@ public class BookAppointmentByEmployee extends base {
 				.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 			.then()
-				//.log().body()
+//				.log().body()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
@@ -231,6 +231,7 @@ public class BookAppointmentByEmployee extends base {
 		
 	Response book_res = 
 		given()
+//			.log().all()
 			.header("accept", "application/json")
 			.header("Content-Type", "application/json")
 			.header("X-Api-Key", aPIKey)

@@ -269,7 +269,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 	@Test (testName="Not Enough Punches",description="PBI:147808")
 	public void notEnoughPunches() {
 		
-				String c = prop.getProperty("noFOPId");
+				String c = prop.getProperty("noPunchesId");
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
