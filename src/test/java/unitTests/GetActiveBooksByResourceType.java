@@ -15,12 +15,20 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class GetActiveBooksByResourceType extends base{
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="BookFound_NoResource",description="PBI:138964")
@@ -29,9 +37,9 @@ public class GetActiveBooksByResourceType extends base{
 			given()
 //					.log().all()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/bookview/getactivebooksbyresourcetype")
 						.then()
@@ -51,9 +59,9 @@ public class GetActiveBooksByResourceType extends base{
 
 				given()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 						.queryParam("ResourceTypeId", resourceTypeId)
 					.when()
 						.get("/api/v3/bookview/getactivebooksbyresourcetype")
@@ -73,9 +81,9 @@ public class GetActiveBooksByResourceType extends base{
 
 			given()
 						.header("accept", "application/json")
-						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 						.queryParam("ResourceTypeId", resourceTypeId)
 					.when()
 						.get("/api/v3/bookview/getactivebooksbyresourcetype")

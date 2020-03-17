@@ -276,7 +276,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				double displayedGrandTotal = (calcTotal + calcTaxTotal);
 				
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
