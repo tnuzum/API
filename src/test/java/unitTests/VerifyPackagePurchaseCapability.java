@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
-import payloads.PackagePL;
 import resources.base;
 
 public class VerifyPackagePurchaseCapability extends base{
