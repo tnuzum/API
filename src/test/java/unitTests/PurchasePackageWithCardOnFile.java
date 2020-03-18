@@ -9,22 +9,13 @@ import io.restassured.RestAssured;
 import payloads.PackagePL;
 import resources.base;
 
-public class PurchasePackageWithNewCreditCard extends base{
+public class PurchasePackageWithCardOnFile extends base{
 	
 	static String aPIKey;
 	static String companyId;
 	static String clubId;
 
-	static String cardNumber;
-	static String nameOnCard;
-	static String month;
-	static String year;
-	static String securityCode;
-	static String addressLine1;
-	static String addressLine2;
-	static String city;
-	static String state;
-	static String postalCode;
+	int account = 1;
 
 	@BeforeClass
 	public void getData() {
@@ -34,22 +25,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 		
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
-		clubId = prop.getProperty("X-Club1Id");
-		
-		cardNumber = prop.getProperty("CC1CardNumber");
-		nameOnCard = prop.getProperty("CC1NameOnCard");
-		month = prop.getProperty("CC1Month");
-		year = prop.getProperty("CC1Year");
-		securityCode = prop.getProperty("CC1SecurityCode");
-		addressLine1 = prop.getProperty("CC1AddressLine1");
-		addressLine1 = prop.getProperty("CC1AddressLine2");
-		city = prop.getProperty("CC1City");
-		state = prop.getProperty("CC1State");
-		postalCode = prop.getProperty("CC1PostalCode");
-		
+		clubId = prop.getProperty("X-Club1Id");	
 	}
 	
-	@Test (testName="Paid Training",description="PBI:143541")
+	@Test (testName="Paid Training",description="PBI:143542")
 	public void paidTraining() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -68,17 +47,17 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-//				.log().all()
+				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
 				.body("Result", equalTo("Success"));
 	}
 	
-	@Test (testName="Paid ServiceV",description="PBI:143541")
+	@Test (testName="Paid ServiceV",description="PBI:143542")
 	public void paidServiceV() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -86,7 +65,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 5;
 				String dgt = prop.getProperty("paidServiceVGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (grandTotal * quantity);
 				
 			given()
 //				.log().all()
@@ -96,8 +75,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(200)
@@ -106,7 +85,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));
 	}
 	
-	@Test (testName="Paid Punchcard",description="PBI:143541")
+	@Test (testName="Paid Punchcard",description="PBI:143542")
 	public void paidPunchcard() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -114,7 +93,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 5;
 				String dgt = prop.getProperty("paidPBasePrice");
 				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (grandTotal * quantity);
 				
 			given()
 //				.log().all()
@@ -124,8 +103,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(200)
@@ -134,7 +113,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));
 	}
 	
-	@Test (testName="Free Training",description="PBI:143541")
+	@Test (testName="Free Training",description="PBI:143542")
 	public void freeTraining() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -142,7 +121,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 10;
 				String dgt = prop.getProperty("freeTPrice");
 				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (grandTotal * quantity);
 				
 			given()
 //				.log().all()
@@ -152,8 +131,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(200)
@@ -162,7 +141,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Free Service",description="PBI:143541")
+	@Test (testName="Free Service",description="PBI:143542")
 	public void freeService() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -170,7 +149,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 10;
 				String dgt = prop.getProperty("freeSVPrice");
 				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (grandTotal * quantity);
 				
 			given()
 //				.log().all()
@@ -180,8 +159,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(200)
@@ -190,7 +169,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Free Punchcard",description="PBI:143541")
+	@Test (testName="Free Punchcard",description="PBI:143542")
 	public void freePunchcard() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -198,7 +177,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 10;
 				String dgt = prop.getProperty("freePPrice");
 				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (grandTotal * quantity);
 				
 			given()
 //				.log().all()
@@ -208,8 +187,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(200)
@@ -218,7 +197,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143541")
+	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143542")
 	public void tierPricingPackage_Tier1() {
  
 				String customerId = prop.getProperty("appointmentId");
@@ -230,7 +209,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 			given()
 				//.log().all()
@@ -240,8 +219,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -250,7 +229,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));
 	}
 	
-	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143541")
+	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143542")
 	public void tierPricingPackage_Tier2() {
  
 				String customerId = prop.getProperty("availableId");
@@ -262,7 +241,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 				
 			given()
@@ -273,8 +252,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -283,7 +262,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Taxed Item",description="PBI:143541")
+	@Test (testName="Taxed Item",description="PBI:143542")
 	public void taxedItem() {
  
 				String customerId = prop.getProperty("availableId");
@@ -295,7 +274,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double taxRate = Double.parseDouble(tr);
 				double calcTotal = (grandTotal * quantity);
 				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 			given()
 				//.log().all()
@@ -305,8 +284,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -315,15 +294,15 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));				
 	}
 	
-	@Test (testName="Free Package",description="PBI:143541")
+	@Test (testName="Free Package",description="PBI:143542")
 	public void freePackage() {
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
 				String dgt = prop.getProperty("freeTPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -333,8 +312,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -343,7 +322,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Quantity Zero",description="PBI:143541")
+	@Test (testName="Quantity Zero",description="PBI:143542")
 	public void quantityZero() {
  
 				String customerId = prop.getProperty("availableId");
@@ -351,6 +330,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 0;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -360,8 +340,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(400)
@@ -370,7 +350,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Message", equalTo("NonZeroQuantityRequired"));			
 	}
 	
-	@Test (testName="Optional Parameter - Address2",description="PBI:143541")
+	@Test (testName="Optional Parameter - Address2",description="PBI:143542")
 	public void optionalParameterAddress2() {
  
 				String customerId = prop.getProperty("availableId");
@@ -379,18 +359,19 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				
 //				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
+.header("X-Api-Key", aPIKey)
+.header("X-CompanyId", companyId)
+.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithNewCreditCard_WithAddress2(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,addressLine2,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().all()
 				.statusCode(200)
@@ -399,7 +380,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));
 	}
 	
-	@Test (testName="Member Not Found",description="PBI:143541")
+	@Test (testName="Member Not Found",description="PBI:143542")
 	public void memberNotFound() {
  
 				String customerId = "99999";
@@ -407,6 +388,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -416,17 +398,17 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(404)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(404))
-				.body("Message", equalTo("CustomerNotFound"));				
+				.body("Message", equalTo("CustomerNotFound"));
 	}
 	
-	@Test (testName="Terminated Member",description="PBI:143541")
+	@Test (testName="Terminated Member",description="PBI:143542")
 	public void terminatedMember() {
 		
 		// This restriction is not considered because the member is using a new card
@@ -436,6 +418,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -445,8 +428,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -455,7 +438,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Collections Member",description="PBI:143541", enabled = true)
+	@Test (testName="Collections Member",description="PBI:143542", enabled = true)
 	public void collectionsMember() {
 		
 		// This restriction is not considered because the member is using a new card
@@ -465,6 +448,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -474,8 +458,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -484,7 +468,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Frozen Member",description="PBI:143541")
+	@Test (testName="Frozen Member",description="PBI:143542")
 	public void frozenMember() {
  
 				String customerId = prop.getProperty("frozenId");
@@ -492,6 +476,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -501,8 +486,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -511,7 +496,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Prospect",description="PBI:143541", enabled = true)
+	@Test (testName="Prospect",description="PBI:143542", enabled = true)
 	public void prospect() {
  
 				String customerId = prop.getProperty("prospectId");
@@ -519,6 +504,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -528,8 +514,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -538,7 +524,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:143541", enabled = true)
+	@Test (testName="Credit Limit Exceeded",description="PBI:143542", enabled = true)
 	public void creditLimitExceeded() {
 		
 				// This restriction is not considered because the member is using a new card
@@ -548,6 +534,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -557,8 +544,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -567,7 +554,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Credit Limit Not Exceeded",description="PBI:143541")
+	@Test (testName="Credit Limit Not Exceeded",description="PBI:143542")
 	public void creditLimitNotExceeded() {
  
 				String customerId = prop.getProperty("creditLimitId");
@@ -575,6 +562,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -584,8 +572,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(200)
@@ -594,7 +582,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Result", not(nullValue()));		
 	}
 	
-	@Test (testName="Item Not Found",description="PBI:143541")
+	@Test (testName="Item Not Found",description="PBI:143542")
 	public void itemNotFound() {
  
 				String customerId = prop.getProperty("availableId");
@@ -602,6 +590,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -611,8 +600,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(404)
@@ -621,7 +610,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Message", equalTo("ItemNotFound"));			
 	}
 	
-	@Test (testName="Item Not Package",description="PBI:143541")
+	@Test (testName="Item Not Package",description="PBI:143542")
 	public void itemNotPackage() {
  
 				String customerId = prop.getProperty("availableId");
@@ -629,6 +618,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("freeTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
 				//.log().all()
@@ -638,8 +628,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(404)
@@ -648,7 +638,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Message", equalTo("ItemNotFound"));			
 	}
 	
-	@Test (testName="Product Price Changed",description="PBI:143541")
+	@Test (testName="Product Price Changed",description="PBI:143542")
 	public void productPriceChanged() {
  
 				String customerId = prop.getProperty("availableId");
@@ -656,26 +646,27 @@ public class PurchasePackageWithNewCreditCard extends base{
 				int quantity = 1;
 				String dgt = prop.getProperty("taxSingleTPrice");//using base price (Grand Total - taxes)
 				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				.log().all()
+				//.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				.log().body()
+				//.log().body()
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 				.body("Message", equalTo("ProductPriceChanged"));			
 	}
 	
-	@Test (testName="Package Quantity Limit Exceeded",description="PBI:143541")
+	@Test (testName="Package Quantity Limit Exceeded",description="PBI:143542")
 	public void packageQuantityLimitExceeded() {
  
 				String customerId = prop.getProperty("availableId");
@@ -686,17 +677,16 @@ public class PurchasePackageWithNewCreditCard extends base{
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				//.log().all()
+				.log().all()
 				.header("accept", "application/json")
-				.header("Content-Type", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
-				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
