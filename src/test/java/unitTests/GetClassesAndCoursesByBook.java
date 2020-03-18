@@ -12,12 +12,20 @@ import resources.ReusableDates;
 import resources.base;
 
 public class GetClassesAndCoursesByBook extends base{
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="ClassesCoursesFound",description="PBI:140729")
@@ -30,9 +38,9 @@ public class GetClassesAndCoursesByBook extends base{
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -71,9 +79,9 @@ public class GetClassesAndCoursesByBook extends base{
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -93,9 +101,9 @@ public class GetClassesAndCoursesByBook extends base{
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -115,9 +123,9 @@ public class GetClassesAndCoursesByBook extends base{
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
@@ -137,9 +145,9 @@ public class GetClassesAndCoursesByBook extends base{
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbybook/"+resourceId +"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()

@@ -103,7 +103,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Paid ServiceV",description="PBI:143539")
@@ -129,7 +129,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Free Training",description="PBI:143539")
@@ -155,7 +155,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Free Service",description="PBI:143539")
@@ -181,7 +181,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143539")
@@ -211,7 +211,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143539")
@@ -242,7 +242,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Club Pricing - Club 1",description="PBI:143539")
@@ -346,7 +346,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));				
+				.body("Result", equalTo("Success"));				
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143539")
@@ -366,7 +366,7 @@ public class PurchasePackageOnAccount extends base{
 			.when()
 				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
@@ -418,7 +418,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143539")
@@ -466,7 +466,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Prospect",description="PBI:143539")
@@ -538,7 +538,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Item Not Found",description="PBI:143539")
@@ -692,9 +692,7 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
-				.body("Message", equalTo("InvoiceError - Missing quantity configuration"))
-				
-				;		
+				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));		
 	}	
 	
 	

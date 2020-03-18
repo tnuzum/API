@@ -21,16 +21,19 @@ import resources.base;
 
 public class GetClassCoursePricing extends base {
 	
-	/*
-	 * The assertions need changed to testng to extract response
-	 * because hamcrest is not able to assert on the price values returned
-	 */
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Item Found - Single Tax",description="PBI:155543")
@@ -44,9 +47,9 @@ public class GetClassCoursePricing extends base {
 		Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -80,9 +83,9 @@ public class GetClassCoursePricing extends base {
 		Response res =	given()
 //				.log().all()				
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -121,8 +124,8 @@ public class GetClassCoursePricing extends base {
 		Response res = given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", 2)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
@@ -157,9 +160,9 @@ public class GetClassCoursePricing extends base {
 
 			Response res = given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -190,9 +193,9 @@ public class GetClassCoursePricing extends base {
 		Response res =	given()
 						
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -221,9 +224,9 @@ public class GetClassCoursePricing extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -242,9 +245,9 @@ public class GetClassCoursePricing extends base {
 
 				given()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()

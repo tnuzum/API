@@ -16,6 +16,10 @@ import resources.base;
 
 public class GetAvailableCoursesByMember extends base {
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	public static Boolean onlineEnrollment = true;
 	
 	@BeforeClass
@@ -23,6 +27,10 @@ public class GetAvailableCoursesByMember extends base {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Courses Found",description="PBI:146576")
@@ -35,9 +43,9 @@ public class GetAvailableCoursesByMember extends base {
 		Response res = given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 				.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 				.then()
@@ -92,9 +100,9 @@ public class GetAvailableCoursesByMember extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 						.then()
@@ -114,9 +122,9 @@ public class GetAvailableCoursesByMember extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 					.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 						.then()
@@ -135,9 +143,9 @@ public class GetAvailableCoursesByMember extends base {
 		given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 			.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 				.then()
@@ -157,9 +165,9 @@ public class GetAvailableCoursesByMember extends base {
 		given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 			.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 				.then()
@@ -179,9 +187,9 @@ public class GetAvailableCoursesByMember extends base {
 		given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 			.when()
 			.get("/api/v3/classcourse/getavailablecoursesbymember/"+customerId+"/"+startDateTime+"/"+endDateTime+"/"+onlineEnrollment)
 				.then()
