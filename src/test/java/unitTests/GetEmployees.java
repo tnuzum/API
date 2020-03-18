@@ -18,11 +18,19 @@ import resources.base;
 
 public class GetEmployees extends base {
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="Employees Found - Active Only - No Optional Parameters",description="PBI:150855")
@@ -31,9 +39,9 @@ public class GetEmployees extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true")
 						.then()
@@ -80,9 +88,9 @@ public class GetEmployees extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&EmployeeClubId="+clubId+"")
 						.then()
@@ -129,9 +137,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&LastName="+lName+"")
 						.then()
@@ -164,9 +172,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&LastName="+lName+"")
 						.then()
@@ -199,9 +207,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&FirstName="+fName+"")
 						.then()
@@ -233,9 +241,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&FirstName="+fName+"")
 						.then()
@@ -267,9 +275,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Address="+address1+"")
 						.then()
@@ -301,9 +309,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Address="+address1+"")
 						.then()
@@ -335,9 +343,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Address="+address1+"")
 						.then()
@@ -354,9 +362,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Username="+username+"")
 						.then()
@@ -388,9 +396,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Username="+username+"")
 						.then()
@@ -422,9 +430,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Department="+department+"")
 						.then()
@@ -456,9 +464,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&HomePhone="+hPhone+"")
 						.then()
@@ -491,9 +499,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&HomePhone="+hPhone+"")
 						.then()
@@ -511,9 +519,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Username="+username+"")
 						.then()
@@ -530,9 +538,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=true&Username="+username+"")
 						.then()
@@ -549,9 +557,9 @@ public class GetEmployees extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=false&Username="+username+"")
 						.then()
@@ -579,14 +587,14 @@ public class GetEmployees extends base {
 	public void employee90daysInactive() { 
 			// this employee can't login to BO due to 90 days inactivity, but in this call they are still shown as IsActive=True - Researching correct behavior
 		
-			String username = "scampbell";
+			String username = "tcook";
 
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", 101)
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/employee/getemployees?ActiveOnly=false&Username="+username+"")
 						.then()

@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import payloads.PackagePL;
 import resources.base;
 
 public class VerifyPackagePurchaseCapability extends base{
@@ -56,6 +57,30 @@ public class VerifyPackagePurchaseCapability extends base{
 				.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
+	@Test (testName="Paid Punchcard",description="PBI:159118")
+	public void paidPunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("paidPId");
+				String quantity = "1";
+				String displayedGrandTotal = prop.getProperty("paidPBasePrice");
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+			.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("AllowedToPurchase", equalTo(true))
+				.body("PackageStatus", equalTo("PurchaseAllowed"));			
+	}
+	
 	@Test (testName="Paid ServiceV",description="PBI:159118")
 	public void paidServiceV() {
  
@@ -89,6 +114,30 @@ public class VerifyPackagePurchaseCapability extends base{
 				String itemId = prop.getProperty("freeTId");
 				String quantity = "1";
 				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+			.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("AllowedToPurchase", equalTo(true))
+				.body("PackageStatus", equalTo("PurchaseAllowed"));			
+	}
+	
+	@Test (testName="Free Punchcard",description="PBI:159118")
+	public void freePunchcard() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("freePId");
+				String quantity = "1";
+				String displayedGrandTotal = prop.getProperty("freePPrice");
 				
 			given()
 //				.log().all()
@@ -555,6 +604,34 @@ public class VerifyPackagePurchaseCapability extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("AllowedToPurchase", equalTo(false))
 				.body("PackageStatus", equalTo("ProductPriceChanged"));			
+	}
+	
+	@Test (testName="Package Quantity Limit Exceeded",description="PBI:159118", enabled = false)
+	public void packageQuantityLimitExceeded() {
+		
+		// researching - this call does not currently prevent purchase
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("limit10PId");
+				int quantity = 15;
+				String dGT = prop.getProperty("limit10PBasePrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+			.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+			.then()
+//				.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("AllowedToPurchase", equalTo(false))
+				.body("PackageStatus", equalTo("TBD"));		
 	}
 	
 	@Test (testName="CustomerId Required",description="PBI:159118")

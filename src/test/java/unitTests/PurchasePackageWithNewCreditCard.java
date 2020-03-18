@@ -75,7 +75,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Paid ServiceV",description="PBI:143541")
@@ -103,7 +103,35 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
+	}
+	
+	@Test (testName="Paid Punchcard",description="PBI:143541")
+	public void paidPunchcard() {
+ 
+				String customerId = prop.getProperty("appointmentId");
+				String itemId = prop.getProperty("paidPId");
+				int quantity = 5;
+				String dgt = prop.getProperty("paidPBasePrice");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Free Training",description="PBI:143541")
@@ -131,7 +159,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Free Service",description="PBI:143541")
@@ -159,7 +187,35 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
+	}
+	
+	@Test (testName="Free Punchcard",description="PBI:143541")
+	public void freePunchcard() {
+ 
+				String customerId = prop.getProperty("appointmentId");
+				String itemId = prop.getProperty("freePId");
+				int quantity = 10;
+				String dgt = prop.getProperty("freePPrice");
+				double grandTotal = Double.parseDouble(dgt);
+				double displayedGrandTotal = (grandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+					.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.post("/api/v3/package/purchasepackagewithnewcreditcard")
+			.then()
+//				.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143541")
@@ -191,7 +247,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143541")
@@ -224,7 +280,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Taxed Item",description="PBI:143541")
@@ -256,7 +312,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));				
+				.body("Result", equalTo("Success"));				
 	}
 	
 	@Test (testName="Free Package",description="PBI:143541")
@@ -284,7 +340,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Result", equalTo("Success"));		
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143541")
@@ -340,7 +396,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Member Not Found",description="PBI:143541")
@@ -619,7 +675,31 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Message", equalTo("ProductPriceChanged"));			
 	}
 	
-	
+	@Test (testName="Package Quantity Limit Exceeded",description="PBI:143541")
+	public void packageQuantityLimitExceeded() {
+ 
+				String customerId = prop.getProperty("availableId");
+				String itemId = prop.getProperty("limit10PId");
+				int quantity = 15;
+				String dGT = prop.getProperty("limit10PBasePrice");
+				double displayedGrandTotal = Double.parseDouble(dGT);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+			.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+			.then()
+//				.log().body()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));		
+	}	
 	
 	
 	
