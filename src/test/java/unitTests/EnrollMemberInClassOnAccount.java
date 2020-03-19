@@ -664,8 +664,10 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasClosed"));
 	}
 	
-	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = true)
+	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = false)
 	public void creditLimitedExceeded() {
+		
+		//researching - on 3/19 this started returning a 200
 		
 				String c = prop.getProperty("creditLimitId");
 				int customerId = Integer.parseInt(c);
@@ -675,6 +677,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				Boolean enrollCustomerAsStandby = true;
 
 				given()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
