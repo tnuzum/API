@@ -15,7 +15,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	static String companyId;
 	static String clubId;
 
-	int account = 1;
+	int accountId = 1;
 
 	@BeforeClass
 	public void getData() {
@@ -31,10 +31,10 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Paid Training",description="PBI:143542")
 	public void paidTraining() {
  
-				String customerId = prop.getProperty("appointmentId");
+				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 15;
-				String dgt = prop.getProperty("paidTGrandTotal");
+				String dgt = prop.getProperty("paidTPrice");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
 				
@@ -47,10 +47,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -60,7 +60,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Paid ServiceV",description="PBI:143542")
 	public void paidServiceV() {
  
-				String customerId = prop.getProperty("appointmentId");
+				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidServiceVId");
 				int quantity = 5;
 				String dgt = prop.getProperty("paidServiceVGrandTotal");
@@ -75,7 +75,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -88,7 +88,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Paid Punchcard",description="PBI:143542")
 	public void paidPunchcard() {
  
-				String customerId = prop.getProperty("appointmentId");
+				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidPId");
 				int quantity = 5;
 				String dgt = prop.getProperty("paidPBasePrice");
@@ -103,7 +103,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -131,7 +131,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -159,7 +159,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -187,7 +187,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -200,7 +200,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Tier Pricing Package - Tier 1",description="PBI:143542")
 	public void tierPricingPackage_Tier1() {
  
-				String customerId = prop.getProperty("appointmentId");
+				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 1;
 				String dgt = prop.getProperty("tierPricingTier1Price");
@@ -219,7 +219,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -232,7 +232,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Tier Pricing Package - Tier 2",description="PBI:143542")
 	public void tierPricingPackage_Tier2() {
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
 				String dgt = prop.getProperty("tierPricingTier2Price");
@@ -252,7 +252,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -284,7 +284,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -294,13 +294,71 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body("Result", equalTo("Success"));				
 	}
 	
-	@Test (testName="Free Package",description="PBI:143542")
-	public void freePackage() {
+	@Test (testName="Multiple Cards On File - AccountId 1",description="PBI:143542")
+	public void multipleCardsOnFileAccountId1() {
  
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("freeTId");
+				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
+				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String dgt = prop.getProperty("freeTPrice");
+				String dgt = prop.getProperty("paidTPrice");
+				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				int accountId = 1;
+				
+			given()
+				//.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
+	}
+	
+	@Test (testName="Multiple Cards On File - AccountId 2",description="PBI:143542")
+	public void multipleCardsOnFileAccountId2() {
+ 
+				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
+				String itemId = prop.getProperty("paidTId");
+				int quantity = 1;
+				String dgt = prop.getProperty("paidTPrice");
+				double displayedGrandTotal = Double.parseDouble(dgt);
+				double calcGrandTotal = (displayedGrandTotal * quantity);
+				int accountId = 2;
+				
+			given()
+				//.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.post("/api/v3/package/purchasepackagewithcardonfile")
+			.then()
+				//.log().body()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));		
+	}
+	
+	@Test (testName="No Card On File",description="PBI:143542")
+	public void noCardOnFile() {
+ 
+				String customerId = prop.getProperty("noFOPId");
+				String itemId = prop.getProperty("paidTId");
+				int quantity = 1;
+				String dgt = prop.getProperty("paidTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
@@ -312,14 +370,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
-				.statusCode(200)
+				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", equalTo("Success"));		
+				.body("Status", equalTo(500))
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143542")
@@ -340,7 +398,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -348,36 +406,6 @@ public class PurchasePackageWithCardOnFile extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 				.body("Message", equalTo("NonZeroQuantityRequired"));			
-	}
-	
-	@Test (testName="Optional Parameter - Address2",description="PBI:143542")
-	public void optionalParameterAddress2() {
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("paidTId");
-				int quantity = 15;
-				String dgt = prop.getProperty("paidTGrandTotal");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
-				
-			given()
-				
-//				.log().all()
-				.header("accept", "application/json")
-				.header("Content-Type", "application/json")
-.header("X-Api-Key", aPIKey)
-.header("X-CompanyId", companyId)
-.header("X-ClubId", clubId)
-			.when()				
-			.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
-				.post("/api/v3/package/purchasepackagewithcardonfile")
-			.then()
-//				.log().all()
-				.statusCode(200)
-				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Member Not Found",description="PBI:143542")
@@ -398,7 +426,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -410,8 +438,6 @@ public class PurchasePackageWithCardOnFile extends base{
 	
 	@Test (testName="Terminated Member",description="PBI:143542")
 	public void terminatedMember() {
-		
-		// This restriction is not considered because the member is using a new card
  
 				String customerId = prop.getProperty("terminatedId");
 				String itemId = prop.getProperty("paidTId");
@@ -428,20 +454,18 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
-				.statusCode(200)
+				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", equalTo("Success"));		
+				.body("Status", equalTo(500))
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143542", enabled = true)
 	public void collectionsMember() {
-		
-		// This restriction is not considered because the member is using a new card
  
 				String customerId = prop.getProperty("collectionsId");
 				String itemId = prop.getProperty("paidTId");
@@ -458,10 +482,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -486,14 +510,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
-				.statusCode(200)
+//				.log().body()
+				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", not(nullValue()));		
+				.body("Status", equalTo(500))
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			;
 	}
 	
 	@Test (testName="Prospect",description="PBI:143542", enabled = true)
@@ -514,21 +538,19 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
-				.statusCode(200)
+//				.log().body()
+				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", equalTo("Success"));			
+				.body("Status", equalTo(500))
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));				
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143542", enabled = true)
 	public void creditLimitExceeded() {
 		
-				// This restriction is not considered because the member is using a new card
- 
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
@@ -544,14 +566,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
-				.statusCode(200)
+//				.log().body()
+				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("Result", equalTo("Success"));			
+				.body("Status", equalTo(500))
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143542")
@@ -572,7 +594,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -600,7 +622,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -628,7 +650,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -656,7 +678,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -677,13 +699,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, account))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()

@@ -493,7 +493,7 @@ public class PurchasePackageOnAccount extends base{
 				.body("Message", equalTo("Account Problem"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:143539")
+	@Test (testName="Credit Limit Exceeded",description="PBI:143539", enabled = false)
 	public void creditLimitExceeded() {
  
 				String customerId = prop.getProperty("creditLimitId");
