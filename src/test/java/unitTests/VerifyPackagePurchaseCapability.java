@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import resources.ReusableMethods;
 import resources.base;
 
 public class VerifyPackagePurchaseCapability extends base{
@@ -58,6 +59,8 @@ public class VerifyPackagePurchaseCapability extends base{
 	
 	@Test (testName="Paid Punchcard",description="PBI:159118")
 	public void paidPunchcard() {
+		
+				ReusableMethods.myWait(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidPId");
