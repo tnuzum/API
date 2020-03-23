@@ -32,7 +32,7 @@ public class GetAppointmentsByMember extends base {
 		clubId = prop.getProperty("X-Club1Id");
 	}
 	
-	@Test (testName="AppointmentsFound",description="PBI:124124")
+	@Test (testName="Appointments Found",description="PBI:124124")
 	public void AppointmentsFound() {
 		
 		String customerId = prop.getProperty("appointmentId");
@@ -81,7 +81,80 @@ public class GetAppointmentsByMember extends base {
 						.body("Result[0]", hasKey("SubstituteInstructorName"));
 	}
 	
-	@Test (testName="AppointmentsNotFound",description="PBI:124124")
+	@Test (testName="Attended Appointment Found",description="PBI:124124")
+	public void attendedAppointmentFound() {
+		
+				String customerId = prop.getProperty("availableId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
+				
+				given()		
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("Attended"));
+	}
+	
+	@Test (testName="No Show Appointment Found",description="PBI:124124")
+	public void noShowAppointmentFound() {
+		
+				String customerId = prop.getProperty("noShowCustomerId");
+				String sDateTimeNoOffset = prop.getProperty("noShowSDateTime");
+				String eDateTimeNoOffset = prop.getProperty("noShowEDateTime");
+				
+				
+				given()		
+//				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("NoShow"));
+	}
+
+	@Test (testName="Cancelled Appointment Found",description="PBI:124124", enabled = false)
+	public void cancelledAppointmentFound() {
+		
+				String customerId = prop.getProperty("restrictedId");
+//				String sDateTimeNoOffset = prop.getProperty("cancelledApointmentSDateTime");
+//				String eDateTimeNoOffset = prop.getProperty("cancelledApointmentEDateTime");
+				String sDateTimeNoOffset = "2019-03-25";
+				String eDateTimeNoOffset = "2020-03-29";
+				
+				given()		
+				.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("Cancelled"));
+	}
+	
+	
+	@Test (testName="Appointments Not Found",description="PBI:124124")
 	public void AppointmentsNotFound() {
 		
 		String member = prop.getProperty("availableId");
@@ -103,7 +176,7 @@ public class GetAppointmentsByMember extends base {
 						.body("Message", equalTo("Nothing found"));
 	}
 	
-	@Test (testName="InvalidDateRange",description="PBI:124124")
+	@Test (testName="Invalid Date Range",description="PBI:124124")
 	public void InvalidDateRange() {
 		
 		String member = prop.getProperty("availableId");
