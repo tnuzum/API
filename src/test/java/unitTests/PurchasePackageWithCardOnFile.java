@@ -306,7 +306,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				int accountId = 1;
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -316,7 +316,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -335,7 +335,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				int accountId = 2;
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -345,7 +345,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
