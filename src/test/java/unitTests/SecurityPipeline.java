@@ -13,27 +13,34 @@ import io.restassured.RestAssured;
 import resources.base;
 
 public class SecurityPipeline extends base{
+	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
-		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
-	/* ** currently no inactive club in company 236 **
 	@Test (testName="InactiveClub", description="PBI:144604")
 	public void InactiveClub() {
 		
-		String member = prop.getProperty("availableId");
+				String member = prop.getProperty("availableId");
+				String clubId = prop.getProperty("inactiveClubId");
 
 					given()
 //						.log().all()
 					.header("accept", "application/json")
-					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", "311986")
+					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -45,7 +52,6 @@ public class SecurityPipeline extends base{
 					    .body("Result", not(hasKey("Address")))
 					    .body("Result", not( hasKey("Name")));
 	}
-	*/
 	
 	@Test (testName="InvalidClub", description="PBI:132893")
 	public void InvalidClub() {
@@ -54,8 +60,8 @@ public class SecurityPipeline extends base{
 
 					given()
 					.header("accept", "application/json")
-					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
 						.header("X-ClubId", "3119860") // Club not on file
 					.when()
 						.get("/api/v3/member/getmember/"+member)
@@ -76,9 +82,9 @@ public class SecurityPipeline extends base{
 
 					given()
 					.header("accept", "application/json")
-					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+					.header("X-Api-Key",aPIKey)
 						.header("X-CompanyId", "1010") // Company not on file
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -99,8 +105,8 @@ public class SecurityPipeline extends base{
 					given()
 					.header("accept", "application/json")
 						.header("X-Api-Key", "NOTVALIDB50A8F2BF7315812CF2A21690A7FF5FDA33A156C") // Not valid API Key
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -120,9 +126,9 @@ public class SecurityPipeline extends base{
 
 					given()
 					.header("accept", "application/json")
-//					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+//					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/getmember/"+member)
 						.then()
@@ -142,9 +148,9 @@ public class SecurityPipeline extends base{
 
 					given()
 					.header("accept", "application/json")
-					.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-					.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/NOTmember/getmember/"+member)
 						.then()

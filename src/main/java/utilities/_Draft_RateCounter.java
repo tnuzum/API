@@ -12,52 +12,45 @@ import resources.base;
 
 public class _Draft_RateCounter extends base {
 	
+	int customerId;
+	String classId;
+	String classOccurrence;
+	String displayedGrandTotal;
+	String cardNumber;
+	String nameOnCard;
+	String month;
+	String year;
+	String securityCode;
+	String addressLine1;
+	String city;
+	String state;
+	String postalCode;
+	String enrollCustomerAsStandby;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		
+		customerId = 248;
+		classId = "alwaysAvailCl";
+		classOccurrence = "2025-12-31";
+		displayedGrandTotal = "10.00";
+		cardNumber = prop.getProperty("CC1CardNumber");
+		nameOnCard = prop.getProperty("CC1NameOnCard");
+		month = prop.getProperty("CC1Month");
+		year = prop.getProperty("CC1Year");
+		securityCode = prop.getProperty("CC1SecurityCode");
+		addressLine1 = prop.getProperty("CC1AddressLine1");
+		city = "";
+		state = prop.getProperty("CC1State");
+		postalCode = prop.getProperty("CC1PostalCode");
+		enrollCustomerAsStandby 	= "true";
 	}
 	
 	@Test (testName="Rate-counter Limitation", description="Rate-counter Limitation")
-	/*public void rateCounterLimitation() {
-		//** This is not working because it doesn't always send 3 requests within 1 second
-		String member = prop.getProperty("availableId");
-				for (int i=1; i<5; i++) {
-					given()
-
-						.header("accept", prop.getProperty("accept"))
-//						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-Api-Key", "")
-						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-						.header("X-ClubId", prop.getProperty("X-Club1Id"))
-						.header("Content-Type", "application/json")
-					.when()
-						.get("/api/v3/member/getmember/"+member);
-//						.then()
-//						.log().body();
-//						.assertThat().header("X-Rate-Limit-Limit", "1s");	
-				}
-						
-	} */
 	public void missingCity() {
-		
-		int customerId 					= 248;
-		String classId 			= "alwaysAvailCl";
-		String classOccurrence 			= "2025-12-31";
-		String displayedGrandTotal 		= "10.00";
-		String cardNumber = prop.getProperty("CC1CardNumber");
-		String nameOnCard = prop.getProperty("CC1NameOnCard");
-		String month = prop.getProperty("CC1Month");
-		String year = prop.getProperty("CC1Year");
-		String securityCode = prop.getProperty("CC1SecurityCode");
-		String addressLine1 = prop.getProperty("CC1AddressLine1");
-		String city						= "";
-		String state = prop.getProperty("CC1State");
-		String postalCode = prop.getProperty("CC1PostalCode");
-		String enrollCustomerAsStandby 	= "true";
-		
-		for (int i=1; i<20; i++) {
 
 		given()
 //				.log().all()
@@ -86,37 +79,165 @@ public class _Draft_RateCounter extends base {
 						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 						"}")
 				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
-//				.then()
-////				.log().body()
-//				.assertThat().statusCode(400)
-//				.body("Message", equalTo("The City field is required."));
+	}
+	
+	@Test (testName="Rate-counter Limitation2", description="Rate-counter Limitation")
+	public void missingCity2() {
+
 		given()
-//		.log().all()
-.header("accept", prop.getProperty("accept"))
-.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-.header("X-ClubId", prop.getProperty("X-Club1Id"))
-.header("Content-Type", "application/json")
-	.when()
-		.body("{" + 
-				"  \"CustomerId\": "+customerId+"," + 
-				"  \"ClassId\": \""+classId+"\"," + 
-				"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
-				"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
-				"  \"CardNumber\": \""+cardNumber+"\"," + 
-				"  \"NameOnCard\": \""+nameOnCard+"\"," + 
-				"  \"ExpirationDate\": {" + 
-				"    \"Month\": \""+month+"\"," + 
-				"    \"Year\": "+year+"" + 
-				"  }," + 
-				"  \"SecurityCode\": \"\"," + 
-				"  \"AddressLine1\": \""+addressLine1+"\"," + 
-				"  \"City\": \"Columbus\"," + 
-				"  \"StateProvince\": \""+state+"\"," + 
-				"  \"PostalCode\": \""+postalCode+"\"," + 
-				"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
-				"}")
-		.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
-		}
-}
+//				.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+				.body("{" + 
+						"  \"CustomerId\": "+customerId+"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
+						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+						"  \"CardNumber\": \""+cardNumber+"\"," + 
+						"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+						"  \"ExpirationDate\": {" + 
+						"    \"Month\": \""+month+"\"," + 
+						"    \"Year\": "+year+"" + 
+						"  }," + 
+						"  \"SecurityCode\": \""+securityCode+"\"," + 
+						"  \"AddressLine1\": \""+addressLine1+"\"," + 
+						"  \"City\": \""+city+"\"," + 
+						"  \"StateProvince\": \""+state+"\"," + 
+						"  \"PostalCode\": \""+postalCode+"\"," + 
+						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+						"}")
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
+	}
+	
+	@Test (testName="Rate-counter Limitation2", description="Rate-counter Limitation")
+	public void missingCity3() {
+
+		given()
+//				.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+				.body("{" + 
+						"  \"CustomerId\": "+customerId+"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
+						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+						"  \"CardNumber\": \""+cardNumber+"\"," + 
+						"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+						"  \"ExpirationDate\": {" + 
+						"    \"Month\": \""+month+"\"," + 
+						"    \"Year\": "+year+"" + 
+						"  }," + 
+						"  \"SecurityCode\": \""+securityCode+"\"," + 
+						"  \"AddressLine1\": \""+addressLine1+"\"," + 
+						"  \"City\": \""+city+"\"," + 
+						"  \"StateProvince\": \""+state+"\"," + 
+						"  \"PostalCode\": \""+postalCode+"\"," + 
+						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+						"}")
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
+	}
+	
+	@Test (testName="Rate-counter Limitation2", description="Rate-counter Limitation")
+	public void missingCity4() {
+
+		given()
+//				.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+				.body("{" + 
+						"  \"CustomerId\": "+customerId+"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
+						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+						"  \"CardNumber\": \""+cardNumber+"\"," + 
+						"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+						"  \"ExpirationDate\": {" + 
+						"    \"Month\": \""+month+"\"," + 
+						"    \"Year\": "+year+"" + 
+						"  }," + 
+						"  \"SecurityCode\": \""+securityCode+"\"," + 
+						"  \"AddressLine1\": \""+addressLine1+"\"," + 
+						"  \"City\": \""+city+"\"," + 
+						"  \"StateProvince\": \""+state+"\"," + 
+						"  \"PostalCode\": \""+postalCode+"\"," + 
+						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+						"}")
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
+	}
+	
+	@Test (testName="Rate-counter Limitation2", description="Rate-counter Limitation")
+	public void missingCity5() {
+
+		given()
+//				.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+				.body("{" + 
+						"  \"CustomerId\": "+customerId+"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
+						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+						"  \"CardNumber\": \""+cardNumber+"\"," + 
+						"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+						"  \"ExpirationDate\": {" + 
+						"    \"Month\": \""+month+"\"," + 
+						"    \"Year\": "+year+"" + 
+						"  }," + 
+						"  \"SecurityCode\": \""+securityCode+"\"," + 
+						"  \"AddressLine1\": \""+addressLine1+"\"," + 
+						"  \"City\": \""+city+"\"," + 
+						"  \"StateProvince\": \""+state+"\"," + 
+						"  \"PostalCode\": \""+postalCode+"\"," + 
+						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+						"}")
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
+	}
+	
+	@Test (testName="Rate-counter Limitation2", description="Rate-counter Limitation")
+	public void missingCity6() {
+
+		given()
+//				.log().all()
+		.header("accept", prop.getProperty("accept"))
+		.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+		.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+		.header("X-ClubId", prop.getProperty("X-Club1Id"))
+		.header("Content-Type", "application/json")
+			.when()
+				.body("{" + 
+						"  \"CustomerId\": "+customerId+"," + 
+						"  \"ClassId\": \""+classId+"\"," + 
+						"  \"ClassOccurrence\": \""+classOccurrence+"\"," + 
+						"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+						"  \"CardNumber\": \""+cardNumber+"\"," + 
+						"  \"NameOnCard\": \""+nameOnCard+"\"," + 
+						"  \"ExpirationDate\": {" + 
+						"    \"Month\": \""+month+"\"," + 
+						"    \"Year\": "+year+"" + 
+						"  }," + 
+						"  \"SecurityCode\": \""+securityCode+"\"," + 
+						"  \"AddressLine1\": \""+addressLine1+"\"," + 
+						"  \"City\": \""+city+"\"," + 
+						"  \"StateProvince\": \""+state+"\"," + 
+						"  \"PostalCode\": \""+postalCode+"\"," + 
+						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
+						"}")
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
+	}
 }

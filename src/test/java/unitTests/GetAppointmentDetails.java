@@ -189,7 +189,7 @@ public class GetAppointmentDetails extends base {
 					.when()
 						.get("/api/v3/appointment/getappointmentdetails/"+appointment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.extract().response();

@@ -21,7 +21,7 @@ public class GetPurchasedPackagesByMember extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
 	}
 	
-	@Test (testName="PackagesFound",description="PBI:124125")
+	@Test (testName="Packages Found",description="PBI:124125")
 	public void PackagesFound() {
 		
 				String customerId = prop.getProperty("availableId");
@@ -61,10 +61,10 @@ public class GetPurchasedPackagesByMember extends base{
 						.body("Result[0].UnitsRemaining", not(nullValue()));
 	}
 	
-	@Test (testName="PackagesNotFound",description="PBI:124125")
-	public void PackagesNotFound() {
+	@Test (testName="Package Not Found",description="PBI:124125")
+	public void packageNotFound() {
 		
-				String customerId = "100";
+				String customerId = "11";
 				
 				given()
 
@@ -78,17 +78,46 @@ public class GetPurchasedPackagesByMember extends base{
 //						.log().body()
 						.assertThat().statusCode(404)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Nothing found"))
-						.body("Result", not(hasKey("ExpirationDate")))
-						.body("Result", not(hasKey("InvoiceNumber")))
-						.body("Result", not(hasKey("PackageName")))
-						.body("Result", not(hasKey("PackagePrice")))
-						.body("Result", not(hasKey("PunchcardType")))
-						.body("Result", not(hasKey("PurchaseDate")))
-						.body("Result", not(hasKey("SaleClubNumber")))
-						.body("Result", not(hasKey("SoldInEme")))
-						.body("Result", not(hasKey("TotalUnitsRedeemed")))
-						.body("Result", not(hasKey("UnitsPurchased")))
-						.body("Result", not(hasKey("UnitsRemaining")));
+						.body("Message", equalTo("Nothing found"));
+	}
+	
+	@Test (testName="Customer Not Found",description="PBI:124125")
+	public void customerNotFound() {
+		
+				String customerId = "99999";
+				
+				given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getpurchasedpackagesbymember/"+customerId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Customer not found"));
+	}
+	
+	@Test (testName="Customer Required",description="PBI:124125")
+	public void customerRequired() {
+		
+				String customerId = prop.getProperty("nullValue");
+				
+				given()
+
+				.header("accept", "application/json")
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/package/getpurchasedpackagesbymember/"+customerId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid."));
 	}
 }

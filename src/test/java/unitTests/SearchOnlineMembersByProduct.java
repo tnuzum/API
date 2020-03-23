@@ -17,11 +17,19 @@ import resources.base;
 
 public class SearchOnlineMembersByProduct extends base {	
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="FirstName",description="PBI:139723")
@@ -35,9 +43,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+member+"/"+fName+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -76,9 +84,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+member+"/"+lName+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -118,9 +126,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+lName+" "+fName+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -159,9 +167,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+fName+" "+lName+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -199,9 +207,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+hPhoneD+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -240,9 +248,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+hPhone+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -281,9 +289,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+mPhone+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -322,9 +330,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+mPhone+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -363,9 +371,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+wPhone+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -386,9 +394,9 @@ public class SearchOnlineMembersByProduct extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+email+"/"+associatedClub+"/"+trainingId)
 						.then()
@@ -415,4 +423,143 @@ public class SearchOnlineMembersByProduct extends base {
 						.body("Result[0]",  hasKey("StateProvince"))
 						.body("Result[0]",  hasKey("WorkPhone"));
 	}
+	
+	@Test (testName="Product Not Found",description="PBI:139723")
+	public void productNotFound() {
+		
+		String customerId = prop.getProperty("availableId");
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = "99999";
+		String email = prop.getProperty("memberSearcheMail");
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+email+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(500)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+	}
+	
+	@Test (testName="Customer Not Found",description="PBI:139723", enabled = true)
+	public void customerNotFound() {
+	
+		String customerId = "99999";
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId");
+		String email = "notreal@email.com";
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+email+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
+	
+	@Test (testName="Customer Required",description="PBI:139723")
+	public void customerRequired() {
+		
+		String customerId = prop.getProperty("NOTavailableId");
+		String associatedClub = prop.getProperty("club1Id");
+		String trainingId = prop.getProperty("selectableResourceTrainingId");
+		String email = prop.getProperty("memberSearcheMail");
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+email+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for CustomerId."));
+	}
+	
+	@Test (testName="Search Parameter Null",description="PBI:139723")
+	public void searchParameterNull() {
+		
+				String customerId = prop.getProperty("availableId");
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId");
+				String searchParameter = prop.getProperty("nullValue");
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+searchParameter+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo ("Nothing found"));
+	}
+	
+	@Test (testName="Training Required",description="PBI:139723")
+	public void trainingRequired() {
+		
+				String customerId = prop.getProperty("availableId");
+				String associatedClub = prop.getProperty("club1Id");
+				String trainingId = prop.getProperty("NOTselectableResourceTrainingId");
+				String fName = prop.getProperty("memberSearchFName");
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+fName+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for AppointmentItemId."));
+	}
+	
+	@Test (testName="Associated Club Required",description="PBI:139723")
+	public void associatedClubRequired() {
+		
+				String customerId = prop.getProperty("availableId");
+				String associatedClub = prop.getProperty("NOTclub1Id");
+				String trainingId = prop.getProperty("selectableResourceTrainingId");
+				String fName = prop.getProperty("memberSearchFName");
+
+				given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+fName+"/"+associatedClub+"/"+trainingId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for AppointmentClubId."));
+	}
+
 }
