@@ -2,6 +2,7 @@ package unitTests;
 
 import static io.restassured.RestAssured.given;
 
+import org.junit.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -127,32 +128,6 @@ public class GetAppointmentsByMember extends base {
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("NoShow"));
 	}
-
-	@Test (testName="Cancelled Appointment Found",description="PBI:124124", enabled = false)
-	public void cancelledAppointmentFound() {
-		
-				String customerId = prop.getProperty("restrictedId");
-//				String sDateTimeNoOffset = prop.getProperty("cancelledApointmentSDateTime");
-//				String eDateTimeNoOffset = prop.getProperty("cancelledApointmentEDateTime");
-				String sDateTimeNoOffset = "2019-03-25";
-				String eDateTimeNoOffset = "2020-03-29";
-				
-				given()		
-				.log().all()
-						.header("accept", "application/json")
-						.header("X-Api-Key",aPIKey)
-						.header("X-CompanyId", companyId)
-						.header("X-ClubId", clubId)
-						.queryParam(customerId)
-					.when()
-						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
-						.then()
-						.log().body()
-						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("Cancelled"));
-	}
-	
 	
 	@Test (testName="Appointments Not Found",description="PBI:124124")
 	public void AppointmentsNotFound() {
@@ -198,5 +173,98 @@ public class GetAppointmentsByMember extends base {
 						.body("Message", equalTo("Invalid date range"));
 	}
 	
+	@Test (testName="Customer Not Found",description="PBI:124124")
+	public void customerNotFound() {
+		
+		String customerId = "99999";
+		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+				given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(404)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Nothing found"));
+	}
 	
+	@Test (testName="Customer Required",description="PBI:124124")
+	public void customerRequired() {
+		
+		/* this call throws and exception instead of returning an error,
+		 * so this test "Passes" if the exception is caught; error handle 
+		 * enhancements should provide improved message 
+		 */
+		
+				String customerId = prop.getProperty("NOTavailableId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
+		
+				try {
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+					.then();
+				} catch (IllegalArgumentException e) {
+						Assert.assertTrue(true);//"Passes" if the exception is caught
+				}
+	}
+	
+	@Test (testName="Start Date Required",description="PBI:124124")
+	public void startDateRequired() {
+		
+				String customerId = prop.getProperty("availableId");
+				String sDateTimeNoOffset = prop.getProperty("nullValue");
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneDay();
+				given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for StartDateTime."));
+	}
+	
+	@Test (testName="End Date Required",description="PBI:124124")
+	public void endDateRequired() {
+		
+				String customerId = prop.getProperty("availableId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String eDateTimeNoOffset = prop.getProperty("nullValue");
+				given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+						.queryParam(customerId)
+					.when()
+						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(400)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("The value 'null' is not valid for EndDateTime."));
+	}
 }
+

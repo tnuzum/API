@@ -17,12 +17,19 @@ import resources.base;
 
 public class SearchMembers extends base {
 	
+	static String aPIKey;
+	static String companyId;
+	static String clubId;
+	
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
-		
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI"); 
+		
+		aPIKey = prop.getProperty("X-Api-Key");
+		companyId = prop.getProperty("X-CompanyId");
+		clubId = prop.getProperty("X-Club1Id");
 	}
 	
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
@@ -33,9 +40,9 @@ public class SearchMembers extends base {
 				given()
 //						.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("Name", lName)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -92,9 +99,9 @@ public class SearchMembers extends base {
 				given()
 
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("Name", fName)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -138,9 +145,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("Name",lName+","+fName)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -183,9 +190,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",hPhoneD)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -228,9 +235,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",hPhone)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -273,9 +280,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",mPhoneD)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -318,9 +325,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",mPhone)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -363,9 +370,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",wPhoneD)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -408,9 +415,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("PhoneNumber",wPhone)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -453,9 +460,9 @@ public class SearchMembers extends base {
 				given()
 //				.log().all()
 				.header("accept", "application/json")
-				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
 						.queryParam("Email",email)
 					.when()
 						.get("/api/v3/member/searchmembers")
@@ -489,4 +496,24 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("Number"))
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
+	
+	@Test (testName="No Optional Parameters",description="PBI:124130")
+	public void noOptionalParameters() {
+
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+				.when()
+					.get("/api/v3/member/searchmembers")
+				.then()
+//					.log().body()
+					.assertThat().statusCode(200)
+					.time(lessThan(60L),TimeUnit.SECONDS);
+	}
+
+	
+	
 }
