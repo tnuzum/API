@@ -3,6 +3,7 @@ package unitTests;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
@@ -10,6 +11,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import resources.ReusableMethods;
 import resources.base;
 
 public class SearchMembersByProduct extends base{
@@ -27,6 +29,11 @@ public class SearchMembersByProduct extends base{
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+	}
+	
+	@BeforeTest
+	public void delay() {
+		ReusableMethods.myWait(250);
 	}
 	
 	@Test (testName="FirstName",description="PBI:139726")
