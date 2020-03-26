@@ -3,6 +3,7 @@ package unitTests;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.hasKey;
@@ -31,6 +32,11 @@ public class SearchMembers extends base {
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+	}
+	
+	@BeforeTest
+	public void delay() {
+		ReusableMethods.myWait(250);
 	}
 	
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
@@ -456,8 +462,6 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
 		
-		ReusableMethods.myWait(250);
-		
 		String email = prop.getProperty("memberSearcheMail");
 
 				given()
@@ -502,8 +506,6 @@ public class SearchMembers extends base {
 	
 	@Test (testName="No Optional Parameters",description="PBI:124130")
 	public void noOptionalParameters() {
-		
-				ReusableMethods.myWait(500);
 
 				given()
 //					.log().all()
