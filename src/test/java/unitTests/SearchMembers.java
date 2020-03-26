@@ -3,7 +3,6 @@ package unitTests;
 import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.hasKey;
@@ -34,13 +33,10 @@ public class SearchMembers extends base {
 		clubId = prop.getProperty("X-Club1Id");
 	}
 	
-	@BeforeTest
-	public void delay() {
-		ReusableMethods.myWait(250);
-	}
-	
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
 	public void searchMembers_LastName() {
+		
+				ReusableMethods.myWait(500);
 		
 				String lName = prop.getProperty("memberSearchLName");
 
@@ -101,6 +97,8 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
 	public void searchMembers_FirstName() { 
 		
+				ReusableMethods.myWait(500);
+		
 				String fName = prop.getProperty("memberSearchFName");
 
 				given()
@@ -145,6 +143,8 @@ public class SearchMembers extends base {
 	
 	@Test (testName="SearchMembers_LastFirstName",description="PBI:124130")
 	public void searchMembers_LastFirstName() {  
+		
+		ReusableMethods.myWait(500);
 		
 		String fName = prop.getProperty("memberSearchFName");
 		String lName = prop.getProperty("memberSearchLName");
@@ -193,6 +193,8 @@ public class SearchMembers extends base {
 	public void searchMembers_HomePhoneDashes() {  
 		
 				String hPhoneD = prop.getProperty("memberSearchHPhoneD");
+				
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -238,6 +240,8 @@ public class SearchMembers extends base {
 	public void searchMembers_HomePhoneNoDashes() {   
 		
 		String hPhone = prop.getProperty("memberSearchHPhone");
+		
+		ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -283,6 +287,8 @@ public class SearchMembers extends base {
 	public void searchMembers_MobilePhoneDashes() { 
 		
 			String mPhoneD = prop.getProperty("memberSearchMPhoneD");
+			
+			ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -328,6 +334,8 @@ public class SearchMembers extends base {
 	public void searchMembers_MobilePhoneNoDashes() { 
 		
 		String mPhone = prop.getProperty("memberSearchMPhone");
+		
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -373,6 +381,8 @@ public class SearchMembers extends base {
 	public void searchMembers_WorkPhoneDashes() {  
 		
 		String wPhoneD = prop.getProperty("memberSearchWPhoneD");
+		
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -418,6 +428,8 @@ public class SearchMembers extends base {
 	public void searchMembers_WorkPhoneNoDashes() {  
 		
 		String wPhone = prop.getProperty("memberSearchWPhone");
+		
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -461,6 +473,8 @@ public class SearchMembers extends base {
 	
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
+		
+		ReusableMethods.myWait(500);
 		
 		String email = prop.getProperty("memberSearcheMail");
 
@@ -506,6 +520,8 @@ public class SearchMembers extends base {
 	
 	@Test (testName="No Optional Parameters",description="PBI:124130")
 	public void noOptionalParameters() {
+		
+				ReusableMethods.myWait(500);
 
 				given()
 //					.log().all()

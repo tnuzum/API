@@ -59,16 +59,13 @@ public class RateLimitation extends base {
 	@DataProvider(parallel = true)
 	public Object[] getDataProvider(){
 		
-		Object[][] data = new Object[7][1];
+		Object[][] data = new Object[5][1];
 		
 				data[0][0]=prop.getProperty("availableId");
 				data[1][0]=prop.getProperty("collectionsId");
 				data[2][0]=prop.getProperty("noFOPId");
 				data[3][0]=prop.getProperty("prospectId");
 				data[4][0]=prop.getProperty("noWebId");
-				data[5][0]=prop.getProperty("noWebId");
-				data[6][0]=prop.getProperty("noWebId");
-				
 				return data;
 	}
 	
