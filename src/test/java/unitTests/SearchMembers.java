@@ -13,6 +13,7 @@ import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import resources.ReusableMethods;
 import resources.base;
 
 public class SearchMembers extends base {
@@ -455,6 +456,8 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
 		
+		ReusableMethods.myWait(250);
+		
 		String email = prop.getProperty("memberSearcheMail");
 
 				given()
@@ -499,6 +502,8 @@ public class SearchMembers extends base {
 	
 	@Test (testName="No Optional Parameters",description="PBI:124130")
 	public void noOptionalParameters() {
+		
+				ReusableMethods.myWait(250);
 
 				given()
 //					.log().all()
