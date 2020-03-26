@@ -503,7 +503,7 @@ public class SearchMembers extends base {
 	@Test (testName="No Optional Parameters",description="PBI:124130")
 	public void noOptionalParameters() {
 		
-				ReusableMethods.myWait(250);
+				ReusableMethods.myWait(500);
 
 				given()
 //					.log().all()
