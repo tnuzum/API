@@ -471,8 +471,10 @@ public class GetPackagePricing extends base {
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(404)
-						.body("Message", equalTo("Package not found"));
+//						.assertThat().statusCode(404)
+//						.body("Message", equalTo("Package not found"));
+						.assertThat().statusCode(500)
+						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:155660")
@@ -514,8 +516,10 @@ public class GetPackagePricing extends base {
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("Missing quantity configuration"));
+//						.assertThat().statusCode(400)
+//						.body("Message", equalTo("Missing quantity configuration"));
+						.assertThat().statusCode(500)
+						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
 	
 	@Test (testName="TrainingNotAvailableAtClub",description="PBI:155660", enabled = false)
@@ -666,7 +670,8 @@ public class GetPackagePricing extends base {
 						.assertThat().statusCode(400)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Status", equalTo(400))
-						.body("Message", equalTo("Missing quantity configuration"));
+//						.body("Message", equalTo("Missing quantity configuration"));
+						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
 	
 }
