@@ -696,11 +696,13 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
-				//.log().body()
+	//			.log().body()
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
-				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));		
+	//			.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
+				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
+				
 	}	
 	
 	
