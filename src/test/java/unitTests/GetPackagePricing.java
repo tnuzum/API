@@ -667,9 +667,9 @@ public class GetPackagePricing extends base {
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
+						.assertThat().statusCode(500)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Status", equalTo(400))
+						.body("Status", equalTo(500))
 //						.body("Message", equalTo("Missing quantity configuration"));
 						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
