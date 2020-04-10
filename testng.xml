@@ -60,7 +60,8 @@
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.PurchasePackageWithCardOnFile" />
-			<class name="unitTests.RateLimitation" />
+			<!-- disabled due to bug -->
+			<!-- class name="unitTests.RateLimitation" /-->
 			<class name="unitTests.SearchMembers" />
 			<class name="unitTests.SearchMembersByProduct" />
 			<class name="unitTests.SearchOnlineMembersByProduct" />
