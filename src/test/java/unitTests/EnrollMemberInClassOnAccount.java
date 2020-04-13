@@ -683,7 +683,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Account Problem"));
 	}
