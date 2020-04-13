@@ -664,20 +664,18 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasClosed"));
 	}
 	
-	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = false)
+	@Test (testName="Credit Limited Exceeded",description="PBI:143588", enabled = true)
 	public void creditLimitedExceeded() {
-		
-		//researching - on 3/19 this started returning a 200
 		
 				String c = prop.getProperty("creditLimitId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
+				String classId = prop.getProperty("noAlternatePaymentClId");
+				String classOccurrence = prop.getProperty("noAlternatePaymentClOccurrence");
+				String displayedGrandTotal = prop.getProperty("noAlternatePaymentClPrice");
 				Boolean enrollCustomerAsStandby = true;
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -685,7 +683,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Account Problem"));
 	}

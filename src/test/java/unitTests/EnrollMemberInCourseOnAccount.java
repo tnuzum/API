@@ -589,13 +589,13 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
-	@Test (testName="Credit Limited Exceeded",description="PBI:143589", enabled = false)
+	@Test (testName="Credit Limited Exceeded",description="PBI:143589", enabled = true)
 	public void creditLimitedExceeded() {
 		
 				String c = prop.getProperty("creditLimitId");
 				int customerId = Integer.parseInt(c);
-				String courseId = prop.getProperty("alwaysAvailCoId");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+				String courseId = prop.getProperty("noAlternatePaymentCoId");
+				String displayedGrandTotal = prop.getProperty("noAlternatePaymentCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 
 				given()
