@@ -315,7 +315,7 @@ public class GetClassDetailsByMember extends base{
 					.when()
 					.get("/api/v3/classcourse/getclassdetailsbymember/"+customerId+"/"+classOccurrence+"/"+classId+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.EnrollmentEligibilities[0].EnrollmentEligibilityStatus", equalTo("EnrollmentNotOpen"));
 	}

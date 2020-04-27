@@ -36,16 +36,16 @@ public class PurchasePackageWithNewCreditCard extends base{
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 		
-		cardNumber = prop.getProperty("CC1CardNumber");
-		nameOnCard = prop.getProperty("CC1NameOnCard");
-		month = prop.getProperty("CC1Month");
-		year = prop.getProperty("CC1Year");
-		securityCode = prop.getProperty("CC1SecurityCode");
-		addressLine1 = prop.getProperty("CC1AddressLine1");
-		addressLine1 = prop.getProperty("CC1AddressLine2");
-		city = prop.getProperty("CC1City");
-		state = prop.getProperty("CC1State");
-		postalCode = prop.getProperty("CC1PostalCode");
+		cardNumber = prop.getProperty("MC1CardNumber");
+		nameOnCard = prop.getProperty("MC1NameOnCard");
+		month = prop.getProperty("MC1Month");
+		year = prop.getProperty("MC1Year");
+		securityCode = prop.getProperty("MC1SecurityCode");
+		addressLine1 = prop.getProperty("MC1AddressLine1");
+		addressLine1 = prop.getProperty("MC1AddressLine2");
+		city = prop.getProperty("MC1City");
+		state = prop.getProperty("MC1State");
+		postalCode = prop.getProperty("MC1PostalCode");
 		
 	}
 	

@@ -16,10 +16,10 @@ import resources.base;
 
 public class GetCourseDetailsByMember extends base{
 	
-	static String aPIKey;
-	static String companyId;
-	static String clubId;
-	static Boolean onlineEnrollment = true;
+	String aPIKey;
+	String companyId;
+	String clubId;
+	Boolean onlineEnrollment = true;
 
 	@BeforeClass
 	public void getData() {
@@ -198,9 +198,7 @@ public class GetCourseDetailsByMember extends base{
 						.body("Message", equalTo("The value 'null' is not valid for CustomerId."));
 	}
  
-	@Test (testName="Class ID Used",description="PBI:143545", enabled = false)
-	
-//	disabled for research; now returning results for class details too
+	@Test (testName="Class ID Used",description="PBI:143545", enabled = true)
 	
 	public void classIDUsed() {
  
@@ -218,7 +216,8 @@ public class GetCourseDetailsByMember extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(404)
-						.time(lessThan(60L),TimeUnit.SECONDS);
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Message", equalTo("Course not found"));
 	}
 	
 	@Test (testName="Training ID Used",description="PBI:143545")
@@ -262,7 +261,7 @@ public class GetCourseDetailsByMember extends base{
 						.body("Message", equalTo("Customer not found"));;
 	}
 	
-	@Test (testName="Enrollment Not Open",description="PBI:143545", enabled = true)
+	@Test (testName="Enrollment Not Open",description="PBI:143545", enabled = false)
 	public void enrollmentNotOpen() {
 		
 
@@ -270,7 +269,7 @@ public class GetCourseDetailsByMember extends base{
 				String courseId = prop.getProperty("neverAvailClId");
 
 				given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -278,7 +277,7 @@ public class GetCourseDetailsByMember extends base{
 					.when()
 					.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.EnrollmentEligibilities[0].EnrollmentEligibilityStatus", equalTo("EnrollmentNotOpen"));
 	}

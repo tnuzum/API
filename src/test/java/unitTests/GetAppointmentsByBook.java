@@ -80,10 +80,9 @@ public class GetAppointmentsByBook extends base{
 	public void pastAppointmentsFound() {
 
 				String resourceTypeId = prop.getProperty("pTBook3Id");
-					int r = Integer.parseInt(resourceTypeId);
-				String resourceTypeName = prop.getProperty("pTBook3Name");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String sDateTimeNoOffset = prop.getProperty("pastAppointmentSDateTime");
+				String eDateTimeNoOffset = prop.getProperty("pastAppointmentEDateTime");
+				
 
 				given()
 //						.log().all()
@@ -109,8 +108,8 @@ public class GetAppointmentsByBook extends base{
 						.body("Result[0]", hasKey("ProductCategoryDescription"))
 						.body("Result[0]", hasKey("RecurringId"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookDescription"))
-						.body("Result[0].ScheduledAppointmentBookDTOs[1].BookId", equalTo(r))
-						.body("Result[0].ScheduledAppointmentBookDTOs[1].BookName", equalTo(resourceTypeName))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookId"))
+						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("BookName"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeDescription"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeId"))
 						.body("Result[0].ScheduledAppointmentBookDTOs[0]", hasKey("ResourceTypeName"))
