@@ -68,7 +68,7 @@ public class FinancialPL extends base {
 			String paymentCategory) {
 	
 		String payload = "{\r\n" + 
-				"  \"CardNumber\": "+cardNumber+"," + 
+				"  \"CardNumber\": \""+cardNumber+"\"," + 
 				"  \"NameOnCard\": \""+nameOnCard+"\"," + 
 				"  \"ExpirationDate\": \""+expirationDate+"\","+ 
 				"  \"SecurityCode\": "+securityCode+"," +
