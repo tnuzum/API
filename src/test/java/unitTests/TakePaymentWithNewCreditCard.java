@@ -168,13 +168,13 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Payment Category Not Found",description="PBI:150194", enabled = false)
 	public void paymentCategoryNotFound() {
 		
-		// currently accepts invalid Payment Category
+		// currently this field is not required
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = "NOT PAYMENT CATEGORY";
+				String paymentCategory = "";
 
 			given()
 //				.log().all()
@@ -279,7 +279,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Card Number Required",description="PBI:150194", enabled = false)
+	@Test (testName="Card Number Required",description="PBI:150194", enabled = true)
 	public void cardNumberRequired() {
 
 				String customerId = prop.getProperty("noFOPId");
@@ -287,7 +287,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String cardNumber = prop.getProperty("NOT REAL CARD");
+				String cardNumber = "";
 
 			given()
 //				.log().all()
@@ -308,17 +308,16 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The CardNumber field is required."));
 	}
 	
-	@Test (testName="Name On Card Required",description="PBI:150194", enabled = false)
+	@Test (testName="Name On Card Required",description="PBI:150194", enabled = true)
 	public void nameOnCardRequired() {
-		
-		// ** this is allowing a null value
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String nameOnCard = prop.getProperty("NOT REAL NAME");
+//				String nameOnCard = prop.getProperty("NOT REAL NAME"); this passes a null value but the call is successful
+				String nameOnCard = "";
 
 			given()
 //				.log().all()
@@ -368,17 +367,16 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The SecurityCode field is required."));
 	}
 
-	@Test (testName="Address Line1 Required",description="PBI:150194", enabled = false)
+	@Test (testName="Address Line1 Required",description="PBI:150194", enabled = true)
 	public void addressLine1Required() {
-		
-		// this is allowing a null value
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String addressLine1 = prop.getProperty("NOT REAL ADDRESS");
+				//String addressLine1 = prop.getProperty("NOT REAL ADDRESS");
+				String addressLine1 = "";
 
 			given()
 //				.log().all()
@@ -399,17 +397,15 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The AddressLine1 field is required."));
 	}
 	
-	@Test (testName="City Required",description="PBI:150194", enabled = false)
+	@Test (testName="City Required",description="PBI:150194", enabled = true)
 	public void cityRequired() {
-		
-		// this is allowing a null value
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String city = prop.getProperty("NOT REAL CITY");
+				String city = "";
 
 			given()
 //				.log().all()
@@ -430,17 +426,16 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The City field is required."));
 	}
 	
-	@Test (testName="StateProvince Required",description="PBI:150194", enabled = false)
+	@Test (testName="StateProvince Required",description="PBI:150194", enabled = true)
 	public void stateProvinceRequired() {
-		
-		// this is allowing a null value
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String stateProvince = prop.getProperty("NOT REAL STATE");
+				//String stateProvince = prop.getProperty("NOT REAL STATE");
+				String stateProvince = "";
 
 			given()
 //				.log().all()
