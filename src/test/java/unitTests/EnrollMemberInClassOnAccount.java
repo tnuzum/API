@@ -614,8 +614,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
-//						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));changed 04/27/20
-						.body("Message", equalTo("Account Problem"));
+						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Class Ended",description="PBI:143588")

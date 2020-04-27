@@ -586,8 +586,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.then()
 //					.log().body()
 					.assertThat().statusCode(400)
-//					.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));changed 04/27/20
-					.body("Message", equalTo("Account Problem"));
+					.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Credit Limited Exceeded",description="PBI:143589", enabled = true)
