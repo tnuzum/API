@@ -33,7 +33,7 @@ public class GetClassesAndCoursesByBook extends base{
 
 				String resourceId = prop.getProperty("classBookId");
 				String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 
 				given()
 //						.log().all()

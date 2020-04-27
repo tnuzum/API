@@ -44,15 +44,15 @@ public class RateLimitation extends base {
 		classId = "alwaysAvailCl";
 		classOccurrence = "2025-12-31";
 		displayedGrandTotal = "10.00";
-		cardNumber = prop.getProperty("CC1CardNumber");
-		nameOnCard = prop.getProperty("CC1NameOnCard");
-		month = prop.getProperty("CC1Month");
-		year = prop.getProperty("CC1Year");
-		securityCode = prop.getProperty("CC1SecurityCode");
-		addressLine1 = prop.getProperty("CC1AddressLine1");
+		cardNumber = prop.getProperty("MC1CardNumber");
+		nameOnCard = prop.getProperty("MC1NameOnCard");
+		month = prop.getProperty("MC1Month");
+		year = prop.getProperty("MC1Year");
+		securityCode = prop.getProperty("MC1SecurityCode");
+		addressLine1 = prop.getProperty("MC1AddressLine1");
 		city = "";
-		state = prop.getProperty("CC1State");
-		postalCode = prop.getProperty("CC1PostalCode");
+		state = prop.getProperty("MC1State");
+		postalCode = prop.getProperty("MC1PostalCode");
 		enrollCustomerAsStandby 	= "true";
 	}
 	

@@ -427,4 +427,63 @@ public class GetMember extends base{
 						.assertThat().statusCode(404)
 					    .body("Message", equalTo("Nothing found"));
 	}
+	
+	@Test  (testName="Restrict Member From Search - False", description="PBI:124934")
+	public void restrictMemberFromSearchFalse() {
+		
+					String customerId = prop.getProperty("availableId");
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getmember/"+customerId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+					    .body("Result.RestrictMemberFromSearch", equalTo(false));
+	}
+	
+	@Test  (testName="Restrict Member From Search - True", description="PBI:124934")
+	public void restrictMemberFromSearchTrue() {
+		
+					String customerId = prop.getProperty("restrictSearchId");
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getmember/"+customerId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+					    .body("Result.RestrictMemberFromSearch", equalTo(true));
+	}
+	
+	@Test  (testName="Allow Online Search - True", description="PBI:124934", enabled = false)
+	public void allowOnlineSearchTrue() {
+		
+		// this property was added to GetCustomerInfo CORE call but not yet added to this API call
+		
+					String customerId = prop.getProperty("availableId");
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getmember/"+customerId)
+						.then()
+						.log().body()
+						.assertThat().statusCode(200)
+					    .body("Result.AllowOnlineSearch", equalTo(true));
+	}
 }
