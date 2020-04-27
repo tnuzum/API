@@ -354,9 +354,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
 	}
 	
-	@Test (testName="Prospect - Member Context",description="PBI:150004", enabled = false)
-	
-	// ** 4/27/2020 - this is now returning AllowedToEnroll = true
+	@Test (testName="Prospect - Member Context",description="PBI:150004", enabled = true)
 
 	public void prospectMemberContext() {
 

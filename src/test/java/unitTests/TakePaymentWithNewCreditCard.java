@@ -2,29 +2,23 @@ package unitTests;
 
 import static io.restassured.RestAssured.given;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 import payloads.FinancialPL;
 import resources.ReusableDates;
-import resources.ReusableMethods;
 import resources.base;
 
 public class TakePaymentWithNewCreditCard extends base {
 	
-		 String aPIKey;
-		 String companyId;
-		 String clubId;
+		 static String aPIKey;
+		 static String companyId;
+		 static String clubId;
 	
 		 static String cardNumber;
 		 static String nameOnCard;
@@ -58,6 +52,7 @@ public class TakePaymentWithNewCreditCard extends base {
 		city = prop.getProperty("MC1City");
 		stateProvince = prop.getProperty("MC1State");
 		postalCode = prop.getProperty("MC1PostalCode");
+
 	}
 
 	@Test (testName="Take MasterCard Payment On Invoice",description="PBI:150194")
@@ -82,7 +77,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -110,7 +105,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -152,7 +147,6 @@ public class TakePaymentWithNewCreditCard extends base {
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				int invoiceId = 44362;
 
 			given()
 //				.log().all()
@@ -162,7 +156,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory)).body(FinancialPL.takePaymentWithNewCreditCard_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -194,7 +188,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
+//				.log().all()
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
@@ -220,7 +214,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -235,7 +229,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				expirationDate = "2020-01-01T00:00:00Z";
+				String expirationDate = "2020-01-01T00:00:00Z";
 
 			given()
 //				.log().all()
@@ -249,14 +243,14 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
-				.statusCode(409)
+//				.log().all()
+				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(409))
 				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Card Number Invalid",description="PBI:150194", enabled = false)
+	@Test (testName="Card Number Invalid",description="PBI:150194", enabled = true)
 	public void cardNumberInvalid() {
 
 				String customerId = prop.getProperty("noFOPId");
@@ -264,7 +258,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				cardNumber = "545454545454545400";
+				String cardNumber = "545454545454545400";
 
 			given()
 //				.log().all()
@@ -278,14 +272,14 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-				.log().all()
-				.statusCode(409)
+//				.log().all()
+				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(409))
 				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="Card Number Required",description="PBI:150194", enabled = true)
+	@Test (testName="Card Number Required",description="PBI:150194", enabled = false)
 	public void cardNumberRequired() {
 
 				String customerId = prop.getProperty("noFOPId");
@@ -314,15 +308,17 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The CardNumber field is required."));
 	}
 	
-	@Test (testName="Name On Card Required",description="PBI:150194", enabled = true)
-	public void cardNumberRequired() {
+	@Test (testName="Name On Card Required",description="PBI:150194", enabled = false)
+	public void nameOnCardRequired() {
+		
+		// ** this is allowing a null value
 
 				String customerId = prop.getProperty("noFOPId");
 				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				String cardNumber = prop.getProperty("NOT REAL CARD");
+				String nameOnCard = prop.getProperty("NOT REAL NAME");
 
 			given()
 //				.log().all()
@@ -340,198 +336,157 @@ public class TakePaymentWithNewCreditCard extends base {
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
-				.body("Message", equalTo("The CardNumber field is required."));
+				.body("Message", equalTo("The NameOnCard field is required."));
 	}
 	
-	
-	/*
-	@Test (testName="Missing Member Name On Card",description="PBI:146579")
-	public void missingMemberNameOnCard() {
-		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = prop.getProperty("MC1CardNumber");
-				String nameOnCard = "";
+	@Test (testName="Security Code Required",description="PBI:150194", enabled = true)
+	public void securityCodeRequired() {
 
-				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The NameOnCard field is required."));
-	}
-	
-	
-	
-	@Test (testName="Missing Card Number",description="PBI:146579")
-	public void missingCardNumber() {
-		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String cardNumber = "";
+				String customerId = prop.getProperty("noFOPId");
+				Double amount = 1.00;
+				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+				String paymentDescription = "Credit Card payment received";
+				String paymentCategory = prop.getProperty("paymentCategory1");
+				String securityCode = prop.getProperty("NOT REAL SEC CODE");
 
-				given()
-//						.log().all()
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The CardNumber field is required."));
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("The SecurityCode field is required."));
 	}
-	
-	@Test (testName="Missing Security Code",description="PBI:146579")
-	public void missingSecurityCode() {
-		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String securityCode = "";
 
-				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The SecurityCode field is required."));
-	}
-	
-	@Test (testName="Missing Address Line1",description="PBI:146579")
-	public void missingAddressLine1() {
+	@Test (testName="Address Line1 Required",description="PBI:150194", enabled = false)
+	public void addressLine1Required() {
 		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String addressLine1	= "";
+		// this is allowing a null value
 
-				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The AddressLine1 field is required."));
-	}
-	
-	@Test (testName="Missing City",description="PBI:146579")
-	public void missingCity() {
-		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String city = "";
-				
-				ReusableMethods.myWait(200);
+				String customerId = prop.getProperty("noFOPId");
+				Double amount = 1.00;
+				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+				String paymentDescription = "Credit Card payment received";
+				String paymentCategory = prop.getProperty("paymentCategory1");
+				String addressLine1 = prop.getProperty("NOT REAL ADDRESS");
 
-				given()
-//						.log().all()
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The City field is required."));
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("The AddressLine1 field is required."));
 	}
 	
-	@Test (testName="Missing StateProvince",description="PBI:146579")
-	public void missingStateProvince() {
+	@Test (testName="City Required",description="PBI:150194", enabled = false)
+	public void cityRequired() {
 		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String state = "";
+		// this is allowing a null value
 
-				given()
-//						.log().all()
+				String customerId = prop.getProperty("noFOPId");
+				Double amount = 1.00;
+				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+				String paymentDescription = "Credit Card payment received";
+				String paymentCategory = prop.getProperty("paymentCategory1");
+				String city = prop.getProperty("NOT REAL CITY");
+
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The StateProvince field is required."));
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("The City field is required."));
 	}
 	
-	@Test (testName="Missing Postal Code",description="PBI:146579")
-	public void missingPostalCode() {
+	@Test (testName="StateProvince Required",description="PBI:150194", enabled = false)
+	public void stateProvinceRequired() {
 		
-				String c = prop.getProperty("availableId");
-				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("alwaysAvailClId");
-				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				String postalCode = "";
-				
-				ReusableMethods.myWait(200);
-				
-				given()
-//						.log().all()
+		// this is allowing a null value
+
+				String customerId = prop.getProperty("noFOPId");
+				Double amount = 1.00;
+				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+				String paymentDescription = "Credit Card payment received";
+				String paymentCategory = prop.getProperty("paymentCategory1");
+				String stateProvince = prop.getProperty("NOT REAL STATE");
+
+			given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
-					.when()
-					.body(ClassCoursePL.EnrollMemberInClassWithNewCreditCard(customerId,classId,classOccurrence,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
-						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("The PostalCode field is required."));
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("The StateProvince field is required."));
 	}
-	*/
+	
+	@Test (testName="Postal Code Required",description="PBI:150194", enabled = true)
+	public void postalCodeRequired() {
+
+				String customerId = prop.getProperty("noFOPId");
+				Double amount = 1.00;
+				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+				String paymentDescription = "Credit Card payment received";
+				String paymentCategory = prop.getProperty("paymentCategory1");
+				String postalCode = prop.getProperty("NOT REAL STATE");
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("The PostalCode field is required."));
+	}
 }
