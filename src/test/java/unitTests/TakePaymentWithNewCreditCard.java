@@ -58,12 +58,13 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Take MasterCard Payment On Invoice",description="PBI:150194")
 	public void takeMasterCardPaymentOnInvoice() {
 
-				String customerId = prop.getProperty("availableId");
-				Double amount = 1.00;
+				String customerId = "235";	//String customerId = prop.getProperty("availableId");
+				Double amount = 5.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
-				int invoiceId = 44362;
+				int invoiceId = 45909;	//int invoiceId = 44362;
+				String cardNumber = "4111111111111111";
 
 			given()
 //				.log().all()
@@ -87,10 +88,10 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Take MasterCard Payment No Invoice",description="PBI:150194")
 	public void takeMasterCardPaymentNoInvoice() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
+				String customerId = "235";	//String customerId = prop.getProperty("noFOPId");
+				Double amount = 15.00;
 				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
+				String paymentDescription = "Credit Card Payment Received";
 				String paymentCategory = prop.getProperty("paymentCategory1");
 
 			given()

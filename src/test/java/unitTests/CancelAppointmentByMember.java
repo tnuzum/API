@@ -80,7 +80,8 @@ public class CancelAppointmentByMember extends base {
 	@Test (testName="NotCancelled_ApptDatePast",description="PBI:127168")
 	public void ApptAlreadyCancelled() { 
 		
-		String member = prop.getProperty("availableId");
+		String member = "248";
+		String appointmentId = "24932";
 
 				given()
 //						.log().all()
@@ -89,7 +90,7 @@ public class CancelAppointmentByMember extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-					.get("/api/v3/appointment/cancelappointmentbymember/24932/"+member)
+					.get("/api/v3/appointment/cancelappointmentbymember/"+appointmentId+"/"+member)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
