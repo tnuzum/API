@@ -492,7 +492,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Frozen Member",description="PBI:143542")
+	@Test (testName="Frozen Member",description="PBI:143542", enabled = false)
 	public void frozenMember() {
  
 				String customerId = prop.getProperty("frozenId");
@@ -517,7 +517,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			;
+				.body("Message", equalTo("Internal server error - Sequence contains no elements"));
 	}
 	
 	@Test (testName="Prospect",description="PBI:143542", enabled = true)

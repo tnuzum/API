@@ -5,8 +5,7 @@ import resources.base;
 public class FinancialPL extends base {
 	
 	public static String takePaymentWithNewCreditCard_AllParameters
-			(
-			String cardNumber,
+			(String cardNumber,
 			String nameOnCard,
 			String expirationDate,
 			String securityCode,
@@ -50,8 +49,7 @@ public class FinancialPL extends base {
 	}
 	
 	public static String takePaymentWithNewCreditCard_RequiredParametersOnly
-			(
-			String cardNumber,
+			(String cardNumber,
 			String nameOnCard,
 			String expirationDate,
 			String securityCode,
@@ -87,5 +85,60 @@ public class FinancialPL extends base {
 	
 			return payload;
 		}	
+	
+	public static String takePaymentWithCardOnFileForMemberWithInvoice
+		(String accountId,
+		String customerId,
+		String employeeBarcodeId,
+		String clubId,
+		String amount,
+		String effectiveDate,
+		String paymentDescription,
+		String paymentCategory,
+		int invoiceId
+		) {
+		
+		
+		String payload = "{\r\n" + 
+				"  \"AccountId\": \""+accountId+"\"," + 
+				"  \"CustomerId\": \""+customerId+"\"," +
+				"  \"EmployeeBarcodeId\": \""+employeeBarcodeId+"\"," +
+				"  \"ClubId\": "+clubId+"," + 
+				"  \"Amount\": "+amount+"," + 
+				"  \"EffectiveDate\": \""+effectiveDate+"\"," + 
+				"  \"PaymentDescription\": \""+paymentDescription+"\"," + 
+				"  \"PaymentCategory\": \""+paymentCategory+"\"," + 
+				"  \"InvoiceId\": "+invoiceId+"" + 
+				"}";
+		
+		return payload;
+	}
+	
+	public static String takePaymentWithCardOnFileForMemberWithoutInvoice
+		(String accountId,
+		String customerId,
+		String employeeBarcodeId,
+		String clubId,
+		String amount,
+		String effectiveDate,
+		String paymentDescription,
+		String paymentCategory
+		) {
+		
+		
+		String payload = "{\r\n" + 
+				"  \"AccountId\": \""+accountId+"\"," + 
+				"  \"CustomerId\": \""+customerId+"\"," +
+				"  \"EmployeeBarcodeId\": \""+employeeBarcodeId+"\"," +
+				"  \"ClubId\": "+clubId+"," + 
+				"  \"Amount\": "+amount+"," + 
+				"  \"EffectiveDate\": \""+effectiveDate+"\"," + 
+				"  \"PaymentDescription\": \""+paymentDescription+"\"," + 
+				"  \"PaymentCategory\": \""+paymentCategory+"\"," + 
+				"}";
+		
+	return payload;
+}
+		
 
 }
