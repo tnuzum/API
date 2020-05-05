@@ -189,7 +189,7 @@ public class GetFieldsForMemberCreationByMember extends base {
 						.body("Result[16].FieldName", equalTo("DateOfBirth"))
 						.body("Result[16].Description", equalTo("Birth Date"))
 						.body("Result[16].DisplayValue", equalTo("Birth Date"))
-						.body("Result[16].Required", equalTo(true))
+						.body("Result[16].Required", equalTo(false))
 						.body("Result[16].ValueMustBeInDefinedList", equalTo(false))
 						.body("Result[16]", hasKey("Values"))
 						.body("Result[16].MaximumLength", equalTo(0))

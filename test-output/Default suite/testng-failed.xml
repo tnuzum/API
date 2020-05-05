@@ -3,14 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="unitTests.PurchasePackageWithNewCreditCard">
+      <class name="unitTests.GetFieldsForMemberCreationByMember">
         <methods>
+          <include name="fieldsFound"/>
           <include name="getData"/>
-          <include name="creditLimitExceeded"/>
-          <include name="prospect"/>
-          <include name="collectionsMember"/>
         </methods>
-      </class> <!-- unitTests.PurchasePackageWithNewCreditCard -->
+      </class> <!-- unitTests.GetFieldsForMemberCreationByMember -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
