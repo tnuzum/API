@@ -19,6 +19,13 @@ public class TakePaymentWithNewCreditCard extends base {
 		 static String aPIKey;
 		 static String companyId;
 		 static String clubId;
+		 
+		 static String customerId;
+		 static String employeeBarcodeId;
+		 static Double amount;
+		 static String effectiveDate;
+		 static String paymentDescription;
+		 static String paymentCategory;
 	
 		 static String cardNumber;
 		 static String nameOnCard;
@@ -30,7 +37,7 @@ public class TakePaymentWithNewCreditCard extends base {
 		 static String stateProvince;
 		 static String postalCode;
 		 static String country;
-		 static String employeeBarcodeId;
+
 	
 	@BeforeClass
 	public void getData() {
@@ -41,7 +48,13 @@ public class TakePaymentWithNewCreditCard extends base {
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+		
+		customerId = prop.getProperty("takePayId");
 		employeeBarcodeId = prop.getProperty("activeEmployeeBarcodeId");
+		amount = 1.00;
+		effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
+		paymentDescription = "Credit Card Payment Received";
+		paymentCategory = prop.getProperty("paymentCategory1");
 		
 		cardNumber = prop.getProperty("MC1CardNumber");
 		nameOnCard = prop.getProperty("MC1NameOnCard");
@@ -54,45 +67,9 @@ public class TakePaymentWithNewCreditCard extends base {
 		postalCode = prop.getProperty("MC1PostalCode");
 
 	}
-
-	@Test (testName="Take MasterCard Payment On Invoice",description="PBI:150194")
-	public void takeMasterCardPaymentOnInvoice() {
-
-				String customerId = "235";	//String customerId = prop.getProperty("availableId");
-				Double amount = 5.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
-				int invoiceId = 45909;	//int invoiceId = 44362;
-				String cardNumber = "4111111111111111";
-
-			given()
-//				.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-				.header("Content-Type", "application/json")
-			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
-				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
-			.then()
-				.assertThat()
-//				.log().all()
-				.statusCode(200)
-				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("ReceiptNumber", not(nullValue()));
-	}
 	
 	@Test (testName="Take MasterCard Payment No Invoice",description="PBI:150194")
 	public void takeMasterCardPaymentNoInvoice() {
-
-				String customerId = "235";	//String customerId = prop.getProperty("noFOPId");
-				Double amount = 15.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card Payment Received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 
 			given()
 //				.log().all()
@@ -103,6 +80,30 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("Content-Type", "application/json")
 			.when()
 				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
+			.then()
+				.assertThat()
+//				.log().all()
+				.statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("Status", equalTo(200))
+				.body("ReceiptNumber", not(nullValue()));
+	}
+
+	@Test (testName="Take MasterCard Payment On Invoice",description="PBI:150194")
+	public void takeMasterCardPaymentOnInvoice() {
+
+				int invoiceId = 45909;
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
+			.when()
+				.body(FinancialPL.takePaymentWithNewCreditCard_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -144,10 +145,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	public void memberNotFound() {
 
 				String customerId = "99999";
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 
 			given()
 //				.log().all()
@@ -171,10 +168,6 @@ public class TakePaymentWithNewCreditCard extends base {
 		
 		// currently this field is not required
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
 				String paymentCategory = "";
 
 			given()
@@ -197,11 +190,7 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Effective Date In Past",description="PBI:150194")
 	public void effectiveDateInPast() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
 				String effectiveDate = ReusableDates.getCurrentDateMinusOneYear();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 
 			given()
 //				.log().all()
@@ -225,11 +214,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Card Expired",description="PBI:150194", enabled = true)
 	public void cardExpired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String expirationDate = "2020-01-01T00:00:00Z";
 
 			given()
@@ -254,11 +238,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Card Number Invalid",description="PBI:150194", enabled = true)
 	public void cardNumberInvalid() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String cardNumber = "545454545454545400";
 
 			given()
@@ -283,11 +262,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Card Number Required",description="PBI:150194", enabled = true)
 	public void cardNumberRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String cardNumber = "";
 
 			given()
@@ -312,11 +286,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Name On Card Required",description="PBI:150194", enabled = true)
 	public void nameOnCardRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 //				String nameOnCard = prop.getProperty("NOT REAL NAME"); this passes a null value but the call is successful
 				String nameOnCard = "";
 
@@ -342,11 +311,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Security Code Required",description="PBI:150194", enabled = true)
 	public void securityCodeRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String securityCode = prop.getProperty("NOT REAL SEC CODE");
 
 			given()
@@ -371,11 +335,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Address Line1 Required",description="PBI:150194", enabled = true)
 	public void addressLine1Required() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				//String addressLine1 = prop.getProperty("NOT REAL ADDRESS");
 				String addressLine1 = "";
 
@@ -401,11 +360,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="City Required",description="PBI:150194", enabled = true)
 	public void cityRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String city = "";
 
 			given()
@@ -430,11 +384,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="StateProvince Required",description="PBI:150194", enabled = true)
 	public void stateProvinceRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				//String stateProvince = prop.getProperty("NOT REAL STATE");
 				String stateProvince = "";
 
@@ -460,11 +409,6 @@ public class TakePaymentWithNewCreditCard extends base {
 	@Test (testName="Postal Code Required",description="PBI:150194", enabled = true)
 	public void postalCodeRequired() {
 
-				String customerId = prop.getProperty("noFOPId");
-				Double amount = 1.00;
-				String effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-				String paymentDescription = "Credit Card payment received";
-				String paymentCategory = prop.getProperty("paymentCategory1");
 				String postalCode = prop.getProperty("NOT REAL STATE");
 
 			given()

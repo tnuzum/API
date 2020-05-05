@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="22" total="23" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-03-18T17:26:37 EDT" name="Default suite" finished-at="2020-03-18T17:26:58 EDT" duration-ms="21588">
+  <suite started-at="2020-05-05T14:45:22 EDT" name="Default suite" finished-at="2020-05-05T14:45:29 EDT" duration-ms="6786">
     <groups>
     </groups>
-    <test started-at="2020-03-18T17:26:37 EDT" name="Default test" finished-at="2020-03-18T17:26:58 EDT" duration-ms="21588">
-      <class name="unitTests.EnrollMemberInClassWithNewCreditCard">
-        <test-method is-config="true" signature="getData()[pri:0, instance:unitTests.EnrollMemberInClassWithNewCreditCard@3a6bb9bf]" started-at="2020-03-18T17:26:37 EDT" name="getData" finished-at="2020-03-18T17:26:38 EDT" duration-ms="828" status="PASS">
+    <test started-at="2020-05-05T14:45:22 EDT" name="Default test" finished-at="2020-05-05T14:45:29 EDT" duration-ms="6786">
+      <class name="unitTests.GetFieldsForMemberCreationByMember">
+        <test-method is-config="true" signature="getData()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:22 EDT" name="getData" finished-at="2020-05-05T14:45:23 EDT" duration-ms="754" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="memberEnrolled_FreeClassCollectionsMember()[pri:0, instance:unitTests.EnrollMemberInClassWithNewCreditCard@3a6bb9bf]" started-at="2020-03-18T17:26:38 EDT" name="memberEnrolled_FreeClassCollectionsMember" description="PBI:146579" finished-at="2020-03-18T17:26:58 EDT" duration-ms="20711" status="PASS">
+        <test-method signature="fieldsFound()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:23 EDT" name="fieldsFound" description="PBI:147804" finished-at="2020-05-05T14:45:27 EDT" duration-ms="4241" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- memberEnrolled_FreeClassCollectionsMember -->
-      </class> <!-- unitTests.EnrollMemberInClassWithNewCreditCard -->
+        </test-method> <!-- fieldsFound -->
+        <test-method signature="fieldsFound2()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:27 EDT" name="fieldsFound2" description="PBI:147804" finished-at="2020-05-05T14:45:29 EDT" duration-ms="1763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fieldsFound2 -->
+      </class> <!-- unitTests.GetFieldsForMemberCreationByMember -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
