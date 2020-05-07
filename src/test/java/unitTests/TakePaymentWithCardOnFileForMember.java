@@ -45,7 +45,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 		accountId = "2";
 		employeeBarcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
-		amount = "1.00";
+		amount = "1.01";
 		paymentCategory = prop.getProperty("paymentCategory1");
 		paymentDescription = "ENTER ANY TEXT HERE";
 
