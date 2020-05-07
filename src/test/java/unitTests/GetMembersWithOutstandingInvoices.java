@@ -19,7 +19,9 @@ public class GetMembersWithOutstandingInvoices extends base{
 	String aPIKey;
 	String companyId;
 	String clubId;
-	Boolean includeMembersInCollection = true;
+	Boolean includeMembersInCollection;
+	Boolean includeTerminatedMembers;
+	String asOfDate;
 
 	@BeforeClass
 	public void getData() {
@@ -30,12 +32,14 @@ public class GetMembersWithOutstandingInvoices extends base{
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+		
+		includeMembersInCollection = true;
+		includeTerminatedMembers= true;
+		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
 	@Test  (testName="Outstanding Invoices Found", description="PBI:153783")
 	public void outstandingInvoicesFound() {
-		
-					String asOfDate = ReusableDates.getCurrentDate();
 
 					given()
 //						.log().all()
@@ -107,6 +111,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceBalance"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCategory"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCreationDate"))
+					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDueDate"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDescription"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoicePaidAmount"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceTotal"))
@@ -176,6 +181,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceBalance"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceCategory"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceCreationDate"))
+					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceDueDate"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceDescription"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoicePaidAmount"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceTotal"))
@@ -186,6 +192,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceBalance"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCategory"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCreationDate"))
+					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDueDate"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDescription"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoicePaidAmount"))
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceTotal"))
@@ -195,8 +202,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 	@Test  (testName="Collections Member Included", description="PBI:153783")
 	public void collectionsMemberIncluded() {
 		
-					String asOfDate = ReusableDates.getCurrentDate();
-
 					given()
 //						.log().all()
 						.header("accept", "application/json")
@@ -215,7 +220,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 	@Test  (testName="Collections Member Not Included", description="PBI:153783")
 	public void collectionsMemberNotIncluded() {
 		
-					String asOfDate = ReusableDates.getCurrentDate();
 					Boolean includeMembersInCollection = false;
 
 					given()
@@ -232,6 +236,63 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.MemberType", not(hasItem("InCollections")));
 	}
+	
+	@Test  (testName="Terminated Member Included", description="PBI:153783")
+	public void terminatedMemberIncluded() {
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeTerminatedMembers="+includeTerminatedMembers)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"));
+	}
+	
+	@Test  (testName="Terminated Member Not Included", description="PBI:153783")
+	public void terminatedMemberNotIncluded() {
+		
+					Boolean includeTerminatedMembers= false;
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeTerminatedMembers="+includeTerminatedMembers)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CustomerDemographics.Name.FirstName", not(hasItem("Terminated")));
+	}
+	
+	@Test  (testName="Collections and Terminated Members Included", description="PBI:153783")
+	public void collectionsAndTerminatedMembersIncluded() {
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeTerminatedMembers="+includeTerminatedMembers+"&includeMembersInCollection="+includeMembersInCollection)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"))
+						.body("Result.CustomerDemographics.MemberType", hasItem("InCollections"));
+	}
 
 	@Test  (testName="Outstanding Invoices Not Found", description="PBI:153783")
 	public void outstandingInvoicesNotFound() {
@@ -247,10 +308,11 @@ public class GetMembersWithOutstandingInvoices extends base{
 					.when()
 						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
 						.then()
-						.log().all()
-						.assertThat().statusCode(404)
+//						.log().all()
+						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("No outstanding invoices found"));
+						.body("Status", equalTo(204))
+						.body("Messages[0]", equalTo("No outstanding invoices found"));
 	}
 
 	@Test  (testName="Invalid Date", description="PBI:153783")

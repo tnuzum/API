@@ -48,6 +48,7 @@
 			<class name="unitTests.GetFieldsForMemberCreationByMember" />
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
+			<class name="unitTests.GetMembersWithOutstandingInvoices" />
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
 			<class name="unitTests.GetOnlinePackagesForPurchaseByClub" />
