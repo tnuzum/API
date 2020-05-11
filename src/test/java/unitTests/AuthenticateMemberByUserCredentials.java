@@ -42,7 +42,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
+				.body(MemberPL.authenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
 //				.log().all()
@@ -59,15 +59,16 @@ public class AuthenticateMemberByUserCredentials extends base {
 			String password = prop.getProperty("availablePassword");
 
 			given()
+//			.log().all()
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-			.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
+			.body(MemberPL.authenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
-	//			.log().all()
+//				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)			
 				.body("Result.AuthenticationResult", equalTo("Success"));	
@@ -85,7 +86,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
+				.body(MemberPL.authenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
 	//			.log().all()
@@ -107,7 +108,7 @@ public class AuthenticateMemberByUserCredentials extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(MemberPL.AuthenticateMemberByUserCredentials(username, password))
+				.body(MemberPL.authenticateMemberByUserCredentials(username, password))
 				.post("/api/v3/member/authenticatememberbyusercredentials").
 			then()
 	//			.log().all()

@@ -4,7 +4,7 @@ import resources.base;
 
 public class MemberPL extends base {
 	
-	public static String AuthenticateMemberByUserCredentials
+	public static String authenticateMemberByUserCredentials
 		(
 		String username,
 		String password
@@ -17,13 +17,13 @@ public class MemberPL extends base {
 	return payload;	
 	}
 	
-	public static String CreateMember
+	public static String createMember
 		(
 		int nextMemberId,
-		int HomeClubId,
+		String HomeClubId,
 		String FirstName,
 		String LastName,
-		int MembershipTypeId,
+		String MembershipTypeId,
 		String Title,
 		String MiddleInitial,
 		String Address1,
@@ -34,23 +34,23 @@ public class MemberPL extends base {
 		String Gender,
 		String DateOfBirth,
 		String HomePhone,
-		Boolean OkToContactHomePhone,
+		String OkToContactHomePhone,
 		String MobilePhone,
-		Boolean OkToContactMobilePhone,
+		String OkToContactMobilePhone,
 		String WorkPhone,
-		Boolean OkToContactWorkPhone,
+		String OkToContactWorkPhone,
 		String PreferredPhoneType,
 		String EmailAddress,
-		Boolean OkToContactEmailAddress,
-		Boolean DoNotMail,
-		Boolean DoNotMarket,
+		String OkToContactEmailAddress,
+		String DoNotMail,
+		String DoNotMarket,
 		String SocialSecurityNumber,
 		String DriverLicense,
 		String Occupation,
 		String Employer,
-		Boolean HeadOfHousehold,
-		int IncomeChoiceId,
-		int PriorityId
+		String HeadOfHousehold,
+		String IncomeChoiceId,
+		String PriorityId
 		) {
 	
 	String payload = "{\r\n" + 
@@ -88,6 +88,107 @@ public class MemberPL extends base {
 			"  \"PriorityId\": 1,\r\n" + 
 			"}";
 	return payload;	
+	}
+	
+	public static String modifyCardOnFileByMemberAllFields(
+			String accountId,
+			String customerId,
+			String cardNumber,
+			String expirationMonth,
+			String expirationYear,
+			String cardHolderName,
+			String addressIsSameAsMemberAddress,
+			String addressLine1,
+			String addressLine2,
+			String city,
+			String stateProvince,
+			String postalCode,
+			String useInPos,
+			String setAsHouseAccount
+			) {
+		
+		String payload = "	{\r\n" + 
+				"  \"AccountId\": \""+accountId+"\",\r\n" + 
+				"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+				"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
+				"  \"ExpirationDate\": {\r\n" + 
+				"    \"Month\": "+expirationMonth+",\r\n" + 
+				"    \"Year\": "+expirationYear+"\r\n" + 
+				"  },\r\n" + 
+				"  \"CardHolderName\": \""+cardHolderName+"\",\r\n" + 
+				"  \"AddressIsSameAsMemberAddress\": "+addressIsSameAsMemberAddress+",\r\n" + 
+				"  \"Address\": {\r\n" + 
+				"    \"AddressLine1\": \""+addressLine1+"\",\r\n" + 
+				"    \"AddressLine2\": \""+addressLine2+"\",\r\n" + 
+				"    \"City\": \""+city+"\",\r\n" + 
+				"    \"StateProvince\": \""+stateProvince+"\",\r\n" + 
+				"    \"PostalCode\": \""+postalCode+"\",\r\n" + 
+				"    \"Country\": \"null\"\r\n" + 
+				"  },\r\n" + 
+				"  \"UseInPos\": "+useInPos+",\r\n" + 
+				"  \"SetAsHouseAccount\": "+setAsHouseAccount+"\r\n" + 
+				"}";
+		
+		return payload;	
+	}
+	
+	public static String modifyCardOnFileByMemberCardNumberOnly(
+			String accountId,
+			String customerId,
+			String cardNumber,
+			String addressIsSameAsMemberAddress
+			) {
+		
+		String payload = "	{\r\n" + 
+				"  \"AccountId\": "+accountId+",\r\n" + 
+				"  \"CustomerId\": "+customerId+",\r\n" + 
+				"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
+				"  \"AddressIsSameAsMemberAddress\": "+addressIsSameAsMemberAddress+"\r\n" + 
+				"}";
+		
+		return payload;	
+	}
+	
+	public static String addCardOnFileByMemberCardNumberOnly(
+			String updateActiveAgreements,
+			String customerId,
+			String cardNumber,
+			String expirationMonth,
+			String expirationYear,
+			String cardHolderName,
+			String addressIsSameAsMemberAddress,
+			String addressLine1,
+			String addressLine2,
+			String city,
+			String stateProvince,
+			String postalCode,
+			String useInPos,
+			String setAsHouseAccount
+			) {
+		
+		String payload = "{\r\n" + 
+				"  \"UpdateActiveAgreements\": \""+updateActiveAgreements+"\",\r\n" + 
+				"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+				"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
+				"  \"ExpirationDate\": {\r\n" + 
+				"    \"Month\": "+expirationMonth+",\r\n" + 
+				"    \"Year\": "+expirationYear+"\r\n" + 
+				"  },\r\n" + 
+				"  \"CardHolderName\": \""+cardHolderName+"\",\r\n" + 
+				"  \"AddressIsSameAsMemberAddress\": "+addressIsSameAsMemberAddress+",\r\n" + 
+				"  \"Address\": {\r\n" + 
+				"    \"AddressLine1\": \""+addressLine1+"\",\r\n" + 
+				"    \"AddressLine2\": \""+addressLine2+"\",\r\n" + 
+				"    \"City\": \""+city+"\",\r\n" + 
+				"    \"StateProvince\": \""+stateProvince+"\",\r\n" + 
+				"    \"PostalCode\": \""+postalCode+"\",\r\n" + 
+				"    \"Country\": \"null\"\r\n" + 
+				"  },\r\n" + 
+				"  \"UseInPos\": "+useInPos+",\r\n" + 
+				"  \"SetAsHouseAccount\": "+setAsHouseAccount+"\r\n" + 
+				"}";
+		
+		return payload;	
 	}
 	
 }
