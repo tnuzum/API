@@ -19,7 +19,7 @@ public class GetPurchasedPackagesByMember extends base{
 	@Test (testName="PackagesFound",description="PBI:124125")
 	public void PackagesFound() {
 		
-		int member = 247;
+		int member = 248;
 				given()
 						.log().all()
 				.header("accept", prop.getProperty("accept"))

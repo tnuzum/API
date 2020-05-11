@@ -54,9 +54,29 @@ public class myGets extends base {
 					occurrence = js.getString("Result.BooksAndAvailability[0].StartingTimes[0]");
 					
 					return occurrence;
-		
 	}
-
+	
+	public static int getNextMemberId(String aPIKey, String companyId, String clubId) {
+		
+		Response res = 
+				
+				given()
+					.header("accept", "application/json")
+					.header("X-Api-Key",aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+				.when()
+					.get("/api/v3/member/getnextmemberid")
+				.then()
+//					.log().all()
+					.extract().response();
+		
+					JsonPath js = ReusableMethods.rawToJson(res);
+					int nextMemberId = js.getInt("Result.BarcodeId");
+				
+					return nextMemberId;
+	}
+	
 	public static int getavailableappointments_BookId(Object customerId, String sDateTimeNoOffset, String eDateTimeNoOffset, int itemId){
 		
 		int bookId;
@@ -103,6 +123,25 @@ public class myGets extends base {
 					appointmentId = js.getInt("Result[0].Id");
 				
 				return appointmentId;
+	}
+	
+	public static Response getCardsOnFileByMember(String aPIKey,String companyId,String clubId,String customerId) {
+		
+		Response res = 
+				
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/member/getCardsOnFileByMember/"+customerId)
+		.then()
+//			.log().body()
+			.extract().response();
+			
+			return res;	
 	}
 	
 }
