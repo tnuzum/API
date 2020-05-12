@@ -171,7 +171,7 @@ public class MemberPL extends base {
 				"  \"CustomerId\": \""+customerId+"\",\r\n" + 
 				"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
 				"  \"ExpirationDate\": {\r\n" + 
-				"    \"Month\": "+expirationMonth+",\r\n" + 
+				"    \"Month\": \""+expirationMonth+"\"," + 
 				"    \"Year\": "+expirationYear+"\r\n" + 
 				"  },\r\n" + 
 				"  \"CardHolderName\": \""+cardHolderName+"\",\r\n" + 

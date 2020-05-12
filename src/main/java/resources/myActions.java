@@ -113,7 +113,7 @@ public class myActions extends base {
 	
 				JsonPath js2 = ReusableMethods.rawToJson(res);
 				String customerId = js2.getString("CustomerId");
-				System.out.println();
+
 				return customerId;
 	}
 	

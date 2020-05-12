@@ -30,20 +30,20 @@ public class GetCardsOnFileByMember extends base {
 		clubId = prop.getProperty("X-Club1Id");
 	}
 	
-	@Test (testName="SingleAgreementWithCard", description="PBI:146302")
+	@Test (testName="SingleAgreementWithCard", description="PBI:143543")
 	public void SingleAgreementWithCard() {
 		
 				String member = prop.getProperty("availableId");
 
 				given()
-//						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-					.when()
-						.get("/api/v3/member/getCardsOnFileByMember/"+member)
-						.then()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+				.when()
+					.get("/api/v3/member/getCardsOnFileByMember/"+member)
+				.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
@@ -72,7 +72,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
 	
-	@Test (testName="MultipleAgreementsWithMultipleCards", description="PBI:146302")
+	@Test (testName="MultipleAgreementsWithMultipleCards", description="PBI:143543")
 	public void MultipleAgreementsWithMultipleCards() {
 		
 						String member = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
@@ -131,7 +131,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
 	
-	@Test (testName="MultipleAgreementsWithSingleCard", description="PBI:146302")
+	@Test (testName="MultipleAgreementsWithSingleCard", description="PBI:143543")
 	public void MultipleAgreementsWithSingleCard() {
 		
 		String member = prop.getProperty("MultipleAgreementsWithSingleCardId");
@@ -170,7 +170,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", hasKey("TruncatedAccountNumber"));
 	}
 	
-	@Test (testName="SingleAgreementMultipleCardsOnFile", description="PBI:146302")//Multiple Cards on File with 1 Associated with Agreement
+	@Test (testName="SingleAgreementMultipleCardsOnFile", description="PBI:143543")//Multiple Cards on File with 1 Associated with Agreement
 	public void SingleAgreementMultipleCardsOnFile() {
 		
 				String member = prop.getProperty("SingleAgreementMultipleCardsOnFileId");
@@ -229,7 +229,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
 	
-	@Test (testName="CardWithoutAgreement", description="PBI:146302")//No Agreements with Card on File
+	@Test (testName="CardWithoutAgreement", description="PBI:143543")//No Agreements with Card on File
 	public void CardWithoutAgreement() {
 		
 		String member = prop.getProperty("CardWithoutAgreementId");
@@ -273,7 +273,7 @@ public class GetCardsOnFileByMember extends base {
 						.body("Result[0]", not(hasKey("RoutingNumber")));
 	}
 	
-	@Test (testName="noCardOnFile", description="PBI:146302")
+	@Test (testName="noCardOnFile", description="PBI:143543")
 	public void NoCardOnFile() {
 		
 				String member = prop.getProperty("noFOPId");
