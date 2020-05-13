@@ -24,7 +24,6 @@
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
-			<class name="unitTests.GetAllPackagesForPurchaseByClub" />
 			<class name="unitTests.GetAppointmentDetails" />
 			<class name="unitTests.GetAppointmentProductByCategory" />
 			<class name="unitTests.GetAppointmentProductCategoriesByMember" />
@@ -50,10 +49,11 @@
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
 			<class name="unitTests.GetMembersWithOutstandingInvoices" />
+			<class name="unitTests.GetMembersWithPastDueBalances" />
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
-			<class name="unitTests.GetOnlinePackagesForPurchaseByClub" />
 			<class name="unitTests.GetPackageDetails" />
+			<class name="unitTests.GetPackagesForPurchaseByClub" />
 			<class name="unitTests.GetPackagePricing" />
 			<class name="unitTests.GetProductByBook" />
 			<class name="unitTests.GetPurchasedPackagesByMember" />
