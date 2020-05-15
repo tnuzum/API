@@ -217,11 +217,12 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"),setAsHouseAccount);
 	}
 	
-	@Test (testName="Card Added No Use In POS", description="PBI:150278", enabled = false)
-	public void cardAddedNoUseInPOS() {
+	@Test (testName="Card Added and Agreement Updated", description="PBI:150278", enabled = false)
+				// Only enable this test to during regression cycle 
+	public void cardAddedAgreementUpdated() {
 		
-				String customerId = myActions.createMember(aPIKey, companyId, clubId);
-				String useInPos = "false";
+				String customerId = prop.getProperty("agreementMemberId");
+				String updateActiveAgreements = "true";
 
 			given()
 //				.log().all()
@@ -248,49 +249,7 @@ public class AddCardOnFileByMember extends base {
 						setAsHouseAccount))
 				.post("/api/v3/member/addcardonfilebymember")
 			.then()
-				.log().all()
-				.assertThat().statusCode(200);	
-			
-				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
-				
-				JsonPath js = ReusableMethods.rawToJson(res);
-
-				Assert.assertEquals(js.getString("Result[0].UseInPos"),useInPos);
-	}
-	
-	@Test (testName="Card Added and Agreement Updated", description="PBI:150278", enabled = false)
-				// Only enable this test to during regression cycle 
-	public void cardAddedAgreementUpdated() {
-		
-				String customerId = prop.getProperty("agreementMemberId");
-				String updateActiveAgreements = "true";
-
-			given()
-				.log().all()
-				.header("accept", "application/json")
-				.header("Content-Type", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-			.when()
-				.body(MemberPL.addCardOnFileByMemberCardNumberOnly(
-						updateActiveAgreements,
-						customerId,
-						cardNumber,
-						expirationMonth,
-						expirationYear,
-						cardHolderName,
-						addressIsSameAsMemberAddress,
-						addressLine1,
-						addressLine2,
-						city,
-						stateProvince,
-						postalCode,
-						useInPos,
-						setAsHouseAccount))
-				.post("/api/v3/member/addcardonfilebymember")
-			.then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200);	
 			
 				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);

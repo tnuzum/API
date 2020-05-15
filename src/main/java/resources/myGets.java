@@ -144,4 +144,23 @@ public class myGets extends base {
 			return res;	
 	}
 	
+	public static Response getMember(String aPIKey,String companyId,String clubId,String customerId) {
+		
+		Response res = 
+				
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/member/getMember/"+customerId)
+		.then()
+//			.log().body()
+			.extract().response();
+			
+			return res;	
+	}
+	
 }
