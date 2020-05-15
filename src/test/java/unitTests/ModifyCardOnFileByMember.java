@@ -333,11 +333,11 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertTrue(js.getString("Message").contains("Sequence contains no elements"));	
 	}
 
-	/*
-	@Test (testName="Modify Card Number Only", description="PBI:164154")
-	public void modifyCardNumberOnly() {
+	@Test (testName="Modify Address Line 1 Only", description="PBI:164154")
+	public void modifyAddressLine1Only() {
 		
-			String addressIsSameAsMemberAddress = "true";
+			String addressIsSameAsMemberAddress = "false";
+			String addressLine1 = "1200 Northwoods Dr.";
 
 			given()
 //				.log().all()
@@ -347,14 +347,54 @@ public class ModifyCardOnFileByMember extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(MemberPL.modifyCardOnFileByMemberCardNumberOnly(accountId,customerId,cardNumber, addressIsSameAsMemberAddress))
+				.body("{\r\n" + 
+						"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+						"  \"AccountId\": \""+accountId+"\",\r\n" + 
+						"  \"AddressIsSameAsMemberAddress\": \""+addressIsSameAsMemberAddress+"\",\r\n" + 
+						"  \"Address\": {\r\n" + 
+						"    \"AddressLine1\": \""+addressLine1+"\"\r\n" + 
+						"  },\r\n" + 
+						"  \"UseInPos\": \""+useInPos+"\",\r\n" + 
+						"  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\"\r\n" + 
+						"}")
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS);	
 	}
-	*/
+	
+	@Test (testName="Modify Address Line 2 Only", description="PBI:164154")
+	public void modifyAddressLine2Only() {
+		
+			String addressIsSameAsMemberAddress = "false";
+			String addressLine2 = "Apt. 1203";
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+						"  \"AccountId\": \""+accountId+"\",\r\n" + 
+						"  \"AddressIsSameAsMemberAddress\": \""+addressIsSameAsMemberAddress+"\",\r\n" + 
+						"  \"Address\": {\r\n" + 
+						"    \"AddressLine2\": \""+addressLine2+"\"\r\n" + 
+						"  },\r\n" + 
+						"  \"UseInPos\": \""+useInPos+"\",\r\n" + 
+						"  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\"\r\n" + 
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS);	
+	}
+	
 		
 }
 
