@@ -79,8 +79,8 @@ public class UpdatePersonalInformation extends base {
 				
 				Assert.assertEquals(js2.getString("Result.Address.AddressLine1"), newValue);
 				
-				System.out.println("NewValue: "+newValue);
-				System.out.println("ReturnedValue: "+js2.getString("Result.Address.AddressLine1"));
+//				System.out.println("NewValue: "+newValue);
+//				System.out.println("ReturnedValue: "+js2.getString("Result.Address.AddressLine1"));
 	}
 	
 	@Test (priority=1,testName="Update Address 2",description="PBI:149847")

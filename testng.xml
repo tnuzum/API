@@ -22,6 +22,7 @@
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
+			<class name="unitTests.GetAccountBalanceDetailsByMember" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
 			<class name="unitTests.GetAppointmentDetails" />
@@ -59,6 +60,7 @@
 			<class name="unitTests.GetPurchasedPackagesByMember" />
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
+			<class name="unitTests.ModifyCardOnFileByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.PurchasePackageWithCardOnFile" />
