@@ -36,7 +36,7 @@ public class GetAppointmentsByBook extends base{
 			int r = Integer.parseInt(resourceTypeId);
 		//String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
 			String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneYear();
+		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
 
 				given()
 //						.log().all()
