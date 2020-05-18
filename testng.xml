@@ -35,6 +35,7 @@
 			<class name="unitTests.GetAvailableClassesByMember" />
 			<class name="unitTests.GetAvailableCoursesByMember" />
 			<class name="unitTests.GetAvailableResourceTypesByClub" />
+			<class name="unitTests.GetBillingDeclinesHistories" />
 			<class name="unitTests.GetBookAvailabilityCalendar" />
 			<class name="unitTests.GetCardsOnFileByMember" />
 			<class name="unitTests.GetClassCoursePricing" />
@@ -43,6 +44,7 @@
 			<class name="unitTests.GetClubsByMember" />
 			<class name="unitTests.GetClassDetailsByMember" />
 			<class name="unitTests.GetCourseDetailsByMember" />
+			<class name="unitTests.GetDeclineDetailsByMember" />
 			<class name="unitTests.GetEmployees" />
 			<class name="unitTests.GetFieldsForAddOnMemberCreationByEmployee" />
 			<class name="unitTests.GetFieldsForMemberCreationByEmployee" />

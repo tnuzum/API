@@ -98,6 +98,27 @@ public class ReusableDates {
         Date currentDateMinusOneYear = c.getTime();
 		return dateFormat.format(currentDateMinusOneYear);
 	}
+	
+	public static String getCurrentDatePlusXDays(int dayCount) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+	    c.setTime(currentDate);
+	    c.add(Calendar.DATE, dayCount);
+	    Date currentDatePlusOneDay = c.getTime();
+		return dateFormat.format(currentDatePlusOneDay);	
+	}
+	
+	public static String getCurrentDateMinusXYears(int yearCount) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.YEAR, -yearCount);
+        Date currentDateMinusOneYear = c.getTime();
+		return dateFormat.format(currentDateMinusOneYear);
+	}
 }
 	
 	
