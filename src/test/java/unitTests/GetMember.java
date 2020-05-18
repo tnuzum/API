@@ -34,7 +34,7 @@ public class GetMember extends base{
 					.when()
 						.get("/api/v3/member/getmember/"+customerId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result", hasKey("Address"))

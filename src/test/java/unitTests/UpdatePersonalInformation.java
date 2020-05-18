@@ -9,6 +9,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import payloads.ChangeRequestPL;
+import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 import resources.myGets;
@@ -45,7 +46,7 @@ public class UpdatePersonalInformation extends base {
 	public void updateAddress1() {
 		
 		String fieldName = "Address1";
-		String newValue = "1100 1st St.";
+		String newValue = "1109 1st St.";
 		
 		Response res = 
 
@@ -282,7 +283,7 @@ public class UpdatePersonalInformation extends base {
 	public void updateDateOfBirth() {
 		
 		String fieldName = "DateOfBirth";
-		String newValue = "01-Jan-1980";
+		String newValue = ReusableDates.getCurrentDateMinusXYears(30);
 		
 		Response res = 
 
@@ -308,16 +309,15 @@ public class UpdatePersonalInformation extends base {
 				Assert.assertTrue(js.getInt("Result.AutoApprovedConfirmationNumber") > 0);
 				Assert.assertEquals(js.getString("Result.ErrorMessages"),"None");
 				Assert.assertNull(js.getString("Result.PendingConfirmationNumber"));
-				/*
+				
 				// ** Validate field was updated correctly
 		Response res2	=	myGets.getMember(aPIKey, companyId, clubId, customerId);
 		
 				JsonPath js2 = ReusableMethods.rawToJson(res2);
 				
-				Assert.assertEquals(js2.getString("Result.DateOfBirth"), newValue);
-				 !! disabled temporarily because the date format isn't the same in the GetMember
-				 */
-	}
+				Assert.assertTrue(js2.getString("Result.DateOfBirth").contains(newValue));
+
+			}
 	
 	@Test (priority=1,testName="Update BarcodeId",description="PBI:149847", enabled = true)
 	public void updateBarcodeId() {
@@ -1419,7 +1419,7 @@ public class UpdatePersonalInformation extends base {
 	public void updateAddress1Family() {
 		
 		String fieldName = "Address1";
-		String newValue = "1201 1st St.";
+		String newValue = "1210 1st St.";
 		String familyMemberCustomerIds = prop.getProperty("familyMemberCustomerId");
 		
 		Response res = 
@@ -1685,7 +1685,7 @@ public class UpdatePersonalInformation extends base {
 				.statusLine("HTTP/1.1 400 Bad Request");
 	}
 	
-	@Test (priority=1,testName="First Name Required",description="PBI:149847", enabled = false)
+	@Test (priority=1,testName="First Name Required",description="PBI:149847", enabled = true)
 	public void firstNameRequired() {
 		
 		String fieldName =  "FirstName";
@@ -1701,12 +1701,14 @@ public class UpdatePersonalInformation extends base {
 				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
 				.post("/api/v3/changerequest/updatepersonalinformation").
 			then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(400)	
-				.statusLine("HTTP/1.1 400 Bad Request");
+				.statusLine("HTTP/1.1 400 Bad Request")
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("FirstName '' is invalid"));
 	}
 	
-	@Test (priority=1,testName="Last Name Required",description="PBI:149847", enabled = false)
+	@Test (priority=1,testName="Last Name Required",description="PBI:149847", enabled = true)
 	public void LastNameRequired() {
 		
 		String fieldName =  "LastName";
@@ -1722,12 +1724,14 @@ public class UpdatePersonalInformation extends base {
 				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
 				.post("/api/v3/changerequest/updatepersonalinformation").
 			then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(400)	
-				.statusLine("HTTP/1.1 400 Bad Request");
+				.statusLine("HTTP/1.1 400 Bad Request")
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("LastName '' is invalid"));
 	}
 	
-	@Test (priority=1,testName="BarcodeId Required",description="PBI:149847", enabled = false)
+	@Test (priority=1,testName="BarcodeId Required",description="PBI:149847", enabled = true)
 	public void BarcodeIdRequired() {
 		
 		String fieldName =  "BarcodeId";
@@ -1743,9 +1747,11 @@ public class UpdatePersonalInformation extends base {
 				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
 				.post("/api/v3/changerequest/updatepersonalinformation").
 			then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(400)	
-				.statusLine("HTTP/1.1 400 Bad Request");
+				.statusLine("HTTP/1.1 400 Bad Request")
+				.body("Status", equalTo(400))
+				.body("Message", equalTo("BarcodeId '' is invalid"));
 	}
 	
 	

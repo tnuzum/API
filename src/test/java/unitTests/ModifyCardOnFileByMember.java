@@ -173,61 +173,184 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertFalse(js.getString("Result[0].Address.StateProvince").equals(stateProvince));
 	}
 	
-	@Test (testName="Set Card 1 As House Account", description="PBI:164154", priority = 1, enabled = false)
+	@Test (testName="Set Card 1 As House Account", description="PBI:164154", priority = 1, enabled = true)
 	public void setCard1AsHouseAccount() {
 		
 				String customerId = prop.getProperty("houseAcctChangeId");
-				String cardNumber = "5454545454545454";
-				String accountId = "1";
 				String setAsHouseAccount = "true";
 
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(MemberPL.modifyCardOnFileByMemberAllFields(accountId,customerId,cardNumber,expirationMonth,expirationYear,cardHolderName,addressIsSameAsMemberAddress,addressLine1,addressLine2,city,stateProvince,postalCode,useInPos,setAsHouseAccount))
+				.body("{\r\n" + 
+						"  \"CustomerId\": "+customerId+",\r\n" + 
+						"  \"AccountId\": "+accountId+",\r\n" + 
+						"  \"SetAsHouseAccount\": "+setAsHouseAccount+"\r\n" + 
+						"}")
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200);	
 			
 				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
 				JsonPath js = ReusableMethods.rawToJson(res);
-				Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"), true);
+				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"), setAsHouseAccount);
 				Assert.assertEquals(js.getBoolean("Result[1].IsHouseAccount"), false);
 	}
 	
-	@Test (testName="Set Card 2 As House Account", description="PBI:164154", priority = 2, enabled = false)
+	@Test (testName="Set Card 2 As House Account", description="PBI:164154", priority = 2, enabled = true)
 		// This test fails if there are 2 accounts with same CC number
 	public void setCard2AsHouseAccount() {
 		
 				String customerId = prop.getProperty("houseAcctChangeId");
-				String cardNumber = "4111111111111111";
 				String accountId = "2";
 				String setAsHouseAccount = "true";
 
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(MemberPL.modifyCardOnFileByMemberAllFields(accountId,customerId,cardNumber,expirationMonth,expirationYear,cardHolderName,addressIsSameAsMemberAddress,addressLine1,addressLine2,city,stateProvince,postalCode,useInPos,setAsHouseAccount))
+			.body("{\r\n" + 
+					"  \"CustomerId\": "+customerId+",\r\n" + 
+					"  \"AccountId\": "+accountId+",\r\n" + 
+					"  \"SetAsHouseAccount\": "+setAsHouseAccount+"\r\n" + 
+					"}")
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200);	
 			
 				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
 				JsonPath js = ReusableMethods.rawToJson(res);
 				Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"), false);
-				Assert.assertEquals(js.getBoolean("Result[1].IsHouseAccount"), true);
+				Assert.assertEquals(js.getString("Result[1].IsHouseAccount"), setAsHouseAccount);
+	}
+	
+	@Test (testName="Set Card 1 UseInPOS False", description="PBI:164154", priority = 3, enabled = true)
+	public void setCard1UseInPOSFalse() {
+		
+				String customerId = prop.getProperty("houseAcctChangeId");
+				String useInPos = "false";
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": "+customerId+",\r\n" + 
+						"  \"AccountId\": "+accountId+",\r\n" + 
+						"  \"UseInPos\": "+useInPos+"\r\n" + 
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200);	
+			
+				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				Assert.assertEquals(js.getString("Result[0].UseInPOS"), useInPos);
+	}
+	
+	@Test (testName="Set Card 1 UseInPOS True", description="PBI:164154", priority = 4, enabled = true)
+	public void setCard1UseInPOSTrue() {
+		
+				String customerId = prop.getProperty("houseAcctChangeId");
+				String useInPos = "true";
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": "+customerId+",\r\n" + 
+						"  \"AccountId\": "+accountId+",\r\n" + 
+						"  \"UseInPos\": "+useInPos+"\r\n" + 
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200);	
+			
+				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				Assert.assertEquals(js.getString("Result[0].UseInPOS"), useInPos);
+	}
+	
+	@Test (testName="Set Card 2 UseInPOS False", description="PBI:164154", priority = 5, enabled = true)
+	public void setCard2UseInPOSFalse() {
+		
+				String customerId = prop.getProperty("houseAcctChangeId");
+				String accountId = "2";
+				String useInPos = "false";
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": "+customerId+",\r\n" + 
+						"  \"AccountId\": "+accountId+",\r\n" + 
+						"  \"UseInPos\": "+useInPos+"\r\n" + 
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200);	
+			
+				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				Assert.assertEquals(js.getString("Result[1].UseInPOS"), useInPos);
+	}
+	
+	@Test (testName="Set Card 2 UseInPOS True", description="PBI:164154", priority = 6, enabled = true)
+	public void setCard2UseInPOSTrue() {
+		
+				String customerId = prop.getProperty("houseAcctChangeId");
+				String accountId = "2";
+				String useInPos = "true";
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": "+customerId+",\r\n" + 
+						"  \"AccountId\": "+accountId+",\r\n" + 
+						"  \"UseInPos\": "+useInPos+"\r\n" + 
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200);	
+			
+				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				Assert.assertEquals(js.getString("Result[1].UseInPOS"), useInPos);
 	}
 	
 	@Test (testName="Account Id Required", description="PBI:164154")
@@ -275,13 +398,13 @@ public class ModifyCardOnFileByMember extends base {
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
 //				.log().all()
-//				.assertThat().statusCode(400)
+				.assertThat().statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);
-				
-				Assert.assertTrue(js.getString("Messages").contains("No card on file could be found for customer '"+customerId+"', account '"+accountId+"'"));	
+				Assert.assertEquals(js.getInt("Status"), 400);
+				Assert.assertTrue(js.getString("Message").contains("No card on file could be found for customer '"+customerId+"', account '"+accountId+"'"));	
 	}
 	
 	@Test (testName="Customer Id Required", description="PBI:164154")
@@ -329,13 +452,13 @@ public class ModifyCardOnFileByMember extends base {
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
 //				.log().all()
-//				.assertThat().statusCode(400)
+				.assertThat().statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);
-				
-				Assert.assertTrue(js.getString("Messages").contains("No card on file could be found for customer '"+customerId+"', account '"+accountId+"'"));	
+				Assert.assertEquals(js.getInt("Status"), 400);
+				Assert.assertTrue(js.getString("Message").contains("No card on file could be found for customer '"+customerId+"', account '"+accountId+"'"));	
 	}
 
 	@Test (testName="Modify Address Line 1", description="PBI:164154")
@@ -478,7 +601,50 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertTrue(js.getString("Result[0].Address.StateProvince").equals(stateProvince));
 	}
 	
+	@Test (testName="No Change To Existing Values", description="PBI:164154")
+	public void noChangeToExistingValues() {
 		
+			Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
+			JsonPath js = ReusableMethods.rawToJson(res);
+			String addressIsSameAsMemberAddress = "false";
+			String addressLine1 = js.getString("Result[0].Address.AddressLine1");
+
+			Response res2 = 
+					
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+						"  \"AccountId\": \""+accountId+"\",\r\n" + 
+						"  \"AddressIsSameAsMemberAddress\": \""+addressIsSameAsMemberAddress+"\",\r\n" + 
+						"  \"Address\": {\r\n" + 
+						"    \"AddressLine1\": \""+addressLine1+"\"\r\n" + 
+						"  }\r\n" +  
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.extract().response();
+			
+				JsonPath js2 = ReusableMethods.rawToJson(res2);
+
+				Assert.assertTrue(js2.getString("Status").equals("204"));
+				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '244', account '1'"));
+	}
+	
+	
+	
+	
+	
+	
 }
 
 
