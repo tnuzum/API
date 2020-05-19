@@ -461,11 +461,41 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertTrue(js.getString("Message").contains("No card on file could be found for customer '"+customerId+"', account '"+accountId+"'"));	
 	}
 
+	@Test (testName="Modify Card", description="PBI:164154", priority = 7)
+	public void modifyCard() {
+		
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+						"  \"AccountId\": \""+accountId+"\",\r\n" + 
+						"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
+						"  }\r\n" +  
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS);
+			
+		Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
+			
+				JsonPath js = ReusableMethods.rawToJson(res);
+
+				Assert.assertTrue(cardNumber.contains(js.getString("Result[0].TruncatedAccountNumber")));
+	}
+	
 	@Test (testName="Modify Address Line 1", description="PBI:164154")
 	public void modifyAddressLine1() {
 		
 			String addressIsSameAsMemberAddress = "false";
-			String addressLine1 = "1200 Northwoods Dr.";
+			String addressLine1 = "1209 Northwoods Dr.";
 
 			given()
 //				.log().all()
@@ -601,8 +631,8 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertTrue(js.getString("Result[0].Address.StateProvince").equals(stateProvince));
 	}
 	
-	@Test (testName="No Change To Existing Values", description="PBI:164154")
-	public void noChangeToExistingValues() {
+	@Test (testName="No Change To Existing Address Line 1", description="PBI:164154")
+	public void noChangeToExistingAddressLine1() {
 		
 			Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
 			JsonPath js = ReusableMethods.rawToJson(res);
@@ -640,7 +670,40 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '244', account '1'"));
 	}
 	
-	
+	@Test (testName="No Change To Existing Card", description="PBI:164154", priority = 8)
+	public void noChangeToExistingCard() {
+		
+			String cardNumber = prop.getProperty("changeCCMember1AccountNumber");
+			String accountId = "1";
+
+			Response res2 = 
+					
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("Content-Type", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+				.body("{\r\n" + 
+						"  \"CustomerId\": \""+customerId+"\",\r\n" + 
+						"  \"AccountId\": \""+accountId+"\",\r\n" + 
+						"  \"CardNumber\": \""+cardNumber+"\",\r\n" + 
+						"  }\r\n" +  
+						"}")
+				.post("/api/v3/member/modifycardonfilebymember")
+			.then()
+//				.log().all()
+				.assertThat().statusCode(400)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.extract().response();
+			
+				JsonPath js2 = ReusableMethods.rawToJson(res2);
+
+				Assert.assertTrue(js2.getString("Status").equals("204"));
+				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '244', account '1'"));
+	}
 	
 	
 	
