@@ -261,15 +261,15 @@ public class GetCourseDetailsByMember extends base{
 						.body("Message", equalTo("Customer not found"));;
 	}
 	
-	@Test (testName="Enrollment Not Open",description="PBI:143545", enabled = false)
+	@Test (testName="Enrollment Not Open",description="PBI:143545", enabled = true)
 	public void enrollmentNotOpen() {
 		
 
 				String customerId = prop.getProperty("availableId");
-				String courseId = prop.getProperty("neverAvailClId");
+				String courseId = prop.getProperty("neverAvailCoId");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -277,7 +277,7 @@ public class GetCourseDetailsByMember extends base{
 					.when()
 					.get("/api/v3/classcourse/getcoursedetailsbymember/"+customerId+"/"+courseId+"/"+onlineEnrollment)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.EnrollmentEligibilities[0].EnrollmentEligibilityStatus", equalTo("EnrollmentNotOpen"));
 	}

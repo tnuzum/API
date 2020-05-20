@@ -495,7 +495,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	@Test (testName="Frozen Member",description="PBI:143542", enabled = false)
 	public void frozenMember() {
  
-				String customerId = prop.getProperty("frozenId");
+				String customerId = "277";//prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
@@ -503,7 +503,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
