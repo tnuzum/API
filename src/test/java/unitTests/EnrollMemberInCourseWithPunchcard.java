@@ -215,8 +215,11 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				}
 	}
 	
-	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:147820")
+	@Test (testName="Member Enrolled - Free Course - Collections Member",description="PBI:147820", enabled = true)
 	public void memberEnrolledFreeCourseCollectionsMember() {
+		
+		// this test will fail if the member didn't have enough punchcards nor is their membership setup to use recurring dues
+		// So even though the class/course is free, the member must still have punchcards or a membership that accepts recurring dues. (See bug# 157917)
 		
 				String c = prop.getProperty("collectionsId");
 				int customerId = Integer.parseInt(c);				

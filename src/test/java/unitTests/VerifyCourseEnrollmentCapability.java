@@ -303,9 +303,9 @@ public class VerifyCourseEnrollmentCapability extends base{
 				.body("Details", equalTo("MemberFrozen"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:150004", enabled = true)		 
+	@Test (testName="Collections Member - Paid Course",description="PBI:150004", enabled = true)		 
 	
-	public void enrollmentNotAllowedCollectionsMember() {
+	public void CollectionsMemberPaidCourse() {
 		
 		// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
 		
@@ -313,6 +313,33 @@ public class VerifyCourseEnrollmentCapability extends base{
 				String customerId = prop.getProperty("collectionsId");
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
+
+			given()
+//				.log().all()
+				.header("accept", "application/json")
+				.header("X-Api-Key", aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+			.when()
+					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
+			.then()
+//				.log().body()
+				.assertThat().statusCode(200)
+				.time(lessThan(60L),TimeUnit.SECONDS)
+				.body("AllowedToEnroll", equalTo(true))
+				.body("EnrollmentStatus", equalTo("EnrollmentAllowed"));
+	}
+	
+	@Test (testName="Collections Member - Free Course",description="PBI:150004", enabled = true)		 
+	
+	public void CollectionsMemberFreeCourse() {
+		
+		// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
+		
+				Boolean onlineEnrollment = true;
+				String customerId = prop.getProperty("collectionsId");
+				String courseId = prop.getProperty("freeCoId");
+				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 
 			given()
 //				.log().all()
