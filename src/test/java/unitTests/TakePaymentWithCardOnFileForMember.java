@@ -531,10 +531,10 @@ public class TakePaymentWithCardOnFileForMember extends base {
 			.then()
 				.assertThat()
 //				.log().all()
-				.statusCode(200)
+				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(200))
-				.body("ReceiptNumber", not(nullValue()));
+				.body("Status", equalTo(409))
+				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
 	@Test (testName="Amount Required Null",description="PBI:150192")

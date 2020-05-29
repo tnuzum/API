@@ -54,7 +54,7 @@ public class PurchasePackageWithNewCreditCard extends base{
  
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidTId");
-				int quantity = 15;
+				int quantity = 5;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
@@ -83,7 +83,7 @@ public class PurchasePackageWithNewCreditCard extends base{
  
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidServiceVId");
-				int quantity = 5;
+				int quantity = 3;
 				String dgt = prop.getProperty("paidServiceVGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
@@ -288,7 +288,7 @@ public class PurchasePackageWithNewCreditCard extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
-				int quantity = 10;
+				int quantity = 5;
 				String dgt = prop.getProperty("taxSingleTPrice");
 				String tr = prop.getProperty("taxSingleTClub1TaxRate");
 				double grandTotal = Double.parseDouble(dgt);
@@ -375,7 +375,7 @@ public class PurchasePackageWithNewCreditCard extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
-				int quantity = 15;
+				int quantity = 5;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double grandTotal = Double.parseDouble(dgt);
 				double displayedGrandTotal = (grandTotal * quantity);
