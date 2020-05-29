@@ -227,7 +227,7 @@ public class GetPackagePricing extends base {
 				int quantity = 1;
 
 		Response res = given()
-//						
+						
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -245,9 +245,9 @@ public class GetPackagePricing extends base {
 						.extract().response();
 			
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 1.0);
-						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 1.0);
-						Assert.assertEquals(js.getDouble("Result.SubTotal"), 1.0);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.0);
+						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
+						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
 	}
 	
