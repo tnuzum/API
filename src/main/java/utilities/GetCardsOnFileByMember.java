@@ -28,7 +28,8 @@ public class GetCardsOnFileByMember extends base {
 	
 	public void SingleAgreementWithCard() {
 		
-				String member = prop.getProperty("houseAcctChangeId");
+				//String member = prop.getProperty("houseAcctChangeId");
+				String member = "912";
 
 				given()
 //					.log().all()
@@ -39,7 +40,7 @@ public class GetCardsOnFileByMember extends base {
 				.when()
 					.get("/api/v3/member/getCardsOnFileByMember/"+member)
 				.then()
-						.log().body();
+					.log().body();
 	}
 	
 	

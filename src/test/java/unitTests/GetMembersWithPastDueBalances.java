@@ -18,7 +18,7 @@ public class GetMembersWithPastDueBalances extends base{
 		static String aPIKey;
 		static String companyId;
 		static String clubId;
-
+		static String altCompanyId;
 		static String asOfDate;
 		static String daysPastDue;
 		static String membershipTypeId;
@@ -31,7 +31,8 @@ public class GetMembersWithPastDueBalances extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 		
 		aPIKey = prop.getProperty("X-Api-Key");
-		companyId = "101"; // prop.getProperty("X-CompanyId");
+		companyId = "101";
+		altCompanyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 
 		asOfDate = "2019-06-01";
@@ -310,7 +311,7 @@ public class GetMembersWithPastDueBalances extends base{
 	@Test  (testName="Single Membership Type", description="PBI:150325")
 	public void singleMembershipType() {
 		
-						String companyId = "236";
+						String companyId = altCompanyId;
 							
 					given()
 //						.log().all()
@@ -378,7 +379,7 @@ public class GetMembersWithPastDueBalances extends base{
 	@Test  (testName="All Parameters", description="PBI:150325")
 	public void allParameters() {
 		
-					String companyId = "236";
+					String companyId = altCompanyId;
 							
 					given()
 //						.log().all()

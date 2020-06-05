@@ -16,7 +16,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 			static String aPIKey;
 			static String companyId;
 			static String clubId;
-			
+			static String altCompanyId;
 			static String format;
 	
 	@BeforeClass
@@ -26,7 +26,8 @@ public class GetAccountBalanceDetailsByMember extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 		
 		aPIKey = prop.getProperty("X-Api-Key");
-		companyId = "101"; //prop.getProperty("X-CompanyId");
+		companyId = "101";
+		altCompanyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 		format = prop.getProperty("format");
 
@@ -35,7 +36,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 	@Test (testName="History Found - No Declines", description="PBI:149846")
 	public void historyFoundNoDeclines() {
 		
-		String companyId = "236";		
+		String companyId = altCompanyId;		
 		String customerId = prop.getProperty("noFOPId");
 		
 		Response res =
@@ -382,7 +383,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 	@Test (testName="Negative Balances", description="PBI:149846")
 	public void negativeBalances() {
 		
-				String companyId = "236";
+				String companyId = altCompanyId;
 				String customerId = prop.getProperty("negativeAcctBalMemberId");
 		
 		Response res =
