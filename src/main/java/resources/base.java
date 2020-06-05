@@ -17,7 +17,7 @@ public class base {
 		prop = new Properties();
 		FileInputStream fis = null;
 		
-		if (environment.equals("FUTURE")){
+		if (environment.equals("FUTURE2")){
 			try {
 				fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\future.properties");
 			} catch (FileNotFoundException e) {

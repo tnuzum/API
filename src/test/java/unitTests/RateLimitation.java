@@ -98,8 +98,10 @@ public class RateLimitation extends base {
 						"  \"PostalCode\": \""+postalCode+"\"," + 
 						"  \"EnrollCustomerAsStandBy\": "+enrollCustomerAsStandby+"" + 
 						"}")
-				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard");
-//				.then().log().all();
+				.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
+				.then()
+//				.log().all()
+				;
 	}
 
 	@Test (testName="Rate-counter Limitation", description="Rate-counter Limitation", priority = 2)
