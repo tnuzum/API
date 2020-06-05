@@ -46,7 +46,7 @@ public class UpdatePersonalInformation extends base {
 	public void updateAddress1() {
 		
 		String fieldName = "Address1";
-		String newValue = "1109 1st St.";
+		String newValue = "1100 1st St.";
 		
 		Response res = 
 

@@ -32,7 +32,7 @@ public class GetBillingDeclinesHistories extends base {
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 		
-		startDate = ReusableDates.getCurrentDateMinusXYears(1);
+		startDate = ReusableDates.getCurrentDateMinusXYears(20);
 		endDate = ReusableDates.getCurrentDate();
 		minimumDeclinesCount = "0";
 		returnsType = "All";
@@ -51,7 +51,7 @@ public class GetBillingDeclinesHistories extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ClubIds="+clubId+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
+				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
 //			    .log().body()
 				.statusCode(200)
@@ -80,7 +80,7 @@ public class GetBillingDeclinesHistories extends base {
 	public void correctionsHistoryFound() {
 		
 				String companyId = "101";
-				String startDate = ReusableDates.getCurrentDateMinusXYears(5);
+				String startDate = ReusableDates.getCurrentDateMinusXYears(10);
 				String returnsType = "Corrections";
 		
 		Response res = 	
@@ -92,7 +92,7 @@ public class GetBillingDeclinesHistories extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ClubIds="+clubId+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
+				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
 //			    .log().all()
 				.statusCode(200)
@@ -131,7 +131,7 @@ public class GetBillingDeclinesHistories extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ClubIds="+clubId+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
+				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
 //			    .log().all()
 				.statusCode(200)
@@ -493,7 +493,7 @@ public class GetBillingDeclinesHistories extends base {
 	@Test (testName="End Date Prior to Start Date",description="PBI:150328")
 	public void endDatePriorToStartDate() {
 		
-				String endDate = ReusableDates.getCurrentDateMinusXYears(5);
+				String endDate = ReusableDates.getCurrentDateMinusXYears(50);
 				
 		Response res = 	
 				

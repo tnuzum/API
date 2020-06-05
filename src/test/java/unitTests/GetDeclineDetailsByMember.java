@@ -325,10 +325,10 @@ public class GetDeclineDetailsByMember extends base {
 				Assert.assertTrue(res.getTime() >= 60L);
 				Assert.assertEquals(js.getInt("Status"), 200);
 	    		
-	    		Assert.assertEquals(js.getString("Result[0].CustomerId"), customerId);
-	    		Assert.assertEquals(js.getString("Result[0].Code"), prop.getProperty("nFSCode"));
-	    		Assert.assertEquals(js.getString("Result[0].Format"), format);
-	    		Assert.assertEquals(js.getString("Result[0].Reason"), prop.getProperty("nFSMessage"));
+	    		Assert.assertTrue(js.getString("Result.CustomerId").contains(customerId));
+	    		Assert.assertTrue(js.getString("Result.Code").contains(prop.getProperty("nFSCode")));
+	    		Assert.assertTrue(js.getString("Result.Format").contains(format));
+	    		Assert.assertTrue(js.getString("Result.Reason").contains(prop.getProperty("nFSMessage")));
 	}
 	
 	@Test (testName="No History Found",description="PBI:150150")
