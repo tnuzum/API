@@ -23,7 +23,7 @@
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
-			<class name="unitTests.GetAccountBalanceDetailsByMember" />
+			<!-- class name="unitTests.GetAccountBalanceDetailsByMember" /-->
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
 			<class name="unitTests.GetAppointmentDetails" />
@@ -52,7 +52,7 @@
 			<class name="unitTests.GetFieldsForMemberCreationByMember" />
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
-			<class name="unitTests.GetMembersWithOutstandingInvoices" />
+			<!-- class name="unitTests.GetMembersWithOutstandingInvoices" /-->
 			<class name="unitTests.GetMembersWithPastDueBalances" />
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
