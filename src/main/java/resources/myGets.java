@@ -163,4 +163,23 @@ public class myGets extends base {
 			return res;	
 	}
 	
+	public static Response getProjectConfiguration(String aPIKey,String companyId,String clubId) {
+		
+		Response res = 
+				
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+		.get("/api/v3/businessintelligence/getbusinessintelligenceconfiguration")
+		.then()
+//			.log().body()
+			.extract().response();
+			
+			return res;	
+	}
+	
 }
