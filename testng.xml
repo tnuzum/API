@@ -78,6 +78,8 @@
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
 			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
 			<class name="unitTests.VerifyPackagePurchaseCapability" />
+			<class name="unitTests.Vita_GetProjectVitaConfiguration" />
+			<class name="unitTests.Vita_SetProjectVitaConfiguration" />
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>
 				<exclude name="METHODNAME"/>
