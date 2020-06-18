@@ -25,7 +25,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	static String clubId;
 	static String clubName;
 	static String additionalClub1Id;
-	static String bICompanyId = prop.getProperty("X-CompanyId");
 	static String timeFrame;
 	static String timeFrameUnits;
 	static String isActivated;
@@ -42,7 +41,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 		clubId = prop.getProperty("X-Club1Id");
 		clubName = prop.getProperty("club1Name");
 		additionalClub1Id = prop.getProperty("X-Club2Id");
-		bICompanyId = prop.getProperty("X-CompanyId");
 		timeFrame = "1";
 		timeFrameUnits = "1";
 		isActivated = "true";
@@ -54,7 +52,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	public void setAllParametersTest1() {
 		
 				String clubIsSelected = "false";
-				String bICompanyId = prop.getProperty("X-CompanyId");
 				String timeFrame = "5";
 				String timeFrameUnits = "5";
 				String isActivated = "false";
@@ -67,7 +64,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_AllParameters(companyId, clubId, clubName, clubIsSelected, bICompanyId, timeFrame, timeFrameUnits, isActivated))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_AllParameters(clubId, clubName, clubIsSelected, timeFrame, timeFrameUnits, isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -85,7 +82,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].ClubId"), clubId);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].ClubName"), clubName);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].IsSelected"), clubIsSelected);
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframe"), timeFrame);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframeUnits"), timeFrameUnits);
 				Assert.assertEquals(js.getString("Result.IsActivated"), isActivated);	
@@ -102,7 +98,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_AllParameters(companyId, clubId, clubName, clubIsSelected, bICompanyId, timeFrame, timeFrameUnits, isActivated))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_AllParameters(clubId, clubName, clubIsSelected, timeFrame, timeFrameUnits, isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -120,7 +116,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].ClubId"), clubId);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].ClubName"), clubName);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].IsSelected"), clubIsSelected);
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframe"), timeFrame);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframeUnits"), timeFrameUnits);
 				Assert.assertEquals(js.getString("Result.IsActivated"), isActivated);
@@ -142,7 +137,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_MultipleClubs(companyId, clubId, clubName, clubIsSelected, club2Id, club2Name, club2IsSelected, bICompanyId, timeFrame, timeFrameUnits, isActivated))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_MultipleClubs(clubId, clubName, clubIsSelected, club2Id, club2Name, club2IsSelected, timeFrame, timeFrameUnits, isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -176,7 +171,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_IsActivated(companyId, isActivated))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_IsActivated(isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -191,7 +186,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.IsActivated"), isActivated);
 	}	
 	
@@ -208,7 +202,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_IsActivated(companyId, isActivated))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_IsActivated(isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -224,7 +218,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				JsonPath js = ReusableMethods.rawToJson(res);
 				
 				Assert.assertEquals(js.getBoolean("Result.ClubSelection[0].IsSelected"), false); //this is set to false when company is deactivated
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.IsActivated"), isActivated);
 	}	
 	
@@ -241,7 +234,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_TimeFrame(companyId, timeFrame))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_TimeFrame(timeFrame))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -256,7 +249,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframe"), timeFrame);
 	}	
 	
@@ -273,7 +265,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_TimeFrameUnits(companyId, timeFrameUnits))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_TimeFrameUnits(timeFrameUnits))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -288,7 +280,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.DataStorageTimeframeUnits"), timeFrameUnits);
 	}	
 	
@@ -305,7 +296,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_ClubIsSelected(companyId, clubId, clubIsSelected))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_ClubIsSelected(clubId, clubIsSelected))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -320,7 +311,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].IsSelected"), clubIsSelected);
 	}	
 	
@@ -337,7 +327,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_ClubIsSelected(companyId, clubId, clubIsSelected))
+				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration_ClubIsSelected(clubId, clubIsSelected))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
 //			    .log().all()
@@ -352,7 +342,6 @@ public class Vita_SetProjectVitaConfiguration extends base {
 	
 				JsonPath js = ReusableMethods.rawToJson(res);
 			
-				Assert.assertEquals(js.getString("Result.CompanyId"), companyId);
 				Assert.assertEquals(js.getString("Result.ClubSelection[0].IsSelected"), clubIsSelected);
 	}	
 
