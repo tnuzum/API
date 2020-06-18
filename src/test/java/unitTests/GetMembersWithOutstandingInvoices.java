@@ -22,6 +22,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 	Boolean includeMembersInCollection;
 	Boolean includeTerminatedMembers;
 	String asOfDate;
+	String customerId;
 
 	@BeforeClass
 	public void getData() {
@@ -48,9 +49,10 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate")
+//						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result[0].CustomerDemographics", hasKey("CustomerId"))

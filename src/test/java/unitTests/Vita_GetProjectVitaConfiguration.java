@@ -51,7 +51,7 @@ public class Vita_GetProjectVitaConfiguration extends base {
 			.when()
 				.get("/api/v3/businessintelligence/getbusinessintelligenceconfiguration")
 			.then()
-			    .log().all()
+//			    .log().all()
 			    .time(lessThan(60L),TimeUnit.SECONDS)
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")
@@ -62,7 +62,6 @@ public class Vita_GetProjectVitaConfiguration extends base {
 				Assert.assertNotNull(js.getString("Result.ClubSelection[0].ClubId"));
 				Assert.assertNotNull(js.getString("Result.ClubSelection[0].ClubName"));
 				Assert.assertNotNull(js.getString("Result.ClubSelection[0].IsSelected"));
-				Assert.assertNotNull(js.getString("Result.CompanyId"));
 				Assert.assertNotNull(js.getString("Result.DataStorageTimeframe"));
 				Assert.assertNotNull(js.getString("Result.DataStorageTimeframeUnits"));
 				Assert.assertNotNull(js.getString("Result.IsActivated"));
