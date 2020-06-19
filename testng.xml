@@ -12,6 +12,7 @@
 			<class name="unitTests.CancelAppointmentByEmployee" />
 			<class name="unitTests.CancelAppointmentByMember" />
 			<class name="unitTests.CreateMember" />
+			<class name="unitTests.CreateMemberNotes" />
 			<class name="unitTests.CSIPayGateway" />
 			<class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
@@ -52,6 +53,7 @@
 			<class name="unitTests.GetFieldsForMemberCreationByMember" />
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
+			<class name="unitTests.GetMemberActions" />			
 			<!-- class name="unitTests.GetMembersWithOutstandingInvoices" /-->
 			<class name="unitTests.GetMembersWithPastDueBalances" />
 			<class name="unitTests.GetNextMemberId" />
