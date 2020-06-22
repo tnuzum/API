@@ -9,6 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import resources.ReusableDates;
@@ -49,8 +50,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-//						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate")
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId=341&invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices")
 						.then()
 						.log().body()
 						.assertThat().statusCode(200)
@@ -120,8 +120,11 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].OutstandingInvoices[1]", hasKey("NsfFeeApplied"));
 	}
 	
-	@Test  (testName="Outstanding Invoices Found Without Date", description="PBI:153783")
-	public void outstandingInvoicesFoundWithoutDate() {
+	@Test  (testName="Specific Customer With Card Found", description="PBI:153783")
+	public void specificCustomerWithCardFound() {
+		
+						String customerId = prop.getProperty("outstandingInvoiceCardOnFileMemberId");
+						int customerIdInt =  Integer.parseInt(customerId);
 
 					given()
 //						.log().all()
@@ -130,75 +133,49 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?includeMembersInCollection="+includeMembersInCollection)
+					.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId="+customerId+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-					    .body("Result[0].CustomerDemographics", hasKey("CustomerId"))
-					    .body("Result[0].CustomerDemographics.Name", hasKey("FirstName"))
-					    .body("Result[0].CustomerDemographics.Name", hasKey("MiddleInitial"))
-					    .body("Result[0].CustomerDemographics.Name", hasKey("LastName"))
-					    .body("Result[0].CustomerDemographics.Name", hasKey("PreferredName"))
-					    .body("Result[0].CustomerDemographics.Name", hasKey("DisplayName"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("AddressLine1"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("AddressLine2"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("City"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("Country"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("PostalCode"))
-					    .body("Result[0].CustomerDemographics.Address", hasKey("StateProvince"))
-					    .body("Result[0].CustomerDemographics", hasKey("MemberID"))
-					    .body("Result[0].CustomerDemographics", hasKey("DoNotMail"))
-					    .body("Result[0].CustomerDemographics", hasKey("DoNotMarket"))					    
-					    .body("Result[0].CustomerDemographics", hasKey("EmailAddress"))
-					    .body("Result[0].CustomerDemographics", hasKey("EmailContactConsent"))
-					    .body("Result[0].CustomerDemographics", hasKey("EmergencyContactName"))
-					    .body("Result[0].CustomerDemographics", hasKey("EmergencyContactPhoneNumber"))
-					    .body("Result[0].CustomerDemographics.EmergencyContactPhoneNumber", hasKey("Extension"))
-					    .body("Result[0].CustomerDemographics.EmergencyContactPhoneNumber", hasKey("Number"))
-					    .body("Result[0].CustomerDemographics.EmergencyContactPhoneNumber", hasKey("PhoneType"))
-					    .body("Result[0].CustomerDemographics", hasKey("HomePhoneContactConsent"))
-					    .body("Result[0].CustomerDemographics.HomePhoneNumber", hasKey("Extension"))
-					    .body("Result[0].CustomerDemographics.HomePhoneNumber", hasKey("Number"))
-					    .body("Result[0].CustomerDemographics.HomePhoneNumber", hasKey("PhoneType"))
-					    .body("Result[0].CustomerDemographics", hasKey("MobilePhoneContactConsent"))
-					    .body("Result[0].CustomerDemographics.MobilePhoneNumber", hasKey("Extension"))
-					    .body("Result[0].CustomerDemographics.MobilePhoneNumber", hasKey("Number"))
-					    .body("Result[0].CustomerDemographics.MobilePhoneNumber", hasKey("PhoneType"))
-					    .body("Result[0].CustomerDemographics", hasKey("WorkPhoneContactConsent"))
-					    .body("Result[0].CustomerDemographics.WorkPhoneNumber", hasKey("Extension"))
-					    .body("Result[0].CustomerDemographics.WorkPhoneNumber", hasKey("Number"))
-					    .body("Result[0].CustomerDemographics.WorkPhoneNumber", hasKey("PhoneType"))
-					    .body("Result[0].CustomerDemographics.PreferredPhoneNumber", hasKey("Extension"))
-					    .body("Result[0].CustomerDemographics.PreferredPhoneNumber", hasKey("Number"))
-					    .body("Result[0].CustomerDemographics.PreferredPhoneNumber", hasKey("PhoneType"))
-						.body("Result[0].CustomerDemographics", hasKey("PreferredPhoneType"))
-					    .body("Result[0].CustomerDemographics", hasKey("DateOfBirth"))
-					    .body("Result[0].CustomerDemographics", hasKey("HomeClubNumber"))
-					    .body("Result[0].CustomerDemographics", hasKey("HomeClubName"))
-					    .body("Result[0].CustomerDemographics", hasKey("MemberType"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("CustomerId"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceId"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("ReceiptNumber"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceBalance"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceCategory"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceCreationDate"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceDueDate"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceDescription"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoicePaidAmount"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceTotal"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("NsfFeeApplied"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("CustomerId"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceId"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("ReceiptNumber"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceBalance"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCategory"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCreationDate"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDueDate"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDescription"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoicePaidAmount"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceTotal"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("NsfFeeApplied"));
+					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardExpirationDate.Month", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardExpirationDate.Year", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardType", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.AccountId", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.PaymentType", equalTo("CreditCard"));
+	}
+	
+	@Test  (testName="Specific Customer With Bank Account Found", description="PBI:153783")
+	public void specificCustomerWithBankAccountFound() {
+		
+						String customerId = prop.getProperty("outstandingInvoiceBankOnFileMemberId");
+						int customerIdInt =  Integer.parseInt(customerId);
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId="+customerId+"")
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].BankAccountsOnFile[0].BankAccountType", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].BankAccountNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].BankName", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0]", hasKey("BillingName"))
+					    .body("Result[0].BankAccountsOnFile[0].IsBusiness", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].RoutingNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].BankAccountsOnFile[0].AccountId", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].PaymentType", equalTo("Draft"));
 	}
 	
 	@Test  (testName="Collections Member Included", description="PBI:153783")
@@ -211,13 +188,14 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?includeMembersInCollection="+includeMembersInCollection)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.MemberType", hasItem("InCollections"));
 	}
+	
 	
 	@Test  (testName="Collections Member Not Included", description="PBI:153783")
 	public void collectionsMemberNotIncluded() {
@@ -231,13 +209,14 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?includeMembersInCollection="+includeMembersInCollection)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.MemberType", not(hasItem("InCollections")));
 	}
+	
 	
 	@Test  (testName="Terminated Member Included", description="PBI:153783")
 	public void terminatedMemberIncluded() {
@@ -249,13 +228,14 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeTerminatedMembers="+includeTerminatedMembers)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?includeTerminatedMembers="+includeTerminatedMembers)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"));
 	}
+	
 	
 	@Test  (testName="Terminated Member Not Included", description="PBI:153783")
 	public void terminatedMemberNotIncluded() {
@@ -276,6 +256,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", not(hasItem("Terminated")));
 	}
+	
 	
 	@Test  (testName="Collections and Terminated Members Included", description="PBI:153783")
 	public void collectionsAndTerminatedMembersIncluded() {
@@ -308,7 +289,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"")
 						.then()
 //						.log().all()
 						.assertThat().statusCode(200)
@@ -329,7 +310,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.header("X-CompanyId", companyId)
 						.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"&includeMembersInCollection="+includeMembersInCollection)
+						.get("/api/v3/financial/getmemberswithoutstandinginvoices?invoiceAsOfDate="+asOfDate+"")
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
