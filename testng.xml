@@ -69,7 +69,7 @@
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.PurchasePackageWithCardOnFile" />
-			<class name="unitTests.RateLimitation" />
+			<!-- class name="unitTests.RateLimitation" /> Enable this test for regression; result is based on timing so system performance could impact result -->
 			<class name="unitTests.SearchMembers" />
 			<class name="unitTests.SearchMembersByProduct" />
 			<class name="unitTests.SearchOnlineMembersByProduct" />

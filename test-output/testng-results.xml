@@ -1,25 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+<testng-results ignored="8" total="9" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-05-05T14:45:22 EDT" name="Default suite" finished-at="2020-05-05T14:45:29 EDT" duration-ms="6786">
+  <suite started-at="2020-06-22T10:22:49 EDT" name="Default suite" finished-at="2020-06-22T10:22:52 EDT" duration-ms="3549">
     <groups>
     </groups>
-    <test started-at="2020-05-05T14:45:22 EDT" name="Default test" finished-at="2020-05-05T14:45:29 EDT" duration-ms="6786">
-      <class name="unitTests.GetFieldsForMemberCreationByMember">
-        <test-method is-config="true" signature="getData()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:22 EDT" name="getData" finished-at="2020-05-05T14:45:23 EDT" duration-ms="754" status="PASS">
+    <test started-at="2020-06-22T10:22:49 EDT" name="Default test" finished-at="2020-06-22T10:22:52 EDT" duration-ms="3549">
+      <class name="unitTests.GetMembersWithOutstandingInvoices">
+        <test-method is-config="true" signature="getData()[pri:0, instance:unitTests.GetMembersWithOutstandingInvoices@747edf66]" started-at="2020-06-22T10:22:49 EDT" name="getData" finished-at="2020-06-22T10:22:49 EDT" duration-ms="554" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getData -->
-        <test-method signature="fieldsFound()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:23 EDT" name="fieldsFound" description="PBI:147804" finished-at="2020-05-05T14:45:27 EDT" duration-ms="4241" status="PASS">
+        <test-method signature="outstandingInvoicesFound()[pri:0, instance:unitTests.GetMembersWithOutstandingInvoices@747edf66]" started-at="2020-06-22T10:22:49 EDT" name="outstandingInvoicesFound" description="PBI:153783" finished-at="2020-06-22T10:22:52 EDT" duration-ms="2970" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[1 expectation failed.
+JSON path Result[0].OutstandingInvoices[1] doesn't match.
+Expected: map containing ["CustomerId"->ANYTHING]
+  Actual: null
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: 1 expectation failed.
+JSON path Result[0].OutstandingInvoices[1] doesn't match.
+Expected: map containing ["CustomerId"->ANYTHING]
+  Actual: null
+
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:72)
+at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:59)
+at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+at jdk.internal.reflect.GeneratedMethodAccessor16.invoke(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:193)
+at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:61)
+at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
+at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:261)
+at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:108)
+at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
+at io.restassured.internal.ValidatableResponseImpl.super$2$body(ValidatableResponseImpl.groovy)
+at jdk.internal.reflect.GeneratedMethodAccessor27.invoke(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1262)
+at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy:298)
+at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy)
+at unitTests.GetMembersWithOutstandingInvoices.outstandingInvoicesFound(GetMembersWithOutstandingInvoices.java:110)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1540)
+at org.testng.TestRunner.privateRun(TestRunner.java:767)
+at org.testng.TestRunner.run(TestRunner.java:588)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
+at org.testng.TestNG.runSuites(TestNG.java:1066)
+at org.testng.TestNG.run(TestNG.java:1034)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- fieldsFound -->
-        <test-method signature="fieldsFound2()[pri:0, instance:unitTests.GetFieldsForMemberCreationByMember@29647f75]" started-at="2020-05-05T14:45:27 EDT" name="fieldsFound2" description="PBI:147804" finished-at="2020-05-05T14:45:29 EDT" duration-ms="1763" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- fieldsFound2 -->
-      </class> <!-- unitTests.GetFieldsForMemberCreationByMember -->
+        </test-method> <!-- outstandingInvoicesFound -->
+      </class> <!-- unitTests.GetMembersWithOutstandingInvoices -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
