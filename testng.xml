@@ -24,7 +24,7 @@
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
-			<!-- class name="unitTests.GetAccountBalanceDetailsByMember" /-->
+			<class name="unitTests.GetAccountBalanceDetailsByMember" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
 			<class name="unitTests.GetAppointmentDetails" />

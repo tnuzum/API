@@ -33,7 +33,9 @@ public class GetAccountBalanceDetailsByMember extends base {
 
 	}
 	
-	@Test (testName="History Found - No Declines", description="PBI:149846")
+	@Test (testName="History Found - No Declines", description="PBI:149846", enabled = false)
+	
+	// disabled due to bug# 166674
 	public void historyFoundNoDeclines() {
 		
 		String companyId = altCompanyId;		
@@ -42,7 +44,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 		Response res =
 		
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -51,7 +53,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 			.when()
 				.get("/api/v3/member/getaccountbalancedetailsbymember?customerId="+customerId+"")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat()
 				.statusCode(200)
 				.extract().response();
@@ -380,7 +382,8 @@ public class GetAccountBalanceDetailsByMember extends base {
 	    		Assert.assertEquals(js.getString("Result.CustomerId"), customerId);		
 	}
 	
-	@Test (testName="Negative Balances", description="PBI:149846")
+	@Test (testName="Negative Balances", description="PBI:149846", enabled = false)
+		// this needs a new member created because the one used now doesn't always have negative balances
 	public void negativeBalances() {
 		
 				String companyId = altCompanyId;
