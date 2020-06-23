@@ -52,7 +52,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					.when()
 						.get("/api/v3/financial/getmemberswithoutstandinginvoices")
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result[0].CustomerDemographics", hasKey("CustomerId"))
@@ -106,18 +106,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceDescription"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoicePaidAmount"))
 					    .body("Result[0].OutstandingInvoices[0]", hasKey("InvoiceTotal"))
-					    .body("Result[0].OutstandingInvoices[0]", hasKey("NsfFeeApplied"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("CustomerId"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceId"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("ReceiptNumber"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceBalance"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCategory"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceCreationDate"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDueDate"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceDescription"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoicePaidAmount"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("InvoiceTotal"))
-					    .body("Result[0].OutstandingInvoices[1]", hasKey("NsfFeeApplied"));
+					    .body("Result[0].OutstandingInvoices[0]", hasKey("NsfFeeApplied"));
 	}
 	
 	@Test  (testName="Specific Customer With Card Found", description="PBI:153783")
@@ -140,12 +129,12 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt))
 					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber", not(nullValue()))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardExpirationDate.Month", not(nullValue()))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardExpirationDate.Year", not(nullValue()))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CreditCardType", not(nullValue()))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.CustomerId", equalTo(customerIdInt))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.AccountId", not(nullValue()))
-					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber.PaymentType", equalTo("CreditCard"));
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardExpirationDate.Month", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardExpirationDate.Year", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardType", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[0].AccountId", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].PaymentType", equalTo("CreditCard"));
 	}
 	
 	@Test  (testName="Specific Customer With Bank Account Found", description="PBI:153783")
@@ -196,7 +185,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.body("Result.CustomerDemographics.MemberType", hasItem("InCollections"));
 	}
 	
-	
 	@Test  (testName="Collections Member Not Included", description="PBI:153783")
 	public void collectionsMemberNotIncluded() {
 		
@@ -217,7 +205,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.body("Result.CustomerDemographics.MemberType", not(hasItem("InCollections")));
 	}
 	
-	
 	@Test  (testName="Terminated Member Included", description="PBI:153783")
 	public void terminatedMemberIncluded() {
 
@@ -235,7 +222,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"));
 	}
-	
 	
 	@Test  (testName="Terminated Member Not Included", description="PBI:153783")
 	public void terminatedMemberNotIncluded() {
@@ -256,7 +242,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", not(hasItem("Terminated")));
 	}
-	
 	
 	@Test  (testName="Collections and Terminated Members Included", description="PBI:153783")
 	public void collectionsAndTerminatedMembersIncluded() {
