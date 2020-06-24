@@ -5,7 +5,6 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.equalTo;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -134,15 +133,13 @@ public class CreateMemberNotes extends base{
 						Assert.assertTrue(js.getInt("NoteId") > 1);
 	}
 	
-	@Test  (testName="Action Not Found", description="PBI:165463", enabled = false)
+	@Test  (testName="Action Not Found", description="PBI:165463", enabled = true)
 	public void actionNotFound() {
 		
-						String actionId = "99999";
-							
-			Response res = 
+						String actionId = "99999";		
 
 					given()
-						.log().all()
+//						.log().all()
 						.header("accept", "application/json")
 						.header("Content-Type", "application/json")
 						.header("X-Api-Key", aPIKey)
@@ -152,17 +149,9 @@ public class CreateMemberNotes extends base{
 						.body(CustomerInfoPL.CreateMemberNotes(customerId, clubId, employeeId, actionId, note, alertOnCheckIn, doNotDisplayInFrontDesk))
 						.post("/api/v3/member/createmembernotes")
 					.then()
-						.log().all()
+//						.log().all()
 						.assertThat()
-						.statusCode(200)
-						.body("Status", equalTo(200))
-						.extract().response();
-			
-						JsonPath js = ReusableMethods.rawToJson(res);		
-						
-						Assert.assertTrue(res.getTime() >= 60L);
-						Assert.assertEquals(js.getInt("Status"), 200);
-						Assert.assertTrue(js.getInt("NoteId") > 1);
+						.statusCode(500);
 	}
 	
 	@Test  (testName="Action Null", description="PBI:165463", enabled = true)
