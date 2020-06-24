@@ -136,12 +136,10 @@ public class CreateMemberNotes extends base{
 	@Test  (testName="Action Not Found", description="PBI:165463", enabled = true)
 	public void actionNotFound() {
 		
-						String actionId = "99999";
-							
-			Response res = 
+						String actionId = "99999";		
 
 					given()
-						.log().all()
+//						.log().all()
 						.header("accept", "application/json")
 						.header("Content-Type", "application/json")
 						.header("X-Api-Key", aPIKey)
@@ -151,17 +149,9 @@ public class CreateMemberNotes extends base{
 						.body(CustomerInfoPL.CreateMemberNotes(customerId, clubId, employeeId, actionId, note, alertOnCheckIn, doNotDisplayInFrontDesk))
 						.post("/api/v3/member/createmembernotes")
 					.then()
-						.log().all()
+//						.log().all()
 						.assertThat()
-						.statusCode(200)
-						.body("Status", equalTo(200))
-						.extract().response();
-			
-						JsonPath js = ReusableMethods.rawToJson(res);		
-						
-						Assert.assertTrue(res.getTime() >= 60L);
-						Assert.assertEquals(js.getInt("Status"), 200);
-						Assert.assertTrue(js.getInt("NoteId") > 1);
+						.statusCode(500);
 	}
 	
 	@Test  (testName="Action Null", description="PBI:165463", enabled = true)
