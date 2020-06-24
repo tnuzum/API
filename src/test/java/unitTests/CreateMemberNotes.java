@@ -5,7 +5,6 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.equalTo;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -134,7 +133,7 @@ public class CreateMemberNotes extends base{
 						Assert.assertTrue(js.getInt("NoteId") > 1);
 	}
 	
-	@Test  (testName="Action Not Found", description="PBI:165463", enabled = false)
+	@Test  (testName="Action Not Found", description="PBI:165463", enabled = true)
 	public void actionNotFound() {
 		
 						String actionId = "99999";
