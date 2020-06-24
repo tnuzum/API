@@ -43,7 +43,7 @@ public class GetMemberActions extends base{
 					.when()
 						.get("/api/v3/member/getMemberActions")
 					.then()
-//						.log().body()
+//						.log().all()
 						.assertThat()
 						.statusCode(200)
 						.body("Status", equalTo(200))

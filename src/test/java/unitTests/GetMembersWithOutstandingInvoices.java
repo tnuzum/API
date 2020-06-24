@@ -152,7 +152,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 					.when()
 					.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId="+customerId+"")
 						.then()
-//						.log().body()
+//						.log().all()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt))
@@ -165,6 +165,60 @@ public class GetMembersWithOutstandingInvoices extends base{
 					    .body("Result[0].BankAccountsOnFile[0].CustomerId", equalTo(customerIdInt))
 					    .body("Result[0].BankAccountsOnFile[0].AccountId", not(nullValue()))
 					    .body("Result[0].BankAccountsOnFile[0].PaymentType", equalTo("Draft"));
+	}
+	
+	@Test  (testName="Specific Customer With Card and Bank Account Found", description="PBI:153783")
+	public void specificCustomerWithCardAndBankAccountFound() {
+		
+						String customerId = prop.getProperty("outstandingInvoiceCardAndBankOnFileMemberId");
+						int customerIdInt =  Integer.parseInt(customerId);
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId="+customerId+"")
+						.then()
+//						.log().all()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS)
+					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardNumber", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardExpirationDate.Month", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardExpirationDate.Year", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CreditCardType", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[0].AccountId", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[0].PaymentType", equalTo("CreditCard"))
+					    .body("Result[0].CreditCardsOnFile[1].CreditCardNumber", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[1].CreditCardExpirationDate.Month", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[1].CreditCardExpirationDate.Year", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[1].CreditCardType", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[1].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].CreditCardsOnFile[1].AccountId", not(nullValue()))
+					    .body("Result[0].CreditCardsOnFile[1].PaymentType", equalTo("CreditCard"))
+					    .body("Result[0].BankAccountsOnFile[0].BankAccountType", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].BankAccountNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].BankName", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0]", hasKey("BillingName"))
+					    .body("Result[0].BankAccountsOnFile[0].IsBusiness", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].RoutingNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].BankAccountsOnFile[0].AccountId", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[0].PaymentType", equalTo("Draft"))
+					    .body("Result[0].BankAccountsOnFile[1].BankAccountType", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1].BankAccountNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1].BankName", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1]", hasKey("BillingName"))
+					    .body("Result[0].BankAccountsOnFile[1].IsBusiness", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1].RoutingNumber", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1].CustomerId", equalTo(customerIdInt))
+					    .body("Result[0].BankAccountsOnFile[1].AccountId", not(nullValue()))
+					    .body("Result[0].BankAccountsOnFile[1].PaymentType", equalTo("Draft"));
+					
 	}
 	
 	@Test  (testName="Collections Member Included", description="PBI:153783")
