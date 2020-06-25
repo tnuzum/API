@@ -44,7 +44,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 		Response res =
 		
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -53,7 +53,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 			.when()
 				.get("/api/v3/member/getaccountbalancedetailsbymember?customerId="+customerId+"")
 			.then()
-				.log().all()
+//				.log().all()
 				.assertThat()
 				.statusCode(200)
 				.extract().response();

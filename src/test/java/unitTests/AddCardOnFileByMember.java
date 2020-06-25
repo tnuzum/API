@@ -67,7 +67,7 @@ public class AddCardOnFileByMember extends base {
 		postalCode = prop.getProperty("changeCCMember1PostalCode");
 	}
 	
-	@Test (testName="Card Added for New Member", description="PBI:150278", priority = 1)
+	@Test (testName="Card Added for New Member", description="PBI:165463", priority = 1)
 	public void cardAddedNewMember() {
 		
 				newMemberId = myActions.createMember(aPIKey, companyId, clubId);
@@ -118,7 +118,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"),true);
 	}
 	
-	@Test (testName="Second Card Added for New Member", description="PBI:150278", priority = 2)
+	@Test (testName="Second Card Added for New Member", description="PBI:165463", priority = 2)
 	public void secondCardAddedNewMember() {
 						
 				String customerId = newMemberId;
@@ -167,7 +167,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"), false);
 	}
 	
-	@Test (testName="Card Added not House Acount", description="PBI:150278")
+	@Test (testName="Card Added not House Acount", description="PBI:165463")
 	public void cardAddedNotHouseAcount() {
 		
 				String customerId = myActions.createMember(aPIKey, companyId, clubId);
@@ -217,7 +217,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"),setAsHouseAccount);
 	}
 	
-	@Test (testName="Card Added and Agreement Updated", description="PBI:150278", enabled = false)
+	@Test (testName="Card Added and Agreement Updated", description="PBI:165463", enabled = false)
 				// Only enable this test to during regression cycle 
 	public void cardAddedAgreementUpdated() {
 		
@@ -268,7 +268,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertTrue(js.getString("Result.IsHouseAccount").contains(setAsHouseAccount));
 	}
 	
-	@Test (testName="Customer Not Found", description="PBI:150278")
+	@Test (testName="Customer Not Found", description="PBI:165463")
 	public void customerNotFound() {
 		
 				String customerId = "999999";
@@ -302,7 +302,7 @@ public class AddCardOnFileByMember extends base {
 				.statusCode(500);
 			}
 	
-	@Test (testName="Customer Required", description="PBI:150278")
+	@Test (testName="Customer Required", description="PBI:165463")
 	public void customerRequired() {
 		
 				String customerId = "";
@@ -337,7 +337,7 @@ public class AddCardOnFileByMember extends base {
 				.statusLine("HTTP/1.1 400 Bad Request");
 			}
 	
-	@Test (testName="Card Number Required", description="PBI:150278")
+	@Test (testName="Card Number Required", description="PBI:165463")
 	public void cardNumberRequired() {
 		
 				String cardNumber = "";
@@ -374,7 +374,7 @@ public class AddCardOnFileByMember extends base {
 				.body("Message", equalTo("The CardNumber field is required."));
 			}
 	
-	@Test (testName="Expiration Month Required", description="PBI:150278")
+	@Test (testName="Expiration Month Required", description="PBI:165463")
 	public void expirationMonthRequired() {
 		
 				String expirationMonth = prop.getProperty("NOF");
@@ -409,7 +409,7 @@ public class AddCardOnFileByMember extends base {
 				.statusLine("HTTP/1.1 400 Bad Request");
 			}
 	
-	@Test (testName="Expiration Year Required", description="PBI:150278")
+	@Test (testName="Expiration Year Required", description="PBI:165463")
 	public void expirationYearRequired() {
 		
 				String expirationYear = prop.getProperty("NOF");
@@ -444,7 +444,7 @@ public class AddCardOnFileByMember extends base {
 				.statusLine("HTTP/1.1 400 Bad Request");
 			}
 	
-	@Test (testName="Cardholder Name Required", description="PBI:150278")
+	@Test (testName="Cardholder Name Required", description="PBI:165463")
 	public void cardholderNameRequired() {
 		
 				String cardHolderName = "";
@@ -481,7 +481,7 @@ public class AddCardOnFileByMember extends base {
 				.body("Message", equalTo("The CardHolderName field is required."));
 			}
 	
-	@Test (testName="Address Line1 Required", description="PBI:150278")
+	@Test (testName="Address Line1 Required", description="PBI:165463")
 	public void addressLine1Required() {
 		
 				String addressLine1 = "";
@@ -518,7 +518,7 @@ public class AddCardOnFileByMember extends base {
 				.body("Message", equalTo("The AddressLine1 field is required."));
 			}
 	
-	@Test (testName="City Required", description="PBI:150278")
+	@Test (testName="City Required", description="PBI:165463")
 	public void cityRequired() {
 		
 				String city = "";
@@ -555,7 +555,7 @@ public class AddCardOnFileByMember extends base {
 				.body("Message", equalTo("The City field is required."));
 			}
 	
-	@Test (testName="StateProvince Required", description="PBI:150278")
+	@Test (testName="StateProvince Required", description="PBI:165463")
 	public void stateProvinceRequired() {
 		
 				String stateProvince = "";//prop.getProperty("NOF");
@@ -592,7 +592,7 @@ public class AddCardOnFileByMember extends base {
 				.body("Message", equalTo("The StateProvince field is required."));
 			}
 	
-	@Test (testName="Postal Code Required", description="PBI:150278")
+	@Test (testName="Postal Code Required", description="PBI:165463")
 	public void postalCodeRequired() {
 		
 				String postalCode = "";
