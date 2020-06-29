@@ -267,7 +267,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Credit Card Expired",description="PBI:150192")
+	@Test (testName="Credit Card Expired",description="PBI:150192", enabled = false)
 	public void creditCardExpired() {
 
 				String customerId = prop.getProperty("expiredCCId");
@@ -513,7 +513,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Amount Zero",description="PBI:150192")
+	@Test (testName="Amount Zero",description="PBI:150192", enabled = false)
 	public void amountZero() {
 
 				String amount = "0.00";
