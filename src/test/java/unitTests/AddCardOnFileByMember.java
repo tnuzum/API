@@ -73,7 +73,13 @@ public class AddCardOnFileByMember extends base {
 				newMemberId = myActions.createMember(aPIKey, companyId, clubId);
 				
 				String customerId = newMemberId;
-
+				int customerIdInt = Integer.parseInt(customerId);
+				
+					//checking that customer was created
+					if(!(customerIdInt > 0)) {
+						newMemberId = myActions.createMember(aPIKey, companyId, clubId);
+					}
+					
 			given()
 //				.log().all()
 				.header("accept", "application/json")
@@ -118,7 +124,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"),true);
 	}
 	
-	@Test (testName="Second Card Added for New Member", description="PBI:165463", priority = 2)
+	@Test (testName="Second Card Added for New Member", dependsOnMethods="cardAddedNewMember",description="PBI:165463", priority = 2)
 	public void secondCardAddedNewMember() {
 						
 				String customerId = newMemberId;

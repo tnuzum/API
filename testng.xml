@@ -13,7 +13,7 @@
 			<class name="unitTests.CancelAppointmentByMember" />
 			<class name="unitTests.CreateMember" />
 			<class name="unitTests.CreateMemberNotes" />
-			<class name="unitTests.CSIPayGateway" />
+			<!-- class name="unitTests.CSIPayGateway" /-->
 			<class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
