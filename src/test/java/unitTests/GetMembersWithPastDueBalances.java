@@ -450,6 +450,49 @@ public class GetMembersWithPastDueBalances extends base{
 						.body("Message", equalTo("The value '' is invalid."));
 	}
 	
+	@Test  (testName="Customer Status Not Found", description="PBI:150325")
+	public void customerStatusNotFound() {
+		
+			// this call currently doesn't validate the customer status; PBI didn't require that validation
+		
+			String customerStatusId = "99999";
+							
+			Response res = 
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.get("/api/v3/member/getmemberswithpastduebalances?"+customerStatusId+"=1&DaysPastDue="+daysPastDue+"")
+					.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.body("Status", equalTo(200))
+						.body("Result[0]", hasKey("CustomerId"))
+						.body("Result[0]", hasKey("CustomerBarcodeId"))
+						.body("Result[0]", hasKey("HomePhone"))
+						.body("Result[0]", hasKey("WorkPhone"))
+						.body("Result[0]", hasKey("MobilePhone"))
+						.body("Result[0]", hasKey("Email"))
+						.body("Result[0]", hasKey("OpenPayments"))
+						.body("Result[0]", hasKey("AccountBalance"))
+						.body("Result[0]", hasKey("Past120"))
+						.body("Result[0]", hasKey("Past90"))
+						.body("Result[0]", hasKey("Past60"))
+						.body("Result[0]", hasKey("Past30"))
+						.body("Result[0]", hasKey("CurrentCharges"))
+						.body("Result[0]", hasKey("MembershipType"))
+						.body("Result[0]", hasKey("PreferredPhone"))
+						.extract().response();
+			
+						JsonPath js = ReusableMethods.rawToJson(res);		
+						
+						Assert.assertTrue(res.getTime() >= 60L);
+						Assert.assertTrue(js.getDouble("Result[0].Past30") > 0.00);
+	}
 	
 	
 }

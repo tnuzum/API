@@ -1754,9 +1754,28 @@ public class UpdatePersonalInformation extends base {
 				.body("Message", equalTo("BarcodeId '' is invalid"));
 	}
 	
-	
-	
-	
+	@Test (priority=1,testName="Customer not found",description="PBI:149847")
+	public void customerNotFound() {
+		
+		String fieldName = "Address1";
+		String newValue = "1100 1st St.";
+		String customerId = "99999"; 
+
+			given()
+//				.log().all()
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
+			.when()
+				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
+				.post("/api/v3/changerequest/updatepersonalinformation").
+			then()
+//				.log().all()
+				.assertThat().statusCode(500);	
+				//.statusLine("HTTP/1.1 400 Bad Request");
+	}
+
 	
 	
 	
