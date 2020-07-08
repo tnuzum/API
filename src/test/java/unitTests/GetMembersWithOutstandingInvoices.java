@@ -337,6 +337,26 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.body("Messages[0]", equalTo("No outstanding invoices found"));
 	}
 
+	@Test  (testName="Customer Not Found", description="PBI:153783")
+	public void customerNotFound() {
+		
+						String customerId = "99999";
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+					.get("/api/v3/financial/getmemberswithoutstandinginvoices?customerId="+customerId+"")
+						.then()
+//						.log().all()
+						.assertThat().statusCode(200)
+						.time(lessThan(60L),TimeUnit.SECONDS);
+//					    .body("Result[0].CustomerDemographics.CustomerId", equalTo(customerIdInt));
+	}
+	
 	@Test  (testName="Invalid Date", description="PBI:153783")
 	public void invalidDate() {
 		

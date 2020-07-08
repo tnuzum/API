@@ -10,6 +10,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import payloads.CustomerInfoPL;
+import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
 
@@ -39,7 +40,7 @@ public class CreateMemberNotes extends base{
 		 customerId = prop.getProperty("changeMemberId");
 		 doNotDisplayInFrontDesk = "false";
 		 employeeId = prop.getProperty("activeEmployeeId");
-		 note = "This is a test note";
+		 note = "TN This is a test note created on "+ReusableDates.getCurrentDate();
 	}
 	
 	@Test  (testName="Member Notes Created", description="PBI:165463")
@@ -217,6 +218,27 @@ public class CreateMemberNotes extends base{
 //						.log().all()
 						.assertThat()
 						.statusCode(400);
+	}
+	
+	@Test  (testName="Customer Not Found", description="PBI:165463", enabled = true)
+	public void customerNotFound() {
+				
+						String customerId = "99999";
+							
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("Content-Type", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
+					.when()
+						.body(CustomerInfoPL.CreateMemberNotes(customerId, clubId, employeeId, actionId, note, alertOnCheckIn, doNotDisplayInFrontDesk))
+						.post("/api/v3/member/createmembernotes")
+					.then()
+//						.log().all()
+						.assertThat()
+						.statusCode(500);
 	}
 	
 	@Test  (testName="Do Not Display In Front Desk Null", description="PBI:165463", enabled = true)
