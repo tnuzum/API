@@ -468,7 +468,7 @@ public class GetMembersWithPastDueBalances extends base{
 					.when()
 						.get("/api/v3/member/getmemberswithpastduebalances?"+customerStatusId+"=1&DaysPastDue="+daysPastDue+"")
 					.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Status", equalTo(200))
 						.body("Result[0]", hasKey("CustomerId"))
