@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import payloads.FinancialPL;
 import resources.ReusableDates;
+import resources.ReusableMethods;
 import resources.base;
 
 public class TakePaymentWithCardOnFileForMember extends base {
@@ -341,6 +342,8 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	public void customerNotFound() {
 
 				String customerId = "99999";
+				
+				ReusableMethods.myWait(2000); // waiting to avoid 429 rate limitation error when calls run too quickly
 
 			given()
 //				.log().all()
