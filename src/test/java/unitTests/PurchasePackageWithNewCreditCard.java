@@ -531,7 +531,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
