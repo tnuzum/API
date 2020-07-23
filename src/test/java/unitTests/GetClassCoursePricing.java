@@ -233,8 +233,8 @@ public class GetClassCoursePricing extends base {
 //						.log().body()
 //						.assertThat().statusCode(404)
 //						.body("Message", equalTo("Item not found"))
-						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
+						.assertThat().statusCode(500);
+//						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:155543")
