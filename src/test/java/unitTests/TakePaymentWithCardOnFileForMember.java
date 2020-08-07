@@ -343,7 +343,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 
 				String customerId = "99999";
 				
-				ReusableMethods.myWait(2000); // waiting to avoid 429 rate limitation error when calls run too quickly
+				ReusableMethods.myWaitByName(2000); // waiting to avoid 429 rate limitation error when calls run too quickly
 
 			given()
 //				.log().all()

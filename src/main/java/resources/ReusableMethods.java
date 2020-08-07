@@ -22,7 +22,7 @@ public class ReusableMethods extends base {
 
 		String respon = r.asString();
 		JsonPath x = new JsonPath(respon);
-			myWait(1000);
+			myWaitByName(1000);
 		return x;
 	}
 	
@@ -31,7 +31,7 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
-			myWait(5000);
+			myWaitByName(5000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -46,7 +46,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 	
-				myWait(5000);
+				myWaitByName(5000);
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -57,7 +57,7 @@ public class ReusableMethods extends base {
 //					.then().log().body()
 					;
 			
-				myWait(5000);
+				myWaitByName(5000);
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -107,7 +107,7 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5)
 		{
-			myWait(2000);
+			myWaitByName(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -124,7 +124,7 @@ public class ReusableMethods extends base {
 //					.log().body()
 					;
 	
-				myWait(5000);
+				myWaitByName(5000);
 
 					if (isEnrolled(customerId) == true)
 					{
@@ -159,7 +159,7 @@ public class ReusableMethods extends base {
 		
 		if(loopCount<5)
 		{
-			myWait(2000);
+			myWaitByName(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
@@ -176,7 +176,7 @@ public class ReusableMethods extends base {
 //					.log().body()
 					;
 			
-				myWait(5000);
+				myWaitByName(5000);
 
 					if (isEnrolled(customerId) == true)
 					{
@@ -284,7 +284,7 @@ public class ReusableMethods extends base {
 				return customerId;
 }
 
-	public static void myWait(int duration)
+	public static void myWaitByName(int duration)
 		{
 		try {
 			Thread.sleep(duration);

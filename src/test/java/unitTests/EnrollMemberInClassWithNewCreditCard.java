@@ -643,7 +643,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String city = "";
 				
-				ReusableMethods.myWait(200);
+				ReusableMethods.myWaitByName(200);
 
 				given()
 //						.log().all()
@@ -697,7 +697,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				String postalCode = "";
 				
-				ReusableMethods.myWait(200);
+				ReusableMethods.myWaitByName(200);
 				
 				given()
 //						.log().all()

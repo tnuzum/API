@@ -131,13 +131,13 @@ public class CSIPayGateway extends base {
 				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="CSI Response - Card Expired",description="CSIPay Gateway")
+	@Test (testName="CSI Response - Card Expired",description="CSIPay Gateway", enabled = false)
 	public void cSIResponseCardExpired() {
 		
 			String expirationDate = ReusableDates.getCurrentDateMinusXYears(1);
 
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -148,7 +148,7 @@ public class CSIPayGateway extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-//				.log().all()
+				.log().all()
 				.statusLine("HTTP/1.1 400 Bad Request")
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(409))

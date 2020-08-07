@@ -60,7 +60,7 @@ public class VerifyPackagePurchaseCapability extends base{
 	@Test (testName="Paid Punchcard",description="PBI:159118")
 	public void paidPunchcard() {
 		
-				ReusableMethods.myWait(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
+				ReusableMethods.myWaitByName(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidPId");
