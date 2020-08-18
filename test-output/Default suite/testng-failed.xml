@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="unitTests.GetMembersWithOutstandingInvoices">
+      <class name="unitTests.EnrollMemberInCourseOnAccount">
         <methods>
+          <include name="memberEnrolledPaidCourseStarted"/>
           <include name="getData"/>
-          <include name="outstandingInvoicesFound"/>
         </methods>
-      </class> <!-- unitTests.GetMembersWithOutstandingInvoices -->
+      </class> <!-- unitTests.EnrollMemberInCourseOnAccount -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

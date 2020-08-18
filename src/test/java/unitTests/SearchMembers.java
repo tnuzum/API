@@ -36,7 +36,7 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_LastName",description="PBI:124130")
 	public void searchMembers_LastName() {
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 		
 				String lName = prop.getProperty("memberSearchLName");
 
@@ -97,7 +97,7 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
 	public void searchMembers_FirstName() { 
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 		
 				String fName = prop.getProperty("memberSearchFName");
 
@@ -144,7 +144,7 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_LastFirstName",description="PBI:124130")
 	public void searchMembers_LastFirstName() {  
 		
-		ReusableMethods.myWaitByName(500);
+		ReusableMethods.myWait(500);
 		
 		String fName = prop.getProperty("memberSearchFName");
 		String lName = prop.getProperty("memberSearchLName");
@@ -194,7 +194,7 @@ public class SearchMembers extends base {
 		
 				String hPhoneD = prop.getProperty("memberSearchHPhoneD");
 				
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -241,7 +241,7 @@ public class SearchMembers extends base {
 		
 		String hPhone = prop.getProperty("memberSearchHPhone");
 		
-		ReusableMethods.myWaitByName(500);
+		ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -288,7 +288,7 @@ public class SearchMembers extends base {
 		
 			String mPhoneD = prop.getProperty("memberSearchMPhoneD");
 			
-			ReusableMethods.myWaitByName(500);
+			ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -335,7 +335,7 @@ public class SearchMembers extends base {
 		
 		String mPhone = prop.getProperty("memberSearchMPhone");
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -382,7 +382,7 @@ public class SearchMembers extends base {
 		
 		String wPhoneD = prop.getProperty("memberSearchWPhoneD");
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -429,7 +429,7 @@ public class SearchMembers extends base {
 		
 		String wPhone = prop.getProperty("memberSearchWPhone");
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 
 				given()
 //				.log().all()
@@ -474,7 +474,7 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
 		
-		ReusableMethods.myWaitByName(500);
+		ReusableMethods.myWait(500);
 		
 		String email = prop.getProperty("memberSearcheMail");
 
@@ -521,7 +521,7 @@ public class SearchMembers extends base {
 	@Test (testName="No Optional Parameters",description="PBI:124130")
 	public void noOptionalParameters() {
 		
-				ReusableMethods.myWaitByName(500);
+				ReusableMethods.myWait(500);
 
 				given()
 //					.log().all()

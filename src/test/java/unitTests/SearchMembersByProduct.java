@@ -33,7 +33,7 @@ public class SearchMembersByProduct extends base{
 	
 	@BeforeTest
 	public void delay() {
-		ReusableMethods.myWaitByName(250);
+		ReusableMethods.myWait(250);
 	}
 	
 	@Test (testName="FirstName",description="PBI:139726")
