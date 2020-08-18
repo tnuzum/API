@@ -566,6 +566,8 @@ public class AddCardOnFileByMember extends base {
 		
 				String stateProvince = "";//prop.getProperty("NOF");
 				
+				ReusableMethods.myWait(250); // waiting to avoid 429 rate limitation error when calls run too quickly
+				
 			given()
 //				.log().all()
 				.header("accept", "application/json")
@@ -602,6 +604,8 @@ public class AddCardOnFileByMember extends base {
 	public void postalCodeRequired() {
 		
 				String postalCode = "";
+				
+				ReusableMethods.myWait(250); // waiting to avoid 429 rate limitation error when calls run too quickly
 				
 			given()
 //				.log().all()

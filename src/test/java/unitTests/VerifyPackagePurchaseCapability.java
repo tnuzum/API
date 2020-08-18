@@ -57,18 +57,20 @@ public class VerifyPackagePurchaseCapability extends base{
 				.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
-	@Test (testName="Paid Punchcard",description="PBI:159118")
+	@Test (testName="Paid Punchcard",description="PBI:159118", enabled = false)
 	public void paidPunchcard() {
 		
-				ReusableMethods.myWaitByName(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
+		// !! Bug 168874 created for missing error message
+		
+				ReusableMethods.myWait(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
  
-				String customerId = prop.getProperty("availableId");
+				String customerId = "236";//prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidPId");
 				String quantity = "1";
 				String displayedGrandTotal = prop.getProperty("paidPBasePrice");
 				
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -76,7 +78,7 @@ public class VerifyPackagePurchaseCapability extends base{
 			.when()
 				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 			.then()
-//				.log().body()
+				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("AllowedToPurchase", equalTo(true))
