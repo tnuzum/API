@@ -57,7 +57,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				String isActivated = "false";
 				
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -67,7 +67,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 				.body(BusinessIntelligencePL.SetBusinessIntelligenceConfiguration(clubId, clubName, clubIsSelected, timeFrame, timeFrameUnits, isActivated))
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
-//			    .log().all()
+			    .log().all()
 			    .time(lessThan(60L),TimeUnit.SECONDS)
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")
