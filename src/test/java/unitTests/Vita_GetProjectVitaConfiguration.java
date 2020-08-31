@@ -43,7 +43,7 @@ public class Vita_GetProjectVitaConfiguration extends base {
 			Response res = 
 				
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -51,7 +51,7 @@ public class Vita_GetProjectVitaConfiguration extends base {
 			.when()
 				.get("/api/v3/businessintelligence/getbusinessintelligenceconfiguration")
 			.then()
-//			    .log().all()
+			    .log().all()
 			    .time(lessThan(60L),TimeUnit.SECONDS)
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")

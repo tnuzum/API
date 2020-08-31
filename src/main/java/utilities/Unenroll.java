@@ -16,11 +16,11 @@ public class Unenroll extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 	
-	@Test (testName="UnEnroll",description="PBI:143588")
+	@Test (testName="UnEnroll")
 	public void unenroll(){
 				
 				int customerId = 248;
-				int enrollmentId = 22849;
+				int enrollmentId = 61261;
 				int invoiceId = 22794;
 				String companyId = prop.getProperty("X-CompanyId");
 //				ReusableMethods.unenroll(companyId, invoiceId, enrollmentId, customerId);
