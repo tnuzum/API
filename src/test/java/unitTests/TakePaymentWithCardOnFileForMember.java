@@ -319,7 +319,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	@Test (testName="Invoice Not Found",description="PBI:150192")
 	public void invoiceNotFound() {
 		
-				int invoiceId = 99999;
+				int invoiceId = 99999999;
 
 			given()
 //				.log().all()
