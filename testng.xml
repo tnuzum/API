@@ -47,6 +47,7 @@
 			<class name="unitTests.GetClassDetailsByMember" />
 			<class name="unitTests.GetCourseDetailsByMember" />
 			<class name="unitTests.GetDeclineDetailsByMember" />
+			<class name="unitTests.GetDelinquentMembers" />
 			<class name="unitTests.GetEmployees" />
 			<class name="unitTests.GetFieldsForAddOnMemberCreationByEmployee" />
 			<class name="unitTests.GetFieldsForMemberCreationByEmployee" />
