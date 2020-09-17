@@ -40,7 +40,13 @@ public class GetMembersWithOutstandingInvoices extends base{
 		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
-	@Test  (testName="Outstanding Invoices Found", description="PBI:153783")
+	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = false)
+	
+	/* 
+	 * This call should always be sent with a customerId,
+	 * because it could take a long time to return without one.
+	 * Best Practice is to use the GetDelinquentMembers call first	
+	 */
 	public void outstandingInvoicesFound() {
 
 					given()
