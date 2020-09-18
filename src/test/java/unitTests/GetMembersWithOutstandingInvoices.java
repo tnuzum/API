@@ -40,7 +40,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
-	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = false)
+	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = true)
 	
 	/* 
 	 * This call should always be sent with a customerId,
@@ -60,7 +60,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 					    .body("Result[0].CustomerDemographics", hasKey("CustomerId"))
 					    .body("Result[0].CustomerDemographics.Name", hasKey("FirstName"))
 					    .body("Result[0].CustomerDemographics.Name", hasKey("MiddleInitial"))
@@ -242,7 +241,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.MemberType", hasItem("InCollections"));
 	}
 	
@@ -262,7 +260,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.MemberType", not(hasItem("InCollections")));
 	}
 	
@@ -280,7 +277,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"));
 	}
 	
@@ -300,7 +296,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", not(hasItem("Terminated")));
 	}
 	
@@ -318,7 +313,6 @@ public class GetMembersWithOutstandingInvoices extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.CustomerDemographics.Name.FirstName", hasItem("Terminated"))
 						.body("Result.CustomerDemographics.MemberType", hasItem("InCollections"));
 	}
