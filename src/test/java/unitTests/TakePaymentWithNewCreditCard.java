@@ -79,7 +79,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_NoInvoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, country, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -103,7 +103,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
+				.body(FinancialPL.takePaymentWithNewCreditCard_Invoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -132,7 +132,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-			.body(FinancialPL.takePaymentWithNewCreditCard_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
+			.body(FinancialPL.takePaymentWithNewCreditCard_Invoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, postalCode, country, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory,invoiceId))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -154,7 +154,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -178,7 +178,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -200,7 +200,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -224,7 +224,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -248,7 +248,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -272,7 +272,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -297,7 +297,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -321,7 +321,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
@@ -332,8 +332,8 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("Message", equalTo("The SecurityCode field is required."));
 	}
 
-	@Test (testName="Address Line1 Required",description="PBI:150194", enabled = true)
-	public void addressLine1Required() {
+	@Test (testName="Address Line1 Not Required",description="PBI:150194", enabled = true)
+	public void addressLine1NotRequired() {
 
 				//String addressLine1 = prop.getProperty("NOT REAL ADDRESS");
 				String addressLine1 = "";
@@ -346,19 +346,19 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_NoInvoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, country, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
 //				.log().all()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("The AddressLine1 field is required."));
+				.body("Status", equalTo(200))
+				.body("ReceiptNumber", not(nullValue()));
 	}
 	
-	@Test (testName="City Required",description="PBI:150194", enabled = true)
-	public void cityRequired() {
+	@Test (testName="City Not Required",description="PBI:150194", enabled = true)
+	public void cityNotRequired() {
 
 				String city = "";
 
@@ -370,19 +370,19 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_NoInvoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, country, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
 //				.log().all()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("The City field is required."));
+				.body("Status", equalTo(200))
+				.body("ReceiptNumber", not(nullValue()));
 	}
 	
-	@Test (testName="StateProvince Required",description="PBI:150194", enabled = true)
-	public void stateProvinceRequired() {
+	@Test (testName="StateProvince Not Required",description="PBI:150194", enabled = true)
+	public void stateProvinceNotRequired() {
 
 				//String stateProvince = prop.getProperty("NOT REAL STATE");
 				String stateProvince = "";
@@ -395,19 +395,19 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_NoInvoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, country, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
 //				.log().all()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("The StateProvince field is required."));
+				.body("Status", equalTo(200))
+				.body("ReceiptNumber", not(nullValue()));
 	}
 	
-	@Test (testName="Postal Code Required",description="PBI:150194", enabled = true)
-	public void postalCodeRequired() {
+	@Test (testName="Postal Code Not Required",description="PBI:150194", enabled = true)
+	public void postalCodeNotRequired() {
 
 				String postalCode = prop.getProperty("NOT REAL STATE");
 
@@ -419,14 +419,14 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_NoInvoice_AllParameters(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, addressLine2, city, stateProvince, country, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
 //				.log().all()
-				.statusCode(400)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(400))
-				.body("Message", equalTo("The PostalCode field is required."));
+				.body("Status", equalTo(200))
+				.body("ReceiptNumber", not(nullValue()));
 	}
 }

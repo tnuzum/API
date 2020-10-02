@@ -79,7 +79,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
-				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, addressLine1, city, stateProvince, postalCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
+				.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
