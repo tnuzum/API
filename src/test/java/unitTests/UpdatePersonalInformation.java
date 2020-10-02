@@ -51,7 +51,7 @@ public class UpdatePersonalInformation extends base {
 		Response res = 
 
 			given()
-				.log().all()
+//				.log().all()
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
@@ -60,7 +60,7 @@ public class UpdatePersonalInformation extends base {
 				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
 				.post("/api/v3/changerequest/updatepersonalinformation").
 			then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200)			
 				.body("Status", equalTo(200))
 				.extract().response();	
@@ -1342,7 +1342,7 @@ public class UpdatePersonalInformation extends base {
 		Response res = 
 
 			given()
-				.log().all()
+//				.log().all()
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
