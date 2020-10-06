@@ -37,7 +37,7 @@ public class GetPurchasedPackagesByMember extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
+//						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("ExpirationDate"))
 						.body("Result[0]", hasKey("InvoiceNumber"))
 						.body("Result[0]", hasKey("PackageName"))
