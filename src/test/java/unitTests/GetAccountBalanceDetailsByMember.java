@@ -33,9 +33,8 @@ public class GetAccountBalanceDetailsByMember extends base {
 
 	}
 	
-	@Test (testName="History Found - No Declines", description="PBI:149846", enabled = false)
+	@Test (testName="History Found - No Declines", description="PBI:149846", enabled = true)
 	
-	// disabled due to bug# 166674
 	public void historyFoundNoDeclines() {
 		
 		String companyId = altCompanyId;		
