@@ -4,16 +4,7 @@ import resources.base;
 
 public class ChangeRequestPL extends base {
 	
-	public static String updatePersonalInformation
-		(
-				String familyMemberCustomerIds,
-				String customerId,
-				String fieldName,
-				String newValue,
-				String submissionReason,
-				String submissionReasonDetail,
-				String signature
-				)
+	public static String updatePersonalInformation(String familyMemberCustomerIds,String customerId,String fieldName,String newValue,String submissionReason,String submissionReasonDetail,String signature)
 		{
 		String payload = "{\r\n" + 
 				"  \"FamilyMemberCustomerIds\": ["+familyMemberCustomerIds+"],\r\n" + 

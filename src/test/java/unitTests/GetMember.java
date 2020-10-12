@@ -466,10 +466,27 @@ public class GetMember extends base{
 					    .body("Result.RestrictMemberFromSearch", equalTo(true));
 	}
 	
-	@Test  (testName="Allow Online Search - True", description="PBI:124934", enabled = false)
-	public void allowOnlineSearchTrue() {
+	@Test  (testName="Allow Online Search - False", description="PBI:124934", enabled = true)
+	public void allowOnlineSearchFalse() {
 		
-		// this property was added to GetCustomerInfo CORE call but not yet added to this API call
+					String customerId = prop.getProperty("noWebId");
+
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-ClubId", prop.getProperty("X-Club1Id"))
+					.when()
+						.get("/api/v3/member/getmember/"+customerId)
+						.then()
+//						.log().body()
+						.assertThat().statusCode(200)
+					    .body("Result.AllowOnlineSearch", equalTo(false));
+	}
+	
+	@Test  (testName="Allow Online Search - True", description="PBI:124934", enabled = true)
+	public void allowOnlineSearchTrue() {
 		
 					String customerId = prop.getProperty("availableId");
 
@@ -482,7 +499,7 @@ public class GetMember extends base{
 					.when()
 						.get("/api/v3/member/getmember/"+customerId)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 					    .body("Result.AllowOnlineSearch", equalTo(true));
 	}

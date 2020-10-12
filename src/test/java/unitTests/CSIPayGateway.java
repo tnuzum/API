@@ -131,7 +131,7 @@ public class CSIPayGateway extends base {
 				.body("Message", equalTo("Credit Card Processing Failed"));
 	}
 	
-	@Test (testName="CSI Response - Card Expired",description="CSIPay Gateway", enabled = false)
+	@Test (testName="CSI Response - Card Expired",description="CSIPay Gateway", enabled = true)
 	public void cSIResponseCardExpired() {
 		
 			String expirationDate = ReusableDates.getCurrentDateMinusXYears(1);

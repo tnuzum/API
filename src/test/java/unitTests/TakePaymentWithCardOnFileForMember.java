@@ -268,7 +268,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Credit Card Expired",description="PBI:150192", enabled = false)
+	@Test (testName="Credit Card Expired",description="PBI:150192", enabled = true)
 	public void creditCardExpired() {
 
 				String customerId = prop.getProperty("expiredCCId");

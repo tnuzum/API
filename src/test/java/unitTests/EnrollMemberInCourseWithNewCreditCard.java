@@ -255,7 +255,7 @@ public class EnrollMemberInCourseWithNewCreditCard extends base {
 						.body("Message", equalTo("Full"));
 	}
 	
-	@Test (testName="Card Expired",description="PBI:146580", enabled = false)
+	@Test (testName="Card Expired",description="PBI:146580", enabled = true)
 	public void cardExpired() {
 		
 				String c = prop.getProperty("availableId");

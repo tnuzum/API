@@ -610,34 +610,6 @@ public class VerifyPackagePurchaseCapability extends base{
 				.body("PackageStatus", equalTo("ProductPriceChanged"));			
 	}
 	
-	@Test (testName="Package Quantity Limit Exceeded",description="PBI:159118", enabled = false)
-	public void packageQuantityLimitExceeded() {
-		
-		// researching - this call does not currently prevent purchase
- 
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("limit10PId");
-				int quantity = 15;
-				String dGT = prop.getProperty("limit10PBasePrice");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
-				
-			given()
-//				.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-			.when()
-			.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
-			.then()
-//				.log().body()
-				.statusCode(400)
-				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("AllowedToPurchase", equalTo(false))
-				.body("PackageStatus", equalTo("TBD"));		
-	}
-	
 	@Test (testName="CustomerId Required",description="PBI:159118")
 	public void customerIdRequired() {
  

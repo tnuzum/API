@@ -211,7 +211,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.body("ReceiptNumber", not(nullValue()));
 	}
 	
-	@Test (testName="Card Expired",description="PBI:150194", enabled = false)
+	@Test (testName="Card Expired",description="PBI:150194", enabled = true)
 	public void cardExpired() {
 
 				String expirationDate = "2020-01-01T00:00:00Z";

@@ -523,27 +523,7 @@ public class GetPackagePricing extends base {
 						.assertThat().statusCode(500)
 						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
-	
-	@Test (testName="TrainingNotAvailableAtClub",description="PBI:155660", enabled = false)
-	public void trainingNotAvailableAtClub() { 
-		
-		// this call returns results even though the item is not available at the club
-		
-				String customerId = prop.getProperty("availableId");
-				String itemId = prop.getProperty("paidServiceVClub1Id");
-				int quantity = 1;
 
-		given()
-						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", prop.getProperty("X-Club2Id"))
-					.when()
-						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
-						.then()
-						.log().body();
-	}
 	
 	@Test (testName="Club Pricing - Club 1",description="PBI:155660", enabled = true)
 	public void clubPricingClub1() { 
