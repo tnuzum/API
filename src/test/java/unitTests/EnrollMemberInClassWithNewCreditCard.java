@@ -310,7 +310,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Card Expired",description="PBI:146579", enabled = false)
+	@Test (testName="Card Expired",description="PBI:146579", enabled = true)
 	public void cardExpired() {
 		
 				String c = prop.getProperty("availableId");

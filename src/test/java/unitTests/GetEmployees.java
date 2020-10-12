@@ -582,22 +582,4 @@ public class GetEmployees extends base {
 						.body("Result[0]", hasKey("MobilePhone"))
 						.body("Result[0].Id", not(nullValue()));
 	}
-	
-	@Test (testName="Employee Not Found",description="PBI:150855", enabled = false)
-	public void employee90daysInactive() { 
-			// this employee can't login to BO due to 90 days inactivity, but in this call they are still shown as IsActive=True - Researching correct behavior
-		
-			String username = "tcook";
-
-				given()
-
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", 101)
-				.header("X-ClubId", clubId)
-					.when()
-						.get("/api/v3/employee/getemployees?ActiveOnly=false&Username="+username+"")
-						.then()
-						.log().body();
-	}
 }

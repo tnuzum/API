@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasKey;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -223,7 +224,7 @@ public class AddCardOnFileByMember extends base {
 				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"),setAsHouseAccount);
 	}
 	
-	@Test (testName="Card Added and Agreement Updated", description="PBI:165463", enabled = false)
+	@Test (testName="Card Added and Agreement Updated", description="PBI:165463", enabled = true)
 				// Only enable this test to during regression cycle 
 	public void cardAddedAgreementUpdated() {
 		
@@ -257,21 +258,6 @@ public class AddCardOnFileByMember extends base {
 			.then()
 //				.log().all()
 				.assertThat().statusCode(200);	
-			
-				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
-				
-				JsonPath js = ReusableMethods.rawToJson(res);
-				
-				Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationMonth));
-				Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationYear));
-				Assert.assertEquals(js.getString("Result[0].NameOnCard"),cardHolderName);
-				Assert.assertEquals(js.getString("Result[0].Address.AddressLine1"),addressLine1);
-				Assert.assertEquals(js.getString("Result[0].Address.AddressLine2"),addressLine2);
-				Assert.assertEquals(js.getString("Result[0].Address.City"),city);
-				Assert.assertEquals(js.getString("Result[0].Address.PostalCode"),postalCode);
-				Assert.assertEquals(js.getString("Result[0].Address.StateProvince"),stateProvince);
-				Assert.assertTrue(js.getString("Result.CardType").contains(cardType));
-				Assert.assertTrue(js.getString("Result.IsHouseAccount").contains(setAsHouseAccount));
 	}
 	
 	@Test (testName="Customer Not Found", description="PBI:165463")

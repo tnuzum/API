@@ -492,10 +492,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body("Result", equalTo("Success"));			
 	}
 	
-	@Test (testName="Frozen Member",description="PBI:143542", enabled = false)
+	@Test (testName="Frozen Member",description="PBI:143542", enabled = true)
 	public void frozenMember() {
  
-				String customerId = "277";//prop.getProperty("frozenId");
+				String customerId = prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
@@ -514,10 +514,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
-				.statusCode(500)
+				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+				.body("Status", equalTo(200))
+				.body("Result", equalTo("Success"));
 	}
 	
 	@Test (testName="Prospect",description="PBI:143542", enabled = true)
