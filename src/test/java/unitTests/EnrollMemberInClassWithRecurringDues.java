@@ -307,8 +307,8 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 						.get("/api/v3/classcourse/enrollmemberinclasswithrecurringdues/"+customerId+"/"+classId+"/"+classOccurrence+"/"+enrollCustomerAsStandBy+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
 	} 
 	
 	@Test (testName="Class Ended",description="PBI:154259")

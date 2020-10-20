@@ -516,7 +516,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
 	
-	@Test (testName="Amount Zero",description="PBI:150192", enabled = false)
+	@Test (testName="Amount Zero",description="PBI:150192", enabled = true)
 	public void amountZero() {
 
 				String amount = "0.00";

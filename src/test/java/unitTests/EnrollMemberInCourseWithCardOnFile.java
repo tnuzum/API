@@ -295,7 +295,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.body("Message", equalTo("CustomerAlreadyOnStandby"));
 	}
 	
-	@Test (testName="Course Not Available Online",description="PBI:146578", enabled = false)
+	@Test (testName="Course Not Available Online",description="PBI:146578", enabled = true)
 	public void courseNotAvailableOnline() {
 		
 				String c = prop.getProperty("availableId");
@@ -317,8 +317,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						.then()
 //						.log().body()
 						.assertThat()
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentNotAllowed"))
-						.statusCode(400);
+						.body("Message", equalTo("ItemNotFound"))
+						.statusCode(404);
 	}
 	
 	@Test (testName="Course Ended",description="PBI:146578")

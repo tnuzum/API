@@ -217,10 +217,8 @@ public class GetPackagePricing extends base {
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
 	}
 	
-	@Test (testName="Paid Punchcard",description="PBI:155660", enabled = false)
+	@Test (testName="Paid Punchcard",description="PBI:155660", enabled = true)
 	public void paidPunchcard() { 
-		
-		// !! Bug 168874 created for missing error message
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
@@ -229,7 +227,7 @@ public class GetPackagePricing extends base {
 				int quantity = 1;
 
 		Response res = given()
-				.log().all()	
+//				.log().all()	
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -237,7 +235,7 @@ public class GetPackagePricing extends base {
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.CanPlaceOnAccount", equalTo(true))
 						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))

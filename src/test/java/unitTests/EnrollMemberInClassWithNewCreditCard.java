@@ -355,8 +355,8 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 						.post("/api/v3/classcourse/enrollmemberinclasswithnewcreditcard")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
 	}
 	
 	@Test (testName="Class Ended",description="PBI:146579")

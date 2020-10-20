@@ -359,8 +359,8 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
 	}
 	
 	@Test (testName="Class Ended",description="PBI:146577")

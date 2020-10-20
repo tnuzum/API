@@ -89,9 +89,7 @@ public class GetCourseDetailsByMember extends base{
 						Assert.assertEquals(js.getString("Result.ItemId"), courseId);				
 	}
 	
-	@Test (testName="Online Sale Not Allowed - Member",description="PBI:143545", enabled = false)
-	
-	// this now returns 200 when before 3/1 it didn't; unexpected change
+	@Test (testName="Online Sale Not Allowed - Member",description="PBI:143545", enabled = true)
 	
 	public void onlineSaleNotAllowed_MemberContext() {
 

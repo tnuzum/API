@@ -162,30 +162,7 @@ public class TakePaymentWithNewCreditCard extends base {
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS);
 	}
-	
-	@Test (testName="Payment Category Not Found",description="PBI:150194", enabled = false)
-	public void paymentCategoryNotFound() {
-		
-		// currently this field is not required
 
-				String paymentCategory = "";
-
-			given()
-//				.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-				.header("Content-Type", "application/json")
-			.when()
-			.body(FinancialPL.takePaymentWithNewCreditCard_RequiredParametersOnly(cardNumber, nameOnCard, expirationDate, securityCode, customerId, employeeBarcodeId, clubId, amount, effectiveDate, paymentDescription, paymentCategory))
-				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
-			.then()
-				.assertThat()
-//				.log().all()
-				.statusCode(500)
-				.time(lessThan(60L),TimeUnit.SECONDS);
-	}
 	
 	@Test (testName="Effective Date In Past",description="PBI:150194")
 	public void effectiveDateInPast() {

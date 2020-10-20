@@ -57,20 +57,18 @@ public class VerifyPackagePurchaseCapability extends base{
 				.body("PackageStatus", equalTo("PurchaseAllowed"));
 	}
 	
-	@Test (testName="Paid Punchcard",description="PBI:159118", enabled = false)
+	@Test (testName="Paid Punchcard",description="PBI:159118", enabled = true)
 	public void paidPunchcard() {
-		
-		// !! Bug 168874 created for missing error message
-		
+				
 				ReusableMethods.myWait(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
  
-				String customerId = "236";//prop.getProperty("availableId");
+				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidPId");
 				String quantity = "1";
 				String displayedGrandTotal = prop.getProperty("paidPBasePrice");
 				
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -78,7 +76,7 @@ public class VerifyPackagePurchaseCapability extends base{
 			.when()
 				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 			.then()
-				.log().all()
+//				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("AllowedToPurchase", equalTo(true))
@@ -491,8 +489,6 @@ public class VerifyPackagePurchaseCapability extends base{
 	@Test (testName="Credit Limit Exceeded",description="PBI:159118")
 	public void creditLimitExceeded() {
 		
-				// this call with return allowed to enroll = true, but the enrollment call returns allowed to enroll = false with 'AccountProblem' message
- 
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
 				String quantity = "1";
