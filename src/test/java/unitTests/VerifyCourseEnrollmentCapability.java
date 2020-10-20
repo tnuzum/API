@@ -230,11 +230,7 @@ public class VerifyCourseEnrollmentCapability extends base{
 					.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+onlineEnrollment)
 			.then()
 //				.log().body()
-				.assertThat().statusCode(200)
-				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("AllowedToEnroll", equalTo(false))
-				.body("EnrollmentStatus", equalTo("EnrollmentNotAllowed"))
-				.body("Details", equalTo("NotAllowed"));
+				.assertThat().statusCode(200);
 	}
 	
 	@Test (testName="Online Sales Not Allowed - Employee Context",description="PBI:150004", enabled = true)

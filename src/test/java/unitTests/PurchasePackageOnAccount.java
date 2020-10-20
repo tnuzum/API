@@ -493,8 +493,10 @@ public class PurchasePackageOnAccount extends base{
 				.body("Message", equalTo("Account Problem"));			
 	}
 	
-	@Test (testName="Credit Limit Exceeded",description="PBI:143539", enabled = false)
+	@Test (testName="Credit Limit Exceeded",description="PBI:143539", enabled = true)
 	public void creditLimitExceeded() {
+		
+		// !! This test will allow purchase if member has a credit balance
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
@@ -510,7 +512,7 @@ public class PurchasePackageOnAccount extends base{
 			.when()
 				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))

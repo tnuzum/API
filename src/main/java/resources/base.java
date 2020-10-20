@@ -43,6 +43,19 @@ public class base {
 			}
 
 		}
+		if (environment.equals("PRODCURRENT")) {
+			try {
+				fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\prodCurrent.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				prop.load(fis);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }
