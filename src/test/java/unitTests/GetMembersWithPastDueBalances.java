@@ -22,6 +22,7 @@ public class GetMembersWithPastDueBalances extends base{
 		static String asOfDate;
 		static String daysPastDue;
 		static String membershipTypeId;
+		static String membershipType2Id;
 		static String customerStatusId;
 
 	@BeforeClass
@@ -31,7 +32,7 @@ public class GetMembersWithPastDueBalances extends base{
 		RestAssured.baseURI = prop.getProperty("baseURI");
 		
 		aPIKey = prop.getProperty("X-Api-Key");
-		companyId = "101";
+		companyId = prop.getProperty("X-CompanyId");//"101";
 		altCompanyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 
@@ -39,6 +40,7 @@ public class GetMembersWithPastDueBalances extends base{
 //		asOfDate = ReusableDates.getCurrentDate();
 		daysPastDue = "Days30";
 		membershipTypeId = "3";
+		membershipType2Id = "5";
 		customerStatusId = "4";
 	}
 	
@@ -344,8 +346,8 @@ public class GetMembersWithPastDueBalances extends base{
 	
 	@Test  (testName="Multiple Membership Types", description="PBI:150325")
 	public void multipleMembershipTypes() {
-		
-						String membershipType2Id = "5";
+				
+					
 							
 					given()
 //						.log().all()
@@ -355,7 +357,9 @@ public class GetMembersWithPastDueBalances extends base{
 						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/member/getmemberswithpastduebalances?MembershipTypeIds="+membershipTypeId+"&MembershipTypeIds="+membershipType2Id+"&DaysPastDue="+daysPastDue+"")
-					.then()
+						//.get("/api/v3/member/getmemberswithpastduebalances?MembershipTypeIds=3&MembershipTypeIds=5&DaysPastDue=Days30")
+						
+						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.body("Status", equalTo(200))
