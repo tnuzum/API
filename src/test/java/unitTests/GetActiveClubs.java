@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 

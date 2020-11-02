@@ -326,13 +326,14 @@ public class BookAppointmentByMember extends base {
 		String requestedBook2 = prop.getProperty("pTBook3Id");
 		String userDisplayedPrice = prop.getProperty("multipleResourcesTrainingPrice");
 
-	given()
-		.header("accept", "application/json")
-		.header("X-Api-Key", aPIKey)
-		.header("X-CompanyId", companyId)
-		.header("X-ClubId", clubId)
-		.header("Content-Type", "application/json")
-			.when()
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+			.header("Content-Type", "application/json")
+		.when()
 			.body(AppointmentPL.BookAppointment_MultiBook(appointmentClubId, itemId, occurrence, customerId, requestedBook1, requestedBook2, userDisplayedPrice))
 			.body("{" + 
 					"\"AppointmentClubId\": "+appointmentClubId+","+ 
@@ -343,7 +344,7 @@ public class BookAppointmentByMember extends base {
 					"\"UserDisplayedPrice\": "+userDisplayedPrice+""+
 					"}")
 			.post("/api/v3/appointment/bookappointmentbymember")
-			.then()
+		.then()
 //			.log().body()
 			.assertThat().statusCode(404)
 			.body("Message", equalTo("FailNotEnoughPunches"));
