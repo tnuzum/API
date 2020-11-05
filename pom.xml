@@ -8,7 +8,7 @@
 	<artifactId>API</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-
+	<url>https://repo.maven.apache.org/maven2</url>
 	<build>
 			<resources>
 			<resource>

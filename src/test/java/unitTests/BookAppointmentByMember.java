@@ -155,7 +155,7 @@ public class BookAppointmentByMember extends base {
 				.body("Result.Reason", nullValue());
 	}
 	
-	@Test (testName="Product Price Changed",description="PBI:127168")
+	@Test (testName="Product Price Changed",description="PBI:127168", enabled = false)
 	public void productPriceChanged() { 
 		
 		String appointmentClubId = prop.getProperty("club1Id");
@@ -166,7 +166,7 @@ public class BookAppointmentByMember extends base {
 		String userDisplayedPrice = "0.01";
 
 	given()
-//						
+		.log().all()				
 		.header("accept", "application/json")
 		.header("X-Api-Key", aPIKey)
 		.header("X-CompanyId", companyId)
@@ -176,7 +176,7 @@ public class BookAppointmentByMember extends base {
 			.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 			.post("/api/v3/appointment/bookappointmentbymember")
 				.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(404)
 				.body("Message", equalTo("FailPriceChanged"))
 				;
