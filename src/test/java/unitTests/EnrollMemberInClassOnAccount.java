@@ -192,7 +192,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
-
+				//	.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -200,7 +200,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+				//		.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
@@ -457,7 +457,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:143588", enabled = true)
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:143588", enabled = false)
 	public void onlineSalesNotAllowedMember() {
 		
 				String c = prop.getProperty("availableId");
@@ -468,6 +468,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				Boolean enrollCustomerAsStandby = true;
 
 				given()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -475,7 +476,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
