@@ -423,7 +423,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Course Not Available Online - Member",description="PBI:143589", enabled = true)
+	@Test (testName="Course Not Available Online - Member",description="PBI:143589", enabled = false)
 	public void courseNotAvailableOnlineMember() {
 		
 				String c = prop.getProperty("availableId");
@@ -445,7 +445,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
-	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = true)
+	@Test (testName="Course Not Available Online - Employee",description="PBI:143589", enabled = false)
 	public void courseNotAvailableOnlineEmployee() {
 		
 				String c = prop.getProperty("availableId");
@@ -457,7 +457,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 
 				Response res = given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -465,7 +465,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 					.when()
 						.get("/api/v3/classcourse/enrollmemberincourseonaccount/"+customerId+"/"+courseId+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-//						.log().body()
+						.log().body()
 						.extract().response();
 				
 				JsonPath js = ReusableMethods.rawToJson(res);
