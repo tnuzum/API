@@ -100,7 +100,9 @@ public class GetDelinquentMembers extends base{
 					    .body("Results[0].CustomerDemographics", hasKey("DateOfBirth"))
 					    .body("Results[0].CustomerDemographics", hasKey("HomeClubNumber"))
 					    .body("Results[0].CustomerDemographics", hasKey("HomeClubName"))
-					    .body("Results[0].CustomerDemographics", hasKey("MemberType"));
+					    .body("Results[0].CustomerDemographics", hasKey("MemberType"))
+					    .body("Results[0].CustomerDemographics", hasKey("CurrentStatusId"))
+					    .body("Results[0].CustomerDemographics", hasKey("CurrentStatusDescription"));
 	}
 	
 	@Test  (testName="Collections Member Included", description="PBI:170148")
