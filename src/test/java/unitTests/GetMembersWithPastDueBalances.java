@@ -279,7 +279,7 @@ public class GetMembersWithPastDueBalances extends base{
 	@Test  (testName="Multiple Customer Statuses", description="PBI:150325")
 	public void MultipleCustomerStatuses() {
 		
-						String customerStatus2Id = "2";
+						String customerStatus2Id = "1";
 							
 					given()
 //						.log().all()
