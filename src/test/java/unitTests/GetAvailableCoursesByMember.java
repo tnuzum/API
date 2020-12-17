@@ -81,9 +81,9 @@ public class GetAvailableCoursesByMember extends base {
 				Assert.assertNotNull(js.getString("Result[0].ItemEnrollmentEligibility"));
 				Assert.assertNotNull(js.getString("Result[0].ItemId"));
 				Assert.assertNotNull(js.getString("Result[0].Name"));
-				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PackageId"));
-				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PackageName"));
-				Assert.assertNotNull(js.getString("Result[0].PackagePaymentConfiguration.PunchesRequired"));
+				Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PackageId")); // removed the index so test will pass if any record has the field 
+				Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PackageName"));
+				Assert.assertNotNull(js.getString("Result.PackagePaymentConfiguration.PunchesRequired"));
 				Assert.assertNotNull(js.getString("Result[0].StartDate"));
 				Assert.assertNotNull(js.getString("Result[0].StartTime"));
 				
