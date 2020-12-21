@@ -8,44 +8,15 @@
 	<artifactId>API</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-
-	<!-- name>API</name>
-	<description>Java DSL for easy testing of REST services</description>
-	<url>http://code.google.com/p/rest-assured</url-->
-	<!--properties>
-		< httpclient.version>4.5.3</httpclient.version>
-	</properties-->
+	<url>https://repo.maven.apache.org/maven2</url>
 	<build>
+			<resources>
+			<resource>
+				<directory>src/main/java/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
-			<!-- plugin>
-				<groupId>org.codehaus.gmaven</groupId>
-				<artifactId>gmaven-plugin</artifactId>
-				<version>1.5</version>
-			</plugin-->
-			<!-- plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>4.2.1</version>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Export-Package>
-							!io.restassured.path.xml.*,
-							!io.restassured.path.json.*,
-							!io.restassured.common.*,
-							!io.restassured.internal.path.xml.*,
-							!io.restassured.internal.path.json.*,
-							!io.restassured.internal.common.*,
-							io.restassured.*
-						</Export-Package>
-						<Import-Package>
-							groovy.*;version="${groovy.range}",
-							org.codehaus.groovy.*;version="${groovy.range}",
-							*
-						</Import-Package>
-					</instructions>
-				</configuration>
-			</plugin-->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
@@ -65,7 +36,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
+<repositories>
+  <repository>
+    <id>jcenter</id>
+    <name>bintray</name>
+    <url>https://jcenter.bintray.com</url>
+  </repository>
+</repositories>
 
 	<dependencies>
 		<dependency>
@@ -88,82 +67,32 @@
 			<artifactId>maven-core</artifactId>
 			<version>3.6.3</version>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
-			<version>2.5.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-xml</artifactId>
-			<version>2.5.6</version>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>4.4.11</version>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.5.9</version>
-		</dependency-->
-		<!-- dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-			<version>4.5.9</version>
-		</dependency-->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-apis</artifactId>
 			<version>6.9.0</version>
 			<optional>true</optional>
 		</dependency>
+		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-core</artifactId> 
+			<version>2.2</version> </dependency -->
+		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-library</artifactId> 
+			<version>2.2</version> </dependency -->
 		<dependency>
 			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
+			<artifactId>hamcrest</artifactId>
 			<version>2.2</version>
+			<!-- scope>test</scope -->
 		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
-			<version>2.2</version>
-		</dependency>
-		<!-- dependency>
-			<groupId>org.ccil.cowan.tagsoup</groupId>
-			<artifactId>tagsoup</artifactId>
-			<version>1.2.1</version>
-		</dependency-->
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
-			<version>4.1.2</version>
+			<version>4.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>xml-path</artifactId>
-			<version>4.1.2</version>
+			<version>4.3.0</version>
 		</dependency>
-		<!-- Optional dependencies -->
-		<!--dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
-			<version>2.9.9.3</version> <optional>true</optional> </dependency -->
-		<!-- dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId> 
-			<version>2.9.9</version> <optional>true</optional> </dependency -->
-		<!-- dependency> mvnrepository says this was moved to jackson-databind 
-			(above) <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
-			<optional>true</optional> </dependency -->
-		<!-- dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.5</version>
-			<optional>true</optional>
-		</dependency-->
-		<!-- dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-			<optional>true</optional>
-		</dependency-->
 		<dependency>
 			<groupId>org.apache.johnzon</groupId>
 			<artifactId>johnzon-mapper</artifactId>
@@ -201,25 +130,15 @@
 			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>4.0.9</version>
-		</dependency-->
-		<!-- dependency>
-			<groupId>com.relevantcodes</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>2.41.2</version>
-		</dependency-->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.0.0</version>
+			<version>7.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
-			<version>4.1.2</version>
+			<version>4.3.0</version>
 		</dependency>
 	</dependencies>
 </project>
