@@ -35,7 +35,7 @@ public class GetClassesAndCoursesByMember extends base {
 	@Test (testName="ClassesFound",description="PBI:124953")
 	public void ClassesFound() {
 		String customerId = prop.getProperty("standbyAId");
-		String sDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
+		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(3);
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
 				given()
