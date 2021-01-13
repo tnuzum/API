@@ -49,7 +49,7 @@ public class GetAppointmentsByMember extends base {
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
@@ -86,7 +86,7 @@ public class GetAppointmentsByMember extends base {
 	public void attendedAppointmentFound() {
 		
 				String customerId = prop.getProperty("availableId");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(2);
 				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
 				
 				given()		
@@ -99,7 +99,7 @@ public class GetAppointmentsByMember extends base {
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("Attended"));
