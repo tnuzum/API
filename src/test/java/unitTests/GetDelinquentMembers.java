@@ -217,7 +217,6 @@ public class GetDelinquentMembers extends base{
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Results.CustomerDemographics.Name.FirstName", not(hasItem("Terminated")))
 						.body("Results.CustomerDemographics.MemberType", not(hasItem("InCollections")));
 	}
