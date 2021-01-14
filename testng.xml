@@ -32,7 +32,7 @@
 			<class name="unitTests.GetAppointmentProductCategoriesByMember" />
 			<class name="unitTests.GetAppointmentResourceTypeByProduct" />
 			<class name="unitTests.GetAppointmentsByBook" />
-			<!-- class name="unitTests.GetAppointmentsByMember" /-->
+			<class name="unitTests.GetAppointmentsByMember" />
 			<class name="unitTests.GetAvailableAppointments" />
 			<class name="unitTests.GetAvailableClassesByMember" />
 			<class name="unitTests.GetAvailableCoursesByMember" />

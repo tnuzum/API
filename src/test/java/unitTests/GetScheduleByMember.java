@@ -175,7 +175,7 @@ public class GetScheduleByMember extends base{
 						.body("Result[0].ScheduleInstanceType", equalTo("Course"));
 	}
 	
-	@Test (testName="Training Found",description="PBI:124954", enabled = false) // disabled due to bug
+	@Test (testName="Training Found",description="PBI:124954", enabled = true) // disabled due to bug
 	public void trainingFound() {
 
 				String c = prop.getProperty("appointmentId");
@@ -184,7 +184,7 @@ public class GetScheduleByMember extends base{
 				String eDateTimeNoOffset = "2025-04-01";
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -192,7 +192,7 @@ public class GetScheduleByMember extends base{
 					.when()
 						.get("/api/v3/schedule/getschedulebymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
