@@ -190,5 +190,14 @@ public class MemberPL extends base {
 		
 		return payload;	
 	}
+
+	public static String getMemberToken(String barcodeId, String expirationTimeSpan) {
+	
+	String payload = "{\r\n"
+			+ "  \"BarcodeId\": \"99959\",\r\n"
+			+ "  \"ExpirationTimeSpan\": \"00:30:00\"\r\n"
+			+ "}";
+	return payload;	
+	}
 	
 }
