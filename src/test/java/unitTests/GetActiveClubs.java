@@ -29,7 +29,7 @@ public class GetActiveClubs extends base {
 //						.log().all()
 						.header("accept", "application/json")
 						.header("X-Api-Key", prop.getProperty("X-Api-Key"))
-						.header("X-CompanyId",222)//.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+						.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 						.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/club/getactiveclubs")
