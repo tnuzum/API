@@ -69,7 +69,7 @@ public class GetMemberToken extends base {
 	@Test (priority=2,testName="Get New Token",description="PBI:TBD")
 	public void getNewToken() {
 		
-		// Validate next token returned is different from last one
+		// This test validates token returned is different from previous test
 		
 		String barcodeId = "99959";// prop.getProperty("availableUserName");
 		String expirationTimeSpan = "00:00:01";
