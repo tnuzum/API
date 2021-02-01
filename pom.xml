@@ -73,11 +73,21 @@
 			<version>3.2.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.3</version>
+		</dependency>
+		<!-- dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-apis</artifactId>
 			<version>6.9.0</version>
 			<optional>true</optional>
-		</dependency>
+		</dependency-->
 		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-core</artifactId> 
 			<version>2.2</version> </dependency -->
 		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-library</artifactId> 
@@ -91,14 +101,14 @@
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
-			<version>4.3.0</version>
+			<version>4.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>xml-path</artifactId>
-			<version>4.3.0</version>
+			<version>4.3.3</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.apache.johnzon</groupId>
 			<artifactId>johnzon-mapper</artifactId>
 			<version>1.1.13</version>
@@ -134,17 +144,7 @@
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>7.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>4.3.0</version>
-		</dependency>
+		</dependency-->
 	</dependencies>
 </project>
 
