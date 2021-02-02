@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="CompeteAPI v3" parallel="tests" thread-count="2">
 
-	<test name="Scheduling Lookups">
+	<test name="Scheduling Lookups" parallel = "classes" thread-count="5">
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
@@ -57,7 +57,7 @@
 			<class name="unitTests.VerifyPackagePurchaseCapability" />
 		</classes>
 	</test-->
-	<!-- test name="Billing">
+	<test name="Billing" parallel = "classes" thread-count="5">
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
 			<class name="unitTests.AddCardOnFileByMember" />
@@ -73,8 +73,8 @@
 			<class name="unitTests.TakePaymentWithCardOnFileForMember" />
 
 		</classes>
-	</test-->
-	<test name="Misc">
+	</test>
+	<test name="Misc" parallel = "classes" thread-count="5">
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
@@ -90,7 +90,7 @@
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
 			<class name="unitTests.GetMemberActions" />
-			<class name="unitTests.GetMemberToken" />
+			<!-- class name="unitTests.GetMemberToken" /-->
 			<class name="unitTests.GetNextMemberId" />
 			<class name="unitTests.GetNextProspectMemberId" />
 			<class name="unitTests.SearchMembers" />
