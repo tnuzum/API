@@ -87,6 +87,8 @@ public class CSIPayGateway extends base {
 	public void cSIResponseApproved() {
 		
 			Double amount = 6.50;
+			//String companyId = "101";
+			//cardNumber = "4111111111111111";
 
 			given()
 //				.log().all()

@@ -59,8 +59,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 200);
 				
 				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
@@ -100,8 +99,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 200);
 				
 				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
@@ -139,8 +137,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 200);
 				
 				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
@@ -178,8 +175,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 200);
 				
 				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
@@ -215,8 +211,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 200);
 				
 				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
@@ -255,8 +250,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 204);
 				Assert.assertEquals(js.getString("Message"), "No billing declines returned");
 	}
@@ -285,8 +279,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 204);
 				Assert.assertEquals(js.getString("Message"), "No billing declines returned");
 	}
@@ -315,8 +308,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 204);
 				Assert.assertEquals(js.getString("Message"), "No billing declines returned");
 	}
@@ -343,8 +335,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 204);
 				Assert.assertEquals(js.getString("Message"), "No billing declines returned");
 	}
@@ -372,8 +363,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 204);
 				Assert.assertEquals(js.getString("Message"), "No billing declines returned");
 	}
@@ -400,8 +390,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 400);
 				Assert.assertEquals(js.getString("Message"), "The value '"+minimumDeclinesCount+"' is not valid for ReturnsMinimumCount.");
 	}
@@ -428,8 +417,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 400);
 				Assert.assertEquals(js.getString("Message"), "The value '"+returnsType+"' is not valid for ReturnsType.");
 	}
@@ -456,8 +444,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 400);
 				Assert.assertEquals(js.getString("Message"), "The value '"+startDate+"' is not valid for StartDate.");
 	}
@@ -485,7 +472,6 @@ public class GetBillingDeclinesHistories extends base {
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
 				
-				Assert.assertTrue(res.getTime() >= 60L);
 				Assert.assertEquals(js.getInt("Status"), 400);
 				Assert.assertEquals(js.getString("Message"), "The value '"+endDate+"' is not valid for EndDate.");
 	}
@@ -512,8 +498,7 @@ public class GetBillingDeclinesHistories extends base {
 				.extract().response();
 		
 				JsonPath js = ReusableMethods.rawToJson(res);		
-				
-				Assert.assertTrue(res.getTime() >= 60L);
+
 				Assert.assertEquals(js.getInt("Status"), 500);
 				Assert.assertEquals(js.getString("Message"), "StartDate must be less than or equal to EndDate");
 	}
