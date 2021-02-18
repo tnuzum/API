@@ -49,7 +49,7 @@ public class GetClassesAndCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
+						//.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("BookedMembers"))

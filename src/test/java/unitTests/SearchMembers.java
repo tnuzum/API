@@ -96,8 +96,6 @@ public class SearchMembers extends base {
 	@Test (testName="SearchMembers_FirstName",description="PBI:124130")
 	public void searchMembers_FirstName() { 
 		
-				ReusableMethods.myWait(500);
-		
 				String fName = prop.getProperty("memberSearchFName");
 
 				given()
@@ -472,8 +470,6 @@ public class SearchMembers extends base {
 	
 	@Test (testName="SearchMembers_Email",description="PBI:124130")
 	public void searchMembers_Email() {
-		
-		ReusableMethods.myWait(500);
 		
 		String email = prop.getProperty("memberSearcheMail");
 
