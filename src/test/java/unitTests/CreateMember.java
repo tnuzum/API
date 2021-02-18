@@ -76,6 +76,7 @@ public class CreateMember extends base {
 				
 		Response res2	=	
 				given()
+//					.log().all()
 					.header("accept", "application/json")
 					.header("Content-Type", "application/json")
 					.header("X-Api-Key",aPIKey)

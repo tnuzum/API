@@ -75,7 +75,7 @@ public class MemberPL extends base {
 			"  \"WorkPhone\": \"6143009000\",\r\n" + 
 			"  \"OkToContactWorkPhone\": true,\r\n" + 
 			"  \"PreferredPhoneType\": \"mobile\",\r\n" + 
-			"  \"EmailAddress\": \"compete.test@jonasfitness.com\",\r\n" + 
+			"  \"EmailAddress\": \"tnuzum.auto@gmail.com\",\r\n" + 
 			"  \"OkToContactEmailAddress\": true,\r\n" + 
 			"  \"DoNotMail\": true,\r\n" + 
 			"  \"DoNotMarket\": true,\r\n" + 

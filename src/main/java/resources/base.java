@@ -19,7 +19,7 @@ public class base {
 
 		if (environment.equals("FUTURE")) {
 			try {
-				fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\future.properties");
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/future.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -32,7 +32,7 @@ public class base {
 
 		if (environment.equals("FUTURE2")) {
 			try {
-				fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\future2.properties");
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/future2.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -45,7 +45,7 @@ public class base {
 		}
 		if (environment.equals("PRODCURRENT")) {
 			try {
-				fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\prodCurrent.properties");
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/prodCurrent.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
