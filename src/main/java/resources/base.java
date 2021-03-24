@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class base {
 
-	static String environment = "PRODCURRENT";
+	static String environment = "FUTURE2";
 
 	public static Properties prop = new Properties();
 	static String projectPath = System.getProperty("user.dir");
