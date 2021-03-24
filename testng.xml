@@ -4,7 +4,7 @@
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
-			<!-- class name="functionalTests.ScheduleAppointment" />
+			<class name="functionalTests.ScheduleAppointment" />
 			<class name="unitTests.AddCardOnFileByMember" />
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
 			<class name="unitTests.BookAppointmentByEmployee" />
@@ -25,9 +25,9 @@
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetAccountBalanceDetailsByMember" />
-			<class name="unitTests.GetActiveBooksByResourceType" /-->
+			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
-			<!-- class name="unitTests.GetAppointmentDetails" />
+			<class name="unitTests.GetAppointmentDetails" />
 			<class name="unitTests.GetAppointmentProductByCategory" />
 			<class name="unitTests.GetAppointmentProductCategoriesByMember" />
 			<class name="unitTests.GetAppointmentResourceTypeByProduct" />
@@ -70,9 +70,9 @@
 			<class name="unitTests.ModifyCardOnFileByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
-			<class name="unitTests.PurchasePackageWithCardOnFile" /-->
+			<class name="unitTests.PurchasePackageWithCardOnFile" />
 			<!-- class name="unitTests.RateLimitation" /> Enable this test for regression; result is based on timing so system performance could impact result -->
-			<!-- class name="unitTests.SearchMembers" />
+			<class name="unitTests.SearchMembers" />
 			<class name="unitTests.SearchMembersByProduct" />
 			<class name="unitTests.SearchOnlineMembersByProduct" />
 			<class name="unitTests.SecurityPipeline" />
@@ -81,7 +81,7 @@
 			<class name="unitTests.UpdatePersonalInformation" />
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
 			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
-			<class name="unitTests.VerifyPackagePurchaseCapability" /-->
+			<class name="unitTests.VerifyPackagePurchaseCapability" />
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>
 				<exclude name="METHODNAME"/>
