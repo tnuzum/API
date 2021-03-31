@@ -105,8 +105,6 @@ public class CreateMember extends base {
 	public void memberCreated() { 
 			
 			nextMemberId = myGets.getNextMemberId(aPIKey, companyId, clubId);
-
-			System.out.println("TestObject: "+FirstName);
 				
 		Response res2	=	
 				given()
