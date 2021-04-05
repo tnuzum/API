@@ -240,7 +240,7 @@ public class SearchOnlineMembersByProduct extends base {
 	@Test (testName="HomePhoneNoDashes",description="PBI:139723")
 	public void searchOnlineMembers_HomePhoneNoDashes() {
 		
-		String customerId = prop.getProperty("availableId");
+		String customerId = prop.getProperty("memberSearchCustomerId");
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
 		String hPhone = prop.getProperty("memberSearchHPhone");
@@ -284,7 +284,8 @@ public class SearchOnlineMembersByProduct extends base {
 		String customerId = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
-		String mPhone = prop.getProperty("memberSearchMPhoneD");
+		String mPhoneD = prop.getProperty("memberSearchMPhoneD");
+		String mPhone = prop.getProperty("memberSearchMPhone");
 
 				given()
 //						.log().all()
@@ -293,7 +294,7 @@ public class SearchOnlineMembersByProduct extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+mPhone+"/"+associatedClub+"/"+trainingId)
+						.get("/api/v3/member/searchonlinemembersbyproduct/"+customerId+"/"+mPhoneD+"/"+associatedClub+"/"+trainingId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -307,7 +308,7 @@ public class SearchOnlineMembersByProduct extends base {
 						.body("Result[0]",  hasKey("DisplayName"))
 						.body("Result[0]",  hasKey("EmailAddress"))
 						.body("Result[0]",  hasKey("FirstName"))
-						.body("Result[0].CellPhone", equalTo("6141001000"))
+						.body("Result[0].CellPhone", equalTo(mPhone))
 						.body("Result[0]",  hasKey("HomePhone"))
 						.body("Result[0]",  hasKey("Id"))
 						.body("Result[0]",  hasKey("LastName"))
@@ -325,6 +326,7 @@ public class SearchOnlineMembersByProduct extends base {
 		String customerId = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
+		//String mPhone = prop.getProperty("memberSearchHPhoneD");
 		String mPhone = prop.getProperty("memberSearchMPhone");
 
 				given()
