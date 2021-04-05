@@ -92,7 +92,7 @@ public class SearchMembersByProduct extends base{
 		
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId");
-		String lName = prop.getProperty("memberSearchLName");
+		String lName = prop.getProperty("LastName");
 
 				given()
 //				.log().all()
@@ -227,7 +227,8 @@ public class SearchMembersByProduct extends base{
 		
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
-		String mPhone = prop.getProperty("memberSearchMPhoneD");
+		String mPhoneD = prop.getProperty("memberSearchMPhoneD");
+		String mPhone = prop.getProperty("memberSearchMPhone");
 		
 				given()
 //				.log().all()
@@ -236,12 +237,12 @@ public class SearchMembersByProduct extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/member/searchmembersbyproduct/"+mPhone+"/"+associatedClub+"/"+trainingId)
+						.get("/api/v3/member/searchmembersbyproduct/"+mPhoneD+"/"+associatedClub+"/"+trainingId)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result[0].CellPhone", equalTo("6141001000"));
+						.body("Result[0].CellPhone", equalTo(mPhone));
 	}
 	
 	@Test (testName="WorkPhoneWithDashes",description="PBI:139726")
