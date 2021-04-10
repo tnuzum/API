@@ -40,7 +40,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
-	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = true)
+	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = false)
 	
 	/* 
 	 * This call should always be sent with a customerId,
