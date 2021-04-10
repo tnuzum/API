@@ -27,6 +27,7 @@
 			<class name="unitTests.GetAccountBalanceDetailsByMember" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
+			<class name="unitTests.GetAgreementCategories" />
 			<class name="unitTests.GetAppointmentDetails" />
 			<class name="unitTests.GetAppointmentProductByCategory" />
 			<class name="unitTests.GetAppointmentProductCategoriesByMember" />
