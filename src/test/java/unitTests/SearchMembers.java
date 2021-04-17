@@ -513,7 +513,8 @@ public class SearchMembers extends base {
 					    .body("Result[0].WorkPhone", hasKey("PhoneType"));
 	}
 	
-	@Test (testName="No Optional Parameters",description="PBI:124130")
+	@Test (testName="No Optional Parameters",description="PBI:124130", enabled = false)
+	// disabled because it takes >60 for response since there are so many records found
 	public void noOptionalParameters() {
 		
 				ReusableMethods.myWait(500);

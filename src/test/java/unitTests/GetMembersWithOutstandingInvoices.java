@@ -40,7 +40,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
-	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = false)
+	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = true)
 	
 	/* 
 	 * This call should always be sent with a customerId,
@@ -175,7 +175,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 	@Test  (testName="Specific Customer With Card and Bank Account Found", description="PBI:153783")
 	public void specificCustomerWithCardAndBankAccountFound() {
 		
-						String customerId = prop.getProperty("availableId");
+						String customerId = prop.getProperty("bothfopMemberId");
 						int customerIdInt =  Integer.parseInt(customerId);
 
 					given()
