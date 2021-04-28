@@ -326,7 +326,6 @@ public class SearchOnlineMembersByProduct extends base {
 		String customerId = prop.getProperty("availableId");
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId"); 
-		//String mPhone = prop.getProperty("memberSearchHPhoneD");
 		String mPhone = prop.getProperty("memberSearchMPhone");
 
 				given()
