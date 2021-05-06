@@ -87,12 +87,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 
 	}		
 
@@ -132,12 +132,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));								
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));								
 
 	}		
 
@@ -186,12 +186,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 
 	}	
 	
@@ -240,12 +240,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));								
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));								
 
 	}	
 	
@@ -294,12 +294,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));								
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));								
 
 	}
 	
@@ -350,12 +350,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 
 	}
 	
@@ -406,12 +406,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 
 	}
 	
@@ -460,12 +460,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 
 	}
 	
@@ -516,12 +516,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 						
 						
 					if (valueAssertions.equals("true")) {
@@ -579,12 +579,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 						
 						
 					if (valueAssertions.equals("true")) {
@@ -642,12 +642,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 						
 						
 					if (valueAssertions.equals("true")) {
@@ -705,12 +705,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));									
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));									
 						
 						
 					if (valueAssertions.equals("true")) {
@@ -768,12 +768,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));
 	}
 
 	@Test (testName="Individual Plans Only",description="PBI: 179765")
@@ -823,12 +823,12 @@ public class GetMembershipPlans extends base {
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeFirstFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].TotalRecurringChargeOtherFamily").isBlank());
 						Assert.assertTrue(!js.getString("Result[0].IsFeaturedPlan").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].AddOns[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].AddOns[0].PlanId").equals(planId));
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemId").isBlank());
-						Assert.assertTrue(!js.getString("Result[0].ServiceAreas[0].ItemDescription").isBlank());
-						Assert.assertTrue(js.getString("Result[0].ServiceAreas[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].Services[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].Services[0].PlanId").equals(planId));
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemId").isBlank());
+						Assert.assertTrue(!js.getString("Result[0].MembershipAreas[0].ItemDescription").isBlank());
+						Assert.assertTrue(js.getString("Result[0].MembershipAreas[0].PlanId").equals(planId));
 	}
 	
 	@Test (testName="Club Not Found",description="PBI: 179765")
