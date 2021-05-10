@@ -95,6 +95,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
 			Response res =	given()
+//					.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)

@@ -50,7 +50,7 @@ public class GetMembershipPlanDetails extends base {
 					.when()
 						.get("/api/v3/agreement/getmembershipplandetails/"+planId+"?EffectiveDate="+effectiveDate)
 					.then()
-						.log().body()
+//						.log().body()
 						.assertThat()
 						.statusCode(200)
 						.extract().response();
@@ -141,7 +141,6 @@ public class GetMembershipPlanDetails extends base {
 						Assert.assertTrue(js.getString("Result.MemberGroups[0]").contains("InsuranceProviderID"));
 						Assert.assertFalse(js.getString("Result.MemberGroups[0].Eligible").isBlank());
 
-						// create value test below for these entries...
 						Assert.assertFalse(js.getString("Result.MemberGroupSets[0].MemberGroupSetId").isBlank());
 						Assert.assertFalse(js.getString("Result.MemberGroupSets[0].MemberGroupSetDescription").isBlank());
 						Assert.assertFalse(js.getString("Result.MemberGroupSets[0].MemberGroups[0].MemberGroupId").isBlank());
