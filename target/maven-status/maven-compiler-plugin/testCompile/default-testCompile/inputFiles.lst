@@ -32,6 +32,7 @@ C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\EnrollMemberInClas
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\Vita_SetProjectVitaConfiguration.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\archieve\GetAllAvailableClassesByMember.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\AuthenticateMemberByUserCredentials.java
+C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetAgreementCategories.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetScheduleByMember.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetAppointmentsByBook.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\PurchasePackageOnAccount.java
@@ -69,6 +70,7 @@ C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetEmployees.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\SearchMembersByProduct.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\VerifyCourseEnrollmentCapability.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetProductByBook.java
+C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetMembershipPlans.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\EnrollMemberInClassWithNewCreditCard.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\PurchasePackageWithCardOnFile.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetAppointmentDetails.java
@@ -84,3 +86,4 @@ C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetBookAvailabilit
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\EnrollMemberInCourseWithNewCreditCard.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\archieve\GetOnlineAvailableClassesByMember.java
 C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetCardsOnFileByMember.java
+C:\Users\tnuzum\eclipse-workspace\API\src\test\java\unitTests\GetMembershipPlanDetails.java

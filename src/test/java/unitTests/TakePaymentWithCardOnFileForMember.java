@@ -54,6 +54,10 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	
 	@Test (testName="Without Invoice",description="PBI:150192")
 	public void withoutInvoice() {
+		
+		String customerId = "248"; // changing member Available Auto to lower balance that was raised by other tests
+		String amount = "5.00";
+		String accountId = "1";
 
 			given()
 //				.log().all()
