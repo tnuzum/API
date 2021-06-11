@@ -24,38 +24,38 @@ public class CreateMember extends base {
 			static String companyId;
 			static String clubId;
 			
-			static int nextMemberId;
-			static String HomeClubId = prop.getProperty("HomeClubId");
-			static String FirstName = prop.getProperty("FirstName");
-			static String LastName = prop.getProperty("LastName");
-			static String MembershipTypeId = prop.getProperty("MembershipTypeId");
-			static String Title = prop.getProperty("Title");
-			static String MiddleInitial = prop.getProperty("MiddleInitial");
-			static String Address1 = prop.getProperty("Address1");
-			static String Address2 = prop.getProperty("Address2");
-			static String City = prop.getProperty("City");
-			static String State = prop.getProperty("State");
-			static String PostalCode = prop.getProperty("PostalCode");
-			static String Gender = prop.getProperty("Gender");
-			static String DateOfBirth = prop.getProperty("DateOfBirth");
-			static String HomePhone = prop.getProperty("HomePhone");
-			static String OkToContactHomePhone = prop.getProperty("OkToContactHomePhone");
-			static String MobilePhone = prop.getProperty("MobilePhone");
-			static String OkToContactMobilePhone = prop.getProperty("OkToContactMobilePhone"); 
-			static String WorkPhone = prop.getProperty("WorkPhone");
-			static String OkToContactWorkPhone = prop.getProperty("OkToContactWorkPhone");
-			static String PreferredPhoneType = prop.getProperty("PreferredPhoneType");
-			static String EmailAddress = prop.getProperty("EmailAddress");
-			static String OkToContactEmailAddress =prop.getProperty("OkToContactEmailAddress");
-			static String DoNotMail = prop.getProperty("DoNotMail");
-			static String DoNotMarket = prop.getProperty("DoNotMarket");
-			static String SocialSecurityNumber = prop.getProperty("SocialSecurityNumber");
-			static String DriverLicense = prop.getProperty("DriverLicense");
-			static String Occupation = prop.getProperty("Occupation");
-			static String Employer = prop.getProperty("Employer");
-			static String HeadOfHousehold = prop.getProperty("HeadOfHousehold");
-			static String IncomeChoiceId = prop.getProperty("IncomeChoiceId");
-			static String PriorityId = prop.getProperty("PriorityId");
+			int nextMemberId;
+			static String HomeClubId;
+			static String FirstName;
+			static String LastName;
+			static String MembershipTypeId;
+			static String Title;
+			static String MiddleInitial;
+			static String Address1;
+			static String Address2;
+			static String City;
+			static String State;
+			static String PostalCode;
+			static String Gender;
+			static String DateOfBirth;
+			static String HomePhone;
+			static String OkToContactHomePhone;
+			static String MobilePhone;
+			static String OkToContactMobilePhone;
+			static String WorkPhone;
+			static String OkToContactWorkPhone;
+			static String PreferredPhoneType;
+			static String EmailAddress;
+			static String OkToContactEmailAddress;
+			static String DoNotMail;
+			static String DoNotMarket;
+			static String SocialSecurityNumber;
+			static String DriverLicense;
+			static String Occupation;
+			static String Employer;
+			static String HeadOfHousehold;
+			static String IncomeChoiceId;
+			static String PriorityId;
 	
 	@BeforeClass
 	public void getData() {
@@ -67,6 +67,38 @@ public class CreateMember extends base {
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 
+		HomeClubId = prop.getProperty("HomeClubId");
+		FirstName = prop.getProperty("FirstName");
+		LastName = prop.getProperty("LastName");
+		MembershipTypeId = prop.getProperty("MembershipTypeId");
+		Title = prop.getProperty("Title");
+		MiddleInitial = prop.getProperty("MiddleInitial");
+		Address1 = prop.getProperty("Address1");
+		Address2 = prop.getProperty("Address2");
+		City = prop.getProperty("City");
+		State = prop.getProperty("State");
+		PostalCode = prop.getProperty("PostalCode");
+		Gender = prop.getProperty("Gender");
+		DateOfBirth = prop.getProperty("DateOfBirth");
+		HomePhone = prop.getProperty("HomePhone");
+		OkToContactHomePhone = prop.getProperty("OkToContactHomePhone");
+		MobilePhone = prop.getProperty("MobilePhone");
+		OkToContactMobilePhone = prop.getProperty("OkToContactMobilePhone"); 
+		WorkPhone = prop.getProperty("WorkPhone");
+		OkToContactWorkPhone = prop.getProperty("OkToContactWorkPhone");
+		PreferredPhoneType = prop.getProperty("PreferredPhoneType");
+		EmailAddress = prop.getProperty("EmailAddress");
+		OkToContactEmailAddress =prop.getProperty("OkToContactEmailAddress");
+		DoNotMail = prop.getProperty("DoNotMail");
+		DoNotMarket = prop.getProperty("DoNotMarket");
+		SocialSecurityNumber = prop.getProperty("SocialSecurityNumber");
+		DriverLicense = prop.getProperty("DriverLicense");
+		Occupation = prop.getProperty("Occupation");
+		Employer = prop.getProperty("Employer");
+		HeadOfHousehold = prop.getProperty("HeadOfHousehold");
+		IncomeChoiceId = prop.getProperty("IncomeChoiceId");
+		PriorityId = prop.getProperty("PriorityId");
+
 	}
 	
 	@Test (testName="Member Created",description="PBI:147807")
@@ -76,6 +108,7 @@ public class CreateMember extends base {
 				
 		Response res2	=	
 				given()
+//					.log().all()
 					.header("accept", "application/json")
 					.header("Content-Type", "application/json")
 					.header("X-Api-Key",aPIKey)

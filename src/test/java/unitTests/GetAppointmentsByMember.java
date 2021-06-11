@@ -61,8 +61,6 @@ public class GetAppointmentsByMember extends base {
 						.body("Result[0].BookedMembers[0]", hasKey("ExternalId"))
 						.body("Result[0].BookedMembers[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("BookedResources"))
-						.body("Result[0]", hasKey("CanCancel"))
-						.body("Result[0]", hasKey("CanChange"))
 						.body("Result[0]", hasKey("CancellationDateTime"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("ClassEnrollmentStatusDte"))
@@ -71,7 +69,11 @@ public class GetAppointmentsByMember extends base {
 						.body("Result[0]", hasKey("DurationInMinutes"))
 						.body("Result[0]", hasKey("ForCustomerId"))
 						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("InvoiceDetailId"))
+						.body("Result[0]", hasKey("IsCancellationAllowed"))
+						.body("Result[0]", hasKey("IsChangeAllowed"))
 						.body("Result[0]", hasKey("IsRecurring"))
+						.body("Result[0]", hasKey("IsVirtual"))
 						.body("Result[0]", hasKey("ItemBarcodeId"))
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result[0]", hasKey("LongDescription"))
@@ -86,7 +88,7 @@ public class GetAppointmentsByMember extends base {
 	public void attendedAppointmentFound() {
 		
 				String customerId = prop.getProperty("availableId");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(2);
 				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
 				
 				given()		

@@ -55,37 +55,37 @@ public class MemberPL extends base {
 	
 	String payload = "{\r\n" + 
 			"  \"MemberId\": \""+nextMemberId+"\",\r\n" + 
-			"  \"HomeClubId\": 1,\r\n" + 
-			"  \"FirstName\": \"Auto\",\r\n" + 
-			"  \"LastName\": \"Generated\",\r\n" + 
-			"  \"MembershipTypeId\": 2,\r\n" + 
-			"  \"Title\": \"Mr\",\r\n" + 
-			"  \"MiddleInitial\": \"\",\r\n" + 
-			"  \"Address1\": \"1500 Main St.\",\r\n" + 
-			"  \"Address2\": \"Apt B\",\r\n" + 
-			"  \"City\": \"Hometown\",\r\n" + 
-			"  \"State\": \"OH\",\r\n" + 
-			"  \"PostalCode\": \"43215\",\r\n" + 
-			"  \"Gender\": \"M\",\r\n" + 
-			"  \"DateOfBirth\": \"1980-01-01\",\r\n" + 
-			"  \"HomePhone\": \"6142009000\",\r\n" + 
-			"  \"OkToContactHomePhone\": true,\r\n" + 
-			"  \"MobilePhone\": \"6141009000\",\r\n" + 
-			"  \"OkToContactMobilePhone\": true,\r\n" + 
-			"  \"WorkPhone\": \"6143009000\",\r\n" + 
-			"  \"OkToContactWorkPhone\": true,\r\n" + 
-			"  \"PreferredPhoneType\": \"mobile\",\r\n" + 
-			"  \"EmailAddress\": \"compete.test@jonasfitness.com\",\r\n" + 
-			"  \"OkToContactEmailAddress\": true,\r\n" + 
-			"  \"DoNotMail\": true,\r\n" + 
-			"  \"DoNotMarket\": true,\r\n" + 
-			"  \"SocialSecurityNumber\": \"000-00-0000\",\r\n" + 
-			"  \"DriverLicense\": \"OH1235467\",\r\n" + 
-			"  \"Occupation\": \"\",\r\n" + 
-			"  \"Employer\": \"\",\r\n" + 
-			"  \"HeadOfHousehold\": true,\r\n" + 
-			"  \"IncomeChoiceId\": 0,\r\n" + 
-			"  \"PriorityId\": 1,\r\n" + 
+			"  \"HomeClubId\": "+HomeClubId+",\r\n" + 
+			"  \"FirstName\": \""+FirstName+"\",\r\n" + 
+			"  \"LastName\": \""+LastName+"\",\r\n" + 
+			"  \"MembershipTypeId\": \""+MembershipTypeId+"\",\r\n" + 
+			"  \"Title\": \""+Title+"\",\r\n" + 
+			"  \"MiddleInitial\": \""+MiddleInitial+"\",\r\n" + 
+			"  \"Address1\": \""+Address1+"\",\r\n" + 
+			"  \"Address2\": \""+Address2+"\",\r\n" + 
+			"  \"City\": \""+City+"\",\r\n" + 
+			"  \"State\": \""+State+"\",\r\n" + 
+			"  \"PostalCode\": \""+PostalCode+"\",\r\n" + 
+			"  \"Gender\": \""+Gender+"\",\r\n" + 
+			"  \"DateOfBirth\": \""+DateOfBirth+"\",\r\n" + 
+			"  \"HomePhone\": \""+HomePhone+"\",\r\n" + 
+			"  \"OkToContactHomePhone\": \""+OkToContactHomePhone+"\",\r\n" + 
+			"  \"MobilePhone\": \""+MobilePhone+"\",\r\n" + 
+			"  \"OkToContactMobilePhone\": \""+OkToContactMobilePhone+"\",\r\n" + 
+			"  \"WorkPhone\": \""+WorkPhone+"\",\r\n" + 
+			"  \"OkToContactWorkPhone\": \""+OkToContactWorkPhone+"\",\r\n" + 
+			"  \"PreferredPhoneType\": \""+PreferredPhoneType+"\",\r\n" + 
+			"  \"EmailAddress\": \""+EmailAddress+"\",\r\n" + 
+			"  \"OkToContactEmailAddress\": \""+OkToContactEmailAddress+"\",\r\n" + 
+			"  \"DoNotMail\": \""+DoNotMail+"\",\r\n" + 
+			"  \"DoNotMarket\": \""+DoNotMarket+"\",\r\n" + 
+			"  \"SocialSecurityNumber\": \""+SocialSecurityNumber+"\",\r\n" + 
+			"  \"DriverLicense\": \""+DriverLicense+"\",\r\n" + 
+			"  \"Occupation\": \""+Occupation+"\",\r\n" + 
+			"  \"Employer\": \""+Employer+"\",\r\n" + 
+			"  \"HeadOfHousehold\": "+HeadOfHousehold+",\r\n" + 
+			"  \"IncomeChoiceId\": \""+IncomeChoiceId+"\",\r\n" + 
+			"  \"PriorityId\": \""+PriorityId+"\",\r\n" + 
 			"}";
 	return payload;	
 	}
@@ -189,6 +189,15 @@ public class MemberPL extends base {
 				"}";
 		
 		return payload;	
+	}
+
+	public static String getMemberToken(String barcodeId, String expirationTimeSpan) {
+	
+	String payload = "{\r\n"
+			+ "  \"BarcodeId\": \"99959\",\r\n"
+			+ "  \"ExpirationTimeSpan\": \"00:30:00\"\r\n"
+			+ "}";
+	return payload;	
 	}
 	
 }

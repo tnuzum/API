@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 	<url>https://repo.maven.apache.org/maven2</url>
 	<build>
-			<resources>
+		<resources>
 			<resource>
 				<directory>src/main/java/resources</directory>
 				<filtering>true</filtering>
@@ -36,15 +36,15 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 	</build>
-<repositories>
-  <repository>
-    <id>jcenter</id>
-    <name>bintray</name>
-    <url>https://jcenter.bintray.com</url>
-  </repository>
-</repositories>
+	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<name>bintray</name>
+			<url>https://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -68,11 +68,26 @@
 			<version>3.6.3</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>4.3.3</version>
+		</dependency>
+		<!-- dependency>
 			<groupId>com.github.scribejava</groupId>
 			<artifactId>scribejava-apis</artifactId>
 			<version>6.9.0</version>
 			<optional>true</optional>
-		</dependency>
+		</dependency-->
 		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-core</artifactId> 
 			<version>2.2</version> </dependency -->
 		<!-- dependency> <groupId>org.hamcrest</groupId> <artifactId>hamcrest-library</artifactId> 
@@ -86,14 +101,14 @@
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
-			<version>4.3.0</version>
+			<version>4.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>xml-path</artifactId>
-			<version>4.3.0</version>
+			<version>4.3.3</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>org.apache.johnzon</groupId>
 			<artifactId>johnzon-mapper</artifactId>
 			<version>1.1.13</version>
@@ -129,17 +144,7 @@
 			<artifactId>mockito-core</artifactId>
 			<version>1.10.19</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>7.3.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>4.3.0</version>
-		</dependency>
+		</dependency-->
 	</dependencies>
 </project>
 

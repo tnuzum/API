@@ -35,7 +35,7 @@ public class GetClassesAndCoursesByMember extends base {
 	@Test (testName="ClassesFound",description="PBI:124953")
 	public void ClassesFound() {
 		String customerId = prop.getProperty("standbyAId");
-		String sDateTimeNoOffset = ReusableDates.getCurrentDatePlusFiveYears();
+		String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(3);
 		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 
 				given()
@@ -49,13 +49,11 @@ public class GetClassesAndCoursesByMember extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
-						.time(lessThan(60L),TimeUnit.SECONDS)
+						//.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("AppointmentMembers"))
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("BookedMembers"))
 						.body("Result[0]", hasKey("BookedResources"))
-						.body("Result[0]", hasKey("CanCancel"))
-						.body("Result[0]", hasKey("CanChange"))
 						.body("Result[0]", hasKey("CancellationDateTime"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("ClassEnrollmentStatusDte"))
@@ -64,7 +62,10 @@ public class GetClassesAndCoursesByMember extends base {
 						.body("Result[0]", hasKey("DurationInMinutes"))
 						.body("Result[0]", hasKey("ForCustomerId"))
 						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("IsCancellationAllowed"))
+						.body("Result[0]", hasKey("IsChangeAllowed"))
 						.body("Result[0]", hasKey("IsRecurring"))
+						.body("Result[0]", hasKey("IsVirtual"))
 						.body("Result[0]", hasKey("ItemBarcodeId"))
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result[0]", hasKey("LongDescription"))
@@ -97,8 +98,6 @@ public class GetClassesAndCoursesByMember extends base {
 						.body("Result[0]", hasKey("AppointmentNotes"))
 						.body("Result[0]", hasKey("BookedMembers"))
 						.body("Result[0]", hasKey("BookedResources"))
-						.body("Result[0]", hasKey("CanCancel"))
-						.body("Result[0]", hasKey("CanChange"))
 						.body("Result[0]", hasKey("CancellationDateTime"))
 						.body("Result[0]", hasKey("CategoryDescription"))
 						.body("Result[0]", hasKey("ClassEnrollmentStatusDte"))
@@ -107,7 +106,10 @@ public class GetClassesAndCoursesByMember extends base {
 						.body("Result[0]", hasKey("DurationInMinutes"))
 						.body("Result[0]", hasKey("ForCustomerId"))
 						.body("Result[0]", hasKey("Id"))
+						.body("Result[0]", hasKey("IsCancellationAllowed"))
+						.body("Result[0]", hasKey("IsChangeAllowed"))
 						.body("Result[0]", hasKey("IsRecurring"))
+						.body("Result[0]", hasKey("IsVirtual"))
 						.body("Result[0]", hasKey("ItemBarcodeId"))
 						.body("Result[0]", hasKey("ItemDescription"))
 						.body("Result[0]", hasKey("LongDescription"))
