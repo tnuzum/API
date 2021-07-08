@@ -158,6 +158,8 @@ public class BookAppointmentByMember extends base {
 	@Test (testName="Product Price Changed",description="PBI:127168", enabled = false)
 	public void productPriceChanged() { 
 		
+		//disabled due to Bug# 183003 
+		
 		String appointmentClubId = prop.getProperty("club1Id");
 		String itemId = prop.getProperty("paidTId");
 		String occurrence = prop.getProperty("paidTOccurrence");
@@ -166,20 +168,19 @@ public class BookAppointmentByMember extends base {
 		String userDisplayedPrice = "0.01";
 
 	given()
-		.log().all()				
+//		.log().all()				
 		.header("accept", "application/json")
 		.header("X-Api-Key", aPIKey)
 		.header("X-CompanyId", companyId)
 		.header("X-ClubId", 3)
 		.header("Content-Type", "application/json")
-			.when()
-			.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
-			.post("/api/v3/appointment/bookappointmentbymember")
-				.then()
-						.log().body()
-						.assertThat().statusCode(404)
-				.body("Message", equalTo("FailPriceChanged"))
-				;
+	.when()
+		.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
+		.post("/api/v3/appointment/bookappointmentbymember")
+	.then()
+//		.log().body()
+		.assertThat().statusCode(404)
+		.body("Message", equalTo("FailPriceChanged"));
 	}
 	
 	@Test (testName="PunchcardAppointment_SingleMember",description="PBI:127168")
