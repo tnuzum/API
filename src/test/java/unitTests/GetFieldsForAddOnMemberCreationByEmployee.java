@@ -131,7 +131,7 @@ public class GetFieldsForAddOnMemberCreationByEmployee extends base {
 						.body("Result[10].FieldName", equalTo("HomePhone"))
 						.body("Result[10].Description", equalTo("Home Phone"))
 						.body("Result[10].DisplayValue", equalTo("Home Phone"))
-						.body("Result[10].Required", equalTo(false))
+						.body("Result[10].Required", equalTo(true)) //TN 07.08.21 changed from false to match updated value seen in back office
 						.body("Result[10].ValueMustBeInDefinedList", equalTo(false))
 						.body("Result[10]", hasKey("Values"))
 						.body("Result[10].MaximumLength", equalTo(0))
