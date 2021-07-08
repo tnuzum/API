@@ -68,6 +68,7 @@
 			<class name="unitTests.GetPurchasedPackagesByMember" />
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
+			<class name="unitTests.GetStoredBankAccount" />
 			<class name="unitTests.ModifyCardOnFileByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
