@@ -356,9 +356,9 @@ public class GetStoredBankAccount extends base {
 					.get("/api/v3/financial/getstoredbankaccounts?customerId="+member)
 				.then()
 //						.log().all()
-						//.assertThat().statusCode(204)
+						.assertThat().statusCode(200)
 						.body("Status", equalTo(204))
-						.body("Message", equalTo("No stored bank accounts found."));
+						.body("Messages[0]", equalTo("No stored bank accounts found."));
 	}
 
 }
