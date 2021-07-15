@@ -34,7 +34,7 @@ public class GetStoredBankAccount extends base {
 	}
 	
 	@Test (testName="Checking Account", description="PBI:180172")
-	public void checkAccount() {
+	public void checkingAccount() {
 		
 				String member = prop.getProperty("checkingId");
 				String memberName = prop.getProperty("checkingName");
