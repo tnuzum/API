@@ -182,6 +182,56 @@ return payload;
 		
 	return payload;
 }
+	
+	public static String getstoredbankaccountsWithoutInvoice
+		(String customerId,
+		String bankAccountNumber,
+		String bankRoutingNumber,
+		String accountHolderName,
+		String bankAccountType,
+		String isBusinessAccount,
+		String setAsHouseAccount
+		) {
 		
+		String payload = "{\r\n"
+				+ "  \"CustomerId\": "+customerId+",\r\n"
+				+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SetAsHouseAccount\": "+setAsHouseAccount+",\r\n"
+				+ "  \"AgreementNumbersToUpdateToThisFOP\": []\r\n"
+				+ "}";
+		
+	return payload;
+}
+	
+	public static String getstoredbankaccountsWithInvoice
+		(String customerId,
+		String bankAccountNumber,
+		String bankRoutingNumber,
+		String accountHolderName,
+		String bankAccountType,
+		String isBusinessAccount,
+		String setAsHouseAccount,
+		String agreementNumbersToUpdateToThisFOP
+		) {
+		
+		String payload = "{\r\n"
+				+ "  \"CustomerId\": "+customerId+",\r\n"
+				+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SetAsHouseAccount\": "+setAsHouseAccount+",\r\n"
+				+ "  \"AgreementNumbersToUpdateToThisFOP\": [\r\n"
+				+ "   \""+agreementNumbersToUpdateToThisFOP+"\"\r\n"
+				+ "  ]\r\n"
+				+ "}";
+		
+	return payload;
+}
 
 }

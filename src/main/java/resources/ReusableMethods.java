@@ -304,4 +304,26 @@ public class ReusableMethods extends base {
 		return methodName;
 		
 	}
+	
+	public static JsonPath getStoredAccountsResponse(String aPIKey, String companyId, String clubId, String customerId) {
+		
+		Response res =
+
+		given()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/financial/getstoredbankaccounts?customerId="+customerId)
+		.then()
+//			.log().all() // Show entire response in console
+			.extract().response();
+		
+		JsonPath js = rawToJson(res);
+		
+		return js;
+		
+	}
+
 }
