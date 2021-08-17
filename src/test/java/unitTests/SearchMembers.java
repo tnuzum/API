@@ -38,7 +38,7 @@ public class SearchMembers extends base {
 		
 				ReusableMethods.myWait(500);
 		
-				String lName = prop.getProperty("memberSearchLName");
+				String lName = prop.getProperty("memberSearchLName2");
 
 				given()
 //						.log().all()
