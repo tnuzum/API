@@ -26,7 +26,8 @@ public class UpdateStoredBankAccount extends base {
 	static String bankAccountType;
 	static String isBusinessAccount;
 	static String setAsHouseAccount;
-	static String agreementNumbersToUpdateToThisFOP;
+	static String agreementNumbers;
+	static String agreementNumbers2;
 
 	@BeforeClass
 	public void getData() {
@@ -45,6 +46,8 @@ public class UpdateStoredBankAccount extends base {
 		bankAccountType = "Checking";
 		isBusinessAccount = "false";
 		setAsHouseAccount = "";
+		agreementNumbers = prop.getProperty("agreementToAddUpdate");
+		agreementNumbers2 = prop.getProperty("agreementToAddUpdate2");
 	}
 	
 	@Test (testName="Update Checking Account", description="PBI:180171")
@@ -60,7 +63,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+					.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -71,7 +74,7 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertEquals(res.statusCode(), 200);
 					Assert.assertEquals(js.getInt("Status"), 200);
 					Assert.assertNull(js.getString("Messages"));
-					Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
@@ -95,7 +98,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -106,7 +109,7 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertEquals(res.statusCode(), 200);
 					Assert.assertEquals(js.getInt("Status"), 200);
 					Assert.assertNull(js.getString("Messages"));
-					Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
@@ -129,7 +132,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -140,7 +143,7 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertEquals(res.statusCode(), 200);
 					Assert.assertEquals(js.getInt("Status"), 200);
 					Assert.assertNull(js.getString("Messages"));
-					Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
@@ -163,7 +166,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -174,7 +177,7 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertEquals(res.statusCode(), 200);
 					Assert.assertEquals(js.getInt("Status"), 200);
 					Assert.assertNull(js.getString("Messages"));
-					Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
@@ -197,7 +200,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -208,7 +211,7 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertEquals(res.statusCode(), 200);
 				Assert.assertEquals(js.getInt("Status"), 200);
 				Assert.assertNull(js.getString("Messages"));
-				Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
 	}
@@ -228,7 +231,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -239,7 +242,7 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertEquals(res.statusCode(), 200);
 				Assert.assertEquals(js.getInt("Status"), 200);
 				Assert.assertNull(js.getString("Messages"));
-				Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
 	}
@@ -259,7 +262,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -270,8 +273,97 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertEquals(res.statusCode(), 200);
 				Assert.assertEquals(js.getInt("Status"), 200);
 				Assert.assertNull(js.getString("Messages"));
-				Assert.assertTrue(js.getInt("AutoApprovedConfirmationNumber") > 0);
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
+				
+	}
+	
+	@Test (testName="Update Agreement", description="PBI:180171")
+	public void updateAgreement() {
+
+		Response res = 
+				
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+					.header("Content-Type", "application/json")
+				.when()
+				.body(FinancialPL.updateStoredBankAccountsWithAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount,agreementNumbers))
+					.post("/api/v3/financial/updatestoredbankaccount")
+				.then()
+//					.log().body()
+					.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				
+				Assert.assertEquals(res.statusCode(), 200);
+				Assert.assertEquals(js.getInt("Status"), 200);
+				Assert.assertNull(js.getString("Messages"));
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
+				Assert.assertNull(js.getString("PendingConfirmationNumber"));
+				
+	}
+	
+	@Test (testName="Update Agreements", description="PBI:180171")
+	public void updateAgreements() {
+
+		Response res = 
+				
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+					.header("Content-Type", "application/json")
+				.when()
+				.body(FinancialPL.updateStoredBankAccountsWithAgreements(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount,agreementNumbers,agreementNumbers2))
+					.post("/api/v3/financial/updatestoredbankaccount")
+				.then()
+//					.log().body()
+					.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				
+				Assert.assertEquals(res.statusCode(), 200);
+				Assert.assertEquals(js.getInt("Status"), 200);
+				Assert.assertNull(js.getString("Messages"));
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers[0]").isBlank());
+				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers[1]").isBlank());
+				Assert.assertNull(js.getString("PendingConfirmationNumber"));
+				
+	}
+	
+	@Test (testName="Agreements Not Found", description="PBI:180171")
+	public void agreementsNotFound() {
+
+		String agreementNumbers = "AA99999";
+		String agreementNumbers2 = "AA99999";
+		
+		Response res = 
+				
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+					.header("Content-Type", "application/json")
+				.when()
+				.body(FinancialPL.updateStoredBankAccountsWithAgreements(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount,agreementNumbers,agreementNumbers2))
+					.post("/api/v3/financial/updatestoredbankaccount")
+				.then()
+//					.log().body()
+					.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				
+				Assert.assertEquals(res.statusCode(), 500);
+				Assert.assertEquals(js.getInt("Status"), 500);
+				Assert.assertTrue(js.getString("Message").contains("Value cannot be null"));
 				
 	}
 	
@@ -290,7 +382,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -320,7 +412,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.updateStoredBankAccountsWithoutAgreement(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()

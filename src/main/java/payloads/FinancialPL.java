@@ -234,7 +234,7 @@ return payload;
 	return payload;
 }
 	
-	public static String updateStoredBankAccounts
+	public static String updateStoredBankAccountsWithoutAgreement
 	(String customerId,
 	String accountId,
 	String bankAccountNumber,
@@ -256,7 +256,67 @@ return payload;
 			+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\"\r\n"
 			+ "}";
 	
-return payload;
-}
+		return payload;
+	}
+	
+	public static String updateStoredBankAccountsWithAgreement
+	(String customerId,
+	String accountId,
+	String bankAccountNumber,
+	String bankRoutingNumber,
+	String accountHolderName,
+	String bankAccountType,
+	String isBusinessAccount,
+	String setAsHouseAccount,
+	String agreementNumbers
+	) {
+	
+	String payload = "{\r\n"
+			+ "  \"CustomerId\": "+customerId+",\r\n"
+			+ "  \"AccountId\": \""+accountId+"\",\r\n"
+			+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+			+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+			+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+			+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+			+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+			+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\",\r\n"
+			+ "  \"AgreementNumbers\": [\r\n"
+			+ "   \""+agreementNumbers+"\"\r\n"
+			+ "  ]\r\n"
+			+ "}";
+	
+		return payload;
+	}
 
+	public static String updateStoredBankAccountsWithAgreements
+	(String customerId,
+	String accountId,
+	String bankAccountNumber,
+	String bankRoutingNumber,
+	String accountHolderName,
+	String bankAccountType,
+	String isBusinessAccount,
+	String setAsHouseAccount,
+	String agreementNumbers,
+	String agreementNumbers2
+	) {
+	
+	String payload = "{\r\n"
+			+ "  \"CustomerId\": "+customerId+",\r\n"
+			+ "  \"AccountId\": \""+accountId+"\",\r\n"
+			+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+			+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+			+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+			+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+			+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+			+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\",\r\n"
+			+ "  \"AgreementNumbers\": [\r\n"
+			+ "   \""+agreementNumbers+"\",\r\n"
+			+ "   \""+agreementNumbers2+"\"\r\n"
+			+ "  ]\r\n"
+			+ "}";
+	
+		return payload;
+	}
+	
 }
