@@ -45,11 +45,13 @@ public class AddStoredBankAccount extends base {
 		bankAccountType = "Checking";
 		isBusinessAccount = "false";
 		setAsHouseAccount = "false";
-		agreementNumbersToUpdateToThisFOP = "AA573";
+		agreementNumbersToUpdateToThisFOP = prop.getProperty("agreementToAddUpdate");
 	}
 	
 	@Test (testName="Add Checking Account", description="PBI:180170")
 	public void addCheckingAccount() {
+		
+		//String customerId = prop.getProperty("MultipleAgreementWithSingleBankAccountId");
 
 		Response res = 
 				
