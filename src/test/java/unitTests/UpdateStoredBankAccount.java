@@ -280,6 +280,8 @@ public class UpdateStoredBankAccount extends base {
 	
 	@Test (testName="Update Agreement", description="PBI:180171")
 	public void updateAgreement() {
+		
+		String customerId = "5624";
 
 		Response res = 
 				
@@ -309,6 +311,8 @@ public class UpdateStoredBankAccount extends base {
 	
 	@Test (testName="Update Agreements", description="PBI:180171")
 	public void updateAgreements() {
+		
+		String customerId = "5624";
 
 		Response res = 
 				
