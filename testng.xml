@@ -5,8 +5,8 @@
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
 			<class name="functionalTests.ScheduleAppointment" />
-			<class name="unitTests.AddCardOnFileByMember" />
-			<class name="unitTests.AddStoredBankAccount" />			
+			<!-- class name="unitTests.AddCardOnFileByMember" />
+			<class name="unitTests.AddStoredBankAccount" /-->			
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
 			<class name="unitTests.BookAppointmentByEmployee" />
 			<class name="unitTests.BookAppointmentByMember" />
