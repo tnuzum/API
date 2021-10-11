@@ -60,6 +60,75 @@ public class GetCustomers extends base{
 				.get("/api/v3/member/getcustomers?ClubId="+clubId+"&ActiveOnly="+activeOnly+"")
 			.then()
 //				.log().body()
+				.body("Customers[0]", hasKey("Address1"))
+	       		.body("Customers[0]", hasKey("Address2"))
+	       		.body("Customers[0]", hasKey("AllowCharges"))
+	       		.body("Customers[0]", hasKey("BarcodeId"))
+	       		.body("Customers[0]", hasKey("CellPhone"))
+	       		.body("Customers[0]", hasKey("City"))
+	       		.body("Customers[0]", hasKey("CreditLimit"))
+	       		.body("Customers[0]", hasKey("CurrentBalance"))
+	       		.body("Customers[0]", hasKey("DataExchangeID"))
+	       		.body("Customers[0]", hasKey("DateOfBirth"))
+	       		.body("Customers[0]", hasKey("DisplayName"))
+	       		.body("Customers[0]", hasKey("Email"))
+	       		.body("Customers[0]", hasKey("EmailContactConsent"))
+	       		.body("Customers[0]", hasKey("EmergencyContact"))
+	       		.body("Customers[0]", hasKey("EmergencyPhone"))
+	       		.body("Customers[0]", hasKey("Employer"))
+	       		.body("Customers[0]", hasKey("FirstName"))
+	       		.body("Customers[0]", hasKey("Gender"))
+	       		.body("Customers[0]", hasKey("GroupName"))
+	       		.body("Customers[0]", hasKey("GroupNumber"))
+	       		.body("Customers[0]", hasKey("HomeClubName"))
+	       		.body("Customers[0]", hasKey("HomeClubNumber"))
+	       		.body("Customers[0]", hasKey("HomePhoneContactConsent"))
+	       		.body("Customers[0]", hasKey("Id"))
+	       		.body("Customers[0]", hasKey("Interests"))
+	       		.body("Customers[0]", hasKey("JoinDate"))
+	       		.body("Customers[0]", hasKey("Last30DaysCheckinCount"))
+	       		.body("Customers[0]", hasKey("Last90DaysCheckinCount"))
+	       		.body("Customers[0]", hasKey("LastName"))
+	       		.body("Customers[0]", hasKey("LastVisitDate"))
+	       		.body("Customers[0]", hasKey("MaritalStatus"))
+	       		.body("Customers[0]", hasKey("MarketingSourceDescription"))
+	       		.body("Customers[0]", hasKey("MarketingSourceID"))
+	       		.body("Customers[0]", hasKey("MemberType"))
+	       		.body("Customers[0]", hasKey("MembershipExpires"))
+	       		.body("Customers[0]", hasKey("MembershipType"))
+	       		.body("Customers[0]", hasKey("MiddleInitial"))
+	       		.body("Customers[0]", hasKey("MobilePhoneContactConsent"))
+	       		.body("Customers[0]", hasKey("PreferredPhone"))
+	       		.body("Customers[0]", hasKey("ReferringCustomerId"))
+	       		.body("Customers[0]", hasKey("SalespersonID"))
+	       		.body("Customers[0]", hasKey("SalespersonName"))
+	       		.body("Customers[0]", hasKey("SourceID"))
+	       		.body("Customers[0]", hasKey("State"))
+	       		.body("Customers[0]", hasKey("Status"))
+	       		.body("Customers[0]", hasKey("StatusDate"))
+	       		.body("Customers[0]", hasKey("StatusID"))
+	       		.body("Customers[0]", hasKey("StatusReason"))
+	       		.body("Customers[0]", hasKey("Title"))
+	       		.body("Customers[0]", hasKey("Title"))
+	       		.body("Customers[0]", hasKey("UserEntry1"))
+	       		.body("Customers[0]", hasKey("UserEntry2"))
+	       		.body("Customers[0]", hasKey("UserEntry3"))
+	       		.body("Customers[0]", hasKey("UserEntry4"))
+	       		.body("Customers[0]", hasKey("UserEntry5"))
+	       		.body("Customers[0]", hasKey("UserEntry6"))
+	       		.body("Customers[0]", hasKey("UserEntry7"))
+	       		.body("Customers[0]", hasKey("UserEntry8"))
+	       		.body("Customers[0]", hasKey("UserEntry9"))
+	       		.body("Customers[0]", hasKey("UserEntry10"))
+	       		.body("Customers[0]", hasKey("UserEntry11"))
+	       		.body("Customers[0]", hasKey("UserEntry12"))
+	       		.body("Customers[0]", hasKey("UserEntry13"))
+	       		.body("Customers[0]", hasKey("UserEntry14"))
+	       		.body("Customers[0]", hasKey("UserEntry15"))
+	       		.body("Customers[0]", hasKey("UserEntry16"))
+	       		.body("Customers[0]", hasKey("WorkPhone"))
+	       		.body("Customers[0]", hasKey("WorkPhoneContactConsent"))
+	       		.body("Customers[0]", hasKey("ZipCode"))
 				.statusCode(200)
 				.extract().response();
 		 
@@ -145,7 +214,7 @@ public class GetCustomers extends base{
 	public void allParameters() {
 		
 		ReusableMethods.setLastUpdateDateToday(aPIKey, companyId, clubId, customerId);
-
+		
 		Response res =  given()
 //				.log().all()
 				.header("accept", "application/json")
@@ -255,7 +324,6 @@ public class GetCustomers extends base{
 			    .body("Message", equalTo("No results returned."));
 	}
 	
-	
 	@Test  (testName="Page Size", description="User Story:182454")
 	public void pageSize() {
 		
@@ -283,7 +351,7 @@ public class GetCustomers extends base{
 	       		Assert.assertTrue(js.getInt("PagingInfo.TotalRecords") > 0);
 			    
 	}
-	
+
 	
 	@Test  (testName="Page Count", description="User Story:182454")
 	public void pageCount() {
