@@ -3,7 +3,6 @@
 <suite name="CompeteAPI v3">
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
-			<class name="utilities._preTestAnnouncement" />
 			<class name="functionalTests.ScheduleAppointment" />
 			<!-- class name="unitTests.AddCardOnFileByMember" />
 			<class name="unitTests.AddStoredBankAccount" /-->			
