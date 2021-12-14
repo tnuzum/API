@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CompeteAPI v3">
+		<test thread-count="5" name="API - Continuous Integration">
+		<classes>
+			<class name="utilities._preTestAnnouncement" />		
+			<class name="unitTests.AuthenticateMemberByUserCredentials" />
+			<class name="unitTests.GetActiveClubs" />
+			<class name="unitTests.GetEmployees" />
+			<class name="unitTests.SearchMembers" />
+			<!-- class name="unitTests.CLASSNAME">
+				<methods>
+				<exclude name="METHODNAME"/>
+				</methods>
+			</class-->			
+		</classes>
+	</test>
+</suite>

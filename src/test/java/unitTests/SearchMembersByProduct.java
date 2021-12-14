@@ -92,7 +92,7 @@ public class SearchMembersByProduct extends base{
 		
 		String associatedClub = prop.getProperty("club1Id");
 		String trainingId = prop.getProperty("selectableResourceTrainingId");
-		String lName = prop.getProperty("LastName");
+		String lName = prop.getProperty("memberSearchLName2");
 
 				given()
 //				.log().all()

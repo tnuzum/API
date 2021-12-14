@@ -5,7 +5,8 @@
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
 			<class name="functionalTests.ScheduleAppointment" />
-			<class name="unitTests.AddCardOnFileByMember" />
+			<!-- class name="unitTests.AddCardOnFileByMember" />
+			<class name="unitTests.AddStoredBankAccount" /-->			
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
 			<class name="unitTests.BookAppointmentByEmployee" />
 			<class name="unitTests.BookAppointmentByMember" />
@@ -47,6 +48,7 @@
 			<class name="unitTests.GetClubsByMember" />
 			<class name="unitTests.GetClassDetailsByMember" />
 			<class name="unitTests.GetCourseDetailsByMember" />
+			<class name="unitTests.GetCustomers" />
 			<class name="unitTests.GetDeclineDetailsByMember" />
 			<class name="unitTests.GetDelinquentMembers" />
 			<class name="unitTests.GetEmployees" />
@@ -68,6 +70,7 @@
 			<class name="unitTests.GetPurchasedPackagesByMember" />
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
+			<class name="unitTests.GetStoredBankAccount" />
 			<class name="unitTests.ModifyCardOnFileByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
@@ -80,6 +83,7 @@
 			<class name="unitTests.TakePaymentWithNewCreditCard" />
 			<class name="unitTests.TakePaymentWithCardOnFileForMember" />
 			<class name="unitTests.UpdatePersonalInformation" />
+			<class name="unitTests.UpdateStoredBankAccount" />	
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
 			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
 			<class name="unitTests.VerifyPackagePurchaseCapability" />

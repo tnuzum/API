@@ -182,6 +182,58 @@ return payload;
 		
 	return payload;
 }
-		
 
+	
+	public static String addStoredBankAccounts
+		(String customerId,
+		String bankAccountNumber,
+		String bankRoutingNumber,
+		String accountHolderName,
+		String bankAccountType,
+		String isBusinessAccount,
+		String setAsHouseAccount,
+		String updateActiveAgreements
+		) {
+		
+		String payload = "{\r\n"
+				+ "  \"CustomerId\": "+customerId+",\r\n"
+				+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SetAsHouseAccount\": "+setAsHouseAccount+",\r\n"
+				+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
+				+ "}";
+		
+	return payload;
+	}
+	
+	public static String updateStoredBankAccounts
+		(String customerId,
+		String accountId,
+		String bankAccountNumber,
+		String bankRoutingNumber,
+		String accountHolderName,
+		String bankAccountType,
+		String isBusinessAccount,
+		String setAsHouseAccount,
+		String updateActiveAgreements
+		) {
+		
+		String payload = "{\r\n"
+				+ "  \"CustomerId\": "+customerId+",\r\n"
+				+ "  \"AccountId\": \""+accountId+"\",\r\n"
+				+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\",\r\n"
+				+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
+				+ "}";
+		
+			return payload;
+		}
+	
 }

@@ -7,6 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
+import payloads.ChangeRequestPL;
 
 public class ReusableMethods extends base {
 	
@@ -303,5 +304,48 @@ public class ReusableMethods extends base {
 		
 		return methodName;
 		
+	}
+	
+	public static JsonPath getStoredAccountsResponse(String aPIKey, String companyId, String clubId, String customerId) {
+		
+		Response res =
+
+		given()
+			.header("accept", "application/json")
+			.header("X-Api-Key", aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/financial/getstoredbankaccounts?customerId="+customerId)
+		.then()
+//			.log().all() // Show entire response in console
+			.extract().response();
+		
+		JsonPath js = rawToJson(res);
+		
+		return js;
+		
+	}
+
+	public static void setLastUpdateDateToday(String aPIKey, String companyId, String clubId, String customerId) {
+		
+		String fieldName = "Address2";
+		String newValue = "Apt. B";
+		String familyMemberCustomerIds = "";
+		String submissionReasonDetail = "Test Submission Reason Details";
+		String submissionReason = prop.getProperty("submissionReason");
+		String signature = "null";
+		
+		// Change Request API is sent to set lastUpdateDate to today
+			given()
+		//		.log().all()
+				.header("X-Api-Key",aPIKey)
+				.header("X-CompanyId", companyId)
+				.header("X-ClubId", clubId)
+				.header("Content-Type", "application/json")
+			.when()
+				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
+				.post("/api/v3/changerequest/updatepersonalinformation").
+			then();
 	}
 }
