@@ -44,7 +44,7 @@ public class GetCustomers extends base{
 		page = 1;
 		pageSize = 50;
 		
-		customerId = prop.getProperty("changeId");
+		customerId = prop.getProperty("passwordChangeId");
 	}
 	
 	@Test  (testName="Required Fields Only", description="User Story:182454")
