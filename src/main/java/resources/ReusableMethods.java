@@ -338,7 +338,7 @@ public class ReusableMethods extends base {
 		
 		// Change Request API is sent to set lastUpdateDate to today
 			given()
-		//		.log().all()
+//				.log().all()
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
@@ -346,6 +346,8 @@ public class ReusableMethods extends base {
 			.when()
 				.body(ChangeRequestPL.updatePersonalInformation(familyMemberCustomerIds, customerId, fieldName, newValue, submissionReason, submissionReasonDetail, signature))
 				.post("/api/v3/changerequest/updatepersonalinformation").
-			then();
+			then()
+//				.log().body()
+			;
 	}
 }
