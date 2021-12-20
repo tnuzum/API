@@ -45,6 +45,7 @@ public class GetMemberToken extends base {
 				.header("Content-Type", "application/json")
 			.when()
 				.body(MemberPL.getMemberToken(barcodeId, expirationTimeSpan))
+				.log().all()
 				.post("/api/v3/member/getcustomertoken").
 			then()
 //				.log().all()
