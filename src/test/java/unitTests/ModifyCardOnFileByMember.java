@@ -674,7 +674,7 @@ public class ModifyCardOnFileByMember extends base {
 	public void noChangeToExistingCard() {
 		
 			String cardNumber = prop.getProperty("changeCCMember1AccountNumber");
-			String accountId = "1";
+			String accountId = "8";
 
 			Response res2 = 
 					
@@ -702,7 +702,7 @@ public class ModifyCardOnFileByMember extends base {
 				JsonPath js2 = ReusableMethods.rawToJson(res2);
 
 				Assert.assertTrue(js2.getString("Status").equals("204"));
-				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '244', account '1'"));
+				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '"+customerId+"', account '"+accountId+"'"));
 	}
 	
 	
