@@ -49,7 +49,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
-				int accountId = 1;
+				int accountId = 11;
 				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
@@ -65,7 +65,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 					.body(ClassCoursePL.EnrollMemberInClassWithCardOnFile(customerId,classId,classOccurrence, displayedGrandTotal,accountId,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberinclasswithcardonfile")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result.Enrolled", equalTo(true))
