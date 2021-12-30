@@ -360,7 +360,7 @@ public class ModifyCardOnFileByMember extends base {
 
 		Response res = 
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -370,7 +370,7 @@ public class ModifyCardOnFileByMember extends base {
 				.body(MemberPL.modifyCardOnFileByMemberAllFields(accountId,customerId,cardNumber,expirationMonth,expirationYear,cardHolderName,addressIsSameAsMemberAddress,addressLine1,addressLine2,city,stateProvince,postalCode,useInPos,setAsHouseAccount))
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat().statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
@@ -638,11 +638,12 @@ public class ModifyCardOnFileByMember extends base {
 			JsonPath js = ReusableMethods.rawToJson(res);
 			String addressIsSameAsMemberAddress = "false";
 			String addressLine1 = js.getString("Result[0].Address.AddressLine1");
+			String accountId = "8";
 
 			Response res2 = 
 					
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -659,7 +660,7 @@ public class ModifyCardOnFileByMember extends base {
 						"}")
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat().statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
@@ -667,7 +668,7 @@ public class ModifyCardOnFileByMember extends base {
 				JsonPath js2 = ReusableMethods.rawToJson(res2);
 
 				Assert.assertTrue(js2.getString("Status").equals("204"));
-				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '244', account '1'"));
+				Assert.assertTrue(js2.getString("Message").equals("No changes to existing values were identified for customer '"+customerId+"', account '"+accountId+"'"));
 	}
 	
 	@Test (testName="No Change To Existing Card", description="PBI:164154", priority = 8)
