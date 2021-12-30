@@ -50,7 +50,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -266,6 +266,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	public void taxedItem() {
  
 				String customerId = prop.getProperty("availableId");
+				int accountId = 11;
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 5;
 				String dgt = prop.getProperty("taxSingleTPrice");
@@ -284,18 +285,18 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+			.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
 				.body("Result", equalTo("Success"));				
 	}
 	
-	@Test (testName="Multiple Cards On File - AccountId 1",description="PBI:143542")
-	public void multipleCardsOnFileAccountId1() {
+	@Test (testName="Multiple Cards On File - Primary Card",description="PBI:143542")
+	public void multipleCardsOnFilePrimaryCard() {
  
 				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
 				String itemId = prop.getProperty("paidTId");
@@ -303,7 +304,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				String dgt = prop.getProperty("paidTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				double calcGrandTotal = (displayedGrandTotal * quantity);
-				int accountId = 1;
+				int accountId = 3;
 				
 			given()
 //				.log().all()
@@ -323,8 +324,8 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body("Result", equalTo("Success"));		
 	}
 	
-	@Test (testName="Multiple Cards On File - AccountId 2",description="PBI:143542")
-	public void multipleCardsOnFileAccountId2() {
+	@Test (testName="Multiple Cards On File - Secondary Card",description="PBI:143542")
+	public void multipleCardsOnFileSecondaryCard() {
  
 				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
 				String itemId = prop.getProperty("paidTId");
@@ -332,7 +333,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				String dgt = prop.getProperty("paidTPrice");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				double calcGrandTotal = (displayedGrandTotal * quantity);
-				int accountId = 2;
+				int accountId = 4;
 				
 			given()
 //				.log().all()
@@ -377,7 +378,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143542")
@@ -447,21 +448,21 @@ public class PurchasePackageWithCardOnFile extends base{
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143542", enabled = true)
@@ -475,14 +476,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				double calcGrandTotal = (displayedGrandTotal * quantity);
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -496,6 +497,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	public void frozenMember() {
  
 				String customerId = prop.getProperty("frozenId");
+				int accountId = 2;
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
@@ -538,14 +540,14 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));				
+				.body("Message", containsString("Sequence contains no elements"));				
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143542", enabled = true)
@@ -573,7 +575,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143542")
@@ -594,10 +596,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+			.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -622,7 +624,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().body()
@@ -714,7 +716,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 //				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
+				.body("Message", containsString("The creator of this fault did not specify a Reason."));
 	}	
 	
 	
