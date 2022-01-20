@@ -16,7 +16,35 @@ public class base {
 
 		prop = new Properties();
 		FileInputStream fis = null;
+		
+		if (environment.equals("AWS-QA")) {
+			try {
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/AWS-QA.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				prop.load(fis);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
+		}
+		
+		if (environment.equals("AWS-QA-future")) {
+			try {
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/AWS-QA-future.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				prop.load(fis);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
 		if (environment.equals("FUTURE")) {
 			try {
 				fis = new FileInputStream(projectPath + "/src/main/java/resources/future.properties");

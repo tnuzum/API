@@ -5,9 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 
 import java.util.concurrent.TimeUnit;
@@ -445,7 +443,8 @@ public class SearchOnlineMembersByProduct extends base {
 //						.log().body()
 						.assertThat().statusCode(500)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", startsWith("Internal server error - "))
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:139723", enabled = true)

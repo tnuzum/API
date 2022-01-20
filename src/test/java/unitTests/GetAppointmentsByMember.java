@@ -2,7 +2,7 @@ package unitTests;
 
 import static io.restassured.RestAssured.given;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;

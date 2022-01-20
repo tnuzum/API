@@ -5,10 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -471,7 +468,8 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 //						.log().body()
 						// this returns "Sequence contains no elements" because there is no card on file
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", startsWith("Internal server error - "))
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 }

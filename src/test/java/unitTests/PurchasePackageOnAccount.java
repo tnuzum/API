@@ -199,7 +199,7 @@ public class PurchasePackageOnAccount extends base{
 				double calcGrandTotal = (calcTotal + calcTaxTotal);
 				
 			given()
-				//.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
@@ -207,7 +207,7 @@ public class PurchasePackageOnAccount extends base{
 			.when()
 				.get("/api/v3/package/purchasepackageonaccount/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
 			.then()
-				//.log().body()
+//				.log().body()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -669,7 +669,10 @@ public class PurchasePackageOnAccount extends base{
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
-				.body("Message", equalTo("InvoiceError - Sequence contains no elements"));
+                .body("Message", startsWith("InvoiceError - "))
+					// this message has been fixed in a more recent Compete build; changing temporarily 
+				//.body("Message", containsString("Sequence contains no elements"));
+				.body("Message", containsString("The creator of this fault did not specify a Reason"));
 				;
 	}
 	
@@ -697,7 +700,8 @@ public class PurchasePackageOnAccount extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 //				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
+				.body("Message", startsWith("InvoiceError - "))
+				.body("Message", containsString("The creator of this fault did not specify a Reason"));
 	}	
 	
 	

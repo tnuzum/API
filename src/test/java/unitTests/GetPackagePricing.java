@@ -5,10 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -472,7 +469,9 @@ public class GetPackagePricing extends base {
 						.then()
 //						.log().body()
 						.assertThat().statusCode(500)
+						.body("Message", startsWith("Internal server error - "))
 						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						//.body("Message", containsString("The creator of this fault did not specify a Reason"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:155660")
@@ -517,7 +516,8 @@ public class GetPackagePricing extends base {
 //						.assertThat().statusCode(400)
 //						.body("Message", equalTo("Missing quantity configuration"));
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
+						.body("Message", startsWith("Internal server error - "))
+						.body("Message", containsString("The creator of this fault did not specify a Reason"));
 	}
 
 	
@@ -649,7 +649,8 @@ public class GetPackagePricing extends base {
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Status", equalTo(500))
 //						.body("Message", equalTo("Missing quantity configuration"));
-						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
+						.body("Message", startsWith("Internal server error - "))
+						.body("Message", containsString("The creator of this fault did not specify a Reason"));
 	}
 	
 }
