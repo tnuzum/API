@@ -103,7 +103,7 @@ public class GetClassCoursePricing extends base {
 						.extract().response();
 						
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 11.31);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 11.3);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 1.3);

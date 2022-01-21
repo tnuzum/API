@@ -470,8 +470,8 @@ public class GetPackagePricing extends base {
 //						.log().body()
 						.assertThat().statusCode(500)
 						.body("Message", startsWith("Internal server error - "))
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
-						//.body("Message", containsString("The creator of this fault did not specify a Reason"));
+						//.body("Message", containsString("Sequence contains no elements"));
+						.body("Message", containsString("The creator of this fault did not specify a Reason"));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:155660")

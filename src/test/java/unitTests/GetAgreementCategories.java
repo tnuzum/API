@@ -79,7 +79,7 @@ public class GetAgreementCategories extends base {
 						Assert.assertNotNull(js.getString("Result[0].Description"));
 						
 					if (valueAssertions.equals("true")) {
-							// Note: this response is in Alphabetical Order by Description
+							
 						Assert.assertEquals(agreementCategory1Id, js.getString("Result[0].Id"));
 						Assert.assertEquals(agreementCategory1Description, js.getString("Result[0].Description"));
 						Assert.assertEquals(agreementCategory2Id, js.getString("Result[1].Id"));
@@ -88,10 +88,10 @@ public class GetAgreementCategories extends base {
 						Assert.assertEquals(agreementCategory3Description, js.getString("Result[2].Description"));
 						Assert.assertEquals(agreementCategory4Id, js.getString("Result[3].Id"));
 						Assert.assertEquals(agreementCategory4Description, js.getString("Result[3].Description"));
-						Assert.assertEquals(agreementCategory5Id, js.getString("Result[5].Id"));
-						Assert.assertEquals(agreementCategory5Description, js.getString("Result[5].Description"));
-						Assert.assertEquals(agreementCategory6Id, js.getString("Result[4].Id"));
-						Assert.assertEquals(agreementCategory6Description, js.getString("Result[4].Description"));
+						Assert.assertEquals(agreementCategory5Id, js.getString("Result[4].Id"));
+						Assert.assertEquals(agreementCategory5Description, js.getString("Result[4].Description"));
+						Assert.assertEquals(agreementCategory6Id, js.getString("Result[5].Id"));
+						Assert.assertEquals(agreementCategory6Description, js.getString("Result[5].Description"));
 						}			
 
 	}		

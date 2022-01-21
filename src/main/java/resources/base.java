@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class base {
 
-	static String environment = "FUTURE2";
+	static String environment = "AWS-QA";
 
 	public static Properties prop = new Properties();
 	static String projectPath = System.getProperty("user.dir");
