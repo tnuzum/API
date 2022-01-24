@@ -15,7 +15,7 @@
 			<class name="unitTests.CreateMember" />
 			<class name="unitTests.CreateMemberNotes" />
 			<class name="unitTests.CSIPayGateway" />
-			<!--class name="unitTests.EnrollMemberInClassOnAccount" />
+			<class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInCourseWithCardOnFile" />
@@ -24,7 +24,7 @@
 			<class name="unitTests.EnrollMemberInClassWithPunchcard" />
 			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
-			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" /-->
+			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetAccountBalanceDetailsByMember" />
 			<class name="unitTests.GetActiveBooksByResourceType" />
 			<class name="unitTests.GetActiveClubs" />
@@ -71,7 +71,7 @@
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
 			<class name="unitTests.GetStoredBankAccount" />
-			<!--class name="unitTests.ModifyCardOnFileByMember" /-->
+			<class name="unitTests.ModifyCardOnFileByMember" />
 			<class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.PurchasePackageWithCardOnFile" />
