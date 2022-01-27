@@ -4,17 +4,17 @@
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
 			<class name="utilities._preTestAnnouncement" />
-			<class name="functionalTests.ScheduleAppointment" />
+			<!--class name="functionalTests.ScheduleAppointment" /-->
 			<!-- class name="unitTests.AddCardOnFileByMember" />
 			<class name="unitTests.AddStoredBankAccount" /-->			
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
-			<class name="unitTests.BookAppointmentByEmployee" />
-			<class name="unitTests.BookAppointmentByMember" />
+			<!--class name="unitTests.BookAppointmentByEmployee" />
+			<class name="unitTests.BookAppointmentByMember" /-->
 			<class name="unitTests.CancelAppointmentByEmployee" />
 			<class name="unitTests.CancelAppointmentByMember" />
 			<!--class name="unitTests.CreateMember" /-->
 			<class name="unitTests.CreateMemberNotes" />
-			<class name="unitTests.CSIPayGateway" />
+			<!--class name="unitTests.CSIPayGateway" /-->
 			<!--class name="unitTests.EnrollMemberInClassOnAccount" />
 			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
@@ -71,7 +71,7 @@
 			<class name="unitTests.GetScheduleByBook" />
 			<class name="unitTests.GetScheduleByMember" />
 			<class name="unitTests.GetStoredBankAccount" />
-			<class name="unitTests.ModifyCardOnFileByMember" />
+			<!--class name="unitTests.ModifyCardOnFileByMember" /-->
 			<!--class name="unitTests.PurchasePackageOnAccount" />
 			<class name="unitTests.PurchasePackageWithNewCreditCard" />
 			<class name="unitTests.PurchasePackageWithCardOnFile" /-->
