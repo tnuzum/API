@@ -110,6 +110,17 @@ public class ReusableDates {
 		return dateFormat.format(currentDatePlusOneDay);	
 	}
 	
+	public static String getCurrentDateMinusXDays(int dayCount) {
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		Calendar c = Calendar.getInstance();
+	    c.setTime(currentDate);
+	    c.add(Calendar.DATE, -dayCount);
+	    Date currentDatePlusOneDay = c.getTime();
+		return dateFormat.format(currentDatePlusOneDay);	
+	}
+	
 	public static String getCurrentDateMinusXYears(int yearCount) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
