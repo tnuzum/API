@@ -51,7 +51,7 @@ public class GetCustomers extends base{
 	public void requiredFieldsOnly() {
 
 		 Response res =  given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -59,7 +59,7 @@ public class GetCustomers extends base{
 			.when()
 				.get("/api/v3/member/getcustomers?ClubId="+clubId+"&ActiveOnly="+activeOnly+"")
 			.then()
-				.log().body()
+//				.log().body()
 				.body("Customers[0]", hasKey("Address1"))
 	       		.body("Customers[0]", hasKey("Address2"))
 	       		.body("Customers[0]", hasKey("AllowCharges"))
