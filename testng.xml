@@ -58,6 +58,7 @@
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
 			<class name="unitTests.GetMemberActions" />	
+			<!--class name="unitTests.GetMembershipPlans" /-->
 			<class name="unitTests.GetMemberToken" />
 			<class name="unitTests.GetMembersWithOutstandingInvoices" />
 			<class name="unitTests.GetMembersWithPastDueBalances" />
