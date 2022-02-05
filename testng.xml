@@ -83,6 +83,7 @@
 			<class name="unitTests.TakePaymentWithNewCreditCard" />
 			<class name="unitTests.TakePaymentWithCardOnFileForMember" />
 			<class name="unitTests.UpdatePersonalInformation" />
+			<class name="unitTests.UpdatePersonalInformationInClubWithNoStations" />
 			<class name="unitTests.UpdateStoredBankAccount" />	
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
 			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
