@@ -36,6 +36,8 @@ public class VerifyClassEnrollmentCapability extends base{
 					.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 						.get("/api/v3/enrollmentcapability/verifyclassenrollmentcapability/"+companyId+"/"+clubId+"/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+onlineEnrollment)
-					.then().log().body();
+					.then()
+//					.log().body()
+					;
 	}
 }

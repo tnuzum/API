@@ -330,7 +330,7 @@ public class ReusableMethods extends base {
 	public static void setLastUpdateDateToday(String aPIKey, String companyId, String clubId, String customerId) {
 		
 		String fieldName = "Address2";
-		String newValue = "Apt. B";
+		String newValue = "Apt. C";
 		String familyMemberCustomerIds = "";
 		String submissionReasonDetail = "Test Submission Reason Details";
 		String submissionReason = prop.getProperty("submissionReason");
