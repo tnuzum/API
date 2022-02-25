@@ -190,7 +190,7 @@ return payload;
 		String bankRoutingNumber,
 		String accountHolderName,
 		String bankAccountType,
-		String isBusinessAccount,
+		int SecCode,
 		String setAsHouseAccount,
 		String updateActiveAgreements
 		) {
@@ -201,13 +201,36 @@ return payload;
 				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
 				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
 				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
-				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SECCode\": "+SecCode+",\r\n"
 				+ "  \"SetAsHouseAccount\": "+setAsHouseAccount+",\r\n"
 				+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
 				+ "}";
 		
 	return payload;
 	}
+	
+	public static String addStoredBankAccountsNoSecCode
+	(String customerId,
+	String bankAccountNumber,
+	String bankRoutingNumber,
+	String accountHolderName,
+	String bankAccountType,
+	String setAsHouseAccount,
+	String updateActiveAgreements
+	) {
+	
+	String payload = "{\r\n"
+			+ "  \"CustomerId\": "+customerId+",\r\n"
+			+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+			+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+			+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+			+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+			+ "  \"SetAsHouseAccount\": "+setAsHouseAccount+",\r\n"
+			+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
+			+ "}";
+	
+return payload;
+}
 	
 	public static String updateStoredBankAccounts
 		(String customerId,
@@ -216,7 +239,7 @@ return payload;
 		String bankRoutingNumber,
 		String accountHolderName,
 		String bankAccountType,
-		String isBusinessAccount,
+		int SecCode,
 		String setAsHouseAccount,
 		String updateActiveAgreements
 		) {
@@ -228,12 +251,37 @@ return payload;
 				+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
 				+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
 				+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
-				+ "  \"IsBusinessAccount\": "+isBusinessAccount+",\r\n"
+				+ "  \"SECCode\": "+SecCode+",\r\n"
 				+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\",\r\n"
 				+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
 				+ "}";
 		
 			return payload;
 		}
+	
+	public static String updateStoredBankAccountsNoSecCode
+	(String customerId,
+	String accountId,
+	String bankAccountNumber,
+	String bankRoutingNumber,
+	String accountHolderName,
+	String bankAccountType,
+	String setAsHouseAccount,
+	String updateActiveAgreements
+	) {
+	
+	String payload = "{\r\n"
+			+ "  \"CustomerId\": "+customerId+",\r\n"
+			+ "  \"AccountId\": \""+accountId+"\",\r\n"
+			+ "  \"BankAccountNumber\": \""+bankAccountNumber+"\",\r\n"
+			+ "  \"BankRoutingNumber\": \""+bankRoutingNumber+"\",\r\n"
+			+ "  \"AccountHolderName\": \""+accountHolderName+"\",\r\n"
+			+ "  \"BankAccountType\": \""+bankAccountType+"\",\r\n"
+			+ "  \"SetAsHouseAccount\": \""+setAsHouseAccount+"\",\r\n"
+			+ "  \"UpdateActiveAgreements\": "+updateActiveAgreements+"\r\n"
+			+ "}";
+	
+		return payload;
+	}
 	
 }
