@@ -66,7 +66,7 @@ public class AddStoredBankAccount extends base {
 					.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,SecCode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
-//					.log().body()
+//				.log().body()
 					.extract().response();
 				
 				JsonPath js = ReusableMethods.rawToJson(res);
@@ -144,7 +144,7 @@ public class AddStoredBankAccount extends base {
 				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,SecCode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
-					.log().body()
+//					.log().body()
 					.extract().response();
 				
 				JsonPath js = ReusableMethods.rawToJson(res);
@@ -394,7 +394,7 @@ public class AddStoredBankAccount extends base {
 	}
 	
 	@Test (testName="When Invalid SecCode Sent then SecCode is set to 0", description="PBI:180170, 186201")
-	public void noinValidSecCodeSent() {
+	public void inValidSecCodeSent() {
 		
 		int SecCode = 5;
 		

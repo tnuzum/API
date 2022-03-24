@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import resources.base;
 
 public class GetStoredBankAccount extends base {
@@ -42,7 +43,7 @@ public class GetStoredBankAccount extends base {
 		
 				String member = prop.getProperty("checkingId");
 				String memberName = prop.getProperty("checkingName");
-
+			
 				given()
 //					.log().all()
 					.header("accept", "application/json")
@@ -352,6 +353,7 @@ public class GetStoredBankAccount extends base {
 	public void noBankAccount() {
 		
 				String member = prop.getProperty("noFOPId");
+						
 
 				given()
 //					.log().all()
