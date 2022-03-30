@@ -358,4 +358,33 @@ public class GetMembershipPlanDetails extends base {
 
 	}		
 }
+	
+	@Test (testName="Verify a messagere is turned when plan is not available at club",description="PBI: 179765 and PBI 185540")
+	public void planNotAvailableInClub() {
+		
+		clubId = "2";
+		
+		Response res = 
+
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key", APIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/agreement/getmembershipplandetails/"+planId+"?ClubId="+clubId+"&EffectiveDate="+effectiveDate+"")
+		
+		.then()
+//		.log().body()
+			.assertThat()
+			.statusCode(500)
+			.extract().response();
+		
+			JsonPath js = ReusableMethods.rawToJson(res);
+			
+			Assert.assertTrue(res.getTime() >= 60L);
+
+			Assert.assertTrue(js.getString("Message").equals("Internal server error - The remote server returned an unexpected response: (400) Bad Request."));
+}
 }
