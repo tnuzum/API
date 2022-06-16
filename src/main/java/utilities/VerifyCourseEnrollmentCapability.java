@@ -32,7 +32,7 @@ public class VerifyCourseEnrollmentCapability extends base {
 		String displayedGrandTotal = prop.getProperty("noWebCoPrice");
 
 		given()	
-			.log().all()
+//			.log().all()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
@@ -40,6 +40,8 @@ public class VerifyCourseEnrollmentCapability extends base {
 			.when()
 				.get("/api/v3/enrollmentcapability/verifycourseenrollmentcapability/" + companyId + "/" + clubId + "/"
 						+ customerId + "/" + courseId + "/" + displayedGrandTotal+ "/" + onlineEnrollment)
-				.then().log().body();
+				.then()
+				//.log().body()
+				;
 	}
 }

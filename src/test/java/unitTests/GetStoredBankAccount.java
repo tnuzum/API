@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import resources.base;
 
 public class GetStoredBankAccount extends base {
@@ -17,6 +18,8 @@ public class GetStoredBankAccount extends base {
 	static String bankName;
 	static String routingNumber;
 	static String truncatedAccountNumber;
+	static String agreementNumber;
+	static String agreementName;
 
 	@BeforeClass
 	public void getData() {
@@ -31,14 +34,16 @@ public class GetStoredBankAccount extends base {
 		bankName = prop.getProperty("bankName");
 		routingNumber = prop.getProperty("routingNumber");
 		truncatedAccountNumber = prop.getProperty("truncatedAccountNumber");
+		agreementNumber = prop.getProperty("agreementNumber");
+		agreementName = prop.getProperty("agreementName");
 	}
 	
-	@Test (testName="Checking Account", description="PBI:180172")
+	@Test (testName="Checking Account", description="PBI:180172 & 185567")
 	public void checkingAccount() {
 		
 				String member = prop.getProperty("checkingId");
 				String memberName = prop.getProperty("checkingName");
-
+			
 				given()
 //					.log().all()
 					.header("accept", "application/json")
@@ -66,8 +71,11 @@ public class GetStoredBankAccount extends base {
 						.body("Results[0].RoutingNumber.CurrentValue", equalTo(routingNumber))
 						.body("Results[0].RoutingNumber.PendingChange", equalTo(false))
 						.body("Results[0].TruncatedAccountNumber.CurrentValue", equalTo(truncatedAccountNumber))
-						.body("Results[0].TruncatedAccountNumber.PendingChange", equalTo(false));
-	}
+						.body("Results[0].TruncatedAccountNumber.PendingChange", equalTo(false))
+						.body("Results[0].AssignedAgreements[0].AgreementNumber", equalTo(agreementNumber))
+						.body("Results[0].AssignedAgreements[0].Description", equalTo(agreementName))
+						.body("Results[0].AssignedAgreements[0].PendingChange", equalTo(false));
+	}	
 	
 	@Test (testName="Savings Account", description="PBI:180172")
 	public void savingsAccount() {
@@ -345,6 +353,7 @@ public class GetStoredBankAccount extends base {
 	public void noBankAccount() {
 		
 				String member = prop.getProperty("noFOPId");
+						
 
 				given()
 //					.log().all()

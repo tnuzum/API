@@ -24,11 +24,13 @@ public class UpdateStoredBankAccount extends base {
 	static String bankRoutingNumber;
 	static String accountHolderName;
 	static String bankAccountType;
-	static String isBusinessAccount;
+	static int Seccode;
 	static String setAsHouseAccount;
 	static String agreementNumbers;
 	static String agreementNumbers2;
 	static String updateActiveAgreements;
+	static int n;
+	static int m;
 
 	@BeforeClass
 	public void getData() {
@@ -45,14 +47,14 @@ public class UpdateStoredBankAccount extends base {
 		bankAccountNumber = prop.getProperty("accountNumber");
 		accountHolderName = prop.getProperty("fullName");
 		bankAccountType = "Checking";
-		isBusinessAccount = "false";
+		Seccode = 1;
 		setAsHouseAccount = "";
 		agreementNumbers = prop.getProperty("agreementToAddUpdate");
 		agreementNumbers2 = prop.getProperty("agreementToAddUpdate2");
 		updateActiveAgreements = "false";
 	}
 	
-	@Test (testName="Update Checking Account", description="PBI:180171")
+	@Test (priority = 1, testName="Update Checking Account", description="PBI:180171, 186201, 186201")
 	public void updateCheckingAccount() {
 
 		Response res = 
@@ -65,7 +67,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+					.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -80,12 +82,24 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
-
-					Assert.assertTrue(storedAccountsResponse.getString("Results.BankAccountType.CurrentValue").contains(bankAccountType));
+					
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+							Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].BankAccountType.CurrentValue"), bankAccountType);
+							
+						}
+						
+					}
+				
 				
 	}
 	
-	@Test (testName="Update Savings Account", description="PBI:180171")
+	@Test (priority = 2, testName="Update Savings Account", description="PBI:180171, 186201")
 	public void updateSavingsAccount() {
 		
 		String bankAccountType = "Savings";
@@ -100,7 +114,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -115,14 +129,26 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertNull(js.getString("PendingConfirmationNumber"));
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+					
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+										
+							Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].BankAccountType.CurrentValue"), bankAccountType);
+						}
+					}
 
-					Assert.assertTrue(storedAccountsResponse.getString("Results.BankAccountType.CurrentValue").contains(bankAccountType));
+					
 	}
 	
-	@Test (testName="Update Business Account", description="PBI:180171")
-	public void updateBusinessAccount() {
+	@Test (priority = 3,testName="Update SecCode = Web", description="PBI:180171, 186201")
+	public void updateSecCodeToWeb() {
 		
-		String isBusinessAccount = "true";
+		int SecCode = 2;
 
 		Response res = 
 				
@@ -134,7 +160,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,SecCode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -150,10 +176,20 @@ public class UpdateStoredBankAccount extends base {
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
 
-					Assert.assertTrue(storedAccountsResponse.getString("Results.IsBusiness.CurrentValue").contains(isBusinessAccount));
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+										
+							Assert.assertEquals(storedAccountsResponse.getInt("Results["+m+"].SECCode.CurrentValue"),SecCode);
+						}
+					}
 	}
 	
-	@Test (testName="Update House Account", description="PBI:180171")
+	@Test (priority = 4,testName="Update House Account", description="PBI:180171, 186201")
 	public void updateHouseAccount() {
 		
 		String setAsHouseAccount = "true";
@@ -168,7 +204,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -184,10 +220,20 @@ public class UpdateStoredBankAccount extends base {
 					
 					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
 
-					Assert.assertTrue(storedAccountsResponse.getString("Results.IsHouseAccount.CurrentValue").contains(setAsHouseAccount));
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+										
+							Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].IsHouseAccount.CurrentValue"), setAsHouseAccount);
+						}
+					}
 	}
 
-	@Test (testName="Update Bank Account Number", description="PBI:180171")
+	@Test (priority = 5, testName="Update Bank Account Number", description="PBI:180171, 186201")
 	public void updateBankAccountNumber() {
 		
 		String bankAccountNumber = "4099999997";
@@ -202,7 +248,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -216,9 +262,22 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
+				JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+
+				n = storedAccountsResponse.getInt("Results.AccountId.size()");
+				
+				for (int i= 0; i<n; i++) {
+					
+					
+					if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+						
+						Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].TruncatedAccountNumber.CurrentValue"), "9997");
+					}
+				}
+				
 	}
 	
-	@Test (testName="Update Bank Routing Number", description="PBI:180171")
+	@Test (priority = 6, testName="Update Bank Routing Number", description="PBI:180171, 186201")
 	public void updateBankRoutingNumber() {
 		
 		String bankRoutingNumber = "067812345";
@@ -233,7 +292,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -247,9 +306,23 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
+				JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+
+				n = storedAccountsResponse.getInt("Results.AccountId.size()");
+				
+				for (int i= 0; i<n; i++) {
+					
+					
+					if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+						
+									
+						Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].RoutingNumber.CurrentValue"), "067812345");
+					}
+				}
+				
 	}
 	
-	@Test (testName="Update Account Holder Name", description="PBI:180171")
+	@Test (priority = 7, testName="Update Account Holder Name", description="PBI:180171, 186201")
 	public void updateAccountHolderName() {
 		
 		String accountHolderName = "John Doe";
@@ -264,7 +337,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -278,9 +351,23 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
+				JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+
+				n = storedAccountsResponse.getInt("Results.AccountId.size()");
+				
+				for (int i= 0; i<n; i++) {
+					
+					
+					if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+						
+									
+						Assert.assertEquals(storedAccountsResponse.getString("Results["+m+"].BillingName.CurrentValue"), "John Doe");
+					}
+				}
+				
 	}
 	
-	@Test (testName="Update Agreements", description="PBI:180171")
+	@Test (priority = 8, testName="Update Agreements", description="PBI:180171, 186201")
 	public void updateAgreements() {
 		
 		String updateActiveAgreements = "true";
@@ -296,7 +383,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -310,9 +397,23 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
+				JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+				
+				n = storedAccountsResponse.getInt("Results.AccountId.size()");
+				
+				for (int i= 0; i<n; i++) {
+					
+					
+					if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+						
+						Assert.assertNotNull(storedAccountsResponse.getString("Results["+m+"].AssignedAgreements[0].AgreementNumber"));
+				
+					}
+				}
+				
 	}
 	
-	@Test (testName="Update Agreements to AccountId 2", description="PBI:180171")
+	@Test (priority = 9, testName="Update Agreements to AccountId 2", description="PBI:180171, 186201")
 	public void updateAgreementsToAccountId2() {
 		
 		String accountId = "2";
@@ -329,7 +430,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -343,9 +444,25 @@ public class UpdateStoredBankAccount extends base {
 				Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
 				Assert.assertNull(js.getString("PendingConfirmationNumber"));
 				
+				JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+				
+				n = storedAccountsResponse.getInt("Results.AccountId.size()");
+				
+				for (int i= 0; i<n; i++) {
+					
+					
+					if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("2")){
+						
+						Assert.assertNotNull(storedAccountsResponse.getString("Results["+i+"].AssignedAgreements[0].AgreementNumber"));
+						
+					}
+					
+				}
+				
+				
 	}
 	
-	@Test (testName="No Form of Payment", description="PBI:180171")
+	@Test (priority = 10, testName="No Form of Payment", description="PBI:180171, 186201")
 	public void noFOP() {
 
 		String customerId = "247";
@@ -360,7 +477,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -374,7 +491,7 @@ public class UpdateStoredBankAccount extends base {
 				
 	}
 	
-	@Test (testName="Bank Not Found", description="PBI:180171")
+	@Test (priority = 11, testName="Bank Not Found", description="PBI:180171, 186201")
 	public void bankNotFound() {
 		
 		String bankRoutingNumber = "123456789";
@@ -389,7 +506,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/updatestoredbankaccount")
 				.then()
 //					.log().body()
@@ -403,7 +520,7 @@ public class UpdateStoredBankAccount extends base {
 				
 	}
 
-	@Test (testName="Customer Not Found", description="PBI:180171")
+	@Test (priority = 12, testName="Customer Not Found", description="PBI:180171, 186201")
 	public void customerNotFound() {
 		
 		String customerId = "999999";
@@ -419,7 +536,7 @@ public class UpdateStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,Seccode,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -432,6 +549,93 @@ public class UpdateStoredBankAccount extends base {
 					Assert.assertTrue(js.getString("Message").contains("Sequence contains no elements"));
 				
 	}
+	
+	@Test (priority = 13, testName="When no SecCode Sent then SecCode is set to 0", description="PBI:180171, 186201")
+	public void updateWithNoSecCode() {
+		
+		
+		Response res = 
+				
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+					.header("Content-Type", "application/json")
+				.when()
+				.body(FinancialPL.updateStoredBankAccountsNoSecCode(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,setAsHouseAccount, updateActiveAgreements))
+					.post("/api/v3/financial/updatestoredbankaccount")
+				.then()
+//					.log().body()
+					.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				
+					Assert.assertEquals(res.statusCode(), 200);
+					Assert.assertEquals(js.getInt("Status"), 200);
+					Assert.assertNull(js.getString("Messages"));
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
+					Assert.assertNull(js.getString("PendingConfirmationNumber"));
+					
+					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+					Assert.assertEquals(storedAccountsResponse.getInt("Results["+m+"].SECCode.CurrentValue"),0);
+						}
+					}
+	}
+	
+	@Test (priority = 14, testName="When invalid SecCode Sent then SecCode is set to 0", description="PBI:180171, 186201")
+	public void updateWithInvalidSecCode() {
+		
+		int SecCode = 5;
+
+		Response res = 
+				
+				given()
+//					.log().all()
+					.header("accept", "application/json")
+					.header("X-Api-Key", aPIKey)
+					.header("X-CompanyId", companyId)
+					.header("X-ClubId", clubId)
+					.header("Content-Type", "application/json")
+				.when()
+				.body(FinancialPL.updateStoredBankAccounts(customerId,accountId, bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,SecCode, setAsHouseAccount, updateActiveAgreements))
+					.post("/api/v3/financial/updatestoredbankaccount")
+				.then()
+//					.log().body()
+					.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+				
+					Assert.assertEquals(res.statusCode(), 200);
+					Assert.assertEquals(js.getInt("Status"), 200);
+					Assert.assertNull(js.getString("Messages"));
+					Assert.assertFalse(js.getString("AutoApprovedConfirmationNumbers").isBlank());
+					Assert.assertNull(js.getString("PendingConfirmationNumber"));
+					
+					JsonPath storedAccountsResponse = ReusableMethods.getStoredAccountsResponse(aPIKey, companyId, clubId, customerId);
+
+					n = storedAccountsResponse.getInt("Results.AccountId.size()");
+					
+					for (int i= 0; i<n; i++) {
+						
+						
+						if (storedAccountsResponse.getString("Results.AccountId.CurrentValue").equals("1")){
+							
+										
+					Assert.assertEquals(storedAccountsResponse.getInt("Results["+m+"].SECCode.CurrentValue"),0);
+						}
+					}
+	}
+	
 	
 
 }
