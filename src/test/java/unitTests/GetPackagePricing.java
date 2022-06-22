@@ -249,7 +249,7 @@ public class GetPackagePricing extends base {
 					.when()
 						.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
 						.then()
-						.log().body()
+//						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.CanPlaceOnAccount", equalTo(true))
 						.body("Result.PriceDetails[0].CorrelationId", not(nullValue()))
