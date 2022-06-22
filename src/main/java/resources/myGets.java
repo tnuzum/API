@@ -182,4 +182,41 @@ public class myGets extends base {
 			return res;	
 	}
 	
+	public static Response getPackagePrice(String aPIKey,String companyId,String clubId, String customerId, String itemId, int quantity) {
+		
+		Response res = 
+				
+		given()
+//			.log().all()
+			.header("accept", "application/json")
+			.header("X-Api-Key",aPIKey)
+			.header("X-CompanyId", companyId)
+			.header("X-ClubId", clubId)
+		.when()
+			.get("/api/v3/package/getpackagepricing/"+customerId+"/"+itemId+"/"+quantity)
+		.then()
+//			.log().body()
+			.extract().response();
+			
+			return res;	
+	}
+	
+	public static Response getClassCoursePricing(String aPIKey,String companyId,String clubId, String customerId, String courseId) {
+		
+		Response res = 
+				
+			given()
+//				.log().all()
+				.header("accept", prop.getProperty("accept"))
+				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
+				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
+				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+			.when()
+				.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+courseId)
+			.then()
+//				.log().body()
+				.extract().response();
+			
+			return res;	
+	}
 }

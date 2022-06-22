@@ -78,22 +78,21 @@ public class GetAgreementCategories extends base {
 						Assert.assertNotNull(js.getString("Result[0].Id"));
 						Assert.assertNotNull(js.getString("Result[0].Description"));
 						
-					if (valueAssertions.equals("true")) {
-							
-						Assert.assertEquals(agreementCategory1Id, js.getString("Result[0].Id"));
-						Assert.assertEquals(agreementCategory1Description, js.getString("Result[0].Description"));
-						Assert.assertEquals(agreementCategory2Id, js.getString("Result[1].Id"));
-						Assert.assertEquals(agreementCategory2Description, js.getString("Result[1].Description"));
-						Assert.assertEquals(agreementCategory3Id, js.getString("Result[2].Id"));
-						Assert.assertEquals(agreementCategory3Description, js.getString("Result[2].Description"));
-						Assert.assertEquals(agreementCategory4Id, js.getString("Result[3].Id"));
-						Assert.assertEquals(agreementCategory4Description, js.getString("Result[3].Description"));
-						Assert.assertEquals(agreementCategory5Id, js.getString("Result[4].Id"));
-						Assert.assertEquals(agreementCategory5Description, js.getString("Result[4].Description"));
-						Assert.assertEquals(agreementCategory6Id, js.getString("Result[5].Id"));
-						Assert.assertEquals(agreementCategory6Description, js.getString("Result[5].Description"));
-						}			
-
+						if (valueAssertions.equals("true")) {
+						
+						Assert.assertTrue(agreementCategory1Id.contains(js.getString("Result[0].Id")));
+						Assert.assertTrue(agreementCategory1Description.contains(js.getString("Result[0].Description")));
+						Assert.assertTrue(agreementCategory2Id.contains(js.getString("Result[1].Id")));
+						Assert.assertTrue(agreementCategory2Description.contains(js.getString("Result[1].Description")));
+						Assert.assertTrue(agreementCategory3Id.contains(js.getString("Result[2].Id")));
+						Assert.assertTrue(agreementCategory3Description.contains(js.getString("Result[2].Description")));
+						Assert.assertTrue(agreementCategory4Id.contains(js.getString("Result[3].Id")));
+						Assert.assertTrue(agreementCategory4Description.contains(js.getString("Result[3].Description")));
+						Assert.assertTrue(agreementCategory5Id.contains(js.getString("Result[4].Id")));
+						Assert.assertTrue(agreementCategory5Description.contains(js.getString("Result[4].Description")));
+						Assert.assertTrue(agreementCategory6Id.contains(js.getString("Result[5].Id")));
+						Assert.assertTrue(agreementCategory6Description.contains(js.getString("Result[5].Description")));		
+						}
 	}		
 	
 	@Test (testName="Inactive Club",description="PBI: 179763")

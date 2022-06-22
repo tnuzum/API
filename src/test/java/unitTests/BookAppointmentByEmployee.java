@@ -55,7 +55,7 @@ public class BookAppointmentByEmployee extends base {
 				.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 			.then()
-//				.log().body()
+//				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();

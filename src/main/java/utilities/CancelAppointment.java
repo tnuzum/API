@@ -17,10 +17,10 @@ public class CancelAppointment extends base {
 		RestAssured.baseURI = prop.getProperty("baseURI");
 	}
 
-	@Test (testName="ApptCancelled",description="PBI:141862")
+	@Test (testName="ApptCancelled")
 	public void ApptCancelled() { 
 		
-		int confirmationNumber = 108042;
+		int confirmationNumber = 129565;
 
 				given()
 //						.log().all()

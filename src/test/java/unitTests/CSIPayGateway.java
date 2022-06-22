@@ -160,7 +160,7 @@ public class CSIPayGateway extends base {
 	@Test (testName="Course Enrolled with New Card",description="CSIPay Gateway")
 	public void courseEnrolledWithNewCard() {
 		
-				String c = prop.getProperty("availableId");
+				String c = prop.getProperty("availableBId");
 				int customerId = Integer.parseInt(c);
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");

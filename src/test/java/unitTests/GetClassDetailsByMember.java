@@ -41,9 +41,8 @@ public class GetClassDetailsByMember extends base{
 				String customerId = prop.getProperty("availableId");
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-
 			Response res = given()
-//						.log().all()
+//					.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)

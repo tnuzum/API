@@ -2,6 +2,7 @@ package unitTests;
 
 import static io.restassured.RestAssured.given;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.equalTo;
@@ -9,15 +10,21 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.lessThan;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetClubsByMember extends base{
+	
+	String valueAssertions;
 
 	@BeforeClass
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
 		RestAssured.baseURI = prop.getProperty("baseURI");
+		valueAssertions = prop.getProperty("valueAssertions");
 	}
 	
 	@Test (testName="ClubsFound",description="PBI:127465")
@@ -25,6 +32,8 @@ public class GetClubsByMember extends base{
 		
 		String member = prop.getProperty("availableId");
 
+		Response res =
+				
 				given()
 //						.log().all()
 				.header("accept", "application/json")
@@ -39,12 +48,16 @@ public class GetClubsByMember extends base{
 						.time(lessThan(60L),TimeUnit.SECONDS)
 						.body("Result[0]", hasKey("Id"))
 						.body("Result[0]", hasKey("Name"))
-						.body("Result[1]", hasKey("Id"))
-						.body("Result[1]", hasKey("Name"))
-						.body("Result[0].Name", equalTo("Jonas Sports-Plex"))
-						.body("Result[1].Name", equalTo("Studio Jonas"))
-						.body("Result[2].Name", equalTo("Jonas Health and Wellness"))
-						.body("Result[3].Name", equalTo("Jonas Fitness"));
+						.extract().response();
+				
+				if (valueAssertions.equals("true")) {
+					JsonPath js = ReusableMethods.rawToJson(res);
+					
+					Assert.assertEquals(js.getString("Result.Name"), "Jonas Sports-Plex");
+					Assert.assertEquals(js.getString("Result.Name"), "Studio Jonas");
+					Assert.assertEquals(js.getString("Result.Name"), "Jonas Health and Wellness");
+					Assert.assertEquals(js.getString("Result.Name"), "Jonas Fitness");
+				}
 	}
 	
 	@Test (testName="MemberNotFound",description="PBI:127465")

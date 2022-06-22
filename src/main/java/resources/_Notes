@@ -66,3 +66,15 @@ RESPONSE PARSING EXAMPLE:
 JsonPath js = ReusableMethods.rawToJson(res);
 String id = js.get("Result.Address.AddressLine1");
 System.out.println(id);
+
+VALUEASSERTIONS:
+* below 'public class'
+String valueAssertions;
+
+* in @BeforeClass
+valueAssertions = prop.getProperty("valueAssertions");
+
+* in @Test
+if (valueAssertions.equals("true")) {
+... assertions ...
+}

@@ -224,7 +224,7 @@ public class GetDelinquentMembers extends base{
 	@Test  (testName="Delinquent Members Not Found", description="PBI:170148")
 	public void delinquentMembersNotFound() {
 		
-					String asOfDate = "1980-06-01";
+					String asOfDate = "1880-06-01";
 
 					given()
 //						.log().all()

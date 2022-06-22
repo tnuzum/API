@@ -24,7 +24,7 @@ public class GetMemberScheduleByUserId extends base {
 	@DataProvider
 	public Object[] getDataProvider(){
 		
-		Object[][] data = new Object[7][1];
+		Object[][] data = new Object[8][1];
 		
 				data[0][0]=prop.getProperty("availableId");
 				data[1][0]=prop.getProperty("collectionsId");
@@ -33,6 +33,7 @@ public class GetMemberScheduleByUserId extends base {
 				data[4][0]=prop.getProperty("noWebId");
 				data[5][0]=prop.getProperty("frozenId");
 				data[6][0]=prop.getProperty("creditLimitId");
+				data[7][0]=prop.getProperty("creditLimitId");
 				
 				return data;
 	}

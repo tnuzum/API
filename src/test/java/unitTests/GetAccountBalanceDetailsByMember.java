@@ -86,10 +86,13 @@ public class GetAccountBalanceDetailsByMember extends base {
 				Assert.assertTrue(js.getString("Result").contains("FormOfPayment"));
 	}
 	
-	@Test (testName="Return - Declined", description="PBI:149846")
+	@Test (testName="Return - Declined", description="PBI:149846", enabled = false)
+	
+	// need to find member that qualifies for this test in the Auto db
+	
 	public void returnDeclined() {
 		
-				String customerId = "120";//prop.getProperty("declineMemberId");
+				String customerId = prop.getProperty("declineMemberId");
 		
 		Response res =
 		
@@ -264,11 +267,12 @@ public class GetAccountBalanceDetailsByMember extends base {
 	public void returnCustomerDisputesCharge() {
 		
 				String customerId = prop.getProperty("customerDisputesChargeMemberId");
+				String companyId= "101";
 		
 		Response res =
 		
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -277,7 +281,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 			.when()
 				.get("/api/v3/member/getaccountbalancedetailsbymember?customerId="+customerId+"")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat()
 				.statusCode(200)
 				.extract().response();
@@ -328,7 +332,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 		Response res =
 		
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -337,7 +341,7 @@ public class GetAccountBalanceDetailsByMember extends base {
 			.when()
 				.get("/api/v3/member/getaccountbalancedetailsbymember?customerId="+customerId+"")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat()
 				.statusCode(200)
 				.extract().response();

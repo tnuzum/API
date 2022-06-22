@@ -14,7 +14,10 @@ import static org.hamcrest.Matchers.lessThan;
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import resources.ReusableDates;
+import resources.ReusableMethods;
 import resources.base;
 
 public class GetAppointmentsByMember extends base {
@@ -88,12 +91,13 @@ public class GetAppointmentsByMember extends base {
 	@Test (testName="Attended Appointment Found",description="PBI:124124")
 	public void attendedAppointmentFound() {
 		
-				String customerId = prop.getProperty("availableId");
-				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(2);
-				String eDateTimeNoOffset = ReusableDates.getCurrentDate();
+				String customerId = prop.getProperty("appointmentId");
+				String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusXYears(5);
+				String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusTenYears();
 				
-				given()		
-//				.log().all()
+				Response res = 
+					given()		
+//						.log().all()
 						.header("accept", "application/json")
 						.header("X-Api-Key",aPIKey)
 						.header("X-CompanyId", companyId)
@@ -101,11 +105,15 @@ public class GetAppointmentsByMember extends base {
 						.queryParam(customerId)
 					.when()
 						.get("/api/v3/appointment/getappointmentsbymember/"+customerId+"/"+sDateTimeNoOffset+"/"+eDateTimeNoOffset)
-						.then()
+					.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Result[0].BookedMembers[0].AppointmentOutcome", equalTo("Attended"));
+						.extract().response();
+						
+						JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertTrue(js.getString("Result.BookedMembers.AppointmentOutcome").contains("Attended"));
+						
 	}
 	
 	@Test (testName="No Show Appointment Found",description="PBI:124124")

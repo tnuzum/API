@@ -138,13 +138,13 @@ public class GetPackageDetails extends base{
 
 				Response res = given()
 //						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
+						.header("accept", "application/json")
+						.header("X-Api-Key",aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/package/getPackageDetails/"+customerId+"/"+itemId)
-						.then()
+					.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
@@ -173,7 +173,7 @@ public class GetPackageDetails extends base{
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].EndRange"), 999);
 						Assert.assertEquals(js.getDouble("Result.PriceRangeDtos[0].PricePerUnit"), 0.00);
 						Assert.assertEquals(js.getInt("Result.PriceRangeDtos[0].StartRange"), 1);
-						Assert.assertEquals(js.getString("Result.RedeemableClubs[0]"), "Jonas Sports-Plex");
+						Assert.assertTrue(js.getString("Result.RedeemableClubs").contains("Jonas Sports-Plex"));
 	}
 	
 	@Test (testName="Free Service",description="PBI:143538, 148154")

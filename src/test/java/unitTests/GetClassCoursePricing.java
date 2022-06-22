@@ -24,6 +24,7 @@ public class GetClassCoursePricing extends base {
 	static String aPIKey;
 	static String companyId;
 	static String clubId;
+	String valueAssertions;
 	
 	@BeforeClass
 	public void getData() {
@@ -34,6 +35,7 @@ public class GetClassCoursePricing extends base {
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
+		valueAssertions = prop.getProperty("valueAssertions");
 	}
 	
 	@Test (testName="Item Found - Single Tax",description="PBI:155543")
@@ -44,12 +46,14 @@ public class GetClassCoursePricing extends base {
 		String i = prop.getProperty("taxSingleClId");
 		int itemId = Integer.parseInt(i);
 
-		Response res = given()
+		Response res = 
+		
+					given()
 //						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -64,12 +68,14 @@ public class GetClassCoursePricing extends base {
 						.body("Result.TaxDetails[0].TaxItemId", equalTo(4))
 						.extract().response();
 		
-					JsonPath js = ReusableMethods.rawToJson(res);
+					if (valueAssertions.equals("true")) {
+						JsonPath js = ReusableMethods.rawToJson(res);
 						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.25);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.25);
 						Assert.assertEquals(js.getDouble("Result.TaxDetails[0].TaxAmount"), 0.25);
+					}
 	}
 	
 	@Test (testName="Item Found - Multiple Taxes",description="PBI:155543")
@@ -80,12 +86,14 @@ public class GetClassCoursePricing extends base {
 				String i = prop.getProperty("taxMultipleClId");
 				int itemId = Integer.parseInt(i);
 
-		Response res =	given()
-//				.log().all()				
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
+		Response res =
+				
+					given()
+//						.log().all()				
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
 						.then()
@@ -101,16 +109,17 @@ public class GetClassCoursePricing extends base {
 						.body("Result.TaxDetails[2].TaxItemId", equalTo(6))
 						.body("Result.TaxDetails[3].TaxItemId", equalTo(7))
 						.extract().response();
-						
+					if (valueAssertions.equals("true")) {
 					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 11.3);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 12.24);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
-						Assert.assertEquals(js.getDouble("Result.Tax"), 1.3);
-						Assert.assertEquals(js.getDouble("Result.TaxDetails[0].TaxAmount"), 0.25);
+						Assert.assertEquals(js.getDouble("Result.Tax"), 2.24);
+						Assert.assertEquals(js.getDouble("Result.TaxDetails[0].TaxAmount"), 0.59);
 						Assert.assertEquals(js.getDouble("Result.TaxDetails[1].TaxAmount"), 0.3);						
-						Assert.assertEquals(js.getDouble("Result.TaxDetails[2].TaxAmount"), 0.4);						
+						Assert.assertEquals(js.getDouble("Result.TaxDetails[2].TaxAmount"), 1.0);						
 						Assert.assertEquals(js.getDouble("Result.TaxDetails[3].TaxAmount"), 0.35);	
+					}
 }
 	
 	@Test (testName="Item Found - Club 2",description="PBI:155543")
@@ -121,15 +130,16 @@ public class GetClassCoursePricing extends base {
 				String i = prop.getProperty("taxSingleClId");
 				int itemId = Integer.parseInt(i);
 
-		Response res = given()
+		Response res = 
+					given()
 //						.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", 2)
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", 2)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
-						.then()
+					.then()
 //						.log().body()
 						.assertThat().statusCode(200)
 						.time(lessThan(60L),TimeUnit.SECONDS)
@@ -141,12 +151,14 @@ public class GetClassCoursePricing extends base {
 						.body("Result.TaxDetails[0].TaxItemId", equalTo(4))
 						.extract().response();
 		
-					JsonPath js = ReusableMethods.rawToJson(res);
-						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.29);
+					if (valueAssertions.equals("true")) {
+						JsonPath js = ReusableMethods.rawToJson(res);
+						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.39);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.29);
 						Assert.assertEquals(js.getDouble("Result.TaxDetails[0].TaxAmount"), 0.29);
+					}
 	}
 	
 	@Test (testName="Item Found - No Tax",description="PBI:155543")
@@ -175,11 +187,13 @@ public class GetClassCoursePricing extends base {
 						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
 						.extract().response();
 			
+			if (valueAssertions.equals("true")) {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 10.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 10.0);
-						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);	
+						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+			}
 	}
 	
 	@Test (testName="Item Found - Free Item",description="PBI:155543")
@@ -207,12 +221,14 @@ public class GetClassCoursePricing extends base {
 						.body("Result.PriceDetails[0].IsTaxed", equalTo(false))
 						.body("Result.PriceDetails[0].ItemId", equalTo(itemId))
 						.extract().response();
-				
+		
+		if (valueAssertions.equals("true")) {
 					JsonPath js = ReusableMethods.rawToJson(res);
 						Assert.assertEquals(js.getDouble("Result.GrandTotal"), 0.0);
 						Assert.assertEquals(js.getDouble("Result.PriceDetails[0].Price"), 0.0);
 						Assert.assertEquals(js.getDouble("Result.SubTotal"), 0.0);
 						Assert.assertEquals(js.getDouble("Result.Tax"), 0.0);
+		}
 	}
 	
 	@Test (testName="Item Not Found",description="PBI:155543")
@@ -222,19 +238,19 @@ public class GetClassCoursePricing extends base {
 		int customerId = Integer.parseInt(c);
 		int itemId = 99999;
 
-				given()
-				.header("accept", "application/json")
-				.header("X-Api-Key", aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
+					given()
+//						.log().all()
+						.header("accept", "application/json")
+						.header("X-Api-Key", aPIKey)
+						.header("X-CompanyId", companyId)
+						.header("X-ClubId", clubId)
 					.when()
 						.get("/api/v3/classcourse/getclasscoursepricing/"+customerId+"/"+itemId)
-						.then()
-//						.log().body()
+					.then()
+//						.log().all()
 //						.assertThat().statusCode(404)
 //						.body("Message", equalTo("Item not found"))
 						.assertThat().statusCode(500);
-//						.body("Message", equalTo("Internal server error - The creator of this fault did not specify a Reason."));
 	}
 	
 	@Test (testName="Customer Not Found",description="PBI:155543")

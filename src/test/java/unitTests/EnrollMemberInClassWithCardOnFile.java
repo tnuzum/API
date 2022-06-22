@@ -491,13 +491,13 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	@Test (testName="Scheduling Conflict",description="PBI:146577", enabled = true)
 	public void schedulingConflict() {
 		
-				String c = prop.getProperty("standbyAId");
+				String c = prop.getProperty("standbyCId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("standbyClId");
-				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				int accountId					= 1;
-				Boolean enrollCustomerAsStandby 	= true;
+				String classId = prop.getProperty("conflictClId");
+				String classOccurrence = prop.getProperty("conflictClOccurrence");
+				String displayedGrandTotal = prop.getProperty("conflictClPrice");
+				int accountId = 1;
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 //				.log().all()
