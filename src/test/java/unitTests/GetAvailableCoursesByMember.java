@@ -36,9 +36,9 @@ public class GetAvailableCoursesByMember extends base {
 	@Test (testName="Courses Found",description="PBI:146576")
 	public void coursesFound() { 
 		
-			String customerId = prop.getProperty("availableId");
+			String customerId = prop.getProperty("availableBId");
 			String startDateTime = ReusableDates.getCurrentDate();
-			String endDateTime = ReusableDates.getCurrentDatePlusOneWeek();
+			String endDateTime = ReusableDates.getCurrentDatePlusXDays(1);
 
 		Response res = given()
 //				.log().all()

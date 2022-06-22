@@ -6,8 +6,12 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import payloads.PackagePL;
+import resources.ReusableMethods;
 import resources.base;
+import resources.myGets;
 
 public class PurchasePackageWithNewCreditCard extends base{
 	
@@ -55,9 +59,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 5;
-				String dgt = prop.getProperty("paidTGrandTotal");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				
@@ -68,7 +73,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().all()
@@ -84,9 +89,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidServiceVId");
 				int quantity = 3;
-				String dgt = prop.getProperty("paidServiceVGrandTotal");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -96,7 +102,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().body()
@@ -112,9 +118,12 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("paidPId");
 				int quantity = 5;
-				String dgt = prop.getProperty("paidPBasePrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+//				String dgt = prop.getProperty("paidPBasePrice");
+//				double grandTotal = Double.parseDouble(dgt);
+//				double displayedGrandTotal = (grandTotal * quantity);
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -124,7 +133,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().body()
@@ -140,9 +149,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freeTPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -152,7 +162,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().body()
@@ -168,9 +178,12 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeSVId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freeSVPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+//				String dgt = prop.getProperty("freeSVPrice");
+//				double grandTotal = Double.parseDouble(dgt);
+//				double displayedGrandTotal = (grandTotal * quantity);
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -180,7 +193,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().body()
@@ -196,9 +209,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freePId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freePPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -208,7 +222,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().body()
@@ -224,13 +238,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 1;
-				String dgt = prop.getProperty("tierPricingTier1Price");
-				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -240,7 +251,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
@@ -256,13 +267,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
-				String dgt = prop.getProperty("tierPricingTier2Price");
-				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 				
 			given()
@@ -273,7 +281,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
@@ -289,13 +297,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 5;
-				String dgt = prop.getProperty("taxSingleTPrice");
-				String tr = prop.getProperty("taxSingleTClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -305,7 +310,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
@@ -321,9 +326,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 1;
-				String dgt = prop.getProperty("freeTPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -333,7 +339,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
@@ -376,9 +382,10 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 5;
-				String dgt = prop.getProperty("paidTGrandTotal");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				
@@ -389,7 +396,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithNewCreditCard_WithAddress2(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,addressLine2,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard_WithAddress2(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,addressLine2,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 //				.log().all()
@@ -406,8 +413,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
-				double displayedGrandTotal = Double.parseDouble(dgt);
-				
+				double calcGrandTotal = Double.parseDouble(dgt);
+
 			given()
 				//.log().all()
 				.header("accept", "application/json")
@@ -416,7 +423,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
+				.body(PackagePL.PurchasePackageWithNewCreditCard(customerId,itemId,quantity,calcGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode))
 				.post("/api/v3/package/purchasepackagewithnewcreditcard")
 			.then()
 				//.log().body()
@@ -701,7 +708,7 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 	//			.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
+				.body("Message", containsString("The creator of this fault did not specify a Reason."));
 				
 	}	
 	

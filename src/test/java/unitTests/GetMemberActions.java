@@ -53,7 +53,7 @@ public class GetMemberActions extends base{
 						
 						Assert.assertTrue(res.getTime() >= 60L);
 						Assert.assertNotNull(js.getString("Result[0].ActionDescription"));
-						Assert.assertTrue(js.getInt("Result[0].MemberActionId") == 1);
+						Assert.assertTrue(js.getString("Result.MemberActionId").contains("1"));
 	}
 	
 	@Test  (testName="Action Is Nursery Plan Default", description="PBI:165577")
@@ -79,7 +79,7 @@ public class GetMemberActions extends base{
 						JsonPath js = ReusableMethods.rawToJson(res);		
 						
 						Assert.assertTrue(res.getTime() >= 60L);
-						Assert.assertTrue(js.getString("Result[0].IsNurseryDefault").contentEquals("true"));
+						Assert.assertTrue(js.getString("Result.IsNurseryDefault").contains("true"));
 	}
 	
 	@Test  (testName="Action Is Not Nursery Plan Default", description="PBI:165577")

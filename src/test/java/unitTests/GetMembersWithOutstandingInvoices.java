@@ -40,7 +40,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 		asOfDate = ReusableDates.getCurrentDate();
 	}
 	
-	@Test  (testName="Outstanding Invoices Found", description="PBI:153783", enabled = true)
+	@Test  (testName="Outstanding Invoices Found", description="PBI:153783")
 	
 	/* 
 	 * This call should always be sent with a customerId,
@@ -320,7 +320,7 @@ public class GetMembersWithOutstandingInvoices extends base{
 	@Test  (testName="Outstanding Invoices Not Found", description="PBI:153783")
 	public void outstandingInvoicesNotFound() {
 		
-					String asOfDate = "1980-06-01";
+					String asOfDate = "1899-12-31";
 
 					given()
 //						.log().all()

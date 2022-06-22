@@ -6,8 +6,11 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import resources.ReusableMethods;
 import resources.base;
+import resources.myGets;
 
 public class VerifyPackagePurchaseCapability extends base{
 	
@@ -37,9 +40,10 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 10;
-				String dGT = prop.getProperty("paidTGrandTotal");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -48,7 +52,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -59,13 +63,14 @@ public class VerifyPackagePurchaseCapability extends base{
 	
 	@Test (testName="Paid Punchcard",description="PBI:159118", enabled = true)
 	public void paidPunchcard() {
-				
-				ReusableMethods.myWait(250); // waiting to avoid 429 rate counter exceeded when tests execute too fast
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidPId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidPBasePrice");
+				int quantity = 10;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -74,7 +79,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().all()
 				.assertThat().statusCode(200)
@@ -89,9 +94,10 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidServiceVId");
 				int quantity = 10;
-				String dGT = prop.getProperty("paidTGrandTotal");
-				double displayedGrandTotal = Double.parseDouble(dGT);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -100,7 +106,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+calcGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -114,8 +120,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -124,7 +133,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -138,8 +147,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freePId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freePPrice");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -148,7 +160,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -162,8 +174,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("freeSVId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeSVPrice");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -172,7 +187,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -186,8 +201,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("tierPriceingGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -196,7 +214,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -211,13 +229,10 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
-				String dGT = prop.getProperty("tierPricingTier2Price");
-				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dGT);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -226,7 +241,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -241,7 +256,10 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidSVClubPriceId");
 				int quantity = 1;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub1Price");
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 				
 			given()
@@ -251,7 +269,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -266,8 +284,11 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidSVClubPriceId");
 				int quantity = 1;
-				int clubId = 2;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub2Price");
+				String clubId = "2";
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 				
 			given()
@@ -277,7 +298,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club2Id"))
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -292,9 +313,11 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidSVClubPriceId");
 				int quantity = 1;
-				int clubId = 3;
-				String displayedGrandTotal = prop.getProperty("paidSVClubPriceClub3Price");
+				String clubId = "3";
 				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -303,7 +326,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", prop.getProperty("X-Club3Id"))
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -318,13 +341,10 @@ public class VerifyPackagePurchaseCapability extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 1;
-				String dGT = prop.getProperty("taxSingleTPrice");
-				String tr = prop.getProperty("taxSingleTClub1TaxRate");
-				double grandTotal = Double.parseDouble(dGT);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double displayedGrandTotal = (calcTotal + calcTaxTotal);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -333,7 +353,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -347,8 +367,8 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "0";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 0;
+				String grandTotal = prop.getProperty("paidTGrandTotal");
 				
 			given()
 //				.log().all()
@@ -357,7 +377,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -395,8 +415,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("terminatedId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -405,7 +428,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -419,8 +442,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("collectionsId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -429,7 +455,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -443,8 +469,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -453,7 +482,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -467,8 +496,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("prospectId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -477,7 +509,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -491,8 +523,11 @@ public class VerifyPackagePurchaseCapability extends base{
 		
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("paidTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("paidTGrandTotal");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -501,7 +536,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -515,8 +550,11 @@ public class VerifyPackagePurchaseCapability extends base{
  
 				String customerId = prop.getProperty("creditLimitId");
 				String itemId = prop.getProperty("freeTId");
-				String quantity = "1";
-				String displayedGrandTotal = prop.getProperty("freeTPrice");
+				int quantity = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double grandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -525,7 +563,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
+				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+grandTotal)
 			.then()
 //				.log().body()
 				.assertThat().statusCode(200)
@@ -576,7 +614,7 @@ public class VerifyPackagePurchaseCapability extends base{
 				.get("/api/v3/packagedetails/verifypackagedetailsforpurchase/"+companyId+"/"+clubId+"/"+customerId+"/"+itemId+"/"+quantity+"/"+displayedGrandTotal)
 			.then()
 //				.log().body()
-				.assertThat().statusCode(200)// purchase call returns 404 this 200 is not used
+				.assertThat().statusCode(200) // purchase call returns 404 this 200 is not used
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("AllowedToPurchase", equalTo(false))
 				.body("PackageStatus", equalTo("ItemNotFound"));			

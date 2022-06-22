@@ -49,7 +49,7 @@ public class GetAvailableResourceTypesByClub extends base{
 						.body("Result[2]", hasKey("ResourceTypeName"));
 	}
 	
-	@Test (testName="ResourceTypesNotFound",description="PBI:138961")
+	@Test (testName="ResourceTypesNotFound",description="PBI:138961", enabled  = false)
 	public void ResourceTypesNotFound() {
 
 				given()
@@ -57,7 +57,7 @@ public class GetAvailableResourceTypesByClub extends base{
 				.header("accept", "application/json")
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
-				.header("X-ClubId", prop.getProperty("X-Club3Id"))
+				.header("X-ClubId", "11") //prop.getProperty("X-Club3Id"))
 					.when()
 						.get("/api/v3/bookview/getavailableresourcetypesbyclub")
 						.then()

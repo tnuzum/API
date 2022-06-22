@@ -98,6 +98,7 @@ public class myActions extends base {
 				String PriorityId = prop.getProperty("PriorityId");
 		
 		Response res = 
+		
 				given()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
@@ -111,9 +112,8 @@ public class myActions extends base {
 //				.log().body()
 				.extract().response();
 	
-				JsonPath js2 = ReusableMethods.rawToJson(res);
-				String customerId = js2.getString("CustomerId");
-
+				JsonPath js = ReusableMethods.rawToJson(res);
+				String customerId = js.getString("CustomerId");
 				return customerId;
 	}
 	

@@ -112,7 +112,7 @@ public class ClassCoursePL extends base {
 			(
 			int customerId,
 			String courseId,
-			String displayedGrandTotal,
+			double grandTotal,
 			int accountId,
 			Boolean enrollCustomerAsStandby,
 			Boolean onlineEnrollment
@@ -121,7 +121,7 @@ public class ClassCoursePL extends base {
 		String payload = "{" + 
 			"  \"CustomerId\": "+customerId+"," + 
 			"  \"ItemId\": \""+courseId+"\"," +
-			"  \"DisplayedGrandTotal\": "+displayedGrandTotal+"," + 
+			"  \"DisplayedGrandTotal\": "+grandTotal+"," + 
 			"  \"AccountId\": \""+accountId+"\"," + 
 			"  \"EnrollCustomerAsStandBy\": \""+enrollCustomerAsStandby+"\"," +
 			"  \"OnlineEnrollment\": \""+onlineEnrollment+"\""+

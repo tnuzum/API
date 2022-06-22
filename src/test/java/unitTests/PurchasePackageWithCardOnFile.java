@@ -6,8 +6,12 @@ import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import payloads.PackagePL;
+import resources.ReusableMethods;
 import resources.base;
+import resources.myGets;
 
 public class PurchasePackageWithCardOnFile extends base{
 	
@@ -34,9 +38,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 5;
-				String dgt = prop.getProperty("paidTPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double displayedGrandTotal = (grandTotal * quantity);
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				
@@ -47,7 +52,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()				
-				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 //				.log().all()
@@ -63,9 +68,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidServiceVId");
 				int quantity = 3;
-				String dgt = prop.getProperty("paidServiceVGrandTotal");
-				double grandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -91,9 +97,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("paidPId");
 				int quantity = 5;
-				String dgt = prop.getProperty("paidPBasePrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -119,9 +126,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeTId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freeTPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -147,9 +155,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freeSVId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freeSVPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -175,9 +184,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("appointmentId");
 				String itemId = prop.getProperty("freePId");
 				int quantity = 10;
-				String dgt = prop.getProperty("freePPrice");
-				double grandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (grandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -203,13 +213,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 1;
-				String dgt = prop.getProperty("tierPricingTier1Price");
-				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -235,14 +242,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("CardWithoutAgreementId");
 				String itemId = prop.getProperty("tierPricingId");
 				int quantity = 6;
-				String dgt = prop.getProperty("tierPricingTier2Price");
-				String tr = prop.getProperty("tierPricingClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
-				
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -268,13 +271,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("taxSingleTId");
 				int quantity = 5;
-				String dgt = prop.getProperty("taxSingleTPrice");
-				String tr = prop.getProperty("taxSingleTClub1TaxRate");
-				double grandTotal = Double.parseDouble(dgt);
-				double taxRate = Double.parseDouble(tr);
-				double calcTotal = (grandTotal * quantity);
-				double calcTaxTotal =  (calcTotal * taxRate);
-				double calcGrandTotal = (calcTotal + calcTaxTotal);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -284,7 +284,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 			.when()
-.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
+				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, calcGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
 				//.log().body()
@@ -300,10 +300,11 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String dgt = prop.getProperty("paidTPrice");
-				double displayedGrandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
 				int accountId = 1;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -329,10 +330,11 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("MultipleAgreementsWithMultipleCardsId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String dgt = prop.getProperty("paidTPrice");
-				double displayedGrandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
 				int accountId = 2;
+				
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 //				.log().all()
@@ -358,9 +360,10 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("noFOPId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
-				String dgt = prop.getProperty("paidTPrice");
-				double displayedGrandTotal = Double.parseDouble(dgt);
-				double calcGrandTotal = (displayedGrandTotal * quantity);
+
+				Response res = myGets.getPackagePrice(aPIKey, companyId, clubId, customerId, itemId, quantity);
+				JsonPath js = ReusableMethods.rawToJson(res);
+				double calcGrandTotal = js.getDouble("Result.GrandTotal");
 				
 			given()
 				//.log().all()
@@ -377,7 +380,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));		
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143542")
@@ -461,7 +464,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));		
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143542", enabled = true)
@@ -498,9 +501,11 @@ public class PurchasePackageWithCardOnFile extends base{
 				String customerId = prop.getProperty("frozenId");
 				String itemId = prop.getProperty("paidTId");
 				int quantity = 1;
+				int accountId = 1;
 				String dgt = prop.getProperty("paidTGrandTotal");
 				double displayedGrandTotal = Double.parseDouble(dgt);
 				double calcGrandTotal = (displayedGrandTotal * quantity);
+				
 				
 			given()
 //				.log().all()
@@ -545,7 +550,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));				
+				.body("Message", containsString("Sequence contains no elements"));			
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143542", enabled = true)
@@ -573,7 +578,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));		
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143542")
@@ -713,8 +718,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(400)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
-//				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
+				.body("Message", containsString("InvoiceError"));
 	}	
 	
 	

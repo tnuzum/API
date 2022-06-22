@@ -4,11 +4,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -16,6 +12,7 @@ import io.restassured.response.Response;
 import resources.ReusableDates;
 import resources.ReusableMethods;
 import resources.base;
+import resources.myGets;
 
 public class EnrollMemberInClassOnAccount extends base {
 	
@@ -44,8 +41,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 				
 			if (ReusableMethods.isEnrolled(customerId) == false) {
 			
@@ -56,7 +56,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -92,8 +92,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("notStartedClId");
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
-				String displayedGrandTotal = prop.getProperty("notStartedClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
@@ -104,7 +107,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -141,8 +144,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
@@ -152,7 +158,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -186,8 +192,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
-				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
@@ -198,7 +207,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 				//		.log().body()
 						.assertThat().statusCode(200)
@@ -233,8 +242,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("freeClId");
 				String classOccurrence = prop.getProperty("freeClOccurrence");
-				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 				
 				if (ReusableMethods.isEnrolled(customerId) == false) {
 
@@ -245,7 +257,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(200)
@@ -280,8 +292,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -289,7 +304,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -303,8 +318,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -312,7 +330,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -322,7 +340,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Product Price Changed",description="PBI:143588")
 	public void productPriceChanged() {
 		
-				String c = prop.getProperty("availableId");
+				String c = prop.getProperty("availableBId");
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
@@ -349,8 +367,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -358,7 +379,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -372,8 +393,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				String enrollCustomerAsStandby = "false";
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -381,7 +405,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -391,7 +415,7 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Customer Not Found",description="PBI:143588")
 	public void customerNotFound() {
 		
-				int customerId 			= 245000;
+				int customerId = 245000;
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
@@ -457,28 +481,32 @@ public class EnrollMemberInClassOnAccount extends base {
 						.body("Message", equalTo("ItemNotFound"));
 	}
 	
-	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:143588", enabled = false)
+	@Test (testName="Online Sales Not Allowed - Member Context",description="PBI:143588", enabled = true)
 	public void onlineSalesNotAllowedMember() {
 		
 				String c = prop.getProperty("availableId");
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("noWebClId");
 				String classOccurrence = prop.getProperty("noWebClOccurrence");
-				String displayedGrandTotal = prop.getProperty("noWebClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				onlineEnrollment = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
-						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
+//						.log().body()
+						.assertThat().statusCode(404)
+						.body("Message", equalTo("ItemNotFound"));
 	}
 	
 	@Test (testName="Enrollment Not Open",description="PBI:143588", enabled = true)
@@ -488,8 +516,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("neverAvailClId");
 				String classOccurrence = prop.getProperty("neverAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("neverAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -497,7 +528,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -507,20 +538,24 @@ public class EnrollMemberInClassOnAccount extends base {
 	@Test (testName="Scheduling Conflict",description="PBI:143588", enabled = true)
 	public void schedulingConflict() {
 		
-				String c = prop.getProperty("standbyAId");
+				String c = prop.getProperty("standbyCId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("standbyClId");
-				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
+				String classId = prop.getProperty("conflictClId");
+				String classOccurrence = prop.getProperty("conflictClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -534,20 +569,25 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
+			.when()
+				.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+			.then()
+//				.log().body()
+				.assertThat().statusCode(400)
+				//.body("Message", equalTo("EnrollmentNotAllowed - MemberTerminated"));
+				.body("Message", equalTo("EnrollmentNotAllowed - NotAllowed"));
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Collections Member",description="PBI:143588")
@@ -557,8 +597,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -566,34 +609,55 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
 						.body("Message", equalTo("Account Problem"));
 	}
 	
-	@Test (testName="Enrollment Not Allowed - Frozen Member",description="PBI:143588", enabled = true)
-	public void enrollmentNotAllowedFrozenMember() {
+	@Test (testName="Enrollment Allowed - Frozen Member",description="PBI:143588", enabled = true)
+	public void enrollmentAllowedFrozenMember() {
 		
 				String c = prop.getProperty("frozenId");
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
-
-				given()
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
+				
+				if (ReusableMethods.isEnrolled(customerId) == false) {
+				
+				Response res = given()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - MemberFrozen"));
+						//.assertThat().statusCode(400)
+						//.body("Message", equalTo("EnrollmentNotAllowed - MemberFrozen"));
+						.assertThat().statusCode(200)
+						.extract().response();
+				
+				JsonPath js = ReusableMethods.rawToJson(res);
+					int enrollmentId = js.getInt("Result.EnrollmentId");
+					int invoiceId = js.getInt("Result.InvoiceId");
+
+					if (res.statusCode() == 200) {
+						ReusableMethods.deleteEnrollment(companyId, enrollmentId, customerId);
+						ReusableMethods.deleteInvoice(companyId, invoiceId, enrollmentId, customerId);
+					}	
+			}
+			else{
+				Assert.assertTrue(false); //failing test because isEnrolled() == true
+			}
 	}
 	
 	@Test (testName="Enrollment Not Allowed - Prospect Member",description="PBI:143588")
@@ -603,8 +667,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("alwaysAvailClId");
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
-				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -612,7 +679,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -626,21 +693,24 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("endedClId");
 				String classOccurrence = prop.getProperty("endedClOccurrence");
-				String displayedGrandTotal = prop.getProperty("endedClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
-				given()
+			given()
 //				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
-					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
-						.then()
-//						.log().body()
-						.assertThat().statusCode(400)
-						.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
+			.when()
+				.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+			.then()
+//				.log().body()
+				.assertThat().statusCode(400)
+				.body("Message", equalTo("EnrollmentNotAllowed - EnrollmentHasEnded"));
 	}
 	
 	@Test (testName="Class Enrollment Closed",description="PBI:143588", enabled = true)
@@ -650,8 +720,11 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("closedClId");
 				String classOccurrence 	= ReusableDates.getCurrentDatePlusOneDay8AM();
-				String displayedGrandTotal = prop.getProperty("closedClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 				.header("accept", "application/json")
@@ -659,7 +732,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)
@@ -673,8 +746,12 @@ public class EnrollMemberInClassOnAccount extends base {
 				int customerId = Integer.parseInt(c);
 				String classId = prop.getProperty("noAlternatePaymentClId");
 				String classOccurrence = prop.getProperty("noAlternatePaymentClOccurrence");
-				String displayedGrandTotal = prop.getProperty("noAlternatePaymentClPrice");
+				//String displayedGrandTotal = prop.getProperty("noAlternatePaymentClPrice");
 				Boolean enrollCustomerAsStandby = true;
+				
+				Response response = myGets.getClassCoursePricing(aPIKey, companyId, clubId, c, classId);
+				JsonPath json = ReusableMethods.rawToJson(response);
+				double grandTotal = json.getDouble("Result.GrandTotal");
 
 				given()
 //				.log().all()
@@ -683,7 +760,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 					.when()
-						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+displayedGrandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
+						.get("/api/v3/classcourse/enrollmemberinclassonaccount/"+customerId+"/"+classId+"/"+classOccurrence+"/"+grandTotal+"/"+enrollCustomerAsStandby+"/"+onlineEnrollment)
 						.then()
 //						.log().body()
 						.assertThat().statusCode(400)

@@ -112,8 +112,8 @@ public class AddCardOnFileByMember extends base {
 				
 				JsonPath js = ReusableMethods.rawToJson(res);
 				
-				Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationMonth));
-				Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationYear));
+				Assert.assertTrue(js.getString("Result.ExpirationDate").contains(expirationMonth));
+				Assert.assertTrue(js.getString("Result.ExpirationDate").contains(expirationYear));
 				Assert.assertEquals(js.getString("Result[0].NameOnCard"),cardHolderName);
 				Assert.assertEquals(js.getString("Result[0].Address.AddressLine1"),addressLine1);
 				Assert.assertEquals(js.getString("Result[0].Address.AddressLine2"),addressLine2);

@@ -25,8 +25,8 @@ public class GetClassCoursePricing extends base {
 	@Test (testName="Item Found - Single Tax",description="PBI:155543")
 	public void itemFound_SingleTax() { 
 		
-		int customerId = 248;
-		int itemId = 229;
+		int customerId = 249;
+		int itemId = 256;
 
 		given()
 //						.log().all()

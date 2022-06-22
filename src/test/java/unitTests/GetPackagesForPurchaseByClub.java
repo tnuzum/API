@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -175,6 +175,7 @@ public class GetPackagesForPurchaseByClub extends base {
 			.then()
 //			    .log().body()
 				.assertThat().statusCode(500)
-				.body("Message",equalTo("Internal server error - Customer Not Found"));
+				.body("Message", startsWith("Internal server error - "))
+				.body("Message",containsString("Customer Not Found"));
 			}
 }

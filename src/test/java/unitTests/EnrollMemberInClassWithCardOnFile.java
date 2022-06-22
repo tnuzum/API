@@ -5,11 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -495,13 +491,13 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 	@Test (testName="Scheduling Conflict",description="PBI:146577", enabled = true)
 	public void schedulingConflict() {
 		
-				String c = prop.getProperty("standbyAId");
+				String c = prop.getProperty("standbyCId");
 				int customerId = Integer.parseInt(c);
-				String classId = prop.getProperty("standbyClId");
-				String classOccurrence = prop.getProperty("standbyClOccurrence");
-				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				int accountId					= 1;
-				Boolean enrollCustomerAsStandby 	= true;
+				String classId = prop.getProperty("conflictClId");
+				String classOccurrence = prop.getProperty("conflictClOccurrence");
+				String displayedGrandTotal = prop.getProperty("conflictClPrice");
+				int accountId = 1;
+				Boolean enrollCustomerAsStandby = true;
 
 				given()
 //				.log().all()
@@ -545,7 +541,8 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 //						.log().body()
 						// this returns "Sequence contains no elements" because there is no card on file
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", startsWith("Internal server error - "))
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 }

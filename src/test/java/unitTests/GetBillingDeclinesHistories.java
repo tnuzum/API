@@ -53,7 +53,7 @@ public class GetBillingDeclinesHistories extends base {
 			.when()
 				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
-//			    .log().body()
+			    .log().body()
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")
 				.extract().response();
@@ -131,7 +131,7 @@ public class GetBillingDeclinesHistories extends base {
 			.when()
 				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
-//			    .log().all()
+			    .log().all()
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")
 				.extract().response();

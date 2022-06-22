@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class base {
 
-	static String environment = "FUTURE2";
+	static String environment = "StageRegression";
 
 	public static Properties prop = new Properties();
 	static String projectPath = System.getProperty("user.dir");
@@ -16,23 +16,10 @@ public class base {
 
 		prop = new Properties();
 		FileInputStream fis = null;
-
-		if (environment.equals("FUTURE")) {
+		
+		if (environment.equals("DevQA")) {
 			try {
-				fis = new FileInputStream(projectPath + "/src/main/java/resources/future.properties");
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			try {
-				prop.load(fis);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		if (environment.equals("FUTURE2")) {
-			try {
-				fis = new FileInputStream(projectPath + "/src/main/java/resources/future2.properties");
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/DevQA");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -43,9 +30,37 @@ public class base {
 			}
 
 		}
-		if (environment.equals("PRODCURRENT")) {
+		
+		if (environment.equals("StageRegression")) {
 			try {
-				fis = new FileInputStream(projectPath + "/src/main/java/resources/prodCurrent.properties");
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/StageRegression.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				prop.load(fis);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		if (environment.equals("ProdBeta")) {
+			try {
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/ProdBeta.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			try {
+				prop.load(fis);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		if (environment.equals("ProdRelease")) {
+			try {
+				fis = new FileInputStream(projectPath + "/src/main/java/resources/ProdRelease.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

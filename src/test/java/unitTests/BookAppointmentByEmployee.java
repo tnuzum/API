@@ -4,11 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.Matchers.empty;
@@ -59,7 +55,7 @@ public class BookAppointmentByEmployee extends base {
 				.body(AppointmentPL.BookAppointment_SingleMember(appointmentClubId, itemId, occurrence, customerId, requestedBooks, userDisplayedPrice))
 				.post("/api/v3/appointment/bookappointmentbyemployee")
 			.then()
-//				.log().body()
+//				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.extract().response();
@@ -293,7 +289,8 @@ public class BookAppointmentByEmployee extends base {
 //				.log().body()
 			.assertThat()
 			.statusCode(500)
-			.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."));
+			.body("Message", startsWith("Internal server error - "))
+			.body("Message", containsString("Item with ID "+itemId+" is not a valid bookable appointment item."));
 	}
 	
 	@Test (testName="Appointment Not Found",description="PBI:146227")

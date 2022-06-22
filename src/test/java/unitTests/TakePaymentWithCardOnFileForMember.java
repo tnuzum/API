@@ -48,7 +48,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 		effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 		amount = "1.01";
 		paymentCategory = prop.getProperty("paymentCategory1");
-		paymentDescription = "ENTER ANY TEXT HERE";
+		paymentDescription = "Automated Testing - Payment Description";
 
 	}
 	
